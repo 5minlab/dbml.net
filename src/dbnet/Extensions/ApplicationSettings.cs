@@ -1,0 +1,19 @@
+using System;
+using System.IO;
+
+namespace DbmlNet.Extensions;
+
+internal static class ApplicationSettings
+{
+    public const string DbmlExtension = ".dbml";
+
+    public static string[] FindDbmlNetFiles(string inputPath)
+    {
+        if (Directory.Exists(inputPath))
+            return Directory.GetFiles(inputPath, $"*{DbmlExtension}");
+
+        return Path.GetExtension(inputPath) == DbmlExtension
+            ? (new[] { inputPath })
+            : Array.Empty<string>();
+    }
+}

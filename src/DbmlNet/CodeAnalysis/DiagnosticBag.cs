@@ -1,0 +1,59 @@
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+using DbmlNet.CodeAnalysis.Syntax;
+using DbmlNet.CodeAnalysis.Text;
+
+namespace DbmlNet.CodeAnalysis;
+
+internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
+{
+    private readonly List<Diagnostic> _diagnostics = new List<Diagnostic>();
+
+    public IEnumerator<Diagnostic> GetEnumerator() => _diagnostics.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public void AddRange(IEnumerable<Diagnostic> diagnostics)
+    {
+        _diagnostics.AddRange(diagnostics);
+    }
+
+    private void ReportError(TextLocation location, string message)
+    {
+        Diagnostic diagnostic = Diagnostic.Error(location, message);
+        _diagnostics.Add(diagnostic);
+    }
+
+    private void ReportWarning(TextLocation location, string message)
+    {
+        Diagnostic diagnostic = Diagnostic.Warning(location, message);
+        _diagnostics.Add(diagnostic);
+    }
+
+    public void ReportInvalidNumber(TextLocation location, string text, Type type)
+    {
+        string message = $"The number {text} isn't valid {type}.";
+        ReportError(location, message);
+    }
+
+    public void ReportBadCharacter(TextLocation location, char character)
+    {
+        string message = $"Bad character input: '{character}'.";
+        ReportError(location, message);
+    }
+
+    public void ReportNumberToLarge(TextLocation location, string numberText)
+    {
+        string message = $"The number '{numberText}' is too large.";
+        ReportError(location, message);
+    }
+
+    public void ReportUnexpectedToken(TextLocation location, SyntaxKind currentKind, SyntaxKind expectedKind)
+    {
+        string message = $"Unexpected token <{currentKind}>, expected <{expectedKind}>.";
+        ReportError(location, message);
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "vscode-icons-team.vscode-icons",
+        "stkb.rewrap",
+        "mhutchie.git-graph",
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "usernamehw.errorlens",
+        "tomoki1207.pdf",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "matt-meyers.vscode-dbml",
+        "nicolas-liger.dbml-viewer",
+        "bierner.markdown-mermaid",
+        "deerawan.vscode-faker",
+        "bierner.markdown-preview-github-styles"
+    ]
+}

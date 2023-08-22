@@ -1,0 +1,188 @@
+Project "Application Identity" {
+  database_type: 'mssql'
+  note: 'Identity database schema.'
+}
+
+Table Users
+{
+    Id nvarchar(450) [
+        primary key,
+        note: 'The primary key for this user.']
+    UserName nvarchar(256) [
+        null,
+        note: 'The user name for this user.']
+    NormalizedUserName nvarchar(256) [
+        null,
+        unique,
+        note: 'The normalized user name for this user.']
+    Email nvarchar(256) [
+        null,
+        note: 'The email address for this user.']
+    NormalizedEmail nvarchar(256) [
+        null,
+        unique,
+        note: 'The normalized email address for this user.']
+    EmailConfirmed bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if a user has confirmed their email address.']
+    PasswordHash nvarchar(MAX) [
+        null,
+        note: 'A salted and hashed representation of the password for this user.']
+    SecurityStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that must change whenever a users credentials change (password changed, login removed).']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that must change whenever a user is persisted to the store.']
+    PhoneNumber nvarchar(MAX) [
+        null,
+        note: 'A telephone number for the user.']
+    PhoneNumberConfirmed bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if a user has confirmed their telephone address.']
+    TwoFactorEnabled bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if two factor authentication is enabled for this user.']
+    LockoutEnd datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, when any user lockout ends.']
+    LockoutEnabled bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if the user could be locked out.']
+    AccessFailedCount int [
+        not null,
+        default: 0,
+        note: 'The number of failed login attempts for the current user.']
+
+    indexes {
+        NormalizedUserName [unique, name: 'UserNameIndex', type: btree]
+        NormalizedEmail [unique, name: 'EmailIndex', type: btree]
+    }
+
+    note: 'Represents a user in the identity system.'
+}
+
+Table UserClaims
+{
+    Id nvarchar(450) [
+        primary key,
+        increment,
+        note: 'The identifier for this user claim.']
+    UserId nvarchar(450) [
+        not null,
+        ref: > Users.Id,
+        note: 'The primary key of the user associated with this claim.']
+    ClaimType nvarchar(450) [
+        null,
+        note: 'The claim type for this claim.']
+    ClaimValue nvarchar(450) [
+        null,
+        note: 'The claim value for this claim.']
+
+    note: 'Represents a claim that a user possesses.'
+}
+
+Table UserLogins
+{
+    UserId nvarchar(450) [
+        not null,
+        ref: > Users.Id,
+        note: 'The primary key of the user associated with this login.']
+    LoginProvider nvarchar(450) [
+        primary key,
+        not null,
+        note: 'The login provider for the login (e.g. facebook, google).']
+    ProviderKey nvarchar(450) [
+        primary key,
+        not null,
+        note: 'The unique provider identifier for this login.']
+    ProviderDisplayName nvarchar(450) [
+        null,
+        note: 'The friendly name used in a UI for this login.']
+
+    note: 'Represents a login and its associated provider for a user.'
+}
+
+Table UserTokens
+{
+    UserId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Users.Id,
+        note: 'The primary key of the user that the token belongs to.']
+    LoginProvider nvarchar(128) [
+        primary key,
+        not null,
+        note: 'The LoginProvider this token is from.']
+    Name nvarchar(128) [
+        primary key,
+        not null,
+        note: 'The name of the token.']
+    Value nvarchar(MAX) [
+        not null,
+        note: 'The token value.']
+
+    note: 'Represents an authentication token for a user.'
+}
+
+Table UserRoles
+{
+    UserId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Users.Id,
+        note: 'The primary key of the user that is linked to a role.']
+    RoleId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Roles.Id,
+        note: 'The primary key of the role that is linked to the user.']
+
+    note: 'Represents the link between a user and a role.'
+}
+
+Table Roles
+{
+    Id nvarchar(450) [
+        primary key,
+        note: 'The primary key for this role.']
+    Name nvarchar(256) [
+        null,
+        note: 'The name for this role.']
+    NormalizedName nvarchar(256) [
+        null,
+        note: 'The normalized name for this role.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a role is persisted to the store.']
+
+    indexes {
+        NormalizedName [unique, name: 'RoleNameIndex']
+    }
+
+    note: 'Represents a role in the identity system.'
+}
+
+Table RoleClaims
+{
+    Id int [
+        primary key,
+        increment,
+        note: 'The identifier for this role claim.']
+    RoleId nvarchar(450) [
+        not null,
+        ref: > Roles.Id,
+        note: 'The primary key of the role associated with this claim.']
+    ClaimType nvarchar(450) [
+        null,
+        note: 'The claim type for this claim.']
+    ClaimValue nvarchar(450) [
+        null,
+        note: 'The claim value for this claim.']
+
+    note: 'Represents a claim that is granted to all users within a role.'
+}

@@ -1,0 +1,57 @@
+name: App Portal Build
+
+on:
+  push:
+    branches-ignore:
+      - 'release/**'
+
+env:
+  buildConfiguration: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checking out code
+        uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.x.x
+
+      - name: Set up dependency caching for faster builds
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore .NET tools
+        run: dotnet tool restore
+
+      - name: Restore dependencies
+        run: dotnet cake --task=restore
+
+      - name: Build solution - ${{ env.buildConfiguration }}
+        run: dotnet cake --task=build --configuration=${{ env.buildConfiguration }} --exclusive
+
+      - name: Run unit tests - ${{ env.buildConfiguration }}
+        run: dotnet cake --task=unit-tests --configuration=${{ env.buildConfiguration }} --exclusive
+
+      - name: Run integration tests - ${{ env.buildConfiguration }}
+        run: dotnet cake --task=integration-tests --configuration=${{ env.buildConfiguration }} --exclusive
+
+      - name: Run acceptance tests - ${{ env.buildConfiguration }}
+        run: dotnet cake --task=acceptance-tests --configuration=${{ env.buildConfiguration }} --exclusive
+
+      - name: Upload test reports
+        run: dotnet cake --task=upload-test-reports --exclusive
+
+      - name: Generate code coverage
+        run: dotnet cake --task=code-coverage --exclusive
+
+      - name: Upload code coverage reports
+        run: dotnet cake --task=upload-code-coverage-reports --exclusive

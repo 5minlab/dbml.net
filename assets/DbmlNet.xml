@@ -1,0 +1,1810 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DbmlNet</name>
+    </assembly>
+    <members>
+        <member name="T:DbmlNet.CodeAnalysis.Diagnostic">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Diagnostic.IsError">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Location">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Message">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Diagnostic.IsWarning">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Diagnostic.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Diagnostic.Error(DbmlNet.CodeAnalysis.Text.TextLocation,System.String)">
+            <summary>
+            </summary>
+            <param name="location"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Diagnostic.Warning(DbmlNet.CodeAnalysis.Text.TextLocation,System.String)">
+            <summary>
+            </summary>
+            <param name="location"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.OpenBraceToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.Statements">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.CloseBraceToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.ColumnTypeClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.SettingList">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.SchemaIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.FirstDotToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.TableIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.SecondDotToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ColumnIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ToString">
+            <summary>
+            Returns the full column identifier. E.g: {schema}.{table}.{column}.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.OpenBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.CloseBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.ColumnTypeIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.ColumnTypeIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.OpenParenthesisToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.VariableLengthIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.CloseParenthesisToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.Kind">
+            <inheritdoc/>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.Members">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.EndOfFileToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenParenthesis">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Identifiers">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.CloseParenthesis">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenBracket">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.CloseBracket">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.DatabaseTypeKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.DefaultKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.Expression">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.Statement">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.IncrementKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.IndexesKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.OpenBraceToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.Indexes">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.CloseBraceToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Identifiers">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.Lexer.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+            <summary>
+            </summary>
+            <param name="syntaxTree"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.LiteralToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.Value">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.MemberSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.NoteKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.NoteKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NotKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NullKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.NullKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.OpenParenthesisToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.Expression">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.CloseParenthesisToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.PkKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.PrimaryKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.KeyKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.ProjectKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Body">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.RefKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.ConstraintClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.FromIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.RelationshipTypeToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.ToIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList.GetWithSeparators">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Count">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Item(System.Int32)">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetSeparator(System.Int32)">
+            <summary>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetWithSeparators">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetEnumerator">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.OpenBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.CloseBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.StatementSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKeywordKind(System.String)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxMember(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxStatement(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxExpression(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsKeyword(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsStringToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownValue(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownText(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="kind"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxKind">
+            <summary>
+            Represents all available syntax kinds.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.SyntaxTree">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Parent">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Span">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Location">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.GetChildren">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.AncestorsAndSelf">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Ancestors">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.GetLastToken">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken">
+            <summary>
+            Represents a token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String,System.Object)">
+            <summary>
+            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            </summary>
+            <param name="syntaxTree"></param>
+            <param name="kind">The token kind.</param>
+            <param name="start">The token start character position in the source text.</param>
+            <param name="text">The token text.</param>
+            <param name="value">The value of the token.</param>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Kind">
+            <summary>
+            The kind of this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Start">
+            <summary>
+            The start character position in the source text for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Text">
+            <summary>
+            The text for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Length">
+            <summary>
+            The length for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.End">
+            <summary>
+            The end character position in the source text for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Value">
+            <summary>
+            The value for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.IsMissing">
+            <summary>
+            A token is missing if it was inserted by the parser and doesn't
+            appear in source.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Span">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.GetChildren">
+            <inherits/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.ToString">
+            <summary>
+            Returns the text for this token.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTree">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Text">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Diagnostics">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Root">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Load(System.String)">
+            <summary>
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Parse(System.String)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Parse(DbmlNet.CodeAnalysis.Text.SourceText)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(System.String,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="includeEndOfFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(System.String,System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Diagnostic}@,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="diagnostics"></param>
+            <param name="includeEndOfFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(DbmlNet.CodeAnalysis.Text.SourceText,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="includeEndOfFile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(DbmlNet.CodeAnalysis.Text.SourceText,System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Diagnostic}@,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="diagnostics"></param>
+            <param name="includeEndOfFile"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.Walk(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+            <summary>
+            </summary>
+            <param name="syntaxTree"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkCompilationUnit(DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax)">
+            <summary>
+            </summary>
+            <param name="compilationUnit"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkMember(DbmlNet.CodeAnalysis.Syntax.MemberSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+            <exception cref="T:System.Data.EvaluateException"></exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkProjectDeclaration(DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkTableDeclaration(DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkGlobalStatement(DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkStatement(DbmlNet.CodeAnalysis.Syntax.StatementSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+            <exception cref="T:System.Data.EvaluateException"></exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkBlockStatement(DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkCompositeIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkIndexesDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkNoteDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkExpressionStatement(DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+            <exception cref="T:System.Data.EvaluateException"></exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkExpression(DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkLiteralExpression(DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkNameExpression(DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkIndexSettingExpression(DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">
+            <summary>
+            </summary>
+            <param name="syntax"></param>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.TableKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.IdentifierToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Body">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.UniqueKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.NameToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Text.SourceText">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.From(System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ParseLines(DbmlNet.CodeAnalysis.Text.SourceText,System.String)">
+            <summary>
+            </summary>
+            <param name="sourceText"></param>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Lines">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Item(System.Int32)">
+            <summary>
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Length">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.FileName">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.GetLineIndex(System.Int32)">
+            <summary>
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString(System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="start"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString(DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="span"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Text.TextLine">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLine.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="start"></param>
+            <param name="length"></param>
+            <param name="lengthIncludingLineBreak"></param>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Text">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Start">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Length">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.End">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.LengthIncludingLineBreak">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Span">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.SpanIncludingLineBreak">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLine.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Text.TextLocation">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+            <param name="span"></param>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.Text">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.Span">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.FileName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.StartLine">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.StartCharacter">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.EndLine">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.EndCharacter">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.GetHashCode">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(System.Object)">
+            <summary>
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(DbmlNet.CodeAnalysis.Text.TextLocation)">
+            <summary>
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.op_Equality(DbmlNet.CodeAnalysis.Text.TextLocation,DbmlNet.CodeAnalysis.Text.TextLocation)">
+            <summary>
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.op_Inequality(DbmlNet.CodeAnalysis.Text.TextLocation,DbmlNet.CodeAnalysis.Text.TextLocation)">
+            <summary>
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Text.TextSpan">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.#ctor(System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="start"></param>
+            <param name="length"></param>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.Start">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.Length">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.End">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.FromBounds(System.Int32,System.Int32)">
+            <summary>
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.OverlapsWith(DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="span"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.GetHashCode">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.Equals(System.Object)">
+            <summary>
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.Equals(DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Equality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Inequality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlColumnIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.#ctor(System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="schemaName"></param>
+            <param name="tableName"></param>
+            <param name="columnName"></param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.SchemaName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.TableName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.ColumnName">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlDatabase">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabase.#ctor">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlDatabase.Providers">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlDatabase.Project">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlDatabase.Tables">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlDatabase.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlDatabase.Notes">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabase.Create(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+            <summary>
+            </summary>
+            <param name="syntaxTree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.Make(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+            <summary>
+            </summary>
+            <param name="syntaxTree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.Walk(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkProjectDeclaration(DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkTableDeclaration(DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkNoteDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkLiteralExpression(DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkNameExpression(DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkIndexSettingExpression(DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlProject">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlProject.#ctor(System.String)">
+            <summary>
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlProject.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlProject.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlProject.Notes">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlProject.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlTable">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTable.#ctor(System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="name"></param>
+            <param name="note"></param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Columns">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Indexes">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Relationships">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Notes">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTable.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlTableColumn">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTableColumn.#ctor(System.String,DbmlNet.Domain.DbmlTable)">
+            <summary>
+            </summary>
+            <param name="name"></param>
+            <param name="table"></param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.Type">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.MaxLength">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.HasMaxLength">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.IsPrimaryKey">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.IsUnique">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.IsAutoIncrement">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.IsNullable">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.IsRequired">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.HasDefaultValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.DefaultValue">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.Table">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.Notes">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableColumn.UnknownSettings">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTableColumn.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlTableIndex">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTableIndex.#ctor(System.String,System.String,DbmlNet.Domain.DbmlTable)">
+            <summary>
+            </summary>
+            <param name="name">The name of the index.</param>
+            <param name="columnName">The column name of the index.</param>
+            <param name="table">The table which contains the index.</param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.Name">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.ColumnName">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.Table">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.IsPrimaryKey">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.IsUnique">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.Type">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.Note">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTableIndex.ToString">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DbmlNet.Domain.DbmlTableRelationship">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlTableRelationship.#ctor(DbmlNet.Domain.DbmlColumnIdentifier,DbmlNet.Domain.TableRelationshipType,DbmlNet.Domain.DbmlColumnIdentifier)">
+            <summary>
+            </summary>
+            <param name="fromIdentifier"></param>
+            <param name="relationshipType"></param>
+            <param name="toIdentifier"></param>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableRelationship.FromIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableRelationship.RelationshipType">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTableRelationship.ToIdentifier">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.Domain.TableRelationshipType">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:DbmlNet.Domain.TableRelationshipType.OneToMany">
+            <summary>
+            One-to-many, <![CDATA[`<`]]> token.
+            E.g: users.id <![CDATA[<]]> posts.user_id.
+            </summary>
+        </member>
+        <member name="F:DbmlNet.Domain.TableRelationshipType.ManyToOne">
+            <summary>
+            Many-to-one, `>` token.
+            E.g: posts.user_id > users.id
+            </summary>
+        </member>
+        <member name="F:DbmlNet.Domain.TableRelationshipType.OneToOne">
+            <summary>
+            One-to-one, `-` token.
+            E.g: users.id - user_infos.user_id
+            </summary>
+        </member>
+        <member name="F:DbmlNet.Domain.TableRelationshipType.ManyToMany">
+            <summary>
+            Many-to-many, <![CDATA[`<>`]]> token.
+            E.g: authors.id <![CDATA[<>]]> books.id
+            </summary>
+        </member>
+        <member name="T:DbmlNet.IO.TextWriterExtensions">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteInformation(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="message"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteSuccess(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="message"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteWarning(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="message"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteError(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="message"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteDebug(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="message"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteKeyword(System.IO.TextWriter,DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="kind"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteKeyword(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteIdentifier(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteNumber(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteString(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteSpace(System.IO.TextWriter)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WritePunctuation(System.IO.TextWriter,DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="kind"></param>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WritePunctuation(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteComment(System.IO.TextWriter,System.String)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:DbmlNet.IO.TextWriterExtensions.WriteDiagnostics(System.IO.TextWriter,System.Collections.Generic.ICollection{DbmlNet.CodeAnalysis.Diagnostic})">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+            <param name="diagnostics"></param>
+        </member>
+    </members>
+</doc>

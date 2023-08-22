@@ -1,0 +1,223 @@
+Project "Application Contacts" {
+  database_type: 'PostgreSQL'
+  note: 'Contacts database schema.'
+}
+
+Table Users
+{
+    Id nvarchar(450) [
+        primary key,
+        not null,
+        note: 'The primary key for this user.']
+    UserName nvarchar(250) [
+        not null,
+        note: 'The user name for this user.']
+    NormalizedUserName nvarchar(250) [
+        not null,
+        note: 'The normalized user name for this user.']
+    Email nvarchar(250) [
+        not null,
+        note: 'The email address for this user.']
+    NormalizedEmail nvarchar(250) [
+        not null,
+        note: 'The normalized email address for this user.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that must change whenever a user is persisted to the store.']
+
+    indexes {
+        NormalizedUserName [unique, name: 'UserNameIndex', type: btree]
+        NormalizedEmail [unique, name: 'EmailIndex', type: btree]
+    }
+
+    note: 'Represents a user in the contacts system.'
+}
+
+Table UserContacts
+{
+    UserId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Users.Id,
+        note: 'The primary key of the user that is linked to a contact.']
+    ContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the contact that is linked to a user.']
+
+    note: 'Represents the link between a user and a contact.'
+}
+
+Table Contacts
+{
+    Id nvarchar(450) [
+        primary key,
+        not null,
+        note: 'The primary key of this contact.']
+    GivenName nvarchar(50) [
+        not null,
+        note: 'The given name of this contact.']
+    MiddleName nvarchar(50) [
+        null,
+        note: 'The middle name of this contact.']
+    FamilyName nvarchar(50) [
+        null,
+        note: 'The family name of this contact.']
+    NormalizedFullName nvarchar(250) [
+        not null,
+        note: 'The normalized full name for this contact.']
+    DateOfBirth datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, when the contact was born.']
+    Remarks nvarchar(2000) [
+        null,
+        note: 'The remarks of this contact.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a contact is persisted to the store.']
+
+    indexes {
+        NormalizedFullName [name: 'FullNameIndex', type: btree]
+    }
+
+    note: 'Represents an contact in the contacts system.'
+}
+
+Table ContactEmails
+{
+    ContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the contact that this email belongs to.']
+    Email nvarchar(250) [
+        not null,
+        note: 'The email address for this contact.']
+    NormalizedEmail nvarchar(250) [
+        primary key,
+        not null,
+        note: 'The normalized email address for this contact.']
+    EmailConfirmed bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if a contact has confirmed their email address.']
+    InactiveSince datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, since the email is inactive. For NULL values the email is active.']
+    Label nvarchar(50) [
+        null,
+        note: 'The label assigned to this address residence.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a email is persisted to the store.']
+
+    note: 'Represents an email-address that a contact possesses.'
+}
+
+Table ContactPhoneNumbers
+{
+    ContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the contact that this phone number belongs to.']
+    Prefix nvarchar(3) [
+        primary key,
+        note: 'The ITU E.164 prefix for this phone number.']
+    Value nvarchar(15) [
+        primary key,
+        not null,
+        note: 'The ITU E.164 value for this phone number.']
+    PhoneNumberConfirmed bit [
+        not null,
+        default: false,
+        note: 'A flag indicating if a contact has confirmed their phone number.']
+    InactiveSince datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, since the phone number is inactive. Phone number is active for `NULL` values.']
+    Label nvarchar(50) [
+        null,
+        note: 'The label assigned to this address residence.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a phone number is persisted to the store.']
+
+    note: 'Represents an phone-number that a contact possesses.'
+}
+
+Table ContactResidenceAddresses
+{
+    ContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the contact that this residence address belongs to.']
+    NormalizedAddress nvarchar(250) [
+        primary key,
+        not null,
+        note: 'The normalized address for this residence (ex: Str. {StreetName}, {Postcode} {Town} {County} {CountryCode}, PO box. {PostOfficeBox}.).']
+    CountryCode nvarchar(2) [
+        null,
+        note: 'The ISO 3166 two-letter country code for this residence address.']
+    StreetName1 nvarchar(250) [
+        null,
+        note: 'The line first of the street name for this residence address.']
+    StreetName2 nvarchar(250) [
+        null,
+        note: 'The line second of the street name for this residence address.']
+    Postcode nvarchar(250) [
+        null,
+        note: 'The post code for this residence address.']
+    Town nvarchar(250) [
+        null,
+        note: 'The town for this residence address.']
+    County nvarchar(250) [
+        null,
+        note: 'The county/sector for this residence address.']
+    PostOfficeBox nvarchar(40) [
+        null,
+        note: 'The post office number of a contact for this residence address.']
+    Label nvarchar(50) [
+        null,
+        note: 'The label for this residence address.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a residence address is persisted to the store.']
+
+    note: 'Represents an address that a contact possesses.'
+}
+
+Table ContactRelations
+{
+    InitiatorContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the initiator contact that is linked to the target contact by relation-type.']
+    TargetContactId nvarchar(450) [
+        primary key,
+        not null,
+        ref: > Contacts.Id,
+        note: 'The primary key of the target contact that is linked to the initiator contact by relation-type.']
+    RelationType nvarchar(450) [
+        not null,
+        note: 'The type for this relation (ex: mother of,father of,friend of).']
+    NormalizedRelationType nvarchar(450) [
+        primary key,
+        not null,
+        note: 'The normalized type for this relation.']
+    StartDate datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, since the relation started.']
+    EndDate datetimeoffset(7) [
+        null,
+        note: 'The date and time, in UTC, since the relation ended.']
+    ConcurrencyStamp nvarchar(MAX) [
+        null,
+        note: 'A random value that should change whenever a relation is persisted to the store.']
+
+    indexes {
+      (InitiatorContactId, NormalizedRelationType) [name: 'InitiatorContactRelationTypeIndex', type: btree]
+    }
+}

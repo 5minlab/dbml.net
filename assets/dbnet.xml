@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dbnet</name>
+    </assembly>
+    <members>
+        <member name="T:DbmlNet.Extensions.DbmlMarkdownWriter">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.#ctor(DbmlNet.Domain.DbmlDatabase)">
+            <summary>
+            </summary>
+            <param name="database"></param>
+        </member>
+        <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.WriterToFile(DbmlNet.Domain.DbmlDatabase,System.String)">
+            <summary>
+            </summary>
+            <param name="dbmlDatabase"></param>
+            <param name="outputFilePath"></param>
+        </member>
+        <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.WriteTo(System.IO.TextWriter)">
+            <summary>
+            </summary>
+            <param name="writer"></param>
+        </member>
+    </members>
+</doc>
