@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 using DbmlNet.Extensions;
@@ -45,6 +45,8 @@ if (files.Length == 0)
 
 writer.WriteInfoMessage($"Found ({files.Length}) '*{ApplicationSettings.DbmlExtension}' files in input '{inputPath}'.");
 
+Dictionary<string, SyntaxTree> fileSyntaxTreeList = new();
+
 foreach (string filePath in files)
 {
     writer.WriteInfoMessage($"Start parsing file '{filePath}'.");
@@ -58,22 +60,37 @@ foreach (string filePath in files)
         return;
     }
 
-    if (outputSyntax)
+    fileSyntaxTreeList.Add(filePath, syntaxTree);
+}
+
+if (outputSyntax)
+{
+    foreach (KeyValuePair<string, SyntaxTree> fileSyntaxTree in fileSyntaxTreeList)
     {
+        string dbmlFilePath = fileSyntaxTree.Key;
+        string dbmlFileName = Path.GetFileNameWithoutExtension(dbmlFilePath);
+        SyntaxTree dbmlSyntaxTree = fileSyntaxTree.Value;
+
         writer.WriteLine();
-        writer.WriteLine("Syntax tree:");
-        syntaxTree.PrintSyntaxTo(writer);
-        writer.WriteLine();
+        writer.WriteLine($"Syntax tree of '{dbmlFileName}':");
+        dbmlSyntaxTree.PrintSyntaxTo(writer);
     }
 
-    if (outputToMarkdown)
+    writer.WriteLine();
+}
+
+if (outputToMarkdown)
+{
+    foreach (KeyValuePair<string, SyntaxTree> fileSyntaxTree in fileSyntaxTreeList)
     {
-        string outputDirectoryPath = Path.GetDirectoryName(filePath) ?? "./";
-        string fileName = Path.GetFileNameWithoutExtension(filePath) + ".md";
-        string outputFilePath = Path.Combine(outputDirectoryPath, fileName);
+        string dbmlFilePath = fileSyntaxTree.Key;
+        SyntaxTree dbmlSyntaxTree = fileSyntaxTree.Value;
+        string outputDirectoryPath = Path.GetDirectoryName(dbmlFilePath) ?? "./";
+        string outputFileName = Path.GetFileNameWithoutExtension(dbmlFilePath) + ".md";
+        string outputFilePath = Path.Combine(outputDirectoryPath, outputFileName);
         writer.WriteInfoMessage($"Writing to output '{outputFilePath}'.");
 
-        DbmlDatabase dbmlDatabase = DbmlDatabase.Create(syntaxTree);
+        DbmlDatabase dbmlDatabase = DbmlDatabase.Create(dbmlSyntaxTree);
         DbmlMarkdownWriter.WriterToFile(dbmlDatabase, outputFilePath);
     }
 }
