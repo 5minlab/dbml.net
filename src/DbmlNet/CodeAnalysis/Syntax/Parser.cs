@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Data;
+
+using DbmlNet.CodeAnalysis.Text;
 
 namespace DbmlNet.CodeAnalysis.Syntax;
 
@@ -486,11 +487,21 @@ internal sealed class Parser
                     };
 #pragma warning restore CA1508 // Avoid dead conditional code
 
+                    ReportUnknownColumnSetting(identifierToken.Text, identifierToken.Start, valueToken.End);
                     return new UnknownColumnSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
                 }
 
+                ReportUnknownColumnSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
                 return new UnknownColumnSettingClause(_syntaxTree, identifierToken);
             }
+        }
+
+        void ReportUnknownColumnSetting(string settingName, int spanStart, int spanEnd)
+        {
+            SourceText text = _syntaxTree.Text;
+            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new TextLocation(text, span);
+            Diagnostics.ReportUnknownColumnSetting(location, settingName);
         }
     }
 

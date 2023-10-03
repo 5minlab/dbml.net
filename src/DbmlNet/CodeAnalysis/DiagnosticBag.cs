@@ -56,4 +56,10 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         string message = $"Unexpected token <{currentKind}>, expected <{expectedKind}>.";
         ReportError(location, message);
     }
+
+    public void ReportUnknownColumnSetting(TextLocation location, string settingName)
+    {
+        string message = $"Unknown column setting <{settingName}>.";
+        ReportWarning(location, message);
+    }
 }
