@@ -335,6 +335,32 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
+    [Fact]
+    public void Parse_UnknownColumnSettingClause_With_Composed_Setting_SingleQuotationMarksString_Value()
+    {
+        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string randomSettingName = CreateRandomString();
+        string settingNameText = randomSettingName;
+        object? settingNameValue = null;
+        SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        string randomSettingValue = CreateRandomMultiWordString();
+        string settingValueText = $"\'{randomSettingValue}\'";
+        object? settingValue = randomSettingValue;
+        string settingText = $"{settingNameText}: {settingValueText}";
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingText} ]";
+
+        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
     [Theory]
     [InlineData(SyntaxKind.LessToken, "<")]
     [InlineData(SyntaxKind.GraterToken, ">")]
