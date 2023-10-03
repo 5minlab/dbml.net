@@ -18,8 +18,16 @@ public partial class ParserTests
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
 
         Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.Equal($"Bad character input: '{text}'.", diagnostic.Message);
-        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
-        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        string expectedDiagnosticMessage = $"Bad character input: '{text}'.";
+        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
+        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
+        Assert.True(diagnostic.IsError, "Diagnostic should be an error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic should not be an warning.");
+        Assert.Equal(0, diagnostic.Location.StartLine);
+        Assert.Equal(0, diagnostic.Location.EndLine);
+        Assert.Equal(0, diagnostic.Location.StartCharacter);
+        Assert.Equal(1, diagnostic.Location.EndCharacter);
+        Assert.Equal(0, diagnostic.Location.Span.Start);
+        Assert.Equal(1, diagnostic.Location.Span.End);
     }
 }
