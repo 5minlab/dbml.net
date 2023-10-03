@@ -18,6 +18,8 @@ internal sealed class AssertingEnumerator : IDisposable
         _enumerator = Flatten(node).GetEnumerator();
     }
 
+    public SyntaxNode? Node => _enumerator.Current;
+
     private bool MarkFailed()
     {
         _hasErrors = true;
