@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics;
 using System.IO;
@@ -21,19 +21,20 @@ bool outputToMarkdown = true;
 
 if (args.Length <= 0)
 {
-    writer.WriteErrorMessage("usage: dbnet <file-or-directory-path>");
+    writer.WriteErrorMessage("provide a valid file or directory path");
+    writer.WriteInfoMessage("usage: dbnet <file-or-directory-path>");
     return;
 }
 
 if (args.Length > 1)
 {
-    writer.WriteLine("error: only one path supported right now");
+    writer.WriteErrorMessage("only one path supported right now");
     return;
 }
 
 string inputPath = args.Single();
 
-writer.WriteInfoMessage($"Collect relevant files from input '{inputPath}'.");
+writer.WriteInfoMessage($"Lookup '*{ApplicationSettings.DbmlExtension}' files from input '{inputPath}'.");
 
 string[] files = ApplicationSettings.FindDbmlNetFiles(inputPath);
 if (files.Length == 0)
@@ -42,7 +43,7 @@ if (files.Length == 0)
     return;
 }
 
-writer.WriteInfoMessage($"Found '{files.Length}' files in input '{inputPath}'.");
+writer.WriteInfoMessage($"Found ({files.Length}) '*{ApplicationSettings.DbmlExtension}' files in input '{inputPath}'.");
 
 foreach (string filePath in files)
 {
