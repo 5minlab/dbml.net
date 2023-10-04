@@ -59,7 +59,7 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
 
     public void ReportUnknownColumnSetting(TextLocation location, string settingName)
     {
-        string message = $"Unknown column setting <{settingName}>.";
+        string message = $"Unknown column setting '{settingName}'.";
         ReportWarning(location, message);
     }
 
