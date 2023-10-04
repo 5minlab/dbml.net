@@ -17,4 +17,25 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.CompilationUnitMember);
         e.AssertToken(SyntaxKind.EndOfFileToken, "");
     }
+
+    [Fact]
+    public void Parse_CompilationUnit_With_ProjectDeclaration()
+    {
+        SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
+        string randomText = CreateRandomString();
+        string projectNameText = $"{randomText}";
+        object? projectNameValue = null;
+        string text = $"Project {projectNameText} " + "{ }";
+
+        SyntaxTree syntaxTree = SyntaxTree.Parse(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(syntaxTree.Root);
+        e.AssertNode(SyntaxKind.CompilationUnitMember);
+        e.AssertNode(SyntaxKind.ProjectDeclarationMember);
+        e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
+        e.AssertToken(projectNameKind, projectNameText, projectNameValue);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+        e.AssertToken(SyntaxKind.EndOfFileToken, "");
+    }
 }
