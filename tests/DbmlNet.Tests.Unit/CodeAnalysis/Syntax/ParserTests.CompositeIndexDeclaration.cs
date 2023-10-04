@@ -26,7 +26,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_CompositeIndexDeclaration_With_Two_Index_Identifier_Name()
+    public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Identifier_Name()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = CreateRandomString();
