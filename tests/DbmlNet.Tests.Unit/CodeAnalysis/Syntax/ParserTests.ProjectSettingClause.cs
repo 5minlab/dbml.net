@@ -1,3 +1,6 @@
+using System.Collections.Immutable;
+
+using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -84,6 +87,23 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(settingKind, noteValueText, noteValue);
+    }
+
+    [Fact]
+    public void Parse_UnknownProjectSettingClause_With_Warning_Diagnostic()
+    {
+        string randomText = CreateRandomString();
+        string settingNameText = randomText;
+        string text = $"Project {CreateRandomString()} " + "{" + settingNameText + "}";
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        string expectedDiagnosticMessage = $"Unknown project setting '{settingNameText}'.";
+        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
+        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
+        Assert.True(diagnostic.IsWarning, "Diagnostic should be warning.");
+        Assert.False(diagnostic.IsError, "Diagnostic should not be error.");
     }
 
     [Fact]
