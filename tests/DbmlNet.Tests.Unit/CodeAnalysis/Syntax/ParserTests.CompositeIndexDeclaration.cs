@@ -163,4 +163,34 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
+
+    [Fact]
+    public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Unknown_Setting()
+    {
+        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
+        string firstIndexNameText = CreateRandomString();
+        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
+        string secondIndexNameText = CreateRandomString();
+        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = CreateRandomString();
+        string indexText = $"( {firstIndexNameText}, {secondIndexNameText}) [ " + settingNameText + " ]";
+        string text = "indexes { " + indexText + " }";
+
+        CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
+            ParseCompositeIndexDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
+        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
+        e.AssertNode(SyntaxKind.NameExpression);
+        e.AssertToken(firstIndexNameKind, firstIndexNameText);
+        e.AssertToken(SyntaxKind.CommaToken, ",");
+        e.AssertNode(SyntaxKind.NameExpression);
+        e.AssertToken(secondIndexNameKind, secondIndexNameText);
+        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.IndexSettingExpression);
+        e.AssertToken(settingNameKind, settingNameText);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
 }
