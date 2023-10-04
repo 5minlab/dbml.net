@@ -28,8 +28,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Identifier_Name()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = CreateRandomString();
+        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
         string secondIndexNameText = CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText})";
         string text = "indexes { " + indexText + " }";
@@ -41,10 +42,10 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
-        e.AssertToken(indexNameKind, firstIndexNameText);
+        e.AssertToken(firstIndexNameKind, firstIndexNameText);
         e.AssertToken(SyntaxKind.CommaToken, ",");
         e.AssertNode(SyntaxKind.NameExpression);
-        e.AssertToken(indexNameKind, secondIndexNameText);
+        e.AssertToken(secondIndexNameKind, secondIndexNameText);
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
     }
 }
