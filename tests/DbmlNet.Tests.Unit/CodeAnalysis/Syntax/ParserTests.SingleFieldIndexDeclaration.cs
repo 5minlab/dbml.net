@@ -99,6 +99,33 @@ public partial class ParserTests
     }
 
     [Fact]
+    public void Parse_SingleFieldIndexDeclaration_With_Name_Settings_Identifier_Value()
+    {
+        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string randomText = CreateRandomString();
+        string indexNameText = randomText;
+        object? indexNameValue = null;
+        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = CreateRandomString();
+        object? settingValue = null;
+        string indexText = $"{indexNameText} [ name: {settingValueText} ]";
+        string text = "indexes { " + indexText + " }";
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            ParseSingleFieldIndexDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
+        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.IndexSettingExpression);
+        e.AssertToken(SyntaxKind.NameKeyword, "name");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
     public void Parse_SingleFieldIndexDeclaration_With_Type_Settings_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
