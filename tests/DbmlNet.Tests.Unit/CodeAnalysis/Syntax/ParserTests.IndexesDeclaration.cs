@@ -142,29 +142,4 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
-
-    [Fact]
-    public void Parse_IndexesDeclaration_With_SingleFieldIndex_Identifier()
-    {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
-        string indexNameText = randomText;
-        object? indexNameValue = null;
-        string indexText = $"{indexNameText}";
-        string text = "indexes {" + indexText + "}";
-
-        StatementSyntax statement = ParseStatement(text);
-
-        IndexesDeclarationSyntax indexesDeclarationSyntax =
-            Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
-
-        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            Assert.IsAssignableFrom<SingleFieldIndexDeclarationSyntax>(
-                Assert.Single(indexesDeclarationSyntax.Indexes)
-            );
-
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
-        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
-        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
-    }
 }
