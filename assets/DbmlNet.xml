@@ -252,29 +252,6 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
-        <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.Kind">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.DatabaseTypeKeyword">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.ColonToken">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.IdentifierToken">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.GetChildren">
-            <inherits/>
-        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause">
             <summary>
             </summary>
@@ -1067,11 +1044,6 @@
             </summary>
             <param name="syntax"></param>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
-            <summary>
-            </summary>
-            <param name="syntax"></param>
-        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">
             <summary>
             </summary>
@@ -1535,9 +1507,6 @@
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">

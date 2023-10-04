@@ -87,7 +87,6 @@ public enum SyntaxKind
     BlockStatement,
     NoteDeclarationStatement,
     ColumnDeclarationStatement,
-    DatabaseProviderDeclarationStatement,
     IndexesDeclarationStatement,
     SingleFieldIndexDeclarationStatement,
     CompositeIndexDeclarationStatement,

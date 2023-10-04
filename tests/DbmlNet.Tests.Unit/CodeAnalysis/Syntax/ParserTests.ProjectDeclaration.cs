@@ -81,40 +81,4 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
-
-    [Fact]
-    public void Parse_DatabaseProviderDeclaration_With_QuotationMarksString_Value()
-    {
-        SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
-        string providerText = $"\"{randomText}\"";
-        object? providerValue = randomText;
-        string text = $"database_type: {providerText}";
-
-        StatementSyntax statement = ParseStatement(text);
-
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
-        e.AssertNode(SyntaxKind.DatabaseProviderDeclarationStatement);
-        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
-        e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertToken(providerKind, providerText, providerValue);
-    }
-
-    [Fact]
-    public void Parse_DatabaseProviderDeclaration_With_SingleQuotationMarksString_Value()
-    {
-        SyntaxKind providerKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
-        string providerText = $"\'{randomText}\'";
-        object? providerValue = randomText;
-        string text = $"database_type: {providerText}";
-
-        StatementSyntax statement = ParseStatement(text);
-
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
-        e.AssertNode(SyntaxKind.DatabaseProviderDeclarationStatement);
-        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
-        e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertToken(providerKind, providerText, providerValue);
-    }
 }

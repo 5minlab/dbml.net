@@ -93,9 +93,6 @@ public abstract class SyntaxWalker
             case SyntaxKind.ColumnDeclarationStatement:
                 WalkColumnDeclarationStatement((ColumnDeclarationSyntax)syntax);
                 break;
-            case SyntaxKind.DatabaseProviderDeclarationStatement:
-                WalkDatabaseProviderDeclarationStatement((DatabaseProviderDeclarationSyntax)syntax);
-                break;
             case SyntaxKind.SingleFieldIndexDeclarationStatement:
                 WalkSingleFieldIndexDeclarationStatement((SingleFieldIndexDeclarationSyntax)syntax);
                 break;
@@ -131,13 +128,6 @@ public abstract class SyntaxWalker
     /// </summary>
     /// <param name="syntax"></param>
     protected virtual void WalkColumnDeclarationStatement(ColumnDeclarationSyntax syntax)
-    {
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="syntax"></param>
-    protected virtual void WalkDatabaseProviderDeclarationStatement(DatabaseProviderDeclarationSyntax syntax)
     {
     }
 

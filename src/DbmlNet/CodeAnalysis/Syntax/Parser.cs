@@ -275,7 +275,6 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.OpenBraceToken => ParseBlockStatement(),
-            SyntaxKind.DatabaseTypeKeyword => ParseDatabaseProviderColumnDeclaration(),
             SyntaxKind.IndexesKeyword => ParseIndexesDeclaration(),
             SyntaxKind.NoteKeyword => ParseNoteDeclaration(),
             _ when CanReadColumnDeclaration() => ParseColumnDeclaration(),
@@ -329,21 +328,6 @@ internal sealed class Parser
 
         return new BlockStatementSyntax(_syntaxTree,
             openBraceToken, statements.ToArray(), closeBraceToken);
-    }
-
-    private StatementSyntax ParseDatabaseProviderColumnDeclaration()
-    {
-        SyntaxToken databaseTypeKeyword = MatchToken(SyntaxKind.DatabaseTypeKeyword);
-        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-        SyntaxToken databaseTypeIdentifier =
-            Current.Kind == SyntaxKind.SingleQuotationMarksStringToken
-                ? MatchToken(SyntaxKind.SingleQuotationMarksStringToken)
-                : MatchToken(SyntaxKind.QuotationMarksStringToken);
-
-        return new DatabaseProviderDeclarationSyntax(_syntaxTree,
-            databaseTypeKeyword: databaseTypeKeyword,
-            colonToken: colonToken,
-            identifierToken: databaseTypeIdentifier);
     }
 
     private StatementSyntax ParseIndexesDeclaration()
