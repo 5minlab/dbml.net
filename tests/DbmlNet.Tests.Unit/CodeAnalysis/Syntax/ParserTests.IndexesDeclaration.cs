@@ -143,13 +143,13 @@ public partial class ParserTests
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
 
-    [Theory]
-    [MemberData(nameof(GetSingleFieldIndexData))]
-    public void Parse_IndexesDeclaration_With_SingleFieldIndex(
-        SyntaxKind indexNameKind,
-        string indexNameText,
-        object? indexNameValue)
+    [Fact]
+    public void Parse_IndexesDeclaration_With_SingleFieldIndex_Identifier()
     {
+        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string randomText = CreateRandomString();
+        string indexNameText = randomText;
+        object? indexNameValue = null;
         string indexText = $"{indexNameText}";
         string text = "indexes {" + indexText + "}";
 
@@ -166,10 +166,5 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
-    }
-
-    public static IEnumerable<object?[]> GetSingleFieldIndexData()
-    {
-        yield return new object?[] { SyntaxKind.IdentifierToken, CreateRandomString(), null };
     }
 }
