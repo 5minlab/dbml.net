@@ -58,7 +58,7 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
     {
         yield return OpenParenthesis;
 
-        foreach (ExpressionSyntax setting in Identifiers)
+        foreach (SyntaxNode setting in Identifiers.GetWithSeparators())
             yield return setting;
 
         yield return CloseParenthesis;
