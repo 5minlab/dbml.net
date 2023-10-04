@@ -61,7 +61,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Identifier_Name_And_No_Settings()
+    public void Parse_SingleFieldIndexDeclaration_With_No_Settings()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -79,7 +79,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Identifier_Name_And_Empty_Settings()
+    public void Parse_SingleFieldIndexDeclaration_With_Empty_Settings()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -99,7 +99,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Identifier_Name_And_TypeHash_Settings()
+    public void Parse_SingleFieldIndexDeclaration_With_TypeHash_Settings()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
