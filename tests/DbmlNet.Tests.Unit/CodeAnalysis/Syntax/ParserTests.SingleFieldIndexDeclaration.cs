@@ -99,13 +99,16 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_TypeHash_Settings()
+    public void Parse_SingleFieldIndexDeclaration_With_Type_Settings_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
-        string indexText = $"{indexNameText} [ type: hash ]";
+        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = CreateRandomString();
+        object? settingValue = null;
+        string indexText = $"{indexNameText} [ type: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
@@ -118,7 +121,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.IndexSettingExpression);
         e.AssertToken(SyntaxKind.TypeKeyword, "type");
         e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertToken(SyntaxKind.IdentifierToken, "hash");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 }
