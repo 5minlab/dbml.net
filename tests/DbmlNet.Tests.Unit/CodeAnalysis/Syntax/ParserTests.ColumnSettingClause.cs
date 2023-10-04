@@ -1,3 +1,6 @@
+using System.Collections.Immutable;
+
+using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -262,6 +265,23 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
+    public void Parse_UnknownColumnSettingClause_With_Warning_Diagnostic()
+    {
+        string randomText = CreateRandomString();
+        string settingNameText = randomText;
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingNameText} ]";
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        string expectedDiagnosticMessage = $"Unknown column setting '{settingNameText}'.";
+        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
+        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
+        Assert.True(diagnostic.IsWarning, "Diagnostic should be warning.");
+        Assert.False(diagnostic.IsError, "Diagnostic should not be error.");
     }
 
     [Fact]
