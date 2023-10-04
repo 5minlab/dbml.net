@@ -374,6 +374,10 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingClause">
+            <summary>
+            </summary>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax">
             <summary>
             </summary>
@@ -387,6 +391,29 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.OpenBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.CloseBracketToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.GetChildren">
             <inherits/>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.Lexer.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
@@ -433,6 +460,29 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.NameKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause">
             <summary>
             </summary>
@@ -477,6 +527,29 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.NoteKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause">
@@ -574,6 +647,21 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.PkKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause">
             <summary>
             </summary>
@@ -591,6 +679,25 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.PrimaryKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.KeyKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax">
@@ -740,15 +847,7 @@
             <summary>
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.OpenBracketToken">
-            <summary>
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.Settings">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.CloseBracketToken">
             <summary>
             </summary>
         </member>
@@ -1118,6 +1217,29 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.TypeKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause">
             <summary>
             </summary>
@@ -1131,6 +1253,21 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.UniqueKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause">
@@ -1154,6 +1291,29 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.NameToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause">

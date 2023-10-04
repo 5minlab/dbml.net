@@ -66,6 +66,16 @@ public enum SyntaxKind
     NoteProjectSettingClause,
     UnknownProjectSettingClause,
 
+    // Index nodes
+    IndexSettingListClause,
+    NameIndexSettingClause,
+    NoteIndexSettingClause,
+    PkIndexSettingClause,
+    PrimaryKeyIndexSettingClause,
+    TypeIndexSettingClause,
+    UniqueIndexSettingClause,
+    UnknownIndexSettingClause,
+
     // Column nodes
     ColumnIdentifierClause,
     ColumnTypeIdentifierClause,

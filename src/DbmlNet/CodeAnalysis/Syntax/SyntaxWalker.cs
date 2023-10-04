@@ -140,8 +140,9 @@ public abstract class SyntaxWalker
         if (syntax.Settings is null)
             return;
 
-        foreach (ExpressionSyntax setting in syntax.Settings)
-            WalkIndexSettingExpression((IndexSettingExpressionSyntax)setting);
+        // TODO: ...
+        // foreach (IndexSettingClause setting in syntax.Settings.Settings)
+        //      WalkIndexSettingExpression(setting);
     }
 
     /// <summary>

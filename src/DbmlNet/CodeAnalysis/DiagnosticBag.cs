@@ -68,4 +68,10 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         string message = $"Unknown project setting '{settingName}'.";
         ReportWarning(location, message);
     }
+
+    public void ReportUnknownIndexSetting(TextLocation location, string settingName)
+    {
+        string message = $"Unknown index setting '{settingName}'.";
+        ReportWarning(location, message);
+    }
 }

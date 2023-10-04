@@ -10,15 +10,11 @@ public sealed class SingleFieldIndexDeclarationSyntax : StatementSyntax
     internal SingleFieldIndexDeclarationSyntax(
         SyntaxTree syntaxTree,
         SyntaxToken identifierToken,
-        SyntaxToken? openBracketToken,
-        SeparatedSyntaxList<ExpressionSyntax>? settings,
-        SyntaxToken? closeBracketToken)
+        IndexSettingListSyntax? settings)
         : base(syntaxTree)
     {
         IdentifierToken = identifierToken;
-        OpenBracketToken = openBracketToken;
         Settings = settings;
-        CloseBracketToken = closeBracketToken;
     }
 
     /// <summary>
@@ -31,30 +27,12 @@ public sealed class SingleFieldIndexDeclarationSyntax : StatementSyntax
 
     /// <summary>
     /// </summary>
-    public SyntaxToken? OpenBracketToken { get; }
-
-    /// <summary>
-    /// </summary>
-    public SeparatedSyntaxList<ExpressionSyntax>? Settings { get; }
-
-    /// <summary>
-    /// </summary>
-    public SyntaxToken? CloseBracketToken { get; }
+    public IndexSettingListSyntax? Settings { get; }
 
     /// <inherits/>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;
-        if (OpenBracketToken is not null)
-        {
-            yield return OpenBracketToken;
-
-            Debug.Assert(Settings is not null);
-            foreach (ExpressionSyntax setting in Settings)
-                yield return setting;
-
-            Debug.Assert(CloseBracketToken is not null);
-            yield return CloseBracketToken;
-        }
+        if (Settings is not null) yield return Settings;
     }
 }
