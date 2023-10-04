@@ -56,7 +56,7 @@ public abstract class SyntaxWalker
     protected virtual void WalkProjectDeclaration(ProjectDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
-        WalkStatement(syntax.Body);
+        // TODO: WalkStatement(syntax.Settings);
     }
 
     /// <summary>

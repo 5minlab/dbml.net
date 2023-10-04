@@ -150,9 +150,109 @@ internal sealed class Parser
                 => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
-        BlockStatementSyntax body = ParseBlockStatement();
 
-        return new ProjectDeclarationSyntax(_syntaxTree, projectKeyword, identifier, body);
+        SyntaxToken openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
+        ProjectSettingListSyntax settings = ParseProjectSettingList();
+        SyntaxToken closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
+
+        return new ProjectDeclarationSyntax(
+            _syntaxTree, projectKeyword, identifier,
+            openBraceToken, settings, closeBraceToken);
+    }
+
+    private ProjectSettingListSyntax ParseProjectSettingList()
+    {
+        ImmutableArray<ProjectSettingClause>.Builder settings =
+            ImmutableArray.CreateBuilder<ProjectSettingClause>();
+
+        while (Current.Kind != SyntaxKind.CloseBraceToken &&
+            Current.Kind != SyntaxKind.EndOfFileToken)
+        {
+            ProjectSettingClause settingClause = ParseProjectSettingClause();
+            settings.Add(settingClause);
+        }
+
+        return new ProjectSettingListSyntax(_syntaxTree, settings.ToImmutableArray());
+    }
+
+    private ProjectSettingClause ParseProjectSettingClause()
+    {
+        switch (Current.Kind)
+        {
+            case SyntaxKind.DatabaseTypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
+                return ParseDatabaseProviderProjectSetting();
+            case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
+                return ParseNoteProjectSetting();
+            default:
+                return ParseUnknownProjectSetting();
+        }
+    }
+
+    private ProjectSettingClause ParseDatabaseProviderProjectSetting()
+    {
+        SyntaxToken databaseTypeKeyword = MatchToken(SyntaxKind.DatabaseTypeKeyword);
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+
+        SyntaxKind valueTokenKind = Current.Kind switch
+        {
+            SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
+            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
+            _ => SyntaxKind.IdentifierToken
+        };
+        SyntaxToken valueToken = MatchToken(valueTokenKind);
+
+        return new DatabaseProviderProjectSettingClause(_syntaxTree, databaseTypeKeyword, colonToken, valueToken);
+    }
+
+    private ProjectSettingClause ParseNoteProjectSetting()
+    {
+        SyntaxToken noteKeyword = MatchToken(SyntaxKind.NoteKeyword);
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+
+        SyntaxKind valueTokenKind = Current.Kind switch
+        {
+            SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
+            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
+            _ => SyntaxKind.IdentifierToken
+        };
+        SyntaxToken valueToken = MatchToken(valueTokenKind);
+
+        return new NoteProjectSettingClause(_syntaxTree, noteKeyword, colonToken, valueToken);
+    }
+
+    private ProjectSettingClause ParseUnknownProjectSetting()
+    {
+        void ReportUnknownProjectSetting(string settingName, int spanStart, int spanEnd)
+        {
+            SourceText text = _syntaxTree.Text;
+            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new TextLocation(text, span);
+            Diagnostics.ReportUnknownProjectSetting(location, settingName);
+        }
+
+        SyntaxToken identifierToken = Current.Kind.IsKeyword()
+                ? NextToken()
+                : MatchToken(SyntaxKind.IdentifierToken);
+
+        if (Current.Kind == SyntaxKind.ColonToken)
+        {
+            SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+
+#pragma warning disable CA1508 // Avoid dead conditional code
+            SyntaxToken valueToken = Current.Kind switch
+            {
+                SyntaxKind.QuotationMarksStringToken => MatchToken(SyntaxKind.QuotationMarksStringToken),
+                SyntaxKind.SingleQuotationMarksStringToken => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
+                _ => MatchToken(SyntaxKind.IdentifierToken),
+            };
+#pragma warning restore CA1508 // Avoid dead conditional code
+
+            ReportUnknownProjectSetting(identifierToken.Text, identifierToken.Start, valueToken.End);
+            return new UnknownProjectSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+        }
+
+        ReportUnknownProjectSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
+        return new UnknownProjectSettingClause(_syntaxTree, identifierToken);
     }
 
     private MemberSyntax ParseTableDeclaration()

@@ -21,7 +21,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
@@ -41,7 +40,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
@@ -61,13 +59,12 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
     [Fact]
-    public void Parse_ProjectDeclaration_With_Empty_Body()
+    public void Parse_ProjectDeclaration_With_Empty_Settings()
     {
         SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -81,7 +78,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }

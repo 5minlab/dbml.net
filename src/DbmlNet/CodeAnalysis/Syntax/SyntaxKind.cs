@@ -60,6 +60,12 @@ public enum SyntaxKind
     TableDeclarationMember,
     GlobalStatementMember,
 
+    // Project nodes
+    ProjectSettingListClause,
+    DatabaseProviderProjectSettingClause,
+    NoteProjectSettingClause,
+    UnknownProjectSettingClause,
+
     // Column nodes
     ColumnIdentifierClause,
     ColumnTypeIdentifierClause,

@@ -45,6 +45,14 @@ public partial class ParserTests
         return expression;
     }
 
+    private static ProjectSettingListSyntax ParseProjectSettingListClause(string text)
+    {
+        MemberSyntax member = ParseMember(text);
+        ProjectDeclarationSyntax projectDeclarationMember =
+            Assert.IsAssignableFrom<ProjectDeclarationSyntax>(member);
+        return projectDeclarationMember.Settings;
+    }
+
     private static ColumnSettingListSyntax ParseColumnSettingListClause(string text)
     {
         StatementSyntax statement = ParseStatement(text);

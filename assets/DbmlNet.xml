@@ -275,6 +275,29 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.DatabaseProviderKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause">
             <summary>
             </summary>
@@ -479,6 +502,29 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.NoteKeyword">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause">
             <summary>
             </summary>
@@ -586,11 +632,38 @@
             <summary>
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Body">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.OpenBraceToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.CloseBraceToken">
             <summary>
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.Settings">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause">
@@ -1109,6 +1182,29 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.Kind">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.NameToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.ColonToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.ValueToken">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.SourceText">
