@@ -196,8 +196,7 @@ internal sealed class Parser
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-            _ => SyntaxKind.IdentifierToken
+            _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
 
@@ -212,8 +211,7 @@ internal sealed class Parser
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-            _ => SyntaxKind.IdentifierToken
+            _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
 
