@@ -60,6 +60,21 @@ public partial class ParserTests
         return singleFieldIndexDeclarationSyntax;
     }
 
+    private static CompositeIndexDeclarationSyntax ParseCompositeIndexDeclaration(string text)
+    {
+        StatementSyntax statement = ParseStatement(text);
+
+        IndexesDeclarationSyntax indexesDeclarationSyntax =
+            Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
+
+        CompositeIndexDeclarationSyntax compositeIndexDeclarationSyntax =
+            Assert.IsAssignableFrom<CompositeIndexDeclarationSyntax>(
+                Assert.Single(indexesDeclarationSyntax.Indexes)
+            );
+
+        return compositeIndexDeclarationSyntax;
+    }
+
     private static ProjectSettingListSyntax ParseProjectSettingListClause(string text)
     {
         MemberSyntax member = ParseMember(text);
