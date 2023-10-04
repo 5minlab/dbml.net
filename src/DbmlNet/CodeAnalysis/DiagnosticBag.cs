@@ -65,7 +65,7 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
 
     public void ReportUnknownProjectSetting(TextLocation location, string settingName)
     {
-        string message = $"Unknown project setting <{settingName}>.";
+        string message = $"Unknown project setting '{settingName}'.";
         ReportWarning(location, message);
     }
 }
