@@ -427,6 +427,8 @@ internal sealed class Parser
         {
             case SyntaxKind.UniqueKeyword:
                 return ParseUniqueIndexSetting();
+            case SyntaxKind.PkKeyword:
+                return ParsePkIndexSetting();
             case SyntaxKind.NameKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
                 return ParseNameIndexSetting();
             case SyntaxKind.TypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
@@ -442,6 +444,12 @@ internal sealed class Parser
     {
         SyntaxToken uniqueKeyword = MatchToken(SyntaxKind.UniqueKeyword);
         return new UniqueIndexSettingClause(_syntaxTree, uniqueKeyword);
+    }
+
+    private IndexSettingClause ParsePkIndexSetting()
+    {
+        SyntaxToken pkKeyword = MatchToken(SyntaxKind.PkKeyword);
+        return new PkIndexSettingClause(_syntaxTree, pkKeyword);
     }
 
     private IndexSettingClause ParseNameIndexSetting()
