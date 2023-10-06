@@ -170,7 +170,7 @@ public partial class ParserTests
     }
 
     [Fact(Skip = "Skip to avoid infinite loop.")]
-    public void Parse_SingleFieldIndexDeclaration_With_Name_Settings_Identifier_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -198,7 +198,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Name_Settings_QuotationMarksStringToken_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -227,7 +227,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Name_Settings_SingleQuotationMarksStringToken_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -256,7 +256,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Type_Settings_Identifier_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -284,7 +284,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Type_Settings_QuotationMarksStringToken_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -313,7 +313,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Type_Settings_SingleQuotationMarksStringToken_Value()
+    public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
