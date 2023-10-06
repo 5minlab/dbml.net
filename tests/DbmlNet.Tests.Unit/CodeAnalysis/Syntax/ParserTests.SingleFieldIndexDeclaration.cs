@@ -122,6 +122,29 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
+    [Fact]
+    public void Parse_SingleFieldIndexDeclaration_With_Pk_Setting()
+    {
+        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string randomText = CreateRandomString();
+        string indexNameText = randomText;
+        object? indexNameValue = null;
+        string indexText = $"{indexNameText} [ pk ]";
+        string text = "indexes { " + indexText + " }";
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            ParseSingleFieldIndexDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
+        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.PkIndexSettingClause);
+        e.AssertToken(SyntaxKind.PkKeyword, "pk");
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
     [Fact(Skip = "Skip to avoid infinite loop.")]
     public void Parse_SingleFieldIndexDeclaration_With_Name_Settings_Identifier_Value()
     {
