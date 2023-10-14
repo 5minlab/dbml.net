@@ -4,6 +4,11 @@
         <name>dbnet</name>
     </assembly>
     <members>
+        <member name="F:DbmlNet.Extensions.ApplicationSettings.DbmlExtension">
+            <summary>
+            Returns the extension of dbml file (including the period ".").
+            </summary>
+        </member>
         <member name="T:DbmlNet.Extensions.DbmlMarkdownWriter">
             <summary>
             </summary>
