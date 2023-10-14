@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a index setting clause in the syntax tree.
 /// </summary>
 public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
 {
@@ -17,14 +18,17 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the primary key index setting clause <see cref="SyntaxKind.PrimaryKeyIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyIndexSettingClause;
 
     /// <summary>
+    /// Gets the primary keyword.
     /// </summary>
     public SyntaxToken PrimaryKeyword { get; }
 
     /// <summary>
+    /// Gets the key keyword.
     /// </summary>
     public SyntaxToken KeyKeyword { get; }
 

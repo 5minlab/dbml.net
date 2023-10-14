@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a list of settings in the syntax tree.
 /// </summary>
 public sealed class ProjectSettingListSyntax : SyntaxNode
 {
@@ -16,10 +17,12 @@ public sealed class ProjectSettingListSyntax : SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax kind of the project setting list clause <see cref="SyntaxKind.ProjectSettingListClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ProjectSettingListClause;
 
     /// <summary>
+    /// Gets the settings.
     /// </summary>
     public ImmutableArray<ProjectSettingClause> Settings { get; }
 

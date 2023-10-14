@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a list of index settings in the syntax tree.
 /// </summary>
 public sealed class IndexSettingListSyntax : SyntaxNode
 {
@@ -19,18 +20,22 @@ public sealed class IndexSettingListSyntax : SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax kind of the index setting list clause <see cref="SyntaxKind.IndexSettingListClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IndexSettingListClause;
 
     /// <summary>
+    /// Gets the open bracket token.
     /// </summary>
     public SyntaxToken OpenBracketToken { get; }
 
     /// <summary>
+    /// Gets the index setting list.
     /// </summary>
     public SeparatedSyntaxList<IndexSettingClause> Settings { get; }
 
     /// <summary>
+    /// Gets the close bracket token.
     /// </summary>
     public SyntaxToken CloseBracketToken { get; }
 

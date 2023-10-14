@@ -4,12 +4,15 @@ using System.Data;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a syntax walker.
 /// </summary>
 public abstract class SyntaxWalker
 {
     /// <summary>
+    /// Performs a syntax tree walk starting from the specified syntax tree.
     /// </summary>
-    /// <param name="syntaxTree"></param>
+    /// <param name="syntaxTree">The syntax tree to walk.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntaxTree"/> is <see langword="null"/>.</exception>
     protected virtual void Walk(SyntaxTree syntaxTree)
     {
         ArgumentNullException.ThrowIfNull(syntaxTree);
@@ -17,8 +20,10 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks the compilation unit syntax.
     /// </summary>
-    /// <param name="compilationUnit"></param>
+    /// <param name="compilationUnit">The compilation unit syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="compilationUnit"/> is <see langword="null"/>.</exception>
     protected virtual void WalkCompilationUnit(CompilationUnitSyntax compilationUnit)
     {
         ArgumentNullException.ThrowIfNull(compilationUnit);
@@ -27,9 +32,11 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a member syntax.
     /// </summary>
-    /// <param name="syntax"></param>
-    /// <exception cref="EvaluateException"></exception>
+    /// <param name="syntax">The member syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    /// <exception cref="EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkMember(MemberSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -51,17 +58,20 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a project declaration syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The project declaration syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkProjectDeclaration(ProjectDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
-        // TODO: WalkStatement(syntax.Settings);
     }
 
     /// <summary>
+    /// Walks a table declaration syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The table declaration syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkTableDeclaration(TableDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -69,8 +79,10 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a global statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The global statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkGlobalStatement(GlobalStatementSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -78,9 +90,11 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
-    /// <exception cref="EvaluateException"></exception>
+    /// <param name="syntax">The statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    /// <exception cref="EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkStatement(StatementSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -114,8 +128,10 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a block statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The block statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkBlockStatement(BlockStatementSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -125,29 +141,30 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a column declaration statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The column declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkColumnDeclarationStatement(ColumnDeclarationSyntax syntax)
     {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
+    /// Walks a single field index declaration statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The single field index declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkSingleFieldIndexDeclarationStatement(SingleFieldIndexDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
-        if (syntax.Settings is null)
-            return;
-
-        // TODO: ...
-        // foreach (IndexSettingClause setting in syntax.Settings.Settings)
-        //      WalkIndexSettingExpression(setting);
     }
 
     /// <summary>
+    /// Walks a composite index declaration statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The composite index declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     private void WalkCompositeIndexDeclarationStatement(CompositeIndexDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -163,8 +180,10 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks an indexes declaration statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The indexes declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkIndexesDeclarationStatement(IndexesDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -176,16 +195,20 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a note declaration statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The note declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkNoteDeclarationStatement(NoteDeclarationSyntax syntax)
     {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
+    /// Walks an expression statement syntax.
     /// </summary>
-    /// <param name="syntax"></param>
-    /// <exception cref="EvaluateException"></exception>
+    /// <param name="syntax">The expression statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkExpressionStatement(ExpressionStatementSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -193,8 +216,11 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks an expression syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    /// <exception cref="EvaluateException"></exception>
     protected virtual void WalkExpression(ExpressionSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -219,29 +245,40 @@ public abstract class SyntaxWalker
     }
 
     /// <summary>
+    /// Walks a literal expression syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The literal expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkLiteralExpression(LiteralExpressionSyntax syntax)
     {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
+    /// Walks a name expression syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The name expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkNameExpression(NameExpressionSyntax syntax)
     {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
+    /// Walks an index setting expression syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The index setting expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkIndexSettingExpression(IndexSettingExpressionSyntax syntax)
     {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
+    /// Walks a parenthesized expression syntax.
     /// </summary>
-    /// <param name="syntax"></param>
+    /// <param name="syntax">The parenthesized expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkParenthesizedExpression(ParenthesizedExpressionSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);

@@ -11,23 +11,21 @@
         </member>
         <member name="T:DbmlNet.Extensions.DbmlMarkdownWriter">
             <summary>
+            Represents a markdown writer.
             </summary>
-        </member>
-        <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.#ctor(DbmlNet.Domain.DbmlDatabase)">
-            <summary>
-            </summary>
-            <param name="database"></param>
         </member>
         <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.WriterToFile(DbmlNet.Domain.DbmlDatabase,System.String)">
             <summary>
+            Writes the <see cref="T:DbmlNet.Domain.DbmlDatabase"/> to a file.
             </summary>
-            <param name="dbmlDatabase"></param>
-            <param name="outputFilePath"></param>
+            <param name="dbmlDatabase">The <see cref="T:DbmlNet.Domain.DbmlDatabase"/> to write.</param>
+            <param name="outputFilePath">The path of the output file.</param>
         </member>
         <member name="M:DbmlNet.Extensions.DbmlMarkdownWriter.WriteTo(System.IO.TextWriter)">
             <summary>
+            Writes the content to the specified <see cref="T:System.IO.TextWriter"/>.
             </summary>
-            <param name="writer"></param>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to write to.</param>
         </member>
     </members>
 </doc>

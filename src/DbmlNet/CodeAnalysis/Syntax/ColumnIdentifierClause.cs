@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column identifier clause in the syntax tree.
 /// </summary>
 public sealed class ColumnIdentifierClause : SyntaxNode
 {
@@ -23,26 +24,32 @@ public sealed class ColumnIdentifierClause : SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax kind of the column identifier clause <see cref="SyntaxKind.ColumnIdentifierClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ColumnIdentifierClause;
 
     /// <summary>
+    /// Gets the schema identifier.
     /// </summary>
     public SyntaxToken? SchemaIdentifier { get; }
 
     /// <summary>
+    /// Gets the first dot token.
     /// </summary>
     public SyntaxToken? FirstDotToken { get; }
 
     /// <summary>
+    /// Gets the table identifier.
     /// </summary>
     public SyntaxToken? TableIdentifier { get; }
 
     /// <summary>
+    /// Gets the second dot token.
     /// </summary>
     public SyntaxToken? SecondDotToken { get; }
 
     /// <summary>
+    /// Gets the column identifier.
     /// </summary>
     public SyntaxToken ColumnIdentifier { get; }
 
@@ -57,9 +64,9 @@ public sealed class ColumnIdentifierClause : SyntaxNode
     }
 
     /// <summary>
-    /// Returns the full column identifier. E.g: {schema}.{table}.{column}.
+    /// Returns the full text for this column identifier using format {schema}.{table}.{column}.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The full text for this column identifier.</returns>
     public override string ToString()
     {
         return $"{SchemaIdentifier?.Text}{FirstDotToken?.Text}{TableIdentifier?.Text}{SecondDotToken?.Text}{ColumnIdentifier.Text}";

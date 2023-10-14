@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a project setting clause in the syntax tree.
 /// </summary>
 public sealed class NoteProjectSettingClause : ProjectSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class NoteProjectSettingClause : ProjectSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the project setting clause <see cref="SyntaxKind.NoteProjectSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteProjectSettingClause;
 
     /// <summary>
+    /// Gets the note keyword.
     /// </summary>
     public SyntaxToken NoteKeyword { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken ValueToken { get; }
 

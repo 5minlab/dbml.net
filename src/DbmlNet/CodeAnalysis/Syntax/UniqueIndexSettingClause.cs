@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a unique index setting clause in the syntax tree.
 /// </summary>
 public sealed class UniqueIndexSettingClause : IndexSettingClause
 {
@@ -15,10 +16,12 @@ public sealed class UniqueIndexSettingClause : IndexSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the unique index setting clause <see cref="SyntaxKind.UniqueIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueIndexSettingClause;
 
     /// <summary>
+    /// Gets the unique keyword.
     /// </summary>
     public SyntaxToken UniqueKeyword { get; }
 

@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 namespace DbmlNet.CodeAnalysis.Text;
 
 /// <summary>
+/// Represents a source text.
 /// </summary>
 public sealed class SourceText
 {
@@ -16,20 +17,16 @@ public sealed class SourceText
     }
 
     /// <summary>
+    /// Creates a new instance of SourceText from the specified text and optional file name.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="fileName"></param>
-    /// <returns></returns>
+    /// <param name="text">The text content of the source.</param>
+    /// <param name="fileName">The optional file name.</param>
+    /// <returns>A new instance of SourceText.</returns>
     public static SourceText From(string text, string fileName = "")
     {
         return new SourceText(text, fileName);
     }
 
-    /// <summary>
-    /// </summary>
-    /// <param name="sourceText"></param>
-    /// <param name="text"></param>
-    /// <returns></returns>
     private static ImmutableArray<TextLine> ParseLines(SourceText sourceText, string text)
     {
         ImmutableArray<TextLine>.Builder result =
@@ -84,28 +81,32 @@ public sealed class SourceText
     }
 
     /// <summary>
+    /// Gets the lines of the source text.
     /// </summary>
     public ImmutableArray<TextLine> Lines { get; }
 
     /// <summary>
+    /// Gets or sets the character at the specified index.
     /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-
+    /// <param name="index">The zero-based index of the character to get or set.</param>
+    /// <returns>The character at the specified index.</returns>
     public char this[int index] => _text[index];
 
     /// <summary>
+    /// Gets the length of the source text.
     /// </summary>
     public int Length => _text.Length;
 
     /// <summary>
+    /// Gets the file name of the source text.
     /// </summary>
     public string FileName { get; }
 
     /// <summary>
+    /// Gets the line index of the specified position.
     /// </summary>
-    /// <param name="position"></param>
-    /// <returns></returns>
+    /// <param name="position">The position value.</param>
+    /// <returns>The line index.</returns>
     public int GetLineIndex(int position)
     {
         int lower = 0;
@@ -133,20 +134,23 @@ public sealed class SourceText
     }
 
     /// <summary>
+    /// Returns a string representation of the current instance.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString() => _text;
 
     /// <summary>
+    /// Returns a string representation of the specified portion of the current instance.
     /// </summary>
-    /// <param name="start"></param>
-    /// <param name="length"></param>
-    /// <returns></returns>
+    /// <param name="start">The zero-based starting character position of the substring.</param>
+    /// <param name="length">The number of characters in the substring.</param>
+    /// <returns>A string that represents the specified portion of the current object.</returns>
     public string ToString(int start, int length) => _text.Substring(start, length);
 
     /// <summary>
+    /// Returns a string representation of the specified portion of the current instance.
     /// </summary>
-    /// <param name="span"></param>
-    /// <returns></returns>
+    /// <param name="span">The TextSpan specifying the portion of the string to retrieve.</param>
+    /// <returns>A string that represents the specified portion of the current object.</returns>
     public string ToString(TextSpan span) => ToString(span.Start, span.Length);
 }

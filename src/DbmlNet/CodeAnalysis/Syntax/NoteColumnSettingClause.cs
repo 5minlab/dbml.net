@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting clause in the syntax tree.
 /// </summary>
 public sealed class NoteColumnSettingClause : ColumnSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the note column setting clause <see cref="SyntaxKind.NoteColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteColumnSettingClause;
 
     /// <summary>
+    /// Gets the note keyword.
     /// </summary>
     public SyntaxToken NoteKeyword { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken ValueToken { get; }
 

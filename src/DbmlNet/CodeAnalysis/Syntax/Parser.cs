@@ -90,6 +90,10 @@ internal sealed class Parser
         return new SyntaxToken(_syntaxTree, kind, Current.Start, text: null, value: null);
     }
 
+    /// <summary>
+    /// Parses the compilation unit and returns the resulting <see cref="CompilationUnitSyntax"/>.
+    /// </summary>
+    /// <returns>The <see cref="CompilationUnitSyntax"/> object representing the parsed compilation unit.</returns>
     public CompilationUnitSyntax ParseCompilationUnit()
     {
         ImmutableArray<MemberSyntax> members = ParseMembers();
@@ -165,8 +169,8 @@ internal sealed class Parser
         ImmutableArray<ProjectSettingClause>.Builder settings =
             ImmutableArray.CreateBuilder<ProjectSettingClause>();
 
-        while (Current.Kind != SyntaxKind.CloseBraceToken &&
-            Current.Kind != SyntaxKind.EndOfFileToken)
+        while (Current.Kind != SyntaxKind.CloseBraceToken
+            && Current.Kind != SyntaxKind.EndOfFileToken)
         {
             ProjectSettingClause settingClause = ParseProjectSettingClause();
             settings.Add(settingClause);

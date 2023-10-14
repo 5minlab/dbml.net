@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a database provider project setting clause.
 /// </summary>
 public sealed class DatabaseProviderProjectSettingClause : ProjectSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class DatabaseProviderProjectSettingClause : ProjectSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the database provider project setting clause <see cref="SyntaxKind.DatabaseProviderProjectSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.DatabaseProviderProjectSettingClause;
 
     /// <summary>
+    /// Gets the database provider keyword.
     /// </summary>
     public SyntaxToken DatabaseProviderKeyword { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken ValueToken { get; }
 

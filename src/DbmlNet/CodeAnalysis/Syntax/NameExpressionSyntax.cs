@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a name expression in the syntax tree.
 /// </summary>
 public sealed class NameExpressionSyntax : ExpressionSyntax
 {
@@ -15,10 +16,12 @@ public sealed class NameExpressionSyntax : ExpressionSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the name expression <see cref="SyntaxKind.NameExpression"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NameExpression;
 
     /// <summary>
+    /// Gets the identifier token.
     /// </summary>
     public SyntaxToken IdentifierToken { get; }
 

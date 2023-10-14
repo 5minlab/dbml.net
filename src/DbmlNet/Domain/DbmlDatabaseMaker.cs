@@ -20,10 +20,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         Walk(syntaxTree);
     }
 
-    /// <summary>
-    /// </summary>
-    /// <param name="syntaxTree"></param>
-    /// <returns></returns>
     public static DbmlDatabase Make(SyntaxTree syntaxTree)
     {
         DbmlDatabaseMaker maker = new DbmlDatabaseMaker(syntaxTree);

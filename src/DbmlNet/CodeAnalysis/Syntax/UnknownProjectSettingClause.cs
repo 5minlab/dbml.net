@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a project setting clause in the syntax tree.
 /// </summary>
 public sealed class UnknownProjectSettingClause : ProjectSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class UnknownProjectSettingClause : ProjectSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the unknown project setting clause <see cref="SyntaxKind.UnknownProjectSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownProjectSettingClause;
 
     /// <summary>
+    /// Gets the name token.
     /// </summary>
     public SyntaxToken NameToken { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken? ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 

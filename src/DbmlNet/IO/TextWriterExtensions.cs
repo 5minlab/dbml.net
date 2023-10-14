@@ -13,6 +13,7 @@ using DbmlNet.CodeAnalysis.Text;
 namespace DbmlNet.IO
 {
     /// <summary>
+    /// Provides extension methods for the <see cref="TextWriter"/>.
     /// </summary>
     public static class TextWriterExtensions
     {
@@ -44,10 +45,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes the specified message to the writer with a dark cyan color.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="message"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write to.</param>
+        /// <param name="message">The message to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteInformation(this TextWriter writer, string message)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -58,10 +60,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes the specified success message to the writer with a dark green color.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="message"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The the text writer to write the message to.</param>
+        /// <param name="message">The success message to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteSuccess(this TextWriter writer, string message)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -72,10 +75,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a warning message to the specified text writer with a dark yellow color.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="message"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the message to.</param>
+        /// <param name="message">The warning message to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteWarning(this TextWriter writer, string message)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -86,10 +90,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes an error message to the specified text writer with a dark red color.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="message"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the message to.</param>
+        /// <param name="message">The error message to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteError(this TextWriter writer, string message)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -100,10 +105,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a debug message to the specified text writer with a dark gray color.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="message"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the message to.</param>
+        /// <param name="message">The debug message to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteDebug(this TextWriter writer, string message)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -114,10 +120,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a keyword to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="kind"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the keyword to.</param>
+        /// <param name="kind">The kind of keyword to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteKeyword(this TextWriter writer, SyntaxKind kind)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -130,10 +137,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a keyword to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the keyword to.</param>
+        /// <param name="text">The text of the keyword to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteKeyword(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -144,10 +152,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes an identifier to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the identifier to.</param>
+        /// <param name="text">The text of the identifier to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteIdentifier(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -158,10 +167,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a number to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the number to.</param>
+        /// <param name="text">The text of the number to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteNumber(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -172,10 +182,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a string to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the string to.</param>
+        /// <param name="text">The text of the string to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteString(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -186,19 +197,27 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a space to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
+        /// <param name="writer">The text writer to write the space to.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteSpace(this TextWriter writer)
         {
+            ArgumentNullException.ThrowIfNull(writer);
+
             writer.WritePunctuation(" ");
         }
 
         /// <summary>
+        /// Writes a punctuation to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="kind"></param>
+        /// <param name="writer">The text writer to write the punctuation to.</param>
+        /// <param name="kind">The kind of punctuation to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WritePunctuation(this TextWriter writer, SyntaxKind kind)
         {
+            ArgumentNullException.ThrowIfNull(writer);
+
             string? text = SyntaxFacts.GetKnownText(kind);
             Debug.Assert(text != null);
 
@@ -206,10 +225,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a punctuation to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the punctuation to.</param>
+        /// <param name="text">The text of the punctuation to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WritePunctuation(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -220,10 +240,11 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes a comment to the specified text writer.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="text"></param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="writer">The text writer to write the comment to.</param>
+        /// <param name="text">The text of the comment to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         public static void WriteComment(this TextWriter writer, string text)
         {
             ArgumentNullException.ThrowIfNull(writer);
@@ -234,9 +255,12 @@ namespace DbmlNet.IO
         }
 
         /// <summary>
+        /// Writes diagnostics to the specified text writer
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="diagnostics"></param>
+        /// <param name="writer">The text writer to write the diagnostics to.</param>
+        /// <param name="diagnostics">The diagnostics to write.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="diagnostics"/> is <see langword="null"/>.</exception>
         public static void WriteDiagnostics(this TextWriter writer, ICollection<Diagnostic> diagnostics)
         {
             ArgumentNullException.ThrowIfNull(writer);

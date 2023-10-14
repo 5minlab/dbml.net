@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a project setting clause in the syntax tree.
 /// </summary>
 public sealed class TypeIndexSettingClause : IndexSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class TypeIndexSettingClause : IndexSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the type index setting clause <see cref="SyntaxKind.TypeIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.TypeIndexSettingClause;
 
     /// <summary>
+    /// Gets the type keyword.
     /// </summary>
     public SyntaxToken TypeKeyword { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken ValueToken { get; }
 

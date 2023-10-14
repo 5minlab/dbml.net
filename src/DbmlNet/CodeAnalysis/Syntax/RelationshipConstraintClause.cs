@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a relationship constraint clause in the syntax tree.
 /// </summary>
 public sealed class RelationshipConstraintClause : SyntaxNode
 {
@@ -19,18 +20,22 @@ public sealed class RelationshipConstraintClause : SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax kind of the relationship constraint clause <see cref="SyntaxKind.RelationshipConstraintClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.RelationshipConstraintClause;
 
     /// <summary>
+    /// Gets the from identifier.
     /// </summary>
     public ColumnIdentifierClause? FromIdentifier { get; }
 
     /// <summary>
+    /// Gets the relationship type token.
     /// </summary>
     public SyntaxToken RelationshipTypeToken { get; }
 
     /// <summary>
+    /// Gets the to identifier.
     /// </summary>
     public ColumnIdentifierClause ToIdentifier { get; }
 

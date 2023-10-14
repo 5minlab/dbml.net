@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a global statement in the syntax tree.
 /// </summary>
 public sealed class GlobalStatementSyntax : MemberSyntax
 {
@@ -13,10 +14,12 @@ public sealed class GlobalStatementSyntax : MemberSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the global statement <see cref="SyntaxKind.GlobalStatementMember"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.GlobalStatementMember;
 
     /// <summary>
+    /// Gets the statement.
     /// </summary>
     public StatementSyntax Statement { get; }
 

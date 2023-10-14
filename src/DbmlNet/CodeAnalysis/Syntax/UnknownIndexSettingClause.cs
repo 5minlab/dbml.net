@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents an unknown index setting clause in the syntax tree.
 /// </summary>
 public sealed class UnknownIndexSettingClause : IndexSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the unknown index setting clause <see cref="SyntaxKind.UnknownIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownIndexSettingClause;
 
     /// <summary>
+    /// Gets the name token.
     /// </summary>
     public SyntaxToken NameToken { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken? ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 
