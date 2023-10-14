@@ -34,7 +34,7 @@ if (args.Length > 1)
 
 string inputPath = args.Single();
 
-writer.WriteInfoMessage($"Lookup '*{ApplicationSettings.DbmlExtension}' files from input '{inputPath}'.");
+writer.WriteInfoMessage($"Lookup '*{ApplicationSettings.DbmlExtension}' files in input '{inputPath}'.");
 
 string[] files = ApplicationSettings.FindDbmlNetFiles(inputPath);
 if (files.Length == 0)
