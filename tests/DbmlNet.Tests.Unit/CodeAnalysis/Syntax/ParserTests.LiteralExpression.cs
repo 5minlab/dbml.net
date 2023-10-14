@@ -17,6 +17,9 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
+        LiteralExpressionSyntax literalExpression =
+            Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
+        Assert.Equal(expectedValue, literalExpression.Value);
         e.AssertToken(expectedKind, expectedText, expectedValue);
     }
 
@@ -31,6 +34,9 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
+        LiteralExpressionSyntax literalExpression =
+            Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
+        Assert.Equal(expectedValue, literalExpression.Value);
         e.AssertToken(expectedKind, expectedText, expectedValue);
     }
 
@@ -46,6 +52,9 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
+        LiteralExpressionSyntax literalExpression =
+            Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
+        Assert.Equal(expectedValue, literalExpression.Value);
         e.AssertToken(expectedKind, expectedText, expectedValue);
     }
 
@@ -61,6 +70,9 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
+        LiteralExpressionSyntax literalExpression =
+            Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
+        Assert.Equal(expectedValue, literalExpression.Value);
         e.AssertToken(expectedKind, expectedText, expectedValue);
     }
 
@@ -76,6 +88,9 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
+        LiteralExpressionSyntax literalExpression =
+            Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
+        Assert.Equal(expectedValue, literalExpression.Value);
         e.AssertToken(expectedKind, expectedText, expectedValue);
     }
 }

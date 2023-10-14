@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace DbmlNet.Domain;
 
 /// <summary>
+/// Represents a table.
 /// </summary>
 public sealed class DbmlTable
 {
@@ -13,9 +14,10 @@ public sealed class DbmlTable
     private readonly List<DbmlTableRelationship> _relationships = new();
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="DbmlTable"/> class with the specified name and optional note.
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="note"></param>
+    /// <param name="name">The name of the table.</param>
+    /// <param name="note">An optional note for the table.</param>
     public DbmlTable(string name, string? note = null)
     {
         Name = name;
@@ -25,32 +27,39 @@ public sealed class DbmlTable
     }
 
     /// <summary>
+    /// Gets the name of the table.
     /// </summary>
     public string Name { get; }
 
     /// <summary>
+    /// Gets the columns.
     /// </summary>
     public IEnumerable<DbmlTableColumn> Columns => _columns;
 
     /// <summary>
+    /// Gets the indexes.
     /// </summary>
     public IEnumerable<DbmlTableIndex> Indexes => _indexes;
 
     /// <summary>
+    /// Gets the relationships.
     /// </summary>
     public IEnumerable<DbmlTableRelationship> Relationships => _relationships;
 
     /// <summary>
+    /// Gets the notes.
     /// </summary>
     public string Note => string.Join(separator: ", ", _notes);
 
     /// <summary>
+    /// Gets the notes.
     /// </summary>
     public IEnumerable<string> Notes => _notes;
 
     /// <summary>
+    /// Returns the table name.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The table name.</returns>
     public override string ToString() => Name;
 
     internal void AddColumn(DbmlTableColumn column)
@@ -67,7 +76,7 @@ public sealed class DbmlTable
 
     internal void AddNote(string note)
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(note);
+        ArgumentException.ThrowIfNullOrEmpty(note);
         _notes.Add(note);
     }
 

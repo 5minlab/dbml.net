@@ -1,6 +1,7 @@
 namespace DbmlNet.Domain;
 
 /// <summary>
+/// Represents a relationship type.
 /// </summary>
 public enum TableRelationshipType
 {

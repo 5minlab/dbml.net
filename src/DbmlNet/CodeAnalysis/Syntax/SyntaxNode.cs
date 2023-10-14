@@ -6,6 +6,7 @@ using DbmlNet.CodeAnalysis.Text;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a syntax node.
 /// </summary>
 public abstract class SyntaxNode
 {
@@ -15,18 +16,22 @@ public abstract class SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax tree of the current syntax node.
     /// </summary>
     public SyntaxTree SyntaxTree { get; }
 
     /// <summary>
+    /// Gets the parent of the current syntax node.
     /// </summary>
     public SyntaxNode? Parent => SyntaxTree.GetParent(this);
 
     /// <summary>
+    /// Gets the kind of the syntax node.
     /// </summary>
     public abstract SyntaxKind Kind { get; }
 
     /// <summary>
+    /// Gets the span of the syntax node.
     /// </summary>
     public virtual TextSpan Span
     {
@@ -39,17 +44,20 @@ public abstract class SyntaxNode
     }
 
     /// <summary>
+    /// Gets the text location of the syntax node.
     /// </summary>
     public TextLocation Location => new TextLocation(SyntaxTree.Text, Span);
 
     /// <summary>
+    /// Gets the child syntax nodes of the current syntax node.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>An enumerable collection of child syntax nodes.</returns>
     public abstract IEnumerable<SyntaxNode> GetChildren();
 
     /// <summary>
+    /// Gets the ancestors and self of the current syntax node.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>An enumerable collection of syntax nodes representing the current syntax node and its ancestors.</returns>
     public IEnumerable<SyntaxNode> AncestorsAndSelf()
     {
         SyntaxNode? node = this;
@@ -61,16 +69,18 @@ public abstract class SyntaxNode
     }
 
     /// <summary>
+    /// Gets the ancestors of the current syntax node.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>An enumerable collection of syntax nodes representing the current syntax node and its ancestors.</returns>
     public IEnumerable<SyntaxNode> Ancestors()
     {
         return AncestorsAndSelf().Skip(1);
     }
 
     /// <summary>
+    /// Gets the last token of the current syntax node.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The last token of the current syntax node.</returns>
     public SyntaxToken GetLastToken()
     {
         if (this is SyntaxToken token)

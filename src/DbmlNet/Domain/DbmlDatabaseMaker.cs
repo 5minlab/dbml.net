@@ -1,8 +1,6 @@
 using System;
 using System.Data;
-using System.Globalization;
 using System.Linq;
-using System.Numerics;
 
 using DbmlNet.CodeAnalysis.Syntax;
 
@@ -22,10 +20,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         Walk(syntaxTree);
     }
 
-    /// <summary>
-    /// </summary>
-    /// <param name="syntaxTree"></param>
-    /// <returns></returns>
     public static DbmlDatabase Make(SyntaxTree syntaxTree)
     {
         DbmlDatabaseMaker maker = new DbmlDatabaseMaker(syntaxTree);
@@ -46,7 +40,25 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         string projectName = $"{syntax.IdentifierToken.Value ?? syntax.IdentifierToken.Text}";
         _currentProject = new DbmlProject(projectName);
 
-        base.WalkProjectDeclaration(syntax);
+        foreach (ProjectSettingClause setting in syntax.Settings.Settings)
+        {
+            if (setting.Kind == SyntaxKind.DatabaseProviderProjectSettingClause)
+            {
+                DatabaseProviderProjectSettingClause databaseProviderSetting =
+                    (DatabaseProviderProjectSettingClause)setting;
+
+                string providerName =
+                    $"{databaseProviderSetting.ValueToken.Value ?? databaseProviderSetting.ValueToken.Text}";
+
+                _database.AddProvider(providerName);
+            }
+            else if (setting.Kind == SyntaxKind.NoteProjectSettingClause)
+            {
+                NoteProjectSettingClause noteSetting = (NoteProjectSettingClause)setting;
+                string note = noteSetting.ValueToken.Text;
+                _database.AddNote(note);
+            }
+        }
 
         _database.Project = _currentProject;
         _currentProject = null;
@@ -256,15 +268,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         }
     }
 #pragma warning restore CA1502 // Avoid excessive complexity
-
-    /// <inheritdoc/>
-    protected override void WalkDatabaseProviderDeclarationStatement(DatabaseProviderDeclarationSyntax syntax)
-    {
-        string providerName =
-            $"{syntax.IdentifierToken.Value ?? syntax.IdentifierToken.Text}";
-
-        _database.AddProvider(providerName);
-    }
 
     /// <inheritdoc/>
     protected override void WalkSingleFieldIndexDeclarationStatement(SingleFieldIndexDeclarationSyntax syntax)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a index setting clause in the syntax tree.
 /// </summary>
 public sealed class IndexSettingExpressionSyntax : ExpressionSyntax
 {
@@ -15,10 +16,12 @@ public sealed class IndexSettingExpressionSyntax : ExpressionSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the index setting expression <see cref="SyntaxKind.IndexSettingExpression"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IndexSettingExpression;
 
     /// <summary>
+    /// Gets the identifiers.
     /// </summary>
     public IEnumerable<SyntaxToken> Identifiers { get; }
 

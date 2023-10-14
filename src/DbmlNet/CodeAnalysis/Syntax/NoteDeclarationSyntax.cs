@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a note declaration statement in the syntax tree.
 /// </summary>
 public sealed class NoteDeclarationSyntax : StatementSyntax
 {
@@ -19,18 +20,22 @@ public sealed class NoteDeclarationSyntax : StatementSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the note declaration statement <see cref="SyntaxKind.NoteDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteDeclarationStatement;
 
     /// <summary>
+    /// Gets the note keyword.
     /// </summary>
     public SyntaxToken NoteKeyword { get; }
 
     /// <summary>
+    /// Gets the colon keyword.
     /// </summary>
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
+    /// Gets the note.
     /// </summary>
     public SyntaxToken Note { get; }
 

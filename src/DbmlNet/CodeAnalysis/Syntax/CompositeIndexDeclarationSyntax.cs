@@ -4,6 +4,7 @@ using System.Diagnostics;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a composite index declaration statement.
 /// </summary>
 public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
 {
@@ -26,30 +27,37 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the composite index declaration statement <see cref="SyntaxKind.CompositeIndexDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.CompositeIndexDeclarationStatement;
 
     /// <summary>
+    /// Gets the open parenthesis token.
     /// </summary>
     public SyntaxToken OpenParenthesis { get; }
 
     /// <summary>
+    /// Gets the identifiers.
     /// </summary>
     public SeparatedSyntaxList<ExpressionSyntax> Identifiers { get; }
 
     /// <summary>
+    /// Gets the close parenthesis token.
     /// </summary>
     public SyntaxToken CloseParenthesis { get; }
 
     /// <summary>
+    /// Gets the open bracket token.
     /// </summary>
     public SyntaxToken? OpenBracket { get; }
 
     /// <summary>
+    /// Gets the settings.
     /// </summary>
     public SeparatedSyntaxList<ExpressionSyntax>? Settings { get; }
 
     /// <summary>
+    /// Gets the close bracket token.
     /// </summary>
     public SyntaxToken? CloseBracket { get; }
 
@@ -58,7 +66,7 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
     {
         yield return OpenParenthesis;
 
-        foreach (ExpressionSyntax setting in Identifiers)
+        foreach (SyntaxNode setting in Identifiers.GetWithSeparators())
             yield return setting;
 
         yield return CloseParenthesis;

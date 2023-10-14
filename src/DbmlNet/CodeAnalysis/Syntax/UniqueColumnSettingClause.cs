@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a unique column setting clause in the syntax tree.
 /// </summary>
 public sealed class UniqueColumnSettingClause : ColumnSettingClause
 {
@@ -15,10 +16,12 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the unique column setting clause <see cref="SyntaxKind.UniqueColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueColumnSettingClause;
 
     /// <summary>
+    /// Gets the unique keyword.
     /// </summary>
     public SyntaxToken UniqueKeyword { get; }
 

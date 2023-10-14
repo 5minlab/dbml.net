@@ -10,6 +10,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 #pragma warning disable CA1021 // Avoid out parameters
 
 /// <summary>
+/// Represents a syntax tree.
 /// </summary>
 public sealed class SyntaxTree
 {
@@ -31,21 +32,25 @@ public sealed class SyntaxTree
     }
 
     /// <summary>
+    /// Gets the source text.
     /// </summary>
     public SourceText Text { get; }
 
     /// <summary>
+    /// Gets the diagnostics.
     /// </summary>
     public ImmutableArray<Diagnostic> Diagnostics { get; }
 
     /// <summary>
+    /// Gets the root syntax node.
     /// </summary>
     public CompilationUnitSyntax Root { get; }
 
     /// <summary>
+    /// Loads a syntax tree from the specified file.
     /// </summary>
-    /// <param name="fileName"></param>
-    /// <returns></returns>
+    /// <param name="fileName">The name of the file to load.</param>
+    /// <returns>The loaded syntax tree.</returns>
     public static SyntaxTree Load(string fileName)
     {
         string text = File.ReadAllText(fileName);
@@ -54,9 +59,10 @@ public sealed class SyntaxTree
     }
 
     /// <summary>
+    /// Parses the specified text and returns a syntax tree.
     /// </summary>
-    /// <param name="text"></param>
-    /// <returns></returns>
+    /// <param name="text">The text to parse.</param>
+    /// <returns>The syntax tree.</returns>
     public static SyntaxTree Parse(string text)
     {
         SourceText sourceText = SourceText.From(text);
@@ -64,9 +70,10 @@ public sealed class SyntaxTree
     }
 
     /// <summary>
+    /// Parses the specified text and returns a syntax tree.
     /// </summary>
-    /// <param name="text"></param>
-    /// <returns></returns>
+    /// <param name="text">The text to parse.</param>
+    /// <returns>The syntax tree.</returns>
     public static SyntaxTree Parse(SourceText text)
     {
         static void Parse(SyntaxTree syntaxTree, out CompilationUnitSyntax root, out ImmutableArray<Diagnostic> diagnostics)
@@ -80,10 +87,11 @@ public sealed class SyntaxTree
     }
 
     /// <summary>
+    /// Parses the given text and returns a collection of syntax tokens.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="includeEndOfFile"></param>
-    /// <returns></returns>
+    /// <param name="text">The text to parse.</param>
+    /// <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+    /// <returns>An immutable array of syntax tokens.</returns>
     public static ImmutableArray<SyntaxToken> ParseTokens(
         string text, bool includeEndOfFile = false)
     {
@@ -91,13 +99,13 @@ public sealed class SyntaxTree
         return ParseTokens(sourceText, includeEndOfFile);
     }
 
-
     /// <summary>
+    /// Parses the given text into an immutable array of syntax tokens.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="diagnostics"></param>
-    /// <param name="includeEndOfFile"></param>
-    /// <returns></returns>
+    /// <param name="text">The text to parse.</param>
+    /// <param name="diagnostics">The diagnostics produced during parsing.</param>
+    /// <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+    /// <returns>An immutable array of syntax tokens.</returns>
     public static ImmutableArray<SyntaxToken> ParseTokens(
         string text, out ImmutableArray<Diagnostic> diagnostics, bool includeEndOfFile = false)
     {
@@ -106,23 +114,24 @@ public sealed class SyntaxTree
     }
 
     /// <summary>
+    /// Parses the given source text into an immutable array of syntax tokens.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="includeEndOfFile"></param>
-    /// <returns></returns>
+    /// <param name="text">The source text to parse.</param>
+    /// <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+    /// <returns>An immutable array of syntax tokens.</returns>
     public static ImmutableArray<SyntaxToken> ParseTokens(
         SourceText text, bool includeEndOfFile = false)
     {
         return ParseTokens(text, out _, includeEndOfFile);
     }
 
-
     /// <summary>
+    /// Parses the source text and returns an immutable array of syntax tokens.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="diagnostics"></param>
-    /// <param name="includeEndOfFile"></param>
-    /// <returns></returns>
+    /// <param name="text">The source text to parse.</param>
+    /// <param name="diagnostics">The diagnostics produced during the parse operation.</param>
+    /// <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+    /// <returns>An immutable array of syntax tokens.</returns>
     public static ImmutableArray<SyntaxToken> ParseTokens(
         SourceText text, out ImmutableArray<Diagnostic> diagnostics, bool includeEndOfFile = false)
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a table declaration statement in the syntax tree.
 /// </summary>
 public sealed class TableDeclarationSyntax : MemberSyntax
 {
@@ -19,18 +20,22 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     }
 
     /// <summary>
+    /// Gets the syntax kind of the table declaration <see cref="SyntaxKind.TableDeclarationMember"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.TableDeclarationMember;
 
     /// <summary>
+    /// Gets the table keyword.
     /// </summary>
     public SyntaxToken TableKeyword { get; }
 
     /// <summary>
+    /// Gets the identifier token.
     /// </summary>
     public SyntaxToken IdentifierToken { get; }
 
     /// <summary>
+    /// Gets the body.
     /// </summary>
     public StatementSyntax Body { get; }
 

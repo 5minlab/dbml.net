@@ -51,8 +51,8 @@ public class LexerTests
 
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal($"Bad character input: '{text}'.", diagnostic.Message);
-        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
-        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.True(diagnostic.IsError, "Diagnostic should be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic should not be warning.");
     }
 
     [Theory]

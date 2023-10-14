@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a compilation unit in the syntax tree.
 /// </summary>
 public sealed class CompilationUnitSyntax : SyntaxNode
 {
@@ -21,10 +22,12 @@ public sealed class CompilationUnitSyntax : SyntaxNode
     public override SyntaxKind Kind => SyntaxKind.CompilationUnitMember;
 
     /// <summary>
+    /// Gets the members of the compilation unit.
     /// </summary>
     public ImmutableArray<MemberSyntax> Members { get; }
 
     /// <summary>
+    /// Gets the end of file token.
     /// </summary>
     public SyntaxToken EndOfFileToken { get; }
 

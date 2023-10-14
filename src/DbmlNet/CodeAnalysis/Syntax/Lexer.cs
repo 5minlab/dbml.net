@@ -18,10 +18,6 @@ internal sealed class Lexer
     private SyntaxKind _kind = SyntaxKind.BadToken;
     private object? _value;
 
-    /// <summary>
-    /// </summary>
-    /// <param name="syntaxTree"></param>
-    /// <exception cref="ArgumentNullException"></exception>
     public Lexer(SyntaxTree syntaxTree)
     {
         _syntaxTree = syntaxTree;

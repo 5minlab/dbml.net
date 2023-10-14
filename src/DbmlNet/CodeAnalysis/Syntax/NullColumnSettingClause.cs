@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting clause in the syntax tree.
 /// </summary>
 public sealed class NullColumnSettingClause : ColumnSettingClause
 {
@@ -15,10 +16,12 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the null column setting clause <see cref="SyntaxKind.NullColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NullColumnSettingClause;
 
     /// <summary>
+    /// Gets the null keyword.
     /// </summary>
     public SyntaxToken NullKeyword { get; }
 

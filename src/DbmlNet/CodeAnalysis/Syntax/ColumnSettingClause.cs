@@ -1,6 +1,7 @@
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting clause in the syntax tree.
 /// </summary>
 public abstract class ColumnSettingClause : SyntaxNode
 {

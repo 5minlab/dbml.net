@@ -9,24 +9,23 @@ using DbmlNet.Domain;
 namespace DbmlNet.Extensions;
 
 /// <summary>
+/// Represents a markdown writer.
 /// </summary>
 public sealed class DbmlMarkdownWriter
 {
     private readonly DbmlDatabase _database;
     private const string UnknownValue = "N/A";
 
-    /// <summary>
-    /// </summary>
-    /// <param name="database"></param>
     private DbmlMarkdownWriter(DbmlDatabase database)
     {
         _database = database;
     }
 
     /// <summary>
+    /// Writes the <see cref="DbmlDatabase"/> to a file.
     /// </summary>
-    /// <param name="dbmlDatabase"></param>
-    /// <param name="outputFilePath"></param>
+    /// <param name="dbmlDatabase">The <see cref="DbmlDatabase"/> to write.</param>
+    /// <param name="outputFilePath">The path of the output file.</param>
     public static void WriterToFile(DbmlDatabase dbmlDatabase, string outputFilePath)
     {
         FileStream outputStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write);
@@ -37,8 +36,9 @@ public sealed class DbmlMarkdownWriter
     }
 
     /// <summary>
+    /// Writes the content to the specified <see cref="TextWriter"/>.
     /// </summary>
-    /// <param name="writer"></param>
+    /// <param name="writer">The <see cref="TextWriter"/> to write to.</param>
     public void WriteTo(TextWriter writer)
     {
         ArgumentNullException.ThrowIfNull(writer);

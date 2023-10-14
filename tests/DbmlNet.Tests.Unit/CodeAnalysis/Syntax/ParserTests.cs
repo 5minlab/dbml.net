@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
@@ -22,14 +21,17 @@ public partial class ParserTests
     private static MemberSyntax ParseMember(string text)
     {
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
+        Assert.Equal(SyntaxKind.CompilationUnitMember, syntaxTree.Root.Kind);
         Assert.True(syntaxTree.Root.Members.Any(), "Expected at least one syntax member, currently zero.");
         MemberSyntax member = Assert.Single(syntaxTree.Root.Members);
+        Assert.NotNull(syntaxTree.Root.EndOfFileToken);
         return member;
     }
 
     private static StatementSyntax ParseStatement(string text)
     {
         MemberSyntax member = ParseMember(text);
+        Assert.Equal(SyntaxKind.GlobalStatementMember, member.Kind);
         StatementSyntax statement =
             Assert.IsAssignableFrom<GlobalStatementSyntax>(member).Statement;
         return statement;
@@ -41,6 +43,44 @@ public partial class ParserTests
         ExpressionSyntax expression =
             Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement).Expression;
         return expression;
+    }
+
+    private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(string text)
+    {
+        StatementSyntax statement = ParseStatement(text);
+
+        IndexesDeclarationSyntax indexesDeclarationSyntax =
+            Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            Assert.IsAssignableFrom<SingleFieldIndexDeclarationSyntax>(
+                Assert.Single(indexesDeclarationSyntax.Indexes)
+            );
+
+        return singleFieldIndexDeclarationSyntax;
+    }
+
+    private static CompositeIndexDeclarationSyntax ParseCompositeIndexDeclaration(string text)
+    {
+        StatementSyntax statement = ParseStatement(text);
+
+        IndexesDeclarationSyntax indexesDeclarationSyntax =
+            Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
+
+        CompositeIndexDeclarationSyntax compositeIndexDeclarationSyntax =
+            Assert.IsAssignableFrom<CompositeIndexDeclarationSyntax>(
+                Assert.Single(indexesDeclarationSyntax.Indexes)
+            );
+
+        return compositeIndexDeclarationSyntax;
+    }
+
+    private static ProjectSettingListSyntax ParseProjectSettingListClause(string text)
+    {
+        MemberSyntax member = ParseMember(text);
+        ProjectDeclarationSyntax projectDeclarationMember =
+            Assert.IsAssignableFrom<ProjectDeclarationSyntax>(member);
+        return projectDeclarationMember.Settings;
     }
 
     private static ColumnSettingListSyntax ParseColumnSettingListClause(string text)

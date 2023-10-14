@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting clause in the syntax tree.
 /// </summary>
 public sealed class UnknownColumnSettingClause : ColumnSettingClause
 {
@@ -19,18 +20,22 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the unknown column setting clause <see cref="SyntaxKind.UnknownColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownColumnSettingClause;
 
     /// <summary>
+    /// Gets the name token.
     /// </summary>
     public SyntaxToken NameToken { get; }
 
     /// <summary>
+    /// Gets the colon token.
     /// </summary>
     public SyntaxToken? ColonToken { get; }
 
     /// <summary>
+    /// Gets the value token.
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 

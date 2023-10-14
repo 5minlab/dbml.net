@@ -21,7 +21,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
@@ -41,7 +40,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
@@ -61,13 +59,12 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
     [Fact]
-    public void Parse_ProjectDeclaration_With_Empty_Body()
+    public void Parse_ProjectDeclaration_With_Empty_Settings()
     {
         SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -81,44 +78,30 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
-        e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
     [Fact]
-    public void Parse_DatabaseProviderDeclaration_With_QuotationMarksString_Value()
+    public void Parse_ProjectDeclaration_With_UnknownSetting()
     {
-        SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
-        string providerText = $"\"{randomText}\"";
-        object? providerValue = randomText;
-        string text = $"database_type: {providerText}";
+        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = CreateRandomString();
+        object? tableNameValue = null;
+        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = CreateRandomString();
+        string settingText = settingNameText;
+        string text = $"Project {tableNameText} " + "{ " + settingText + " }";
 
-        StatementSyntax statement = ParseStatement(text);
+        MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
-        e.AssertNode(SyntaxKind.DatabaseProviderDeclarationStatement);
-        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
-        e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertToken(providerKind, providerText, providerValue);
-    }
-
-    [Fact]
-    public void Parse_DatabaseProviderDeclaration_With_SingleQuotationMarksString_Value()
-    {
-        SyntaxKind providerKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
-        string providerText = $"\'{randomText}\'";
-        object? providerValue = randomText;
-        string text = $"database_type: {providerText}";
-
-        StatementSyntax statement = ParseStatement(text);
-
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
-        e.AssertNode(SyntaxKind.DatabaseProviderDeclarationStatement);
-        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
-        e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertToken(providerKind, providerText, providerValue);
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.ProjectDeclarationMember);
+        e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
+        e.AssertToken(tableNameKind, tableNameText, tableNameValue);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
+        e.AssertToken(settingNameKind, settingNameText);
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 }

@@ -60,6 +60,22 @@ public enum SyntaxKind
     TableDeclarationMember,
     GlobalStatementMember,
 
+    // Project nodes
+    ProjectSettingListClause,
+    DatabaseProviderProjectSettingClause,
+    NoteProjectSettingClause,
+    UnknownProjectSettingClause,
+
+    // Index nodes
+    IndexSettingListClause,
+    NameIndexSettingClause,
+    NoteIndexSettingClause,
+    PkIndexSettingClause,
+    PrimaryKeyIndexSettingClause,
+    TypeIndexSettingClause,
+    UniqueIndexSettingClause,
+    UnknownIndexSettingClause,
+
     // Column nodes
     ColumnIdentifierClause,
     ColumnTypeIdentifierClause,
@@ -81,7 +97,6 @@ public enum SyntaxKind
     BlockStatement,
     NoteDeclarationStatement,
     ColumnDeclarationStatement,
-    DatabaseProviderDeclarationStatement,
     IndexesDeclarationStatement,
     SingleFieldIndexDeclarationStatement,
     CompositeIndexDeclarationStatement,

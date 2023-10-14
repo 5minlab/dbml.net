@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column type identifier clause in the syntax tree.
 /// </summary>
 public sealed class ColumnTypeIdentifierClause : ColumnTypeClause
 {
@@ -13,10 +14,12 @@ public sealed class ColumnTypeIdentifierClause : ColumnTypeClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the column type identifier clause <see cref="SyntaxKind.ColumnTypeIdentifierClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ColumnTypeIdentifierClause;
 
     /// <summary>
+    /// Gets the column type identifier.
     /// </summary>
     public SyntaxToken ColumnTypeIdentifier { get; }
 

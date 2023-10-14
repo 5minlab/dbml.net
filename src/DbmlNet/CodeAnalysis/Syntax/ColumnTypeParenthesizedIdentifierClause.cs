@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column type clause in the syntax tree.
 /// </summary>
 public sealed class ColumnTypeParenthesizedIdentifierClause : ColumnTypeClause
 {
@@ -21,22 +22,27 @@ public sealed class ColumnTypeParenthesizedIdentifierClause : ColumnTypeClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the column type identifier clause <see cref="SyntaxKind.ColumnTypeParenthesizedIdentifierClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ColumnTypeParenthesizedIdentifierClause;
 
     /// <summary>
+    /// Gets the column type identifier.
     /// </summary>
     public SyntaxToken ColumnTypeIdentifier { get; }
 
     /// <summary>
+    /// Gets the open parenthesis token.
     /// </summary>
     public SyntaxToken OpenParenthesisToken { get; }
 
     /// <summary>
+    /// Gets the variable length identifier.
     /// </summary>
     public SyntaxToken VariableLengthIdentifier { get; }
 
     /// <summary>
+    /// Gets the close parenthesis token.
     /// </summary>
     public SyntaxToken CloseParenthesisToken { get; }
 

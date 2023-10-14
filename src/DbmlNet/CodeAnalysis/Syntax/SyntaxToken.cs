@@ -67,6 +67,7 @@ public sealed class SyntaxToken : SyntaxNode
     public bool IsMissing { get; }
 
     /// <summary>
+    /// The span for this token.
     /// </summary>
     public override TextSpan Span => new TextSpan(Start, Text.Length);
 

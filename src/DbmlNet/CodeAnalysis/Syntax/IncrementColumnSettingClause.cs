@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting clause in the syntax tree.
 /// </summary>
 public sealed class IncrementColumnSettingClause : ColumnSettingClause
 {
@@ -15,10 +16,12 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     }
 
     /// <summary>
+    /// Gets the syntax kind of the increment column setting clause <see cref="SyntaxKind.IncrementColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IncrementColumnSettingClause;
 
     /// <summary>
+    /// Gets the increment keyword.
     /// </summary>
     public SyntaxToken IncrementKeyword { get; }
 

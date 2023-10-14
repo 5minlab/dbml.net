@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
+/// Represents a column setting list clause in the syntax tree.
 /// </summary>
 public sealed class ColumnSettingListSyntax : SyntaxNode
 {
@@ -19,18 +20,22 @@ public sealed class ColumnSettingListSyntax : SyntaxNode
     }
 
     /// <summary>
+    /// Gets the syntax kind of the column setting list clause <see cref="SyntaxKind.ColumnSettingListClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ColumnSettingListClause;
 
     /// <summary>
+    /// Gets the open bracket token.
     /// </summary>
     public SyntaxToken OpenBracketToken { get; }
 
     /// <summary>
+    /// Gets the column setting list.
     /// </summary>
     public SeparatedSyntaxList<ColumnSettingClause> Settings { get; }
 
     /// <summary>
+    /// Gets the close bracket token.
     /// </summary>
     public SyntaxToken CloseBracketToken { get; }
 

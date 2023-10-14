@@ -5,6 +5,9 @@ namespace DbmlNet.Extensions;
 
 internal static class ApplicationSettings
 {
+    /// <summary>
+    /// Returns the extension of dbml file (including the period ".").
+    /// </summary>
     public const string DbmlExtension = ".dbml";
 
     public static string[] FindDbmlNetFiles(string inputPath)

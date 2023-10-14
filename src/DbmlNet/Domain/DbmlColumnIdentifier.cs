@@ -4,14 +4,17 @@ using System.Security.Cryptography;
 namespace DbmlNet.Domain;
 
 /// <summary>
+/// Represents a column identifier.
 /// </summary>
 public sealed class DbmlColumnIdentifier
 {
+
     /// <summary>
+    /// Initializes a new instance of the <see cref="DbmlColumnIdentifier"/> with the specified schema name, table name, and column name.
     /// </summary>
-    /// <param name="schemaName"></param>
-    /// <param name="tableName"></param>
-    /// <param name="columnName"></param>
+    /// <param name="schemaName">The schema name.</param>
+    /// <param name="tableName">The table name.</param>
+    /// <param name="columnName">The column name.</param>
     public DbmlColumnIdentifier(
         string schemaName,
         string tableName,
@@ -23,20 +26,24 @@ public sealed class DbmlColumnIdentifier
     }
 
     /// <summary>
+    /// Gets the schema name.
     /// </summary>
     public string SchemaName { get; }
 
     /// <summary>
+    /// Gets the table name.
     /// </summary>
     public string TableName { get; }
 
     /// <summary>
+    /// Gets the column name.
     /// </summary>
     public string ColumnName { get; }
 
     /// <summary>
+    /// Returns the schema name of the column.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The schema name of the column.</returns>
     public override string ToString()
     {
         if (!string.IsNullOrEmpty(SchemaName))

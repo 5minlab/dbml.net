@@ -6,61 +6,74 @@
     <members>
         <member name="T:DbmlNet.CodeAnalysis.Diagnostic">
             <summary>
+            Represents a diagnostic message.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.IsError">
             <summary>
+            Gets a value indicating whether the diagnostic is an error.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Location">
             <summary>
+            The location associated with the diagnostic.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Message">
             <summary>
+            The message associated with the diagnostic.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.IsWarning">
             <summary>
+            A flag indicating whether this diagnostic is a warning.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Diagnostic.ToString">
             <summary>
+            Returns the text for this diagnostic.
             </summary>
-            <returns></returns>
+            <returns>The text for this diagnostic.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Diagnostic.Error(DbmlNet.CodeAnalysis.Text.TextLocation,System.String)">
             <summary>
+            Creates a new error diagnostic with the specified location and message.
             </summary>
-            <param name="location"></param>
-            <param name="message"></param>
-            <returns></returns>
+            <param name="location">The location of the error.</param>
+            <param name="message">The error message.</param>
+            <returns>A new error diagnostic.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Diagnostic.Warning(DbmlNet.CodeAnalysis.Text.TextLocation,System.String)">
             <summary>
+            Creates a warning diagnostic with the specified location and message.
             </summary>
-            <param name="location"></param>
-            <param name="message"></param>
-            <returns></returns>
+            <param name="location">The location of the warning.</param>
+            <param name="message">The warning message.</param>
+            <returns>A warning diagnostic.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax">
             <summary>
+            Represents a block statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.Kind">
             <summary>
+            Gets the syntax kind of the block statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.BlockStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.OpenBraceToken">
             <summary>
+            Gets the open brace token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.Statements">
             <summary>
+            Description of the Statements property.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.CloseBraceToken">
             <summary>
+            Gets the close brace token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.GetChildren">
@@ -68,22 +81,27 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax">
             <summary>
+            Represents a column declaration statement.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the column declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ColumnDeclarationStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.IdentifierToken">
             <summary>
+            Gets the identifier token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.ColumnTypeClause">
             <summary>
+            Gets the column type clause.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.SettingList">
             <summary>
+            Gets the column setting list clause.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax.GetChildren">
@@ -91,30 +109,37 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause">
             <summary>
+            Represents a column identifier clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.Kind">
             <summary>
+            Gets the syntax kind of the column identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ColumnIdentifierClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.SchemaIdentifier">
             <summary>
+            Gets the schema identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.FirstDotToken">
             <summary>
+            Gets the first dot token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.TableIdentifier">
             <summary>
+            Gets the table identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.SecondDotToken">
             <summary>
+            Gets the second dot token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ColumnIdentifier">
             <summary>
+            Gets the column identifier.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.GetChildren">
@@ -122,32 +147,38 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ToString">
             <summary>
-            Returns the full column identifier. E.g: {schema}.{table}.{column}.
+            Returns the full text for this column identifier using format {schema}.{table}.{column}.
             </summary>
-            <returns></returns>
+            <returns>The full text for this column identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax">
             <summary>
+            Represents a column setting list clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.Kind">
             <summary>
+            Gets the syntax kind of the column setting list clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ColumnSettingListClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.OpenBracketToken">
             <summary>
+            Gets the open bracket token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.Settings">
             <summary>
+            Gets the column setting list.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.CloseBracketToken">
             <summary>
+            Gets the close bracket token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax.GetChildren">
@@ -155,18 +186,22 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeClause">
             <summary>
+            Represents a column type clause in the syntax tree.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause">
             <summary>
+            Represents a column type identifier clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.Kind">
             <summary>
+            Gets the syntax kind of the column type identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ColumnTypeIdentifierClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.ColumnTypeIdentifier">
             <summary>
+            Gets the column type identifier.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnTypeIdentifierClause.GetChildren">
@@ -174,26 +209,32 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause">
             <summary>
+            Represents a column type clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.Kind">
             <summary>
+            Gets the syntax kind of the column type identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ColumnTypeParenthesizedIdentifierClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.ColumnTypeIdentifier">
             <summary>
+            Gets the column type identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.OpenParenthesisToken">
             <summary>
+            Gets the open parenthesis token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.VariableLengthIdentifier">
             <summary>
+            Gets the variable length identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.CloseParenthesisToken">
             <summary>
+            Gets the close parenthesis token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause.GetChildren">
@@ -201,6 +242,7 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax">
             <summary>
+            Represents a compilation unit in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.Kind">
@@ -208,10 +250,12 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.Members">
             <summary>
+            Gets the members of the compilation unit.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.EndOfFileToken">
             <summary>
+            Gets the end of file token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax.GetChildren">
@@ -219,80 +263,98 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax">
             <summary>
+            Represents a composite index declaration statement.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the composite index declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.CompositeIndexDeclarationStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenParenthesis">
             <summary>
+            Gets the open parenthesis token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Identifiers">
             <summary>
+            Gets the identifiers.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.CloseParenthesis">
             <summary>
+            Gets the close parenthesis token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenBracket">
             <summary>
+            Gets the open bracket token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Settings">
             <summary>
+            Gets the settings.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.CloseBracket">
             <summary>
+            Gets the close bracket token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
-        <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax">
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause">
             <summary>
+            Represents a database provider project setting clause.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.Kind">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the database provider project setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.DatabaseProviderProjectSettingClause"/>.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.DatabaseTypeKeyword">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.DatabaseProviderKeyword">
             <summary>
+            Gets the database provider keyword.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.ColonToken">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.ColonToken">
             <summary>
+            Gets the colon token.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.IdentifierToken">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.ValueToken">
             <summary>
+            Gets the value token.
             </summary>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax.GetChildren">
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause">
             <summary>
+            Represents a default column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the default column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.DefaultColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.DefaultKeyword">
             <summary>
+            Gets the default keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ColonToken">
             <summary>
+            Gets the colon token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ValueToken">
             <summary>
+            Gets the value token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.GetChildren">
@@ -300,14 +362,17 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax">
             <summary>
+            Represents an expression statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.Kind">
             <summary>
+            Gets the syntax kind of the expression statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ExpressionStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.Expression">
             <summary>
+            Gets the expression.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax.GetChildren">
@@ -315,18 +380,22 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax">
             <summary>
+            Represents an expression in the syntax tree.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax">
             <summary>
+            Represents a global statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.Kind">
             <summary>
+            Gets the syntax kind of the global statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.GlobalStatementMember"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.Statement">
             <summary>
+            Gets the statement.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax.GetChildren">
@@ -334,14 +403,17 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the increment column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IncrementColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.IncrementKeyword">
             <summary>
+            Gets the increment keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.GetChildren">
@@ -349,66 +421,106 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax">
             <summary>
+            Represents a indexes declaration in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the indexes declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IndexesDeclarationStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.IndexesKeyword">
             <summary>
+            Gets the indexes keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.OpenBraceToken">
             <summary>
+            Gets the open brace token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.Indexes">
             <summary>
+            Gets the indexes.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.CloseBraceToken">
             <summary>
+            Gets the close brace token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingClause">
+            <summary>
+            Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax">
             <summary>
+            Represents a index setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Kind">
             <summary>
+            Gets the syntax kind of the index setting expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IndexSettingExpression"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Identifiers">
             <summary>
+            Gets the identifiers.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.GetChildren">
             <inherits/>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.Lexer.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax">
             <summary>
+            Represents a list of index settings in the syntax tree.
             </summary>
-            <param name="syntaxTree"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the index setting list clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IndexSettingListClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.OpenBracketToken">
+            <summary>
+            Gets the open bracket token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.Settings">
+            <summary>
+            Gets the index setting list.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.CloseBracketToken">
+            <summary>
+            Gets the close bracket token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax.GetChildren">
+            <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax">
             <summary>
+            Represents a literal expression in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.Kind">
             <summary>
+            Gets the syntax kind of the literal expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.LiteralExpression"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.LiteralToken">
             <summary>
+            Gets the literal token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.Value">
             <summary>
+            Gets the literal value.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax.GetChildren">
@@ -416,41 +528,78 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.MemberSyntax">
             <summary>
+            Represents a member in the syntax tree.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax">
             <summary>
+            Represents a name expression in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.Kind">
             <summary>
+            Gets the syntax kind of the name expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NameExpression"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.IdentifierToken">
             <summary>
+            Gets the identifier token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause">
+            <summary>
+            Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NameIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.NameKeyword">
+            <summary>
+            Gets the name keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the note column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.NoteKeyword">
             <summary>
+            Gets the note keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.ColonToken">
             <summary>
+            Gets the colon token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.ValueToken">
             <summary>
+            Gets the value token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.GetChildren">
@@ -458,41 +607,106 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax">
             <summary>
+            Represents a note declaration statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the note declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteDeclarationStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.NoteKeyword">
             <summary>
+            Gets the note keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.ColonToken">
             <summary>
+            Gets the colon keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.Note">
             <summary>
+            Gets the note.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause">
+            <summary>
+            Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.NoteKeyword">
+            <summary>
+            Gets the note keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause">
+            <summary>
+            Represents a project setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the project setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteProjectSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.NoteKeyword">
+            <summary>
+            Gets the note keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause">
             <summary>
+            Represents a not null column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the not null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NotNullColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NotKeyword">
             <summary>
+            Gets the not keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NullKeyword">
             <summary>
+            Gets the null keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.GetChildren">
@@ -500,14 +714,17 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NullColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.NullKeyword">
             <summary>
+            Gets the null keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.GetChildren">
@@ -515,102 +732,204 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax">
             <summary>
+            Represents a parenthesized expression in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.Kind">
             <summary>
+            Gets the syntax kind of the parenthesized expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ParenthesizedExpression"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.OpenParenthesisToken">
             <summary>
+            Gets the open parenthesis token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.Expression">
             <summary>
+            Gets the expression.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.CloseParenthesisToken">
             <summary>
+            Gets the close parenthesis token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.Parser.ParseCompilationUnit">
+            <summary>
+            Parses the compilation unit and returns the resulting <see cref="T:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax"/>.
+            </summary>
+            <returns>The <see cref="T:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax"/> object representing the parsed compilation unit.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the pk column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.PkKeyword">
             <summary>
+            Gets the pk keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause">
+            <summary>
+            Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.PkKeyword">
+            <summary>
+            Gets the pk keyword.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause">
             <summary>
+            Represents a primary key column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the primary key column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.PrimaryKeyword">
             <summary>
+            Gets the primary keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.KeyKeyword">
             <summary>
+            Gets the key keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause">
+            <summary>
+            Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the primary key index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.PrimaryKeyword">
+            <summary>
+            Gets the primary keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.KeyKeyword">
+            <summary>
+            Gets the key keyword.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax">
             <summary>
+            Represents a project declaration in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the project declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ProjectDeclarationMember"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.ProjectKeyword">
             <summary>
+            Gets the project keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.IdentifierToken">
             <summary>
+            Gets the identifier token.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Body">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.OpenBraceToken">
             <summary>
+            Gets the open brace token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.Settings">
+            <summary>
+            Gets the project setting list.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.CloseBraceToken">
+            <summary>
+            Gets the close brace token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectSettingClause">
+            <summary>
+            Represents a project setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax">
+            <summary>
+            Represents a list of settings in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the project setting list clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.ProjectSettingListClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.Settings">
+            <summary>
+            Gets the settings.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.ProjectSettingListSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause">
             <summary>
+            Represents a relationship column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the relationship column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.RefKeyword">
             <summary>
+            Gets the ref keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.ColonToken">
             <summary>
+            Gets the colon token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.ConstraintClause">
             <summary>
+            Gets the constraint clause.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.GetChildren">
@@ -618,22 +937,27 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause">
             <summary>
+            Represents a relationship constraint clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.Kind">
             <summary>
+            Gets the syntax kind of the relationship constraint clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipConstraintClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.FromIdentifier">
             <summary>
+            Gets the from identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.RelationshipTypeToken">
             <summary>
+            Gets the relationship type token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.ToIdentifier">
             <summary>
+            Gets the to identifier.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause.GetChildren">
@@ -641,65 +965,69 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList">
             <summary>
+            Represents a list of expressions in the syntax tree.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList.GetWithSeparators">
             <summary>
+            Returns an immutable array of syntax nodes that includes both the nodes and the separators.
             </summary>
-            <returns></returns>
+            <returns>An immutable array of syntax nodes.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1">
             <summary>
+            Represents a list of syntax nodes that includes both the nodes and the separators.
             </summary>
-            <typeparam name="T"></typeparam>
+            <typeparam name="T">The type of the syntax nodes in the list.</typeparam>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Count">
             <summary>
+            Gets the number of nodes in the list.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Item(System.Int32)">
             <summary>
+            Gets the node at the specified index.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetSeparator(System.Int32)">
             <summary>
+            Gets the separator at the specified index.
             </summary>
-            <param name="index"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+            <param name="index">The index of the separator.</param>
+            <returns>The separator at the specified index.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is out of range.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetWithSeparators">
             <summary>
+            Returns an immutable array of syntax nodes that includes both the nodes and the separators.
             </summary>
-            <returns></returns>
+            <returns>An immutable array of syntax nodes.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetEnumerator">
-            <summary>
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax">
             <summary>
+            Represents a single field index declaration statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the single field index declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.SingleFieldIndexDeclarationStatement"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.IdentifierToken">
             <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.OpenBracketToken">
-            <summary>
+            Gets the identifier token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.Settings">
             <summary>
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.CloseBracketToken">
-            <summary>
+            Gets the index setting list.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.GetChildren">
@@ -707,65 +1035,82 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.StatementSyntax">
             <summary>
+            Represents a statement in the syntax tree.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts">
             <summary>
+            Represents a syntax tree.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKeywordKind(System.String)">
             <summary>
+            Gets the keyword kind for the given text.
             </summary>
-            <param name="text"></param>
-            <returns></returns>
+            <param name="text">The text to get the keyword kind for.</param>
+            <returns>The keyword kind for the given text.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxMember(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.MemberSyntax"/>.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns>
+            <see langword="true"/> if the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.MemberSyntax"/>; otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxStatement(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.StatementSyntax"/>.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.StatementSyntax"/>; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsSyntaxExpression(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax"/>.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">
+            The syntax kind to check.
+            </param>
+            <returns>
+            <see langword="true"/> if the given kind is a <see cref="T:DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax"/>; otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsKeyword(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a keyword.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/></returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a token.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a token; otherwise, <see langword="false"/> </returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsStringToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a string token.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/> </returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownValue(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            A flag indicating whether the given kind is a known value.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a known value; otherwise, <see langword="false"/></returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownText(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            Gets the known text for the given syntax kind.
             </summary>
-            <param name="kind"></param>
-            <returns></returns>
+            <param name="kind">The syntax kind to check.</param>
+            <returns>The text for the given syntax kind.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxKind">
             <summary>
@@ -774,47 +1119,57 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode">
             <summary>
+            Represents a syntax node.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.SyntaxTree">
             <summary>
+            Gets the syntax tree of the current syntax node.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Parent">
             <summary>
+            Gets the parent of the current syntax node.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Kind">
             <summary>
+            Gets the kind of the syntax node.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Span">
             <summary>
+            Gets the span of the syntax node.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Location">
             <summary>
+            Gets the text location of the syntax node.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.GetChildren">
             <summary>
+            Gets the child syntax nodes of the current syntax node.
             </summary>
-            <returns></returns>
+            <returns>An enumerable collection of child syntax nodes.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.AncestorsAndSelf">
             <summary>
+            Gets the ancestors and self of the current syntax node.
             </summary>
-            <returns></returns>
+            <returns>An enumerable collection of syntax nodes representing the current syntax node and its ancestors.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Ancestors">
             <summary>
+            Gets the ancestors of the current syntax node.
             </summary>
-            <returns></returns>
+            <returns>An enumerable collection of syntax nodes representing the current syntax node and its ancestors.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.GetLastToken">
             <summary>
+            Gets the last token of the current syntax node.
             </summary>
-            <returns></returns>
+            <returns>The last token of the current syntax node.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken">
             <summary>
@@ -869,6 +1224,7 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Span">
             <summary>
+            The span for this token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.GetChildren">
@@ -881,553 +1237,766 @@
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTree">
             <summary>
+            Represents a syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Text">
             <summary>
+            Gets the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Diagnostics">
             <summary>
+            Gets the diagnostics.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Root">
             <summary>
+            Gets the root syntax node.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Load(System.String)">
             <summary>
+            Loads a syntax tree from the specified file.
             </summary>
-            <param name="fileName"></param>
-            <returns></returns>
+            <param name="fileName">The name of the file to load.</param>
+            <returns>The loaded syntax tree.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Parse(System.String)">
             <summary>
+            Parses the specified text and returns a syntax tree.
             </summary>
-            <param name="text"></param>
-            <returns></returns>
+            <param name="text">The text to parse.</param>
+            <returns>The syntax tree.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.Parse(DbmlNet.CodeAnalysis.Text.SourceText)">
             <summary>
+            Parses the specified text and returns a syntax tree.
             </summary>
-            <param name="text"></param>
-            <returns></returns>
+            <param name="text">The text to parse.</param>
+            <returns>The syntax tree.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(System.String,System.Boolean)">
             <summary>
+            Parses the given text and returns a collection of syntax tokens.
             </summary>
-            <param name="text"></param>
-            <param name="includeEndOfFile"></param>
-            <returns></returns>
+            <param name="text">The text to parse.</param>
+            <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+            <returns>An immutable array of syntax tokens.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(System.String,System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Diagnostic}@,System.Boolean)">
             <summary>
+            Parses the given text into an immutable array of syntax tokens.
             </summary>
-            <param name="text"></param>
-            <param name="diagnostics"></param>
-            <param name="includeEndOfFile"></param>
-            <returns></returns>
+            <param name="text">The text to parse.</param>
+            <param name="diagnostics">The diagnostics produced during parsing.</param>
+            <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+            <returns>An immutable array of syntax tokens.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(DbmlNet.CodeAnalysis.Text.SourceText,System.Boolean)">
             <summary>
+            Parses the given source text into an immutable array of syntax tokens.
             </summary>
-            <param name="text"></param>
-            <param name="includeEndOfFile"></param>
-            <returns></returns>
+            <param name="text">The source text to parse.</param>
+            <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+            <returns>An immutable array of syntax tokens.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxTree.ParseTokens(DbmlNet.CodeAnalysis.Text.SourceText,System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Diagnostic}@,System.Boolean)">
             <summary>
+            Parses the source text and returns an immutable array of syntax tokens.
             </summary>
-            <param name="text"></param>
-            <param name="diagnostics"></param>
-            <param name="includeEndOfFile"></param>
-            <returns></returns>
+            <param name="text">The source text to parse.</param>
+            <param name="diagnostics">The diagnostics produced during the parse operation.</param>
+            <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
+            <returns>An immutable array of syntax tokens.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker">
             <summary>
+            Represents a syntax walker.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.Walk(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
             <summary>
+            Performs a syntax tree walk starting from the specified syntax tree.
             </summary>
-            <param name="syntaxTree"></param>
+            <param name="syntaxTree">The syntax tree to walk.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntaxTree"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkCompilationUnit(DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax)">
             <summary>
+            Walks the compilation unit syntax.
             </summary>
-            <param name="compilationUnit"></param>
+            <param name="compilationUnit">The compilation unit syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="compilationUnit"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkMember(DbmlNet.CodeAnalysis.Syntax.MemberSyntax)">
             <summary>
+            Walks a member syntax.
             </summary>
-            <param name="syntax"></param>
-            <exception cref="T:System.Data.EvaluateException"></exception>
+            <param name="syntax">The member syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkProjectDeclaration(DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax)">
             <summary>
+            Walks a project declaration syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The project declaration syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkTableDeclaration(DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax)">
             <summary>
+            Walks a table declaration syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The table declaration syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkGlobalStatement(DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax)">
             <summary>
+            Walks a global statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The global statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkStatement(DbmlNet.CodeAnalysis.Syntax.StatementSyntax)">
             <summary>
+            Walks a statement syntax.
             </summary>
-            <param name="syntax"></param>
-            <exception cref="T:System.Data.EvaluateException"></exception>
+            <param name="syntax">The statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkBlockStatement(DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax)">
             <summary>
+            Walks a block statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The block statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
             <summary>
+            Walks a column declaration statement syntax.
             </summary>
-            <param name="syntax"></param>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
-            <summary>
-            </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The column declaration statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">
             <summary>
+            Walks a single field index declaration statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The single field index declaration statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkCompositeIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax)">
             <summary>
+            Walks a composite index declaration statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The composite index declaration statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkIndexesDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax)">
             <summary>
+            Walks an indexes declaration statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The indexes declaration statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkNoteDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax)">
             <summary>
+            Walks a note declaration statement syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The note declaration statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkExpressionStatement(DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax)">
             <summary>
+            Walks an expression statement syntax.
             </summary>
-            <param name="syntax"></param>
-            <exception cref="T:System.Data.EvaluateException"></exception>
+            <param name="syntax">The expression statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkExpression(DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax)">
             <summary>
+            Walks an expression syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Data.EvaluateException"></exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkLiteralExpression(DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax)">
             <summary>
+            Walks a literal expression syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The literal expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkNameExpression(DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax)">
             <summary>
+            Walks a name expression syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The name expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkIndexSettingExpression(DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax)">
             <summary>
+            Walks an index setting expression syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The index setting expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">
             <summary>
+            Walks a parenthesized expression syntax.
             </summary>
-            <param name="syntax"></param>
+            <param name="syntax">The parenthesized expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax">
             <summary>
+            Represents a table declaration statement in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Kind">
             <summary>
+            Gets the syntax kind of the table declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TableDeclarationMember"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.TableKeyword">
             <summary>
+            Gets the table keyword.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.IdentifierToken">
             <summary>
+            Gets the identifier token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Body">
             <summary>
+            Gets the body.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause">
+            <summary>
+            Represents a project setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the type index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TypeIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.TypeKeyword">
+            <summary>
+            Gets the type keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause">
             <summary>
+            Represents a unique column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the unique column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.UniqueKeyword">
             <summary>
+            Gets the unique keyword.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause">
+            <summary>
+            Represents a unique index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unique index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.UniqueKeyword">
+            <summary>
+            Gets the unique keyword.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.Kind">
             <summary>
+            Gets the syntax kind of the unknown column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownColumnSettingClause"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.NameToken">
             <summary>
+            Gets the name token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.ColonToken">
             <summary>
+            Gets the colon token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.ValueToken">
             <summary>
+            Gets the value token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause">
+            <summary>
+            Represents an unknown index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unknown index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownIndexSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.NameToken">
+            <summary>
+            Gets the name token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause">
+            <summary>
+            Represents a project setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unknown project setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownProjectSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.NameToken">
+            <summary>
+            Gets the name token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.SourceText">
             <summary>
+            Represents a source text.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.From(System.String,System.String)">
             <summary>
+            Creates a new instance of SourceText from the specified text and optional file name.
             </summary>
-            <param name="text"></param>
-            <param name="fileName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ParseLines(DbmlNet.CodeAnalysis.Text.SourceText,System.String)">
-            <summary>
-            </summary>
-            <param name="sourceText"></param>
-            <param name="text"></param>
-            <returns></returns>
+            <param name="text">The text content of the source.</param>
+            <param name="fileName">The optional file name.</param>
+            <returns>A new instance of SourceText.</returns>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Lines">
             <summary>
+            Gets the lines of the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Item(System.Int32)">
             <summary>
+            Gets or sets the character at the specified index.
             </summary>
-            <param name="index"></param>
-            <returns></returns>
+            <param name="index">The zero-based index of the character to get or set.</param>
+            <returns>The character at the specified index.</returns>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Length">
             <summary>
+            Gets the length of the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.FileName">
             <summary>
+            Gets the file name of the source text.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.GetLineIndex(System.Int32)">
             <summary>
+            Gets the line index of the specified position.
             </summary>
-            <param name="position"></param>
-            <returns></returns>
+            <param name="position">The position value.</param>
+            <returns>The line index.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString">
             <summary>
+            Returns a string representation of the current instance.
             </summary>
-            <returns></returns>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString(System.Int32,System.Int32)">
             <summary>
+            Returns a string representation of the specified portion of the current instance.
             </summary>
-            <param name="start"></param>
-            <param name="length"></param>
-            <returns></returns>
+            <param name="start">The zero-based starting character position of the substring.</param>
+            <param name="length">The number of characters in the substring.</param>
+            <returns>A string that represents the specified portion of the current object.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.ToString(DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Returns a string representation of the specified portion of the current instance.
             </summary>
-            <param name="span"></param>
-            <returns></returns>
+            <param name="span">The TextSpan specifying the portion of the string to retrieve.</param>
+            <returns>A string that represents the specified portion of the current object.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.TextLine">
             <summary>
+            Represents a text line.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLine.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,System.Int32,System.Int32,System.Int32)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLine"/>.
             </summary>
-            <param name="text"></param>
-            <param name="start"></param>
-            <param name="length"></param>
-            <param name="lengthIncludingLineBreak"></param>
+            <param name="text">The source text containing the line.</param>
+            <param name="start">The starting position of the line within the source text.</param>
+            <param name="length">The length of the line.</param>
+            <param name="lengthIncludingLineBreak">The length of the line including the line break.</param>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Text">
             <summary>
+            Gets the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Start">
             <summary>
+            Gets the start position of the line within the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Length">
             <summary>
+            Gets the length of the line.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.End">
             <summary>
+            Gets the end position of the line within the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.LengthIncludingLineBreak">
             <summary>
+            Gets the length of the line including the line break.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.Span">
             <summary>
+            Gets the span of the line.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLine.SpanIncludingLineBreak">
             <summary>
+            Gets the span of the line including the line break.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLine.ToString">
             <summary>
+            Returns the text of this line.
             </summary>
-            <returns></returns>
+            <returns>The text of this line.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.TextLocation">
             <summary>
+            Represents a text location.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.
             </summary>
-            <param name="text"></param>
-            <param name="span"></param>
+            <param name="text">The source text.</param>
+            <param name="span">The text span.</param>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.Text">
             <summary>
+            Gets the source text.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.Span">
             <summary>
+            Gets the text span.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.FileName">
             <summary>
+            Gets the file name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.StartLine">
             <summary>
+            Gets the start of the line.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.StartCharacter">
             <summary>
+            Gets the start of the character within the line.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.EndLine">
             <summary>
+            Gets the end of the line.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextLocation.EndCharacter">
             <summary>
+            Gets the end of the character within the line.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.GetHashCode">
-            <summary>
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(System.Object)">
-            <summary>
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(DbmlNet.CodeAnalysis.Text.TextLocation)">
             <summary>
+            Determines whether the current instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> class is equal to given <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
             </summary>
-            <param name="other"></param>
-            <returns></returns>
+            <param name="other">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare with the current instance.</param>
+            <returns>True if the current instance is equal to the other instance; otherwise, false.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.op_Equality(DbmlNet.CodeAnalysis.Text.TextLocation,DbmlNet.CodeAnalysis.Text.TextLocation)">
             <summary>
+            Determines whether two <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instances are equal.
             </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns></returns>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare.</param>
+            <returns>True if the two instances are equal; otherwise, false.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.op_Inequality(DbmlNet.CodeAnalysis.Text.TextLocation,DbmlNet.CodeAnalysis.Text.TextLocation)">
             <summary>
+            Determines whether two <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instances are not equal.
             </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns></returns>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare.</param>
+            <returns>True if the two instances are not equal; otherwise, false.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.ToString">
             <summary>
+            Returns a string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
             </summary>
-            <returns></returns>
+            <returns>A string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.TextSpan">
             <summary>
+            Represents a text span.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.#ctor(System.Int32,System.Int32)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
             </summary>
-            <param name="start"></param>
-            <param name="length"></param>
+            <param name="start">The start of the span.</param>
+            <param name="length">The length of the span.</param>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.Start">
             <summary>
+            Gets the start of the span.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.Length">
             <summary>
+            Gets the length of the span.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.TextSpan.End">
             <summary>
+            Gets the end of the span.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.FromBounds(System.Int32,System.Int32)">
             <summary>
+            Creates a new <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> from the specified start and end bounds.
             </summary>
-            <param name="start"></param>
-            <param name="end"></param>
-            <returns></returns>
+            <param name="start">The start position of the span.</param>
+            <param name="end">The end position of the span.</param>
+            <returns>A new <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> instance.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.OverlapsWith(DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Determines whether the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> overlaps with the specified <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
             </summary>
-            <param name="span"></param>
-            <returns></returns>
+            <param name="span">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare with the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.</param>
+            <returns>true if the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>s overlap; otherwise, false.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.GetHashCode">
-            <summary>
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.Equals(System.Object)">
-            <summary>
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.Equals(DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Determines whether the current instance of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> is equal to another <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
             </summary>
-            <param name="other"></param>
-            <returns></returns>
+            <param name="other">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare with the current instance.</param>
+            <returns><c>true</c> if the current instance is equal to the other <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Equality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are equal.
             </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns></returns>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <returns><c>true</c> if the two instances are equal; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Inequality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
+            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are not equal.
             </summary>
-            <param name="left"></param>
-            <param name="right"></param>
-            <returns></returns>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <returns><c>true</c> if the two instances are not equal; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.ToString">
             <summary>
+            Returns a string representation of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
             </summary>
-            <returns></returns>
+            <returns>A string representation of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlColumnIdentifier">
             <summary>
+            Represents a column identifier.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.#ctor(System.String,System.String,System.String)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlColumnIdentifier"/> with the specified schema name, table name, and column name.
             </summary>
-            <param name="schemaName"></param>
-            <param name="tableName"></param>
-            <param name="columnName"></param>
+            <param name="schemaName">The schema name.</param>
+            <param name="tableName">The table name.</param>
+            <param name="columnName">The column name.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.SchemaName">
             <summary>
+            Gets the schema name.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.TableName">
             <summary>
+            Gets the table name.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlColumnIdentifier.ColumnName">
             <summary>
+            Gets the column name.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.ToString">
             <summary>
+            Returns the schema name of the column.
             </summary>
-            <returns></returns>
+            <returns>The schema name of the column.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlDatabase">
             <summary>
+            Represents a dbml database.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabase.#ctor">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlDatabase"/>.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Providers">
             <summary>
+            Gets the list of database providers.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Project">
             <summary>
+            Gets the list of tables.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Tables">
             <summary>
+            Gets the list of tables.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Note">
             <summary>
+            Gets the list of notes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Notes">
             <summary>
+            Gets the list of notes.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabase.Create(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
             <summary>
+            Creates a <see cref="T:DbmlNet.Domain.DbmlDatabase"/> from a given <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTree"/>.
             </summary>
-            <param name="syntaxTree"></param>
-            <returns></returns>
+            <param name="syntaxTree">The <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTree"/> representing the parsed dbml code.</param>
+            <returns>A <see cref="T:DbmlNet.Domain.DbmlDatabase"/> object representing the parsed code.</returns>
         </member>
-        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.Make(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
+        <member name="M:DbmlNet.Domain.DbmlDatabase.AddTable(DbmlNet.Domain.DbmlTable)">
             <summary>
+            Adds a <see cref="T:DbmlNet.Domain.DbmlTable"/> to the list of tables.
             </summary>
-            <param name="syntaxTree"></param>
-            <returns></returns>
+            <param name="table">The table to add.</param>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabase.AddProvider(System.String)">
+            <summary>
+            Adds a provider to the list of database providers.
+            </summary>
+            <param name="providerName">The name of the provider to add.</param>
+        </member>
+        <member name="M:DbmlNet.Domain.DbmlDatabase.AddNote(System.String)">
+            <summary>
+            Adds a note to the list of database notes.
+            </summary>
+            <param name="note">The note to add.</param>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.Walk(DbmlNet.CodeAnalysis.Syntax.SyntaxTree)">
             <inheritdoc/>
@@ -1439,9 +2008,6 @@
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkDatabaseProviderDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.DatabaseProviderDeclarationSyntax)">
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkSingleFieldIndexDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax)">
@@ -1464,217 +2030,267 @@
         </member>
         <member name="T:DbmlNet.Domain.DbmlProject">
             <summary>
+            Represents a project setting clause in the syntax tree.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlProject.#ctor(System.String)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlProject"/> class with the specified name.
             </summary>
-            <param name="name"></param>
+            <param name="name">The name of the project.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlProject.Name">
             <summary>
+            Gets the name of the project.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlProject.Note">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlProject.Notes">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlProject.ToString">
             <summary>
+            Returns the project name.
             </summary>
-            <returns></returns>
+            <returns>The project name.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlTable">
             <summary>
+            Represents a table.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTable.#ctor(System.String,System.String)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTable"/> class with the specified name and optional note.
             </summary>
-            <param name="name"></param>
-            <param name="note"></param>
+            <param name="name">The name of the table.</param>
+            <param name="note">An optional note for the table.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Name">
             <summary>
+            Gets the name of the table.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Columns">
             <summary>
+            Gets the columns.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Indexes">
             <summary>
+            Gets the indexes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Relationships">
             <summary>
+            Gets the relationships.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Note">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Notes">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTable.ToString">
             <summary>
+            Returns the table name.
             </summary>
-            <returns></returns>
+            <returns>The table name.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlTableColumn">
             <summary>
+            Represents a column setting clause in the syntax tree.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableColumn.#ctor(System.String,DbmlNet.Domain.DbmlTable)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableColumn"/> class with the specified name and table.
             </summary>
-            <param name="name"></param>
-            <param name="table"></param>
+            <param name="name">The name of the column.</param>
+            <param name="table">The <see cref="T:DbmlNet.Domain.DbmlTable"/> instance that the column belongs to.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.Name">
             <summary>
+            Gets the name of the column.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.Type">
             <summary>
+            Gets the table.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.MaxLength">
             <summary>
+            
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.HasMaxLength">
             <summary>
+            A flag indicating if the column has a max length.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsPrimaryKey">
             <summary>
+            A flag indicating if the column is a primary key.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsUnique">
             <summary>
+            A flag indicating if the column is unique.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsAutoIncrement">
             <summary>
+            A flag indicating if the column is auto incremented.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsNullable">
             <summary>
+            A flag indicating if the column is nullable.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsRequired">
             <summary>
+            A flag indicating if the column is required.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.HasDefaultValue">
             <summary>
+            A flag indicating if the column has a default value.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.DefaultValue">
             <summary>
+            Gets the default value.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.Table">
             <summary>
+            Gets the table.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.Note">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.Notes">
             <summary>
+            Gets the notes.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.UnknownSettings">
             <summary>
+            Gets the unknown settings.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableColumn.ToString">
             <summary>
+            Returns the name of this column.
             </summary>
-            <returns></returns>
+            <returns>The name of this column.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlTableIndex">
             <summary>
+            Represents a table index setting clause in the syntax tree.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableIndex.#ctor(System.String,System.String,DbmlNet.Domain.DbmlTable)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableIndex"/>.
             </summary>
-            <param name="name">The name of the index.</param>
-            <param name="columnName">The column name of the index.</param>
-            <param name="table">The table which contains the index.</param>
+            <param name="name">The name of the table index.</param>
+            <param name="columnName">The name of the column.</param>
+            <param name="table">The <see cref="T:DbmlNet.Domain.DbmlTable"/> associated with the index (optional).</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Name">
             <summary>
+            Gets the name of the table index.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.ColumnName">
             <summary>
+            Gets the name of the column.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Table">
             <summary>
+            Gets the <see cref="T:DbmlNet.Domain.DbmlTable"/> associated with the index (optional).
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.IsPrimaryKey">
             <summary>
+            A flag indicating if the index is a primary key.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.IsUnique">
             <summary>
+            A flag indicating if the index is unique.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Type">
             <summary>
+            A flag indicating if the index is auto incremented.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Note">
             <summary>
+            Gets the note.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Settings">
             <summary>
+            Gets the settings.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableIndex.ToString">
             <summary>
+            Returns the name of this index.
             </summary>
-            <returns></returns>
+            <returns>The name of this index.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlTableRelationship">
             <summary>
+            Represents a table relationship.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableRelationship.#ctor(DbmlNet.Domain.DbmlColumnIdentifier,DbmlNet.Domain.TableRelationshipType,DbmlNet.Domain.DbmlColumnIdentifier)">
             <summary>
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableRelationship"/>.
             </summary>
-            <param name="fromIdentifier"></param>
-            <param name="relationshipType"></param>
-            <param name="toIdentifier"></param>
+            <param name="fromIdentifier">The identifier of the source column.</param>
+            <param name="relationshipType">The type of relationship between the tables.</param>
+            <param name="toIdentifier">The identifier of the target column.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableRelationship.FromIdentifier">
             <summary>
+            Gets the from identifier.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableRelationship.RelationshipType">
             <summary>
+            Gets the relationship type.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableRelationship.ToIdentifier">
             <summary>
+            Gets the to identifier.
             </summary>
         </member>
         <member name="T:DbmlNet.Domain.TableRelationshipType">
             <summary>
+            Represents a relationship type.
             </summary>
         </member>
         <member name="F:DbmlNet.Domain.TableRelationshipType.OneToMany">
@@ -1703,108 +2319,128 @@
         </member>
         <member name="T:DbmlNet.IO.TextWriterExtensions">
             <summary>
+            Provides extension methods for the <see cref="T:System.IO.TextWriter"/>.
             </summary>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteInformation(System.IO.TextWriter,System.String)">
             <summary>
+            Writes the specified message to the writer with a dark cyan color.
             </summary>
-            <param name="writer"></param>
-            <param name="message"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write to.</param>
+            <param name="message">The message to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteSuccess(System.IO.TextWriter,System.String)">
             <summary>
+            Writes the specified success message to the writer with a dark green color.
             </summary>
-            <param name="writer"></param>
-            <param name="message"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The the text writer to write the message to.</param>
+            <param name="message">The success message to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteWarning(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a warning message to the specified text writer with a dark yellow color.
             </summary>
-            <param name="writer"></param>
-            <param name="message"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the message to.</param>
+            <param name="message">The warning message to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteError(System.IO.TextWriter,System.String)">
             <summary>
+            Writes an error message to the specified text writer with a dark red color.
             </summary>
-            <param name="writer"></param>
-            <param name="message"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the message to.</param>
+            <param name="message">The error message to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteDebug(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a debug message to the specified text writer with a dark gray color.
             </summary>
-            <param name="writer"></param>
-            <param name="message"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the message to.</param>
+            <param name="message">The debug message to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteKeyword(System.IO.TextWriter,DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            Writes a keyword to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="kind"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the keyword to.</param>
+            <param name="kind">The kind of keyword to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteKeyword(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a keyword to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the keyword to.</param>
+            <param name="text">The text of the keyword to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteIdentifier(System.IO.TextWriter,System.String)">
             <summary>
+            Writes an identifier to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the identifier to.</param>
+            <param name="text">The text of the identifier to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteNumber(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a number to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the number to.</param>
+            <param name="text">The text of the number to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteString(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a string to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the string to.</param>
+            <param name="text">The text of the string to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteSpace(System.IO.TextWriter)">
             <summary>
+            Writes a space to the specified text writer.
             </summary>
-            <param name="writer"></param>
+            <param name="writer">The text writer to write the space to.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WritePunctuation(System.IO.TextWriter,DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
+            Writes a punctuation to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="kind"></param>
+            <param name="writer">The text writer to write the punctuation to.</param>
+            <param name="kind">The kind of punctuation to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WritePunctuation(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a punctuation to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the punctuation to.</param>
+            <param name="text">The text of the punctuation to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteComment(System.IO.TextWriter,System.String)">
             <summary>
+            Writes a comment to the specified text writer.
             </summary>
-            <param name="writer"></param>
-            <param name="text"></param>
-            <exception cref="T:System.ArgumentNullException"></exception>
+            <param name="writer">The text writer to write the comment to.</param>
+            <param name="text">The text of the comment to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteDiagnostics(System.IO.TextWriter,System.Collections.Generic.ICollection{DbmlNet.CodeAnalysis.Diagnostic})">
             <summary>
+            Writes diagnostics to the specified text writer
             </summary>
-            <param name="writer"></param>
-            <param name="diagnostics"></param>
+            <param name="writer">The text writer to write the diagnostics to.</param>
+            <param name="diagnostics">The diagnostics to write.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="diagnostics"/> is <see langword="null"/>.</exception>
         </member>
     </members>
 </doc>
