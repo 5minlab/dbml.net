@@ -316,12 +316,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         if (_currentTableIndex is null)
             return;
 
-        SyntaxToken[] identifiers = syntax.Identifiers.ToArray();
-        if (identifiers.Length <= 0)
+        if (syntax.Identifiers.Any() is false)
             return;
 
         // match by kind
-        switch (identifiers[0].Kind)
+        switch (syntax.Identifiers.ElementAt(0).Kind)
         {
             case SyntaxKind.NameKeyword:
                 SyntaxToken nameToken = syntax.Identifiers.Last();
@@ -341,18 +340,17 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         }
 
         // match by text
-        string settingValue = string.Join("", identifiers.Select(i => i.Text));
-        switch (settingValue)
+        switch (syntax.Text)
         {
             case "pk":
-            case "primarykey":
+            case "primary key":
                 _currentTableIndex.IsPrimaryKey = true;
                 return;
             case "unique":
                 _currentTableIndex.IsUnique = true;
                 return;
             default:
-                _currentTableIndex.AddSetting(settingValue);
+                _currentTableIndex.AddSetting(syntax.Text);
                 return;
         }
     }
