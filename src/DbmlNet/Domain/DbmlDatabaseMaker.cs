@@ -58,6 +58,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                 string note = $"{noteSetting.ValueToken.Value ?? noteSetting.ValueToken.Text}";
                 _currentProject.AddNote(note);
             }
+            else
+            {
+                throw new EvaluateException($"Unknown project setting kind: {setting.Kind}");
+            }
         }
 
         _database.Project = _currentProject;
@@ -216,9 +220,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.MaxLength = float.MaxValue;
                         _currentTableColumn.DefaultValue = "0";
                         return;
+                    default:
+                        throw new EvaluateException($"ERROR: Unknown column type <{typeText}>.");
                 }
-
-                break;
             }
 
             case SyntaxKind.ColumnTypeParenthesizedIdentifierClause:
@@ -259,9 +263,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.DefaultValue = "0";
                         return;
                     }
+                    default:
+                        throw new EvaluateException($"ERROR: Unknown type <{typeText}>.");
                 }
-
-                break;
             }
 
             default:
