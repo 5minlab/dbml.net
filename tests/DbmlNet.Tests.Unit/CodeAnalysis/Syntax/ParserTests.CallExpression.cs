@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -42,6 +45,38 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(argKind, argText, argValue);
+        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+    }
+
+    [Fact]
+    public void Parse_CallExpression_With_Multiple_Arguments()
+    {
+        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        string functionNameText = CreateRandomString();
+        List<(SyntaxKind Kind, string Text, object? Value)> arguments = new();
+        int randomNumberOfArguments = GetRandomNumber();
+        for (int i = 0; i < randomNumberOfArguments; i++)
+        {
+            SyntaxKind argKind = SyntaxKind.IdentifierToken;
+            string argRandomValue = CreateRandomString();
+            string argText = $"{argRandomValue}";
+            object? argValue = null;
+            arguments.Add((argKind, argText, argValue));
+        }
+        string argsText = string.Join(", ", arguments.Select(arg => arg.Text));
+        string text = $"{functionNameText} ( {argsText} ) ";
+
+        ExpressionSyntax expression = ParseExpression(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        e.AssertNode(SyntaxKind.CallExpression);
+        e.AssertToken(functionNameKind, functionNameText);
+        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
+        foreach ((SyntaxKind argKind, string argText, object? argValue) in arguments)
+        {
+            e.AssertNode(SyntaxKind.NameExpression);
+            e.AssertToken(argKind, argText, argValue);
+        }
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
     }
 
