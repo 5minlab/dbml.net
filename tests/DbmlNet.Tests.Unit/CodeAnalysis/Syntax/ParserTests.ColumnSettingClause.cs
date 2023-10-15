@@ -246,6 +246,26 @@ public partial class ParserTests
     }
 
     [Fact]
+    public void Parse_DefaultColumnSettingClause_With_Null_Value()
+    {
+        SyntaxKind settingKind = SyntaxKind.NullKeyword;
+        string settingText = $"null";
+        object? settingValue = null;
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+
+        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
+        e.AssertToken(SyntaxKind.DefaultKeyword, "default");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingKind, settingText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
     public void Parse_DefaultColumnSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
