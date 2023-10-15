@@ -24,6 +24,28 @@ public partial class ParserTests
     }
 
     [Fact]
+    public void Parse_CallExpression_With_Single_Argument()
+    {
+        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        string functionNameText = CreateRandomString();
+        SyntaxKind argKind = SyntaxKind.IdentifierToken;
+        string argRandomValue = CreateRandomString();
+        string argText = $"{argRandomValue}";
+        object? argValue = null;
+        string text = $"{functionNameText} ( {argText} ) ";
+
+        ExpressionSyntax expression = ParseExpression(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        e.AssertNode(SyntaxKind.CallExpression);
+        e.AssertToken(functionNameKind, functionNameText);
+        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
+        e.AssertNode(SyntaxKind.NameExpression);
+        e.AssertToken(argKind, argText, argValue);
+        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+    }
+
+    [Fact]
     public void Parse_CallExpression_With_Identifier_Argument()
     {
         SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
