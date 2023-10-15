@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
@@ -148,6 +150,23 @@ public partial class ParserTests
         "blob",
         "image",
     };
+
+    private static void GetRandomKeyword(
+        out SyntaxKind keywordKind,
+        out string keywordText,
+        out object? keywordValue)
+    {
+        SyntaxKind[] keywordKinds =
+            Enum.GetValues<SyntaxKind>()
+                .Where(kind => kind.IsKeyword())
+                .ToArray();
+
+        int maxIndex = keywordKinds.Length == 0 ? 0 : keywordKinds.Length - 1;
+        int randomIndex = new IntRange(min: 0, max: maxIndex).GetValue();
+        keywordKind = keywordKinds[randomIndex];
+        keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
+        keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
+    }
 
     private static int GetRandomNumber() =>
         new IntRange(min: 0, max: 10).GetValue();

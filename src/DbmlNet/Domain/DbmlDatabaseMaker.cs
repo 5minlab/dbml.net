@@ -122,10 +122,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case SyntaxKind.DefaultColumnSettingClause:
                     {
                         DefaultColumnSettingClause defaultSetting = (DefaultColumnSettingClause)setting;
-                        string defaultValue =
-                            defaultSetting.ValueToken.Value?.ToString()
-                                ?? defaultSetting.ValueToken.Text;
-                        _currentTableColumn.DefaultValue = defaultValue;
+                        WalkExpression(defaultSetting.ExpressionValue);
+                        // TODO: string defaultValue =
+                        //     defaultSetting.ExpressionValue.Value?.ToString()
+                        //         ?? defaultSetting.ExpressionValue.Text;
+                        // _currentTableColumn.DefaultValue = defaultValue;
                         break;
                     }
                     case SyntaxKind.NoteColumnSettingClause:

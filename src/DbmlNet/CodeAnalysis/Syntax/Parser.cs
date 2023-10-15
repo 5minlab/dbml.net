@@ -268,8 +268,65 @@ internal sealed class Parser
                 => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
+        TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
-        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, body);
+        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
+    }
+
+    private TableSettingListSyntax? ParseOptionalTableSettingList()
+    {
+        return Current.Kind == SyntaxKind.OpenBracketToken
+            ? ParseTableSettingList()
+            : null;
+    }
+
+    private TableSettingListSyntax ParseTableSettingList()
+    {
+        SyntaxToken openBracketToken = MatchToken(SyntaxKind.OpenBracketToken);
+
+        SeparatedSyntaxList<TableSettingClause> settings =
+            ParseSeparatedList(
+                closeTokenKind: SyntaxKind.CloseBracketToken,
+                separatorKind: SyntaxKind.CommaToken,
+                parseExpression: ParseTableSettingClause);
+
+        SyntaxToken closeBracketToken = MatchToken(SyntaxKind.CloseBracketToken);
+
+        return new TableSettingListSyntax(_syntaxTree, openBracketToken, settings, closeBracketToken);
+    }
+
+    private TableSettingClause ParseTableSettingClause()
+    {
+        switch (Current.Kind)
+        {
+            default:
+                return ParseUnknownTableSetting();
+        }
+    }
+
+    private TableSettingClause ParseUnknownTableSetting()
+    {
+        SyntaxToken identifierToken = Current.Kind.IsKeyword()
+                ? NextToken()
+                : MatchToken(SyntaxKind.IdentifierToken);
+
+        if (Current.Kind != SyntaxKind.ColonToken)
+        {
+            return new UnknownTableSettingClause(_syntaxTree, identifierToken);
+        }
+
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+
+#pragma warning disable CA1508 // Avoid dead conditional code
+        SyntaxToken valueToken = Current.Kind switch
+        {
+            SyntaxKind.QuotationMarksStringToken => MatchToken(SyntaxKind.QuotationMarksStringToken),
+            SyntaxKind.SingleQuotationMarksStringToken => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
+            _ => MatchToken(SyntaxKind.IdentifierToken),
+        };
+#pragma warning restore CA1508 // Avoid dead conditional code
+
+        return new UnknownTableSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
     }
 
     private StatementSyntax ParseStatement()
@@ -345,6 +402,7 @@ internal sealed class Parser
                 parseExpression: ParseIndexDeclaration);
 
         SyntaxToken right = MatchToken(SyntaxKind.CloseBraceToken);
+
         return new IndexesDeclarationSyntax(_syntaxTree, indexesKeyword, left, indexes, right);
     }
 
@@ -399,7 +457,6 @@ internal sealed class Parser
     {
         SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
         IndexSettingListSyntax? settingList = ParseOptionalIndexSettingList();
-
         return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingList);
     }
 
@@ -469,14 +526,12 @@ internal sealed class Parser
     {
         SyntaxToken nameKeyword = MatchToken(SyntaxKind.NameKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
             _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new NameIndexSettingClause(_syntaxTree, nameKeyword, colonToken, valueToken);
     }
 
@@ -484,7 +539,6 @@ internal sealed class Parser
     {
         SyntaxToken typeKeyword = MatchToken(SyntaxKind.TypeKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
@@ -492,7 +546,6 @@ internal sealed class Parser
             _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }
 
@@ -500,14 +553,12 @@ internal sealed class Parser
     {
         SyntaxToken noteKeyword = MatchToken(SyntaxKind.NoteKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
             _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new NoteIndexSettingClause(_syntaxTree, noteKeyword, colonToken, valueToken);
     }
 
@@ -539,7 +590,8 @@ internal sealed class Parser
 #pragma warning restore CA1508 // Avoid dead conditional code
 
             ReportUnknownIndexSetting(identifierToken.Text, identifierToken.Start, valueToken.End);
-            return new UnknownIndexSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+            return new UnknownIndexSettingClause(
+                _syntaxTree, identifierToken, colonToken, valueToken);
         }
 
         ReportUnknownIndexSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
@@ -551,9 +603,8 @@ internal sealed class Parser
         SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
         ColumnTypeClause columnTypeClause = ParseColumnTypeClause();
         ColumnSettingListSyntax? settingList = ParseOptionalColumnSettingList();
-
-        return new ColumnDeclarationSyntax(_syntaxTree,
-            identifier, columnTypeClause, settingList);
+        return new ColumnDeclarationSyntax(
+            _syntaxTree, identifier, columnTypeClause, settingList);
     }
 
     private ColumnTypeClause ParseColumnTypeClause()
@@ -656,12 +707,18 @@ internal sealed class Parser
             }
             case SyntaxKind.DefaultKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
-                ReadDefaultSettingTokens(
-                    out SyntaxToken defaultKeyword,
-                    out SyntaxToken colonToken,
-                    out SyntaxToken valueToken);
-
-                return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, valueToken);
+                SyntaxToken defaultKeyword = MatchToken(SyntaxKind.DefaultKeyword);
+                SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+                SyntaxKind valueTokenKind = Current.Kind switch
+                {
+                    SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
+                    SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
+                    SyntaxKind.NumberToken => SyntaxKind.NumberToken,
+                    _ when Current.Kind.IsKeyword() => Current.Kind,
+                    _ => SyntaxKind.IdentifierToken
+                };
+                ExpressionSyntax expressionValue = ParseExpression();
+                return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, expressionValue);
             }
             case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
@@ -762,6 +819,7 @@ internal sealed class Parser
         else
             return null;
     }
+
     private ColumnIdentifierClause ParseColumnIdentifier()
     {
         // Read syntax: column
@@ -793,16 +851,6 @@ internal sealed class Parser
             tableIdentifier, secondDotToken, columnIdentifier);
     }
 
-    private void ReadDefaultSettingTokens(
-        out SyntaxToken defaultKeyword,
-        out SyntaxToken colonToken,
-        out SyntaxToken valueToken)
-    {
-        SyntaxKind settingKind = SyntaxKind.DefaultKeyword;
-        ReadSettingByKey(
-            settingKind, out defaultKeyword, out colonToken, out valueToken);
-    }
-
     private void ReadNoteSettingTokens(
         out SyntaxToken noteKeyword,
         out SyntaxToken colonToken,
@@ -813,27 +861,6 @@ internal sealed class Parser
         noteToken = Current.Kind == SyntaxKind.QuotationMarksStringToken
             ? MatchToken(SyntaxKind.QuotationMarksStringToken)
             : MatchToken(SyntaxKind.SingleQuotationMarksStringToken);
-    }
-
-    private void ReadSettingByKey(
-        SyntaxKind settingKind,
-        out SyntaxToken settingKeyword,
-        out SyntaxToken colonToken,
-        out SyntaxToken settingValueToken)
-    {
-        settingKeyword = MatchToken(settingKind);
-        colonToken = MatchToken(SyntaxKind.ColonToken);
-
-        SyntaxKind valueTokenKind = Current.Kind switch
-        {
-            SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-            SyntaxKind.TrueKeyword => SyntaxKind.TrueKeyword,
-            SyntaxKind.FalseKeyword => SyntaxKind.FalseKeyword,
-            SyntaxKind.NumberToken => SyntaxKind.NumberToken,
-            _ => SyntaxKind.IdentifierToken
-        };
-        settingValueToken = MatchToken(valueTokenKind);
     }
 
     private StatementSyntax ParseExpressionStatement()
@@ -852,11 +879,13 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.OpenParenthesisToken => ParseParenthesizedExpression(),
-            SyntaxKind.FalseKeyword
-                or SyntaxKind.TrueKeyword => ParseBooleanLiteral(),
+            SyntaxKind.BacktickToken => ParseBacktickExpression(),
+            SyntaxKind.NullKeyword => ParseNullExpression(),
+            SyntaxKind.FalseKeyword => ParseBooleanLiteral(),
+            SyntaxKind.TrueKeyword => ParseBooleanLiteral(),
             SyntaxKind.NumberToken => ParseNumberLiteral(),
-            SyntaxKind.QuotationMarksStringToken
-                or SyntaxKind.SingleQuotationMarksStringToken => ParseStringLiteral(),
+            SyntaxKind.QuotationMarksStringToken => ParseStringLiteral(),
+            SyntaxKind.SingleQuotationMarksStringToken => ParseStringLiteral(),
             _ => ParseNameExpression(),
         };
     }
@@ -868,6 +897,21 @@ internal sealed class Parser
         SyntaxToken closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
         return new ParenthesizedExpressionSyntax(_syntaxTree,
             openParenthesisToken, expression, closeParenthesisToken);
+    }
+
+    private ExpressionSyntax ParseBacktickExpression()
+    {
+        SyntaxToken openBacktickToken = MatchToken(SyntaxKind.BacktickToken);
+        ExpressionSyntax expression = ParseExpression();
+        SyntaxToken closeBacktickToken = MatchToken(SyntaxKind.BacktickToken);
+        return new BacktickExpressionSyntax(_syntaxTree,
+            openBacktickToken, expression, closeBacktickToken);
+    }
+
+    private ExpressionSyntax ParseNullExpression()
+    {
+        SyntaxToken keywordToken = MatchToken(SyntaxKind.NullKeyword);
+        return new NullExpressionSyntax(_syntaxTree, keywordToken);
     }
 
     private ExpressionSyntax ParseBooleanLiteral()

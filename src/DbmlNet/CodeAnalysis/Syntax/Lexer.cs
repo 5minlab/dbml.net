@@ -152,6 +152,10 @@ internal sealed class Lexer
                 _kind = SyntaxKind.CloseBracketToken;
                 _position++;
                 break;
+            case '`':
+                _kind = SyntaxKind.BacktickToken;
+                _position++;
+                break;
             case '"':
                 ReadQuotationString();
                 break;

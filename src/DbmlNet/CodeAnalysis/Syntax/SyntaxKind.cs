@@ -30,6 +30,7 @@ public enum SyntaxKind
     CloseBraceToken,
     OpenBracketToken,
     CloseBracketToken,
+    BacktickToken,
     QuotationMarksStringToken,
     SingleQuotationMarksStringToken,
     IdentifierToken,
@@ -65,6 +66,10 @@ public enum SyntaxKind
     DatabaseProviderProjectSettingClause,
     NoteProjectSettingClause,
     UnknownProjectSettingClause,
+
+    // Table nodes
+    TableSettingListClause,
+    UnknownTableSettingClause,
 
     // Index nodes
     IndexSettingListClause,
@@ -104,7 +109,9 @@ public enum SyntaxKind
 
     // Expressions
     LiteralExpression,
+    BacktickExpression,
     NameExpression,
+    NullExpression,
     IndexSettingExpression,
     ParenthesizedExpression,
 

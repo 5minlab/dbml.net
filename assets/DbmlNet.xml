@@ -51,6 +51,34 @@
             <param name="message">The warning message.</param>
             <returns>A warning diagnostic.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax">
+            <summary>
+            Represents a backtick expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the backtick expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.BacktickExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.OpenBacktickToken">
+            <summary>
+            Gets the open backtick token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.Expression">
+            <summary>
+            Gets the expression.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.CloseBacktickToken">
+            <summary>
+            Gets the close backtick token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax">
             <summary>
             Represents a block statement in the syntax tree.
@@ -352,9 +380,9 @@
             Gets the colon token.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ValueToken">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ExpressionValue">
             <summary>
-            Gets the value token.
+            Gets the expression value.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.GetChildren">
@@ -728,6 +756,24 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax">
+            <summary>
+            Represents a null expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the null expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NullExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.NullToken">
+            <summary>
+            Gets the null token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax">
@@ -1471,12 +1517,50 @@
             Gets the identifier token.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Settings">
+            <summary>
+            Gets the table setting list.
+            </summary>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Body">
             <summary>
             Gets the body.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
+            <summary>
+            Represents a table setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax">
+            <summary>
+            Represents a list of table settings in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the table setting list clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TableSettingListClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax.OpenBracketToken">
+            <summary>
+            Gets the open bracket token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax.Settings">
+            <summary>
+            Gets the table setting list.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax.CloseBracketToken">
+            <summary>
+            Gets the close bracket token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableSettingListSyntax.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause">
@@ -1625,6 +1709,34 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause">
+            <summary>
+            Represents an unknown table setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unknown table setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownTableSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause.NameToken">
+            <summary>
+            Gets the name token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.SourceText">

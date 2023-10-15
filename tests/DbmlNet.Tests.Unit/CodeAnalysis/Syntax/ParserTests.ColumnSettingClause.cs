@@ -160,6 +160,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -181,6 +182,28 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
+        e.AssertToken(settingKind, settingText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
+    public void Parse_DefaultColumnSettingClause_With_DecimalPointNumber_Value()
+    {
+        SyntaxKind settingKind = SyntaxKind.NumberToken;
+        string settingText = $"{GetRandomNumber()}.{GetRandomNumber()}";
+        object? settingValue = decimal.TryParse(settingText, out decimal dVal) ? dVal : null;
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+
+        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
+        e.AssertToken(SyntaxKind.DefaultKeyword, "default");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -201,6 +224,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -221,6 +245,28 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
+        e.AssertToken(settingKind, settingText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
+    public void Parse_DefaultColumnSettingClause_With_Null_Value()
+    {
+        SyntaxKind settingKind = SyntaxKind.NullKeyword;
+        string settingText = $"null";
+        object? settingValue = null;
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+
+        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
+        e.AssertToken(SyntaxKind.DefaultKeyword, "default");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.NullExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -242,6 +288,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -263,7 +310,33 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.LiteralExpression);
         e.AssertToken(settingKind, settingText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    [Fact]
+    public void Parse_DefaultColumnSettingClause_With_Expression_Value_Identifier()
+    {
+        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        string identifierExpressionText = $"{CreateRandomString()}";
+        string settingText = $"{identifierExpressionText}";
+        object? settingValue = null;
+        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: `{settingText}` ]";
+
+        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
+        e.AssertToken(SyntaxKind.DefaultKeyword, "default");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertNode(SyntaxKind.BacktickExpression);
+        e.AssertToken(SyntaxKind.BacktickToken, "`");
+        e.AssertNode(SyntaxKind.NameExpression);
+        e.AssertToken(settingKind, settingText, settingValue);
+        e.AssertToken(SyntaxKind.BacktickToken, "`");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
