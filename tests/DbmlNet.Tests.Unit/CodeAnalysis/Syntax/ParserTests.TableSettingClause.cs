@@ -7,7 +7,7 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
 public partial class ParserTests
 {
     [Fact]
-    public void Parse_UnknownTableSettingClause_Without_Value()
+    public void Parse_UnknownTableSettingClause_With_Identifier_Name()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -37,7 +37,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownTableSettingClause_With_Identifier_Value()
+    public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_Identifier_Value()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -73,7 +73,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownTableSettingClause_With_QuotationMarksString_Value()
+    public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_QuotationMarksString_Value()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
@@ -109,7 +109,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownTableSettingClause_With_SingleQuotationMarksString_Value()
+    public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_SingleQuotationMarksString_Value()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
