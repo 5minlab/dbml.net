@@ -717,8 +717,8 @@ internal sealed class Parser
                     _ when Current.Kind.IsKeyword() => Current.Kind,
                     _ => SyntaxKind.IdentifierToken
                 };
-                SyntaxToken valueToken = MatchToken(valueTokenKind);
-                return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, valueToken);
+                ExpressionSyntax expressionValue = ParseExpression();
+                return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, expressionValue);
             }
             case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
@@ -879,11 +879,12 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.OpenParenthesisToken => ParseParenthesizedExpression(),
-            SyntaxKind.FalseKeyword
-                or SyntaxKind.TrueKeyword => ParseBooleanLiteral(),
+            SyntaxKind.BacktickToken => ParseBacktickExpression(),
+            SyntaxKind.FalseKeyword => ParseBooleanLiteral(),
+            SyntaxKind.TrueKeyword => ParseBooleanLiteral(),
             SyntaxKind.NumberToken => ParseNumberLiteral(),
-            SyntaxKind.QuotationMarksStringToken
-                or SyntaxKind.SingleQuotationMarksStringToken => ParseStringLiteral(),
+            SyntaxKind.QuotationMarksStringToken => ParseStringLiteral(),
+            SyntaxKind.SingleQuotationMarksStringToken => ParseStringLiteral(),
             _ => ParseNameExpression(),
         };
     }
@@ -895,6 +896,15 @@ internal sealed class Parser
         SyntaxToken closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
         return new ParenthesizedExpressionSyntax(_syntaxTree,
             openParenthesisToken, expression, closeParenthesisToken);
+    }
+
+    private ExpressionSyntax ParseBacktickExpression()
+    {
+        SyntaxToken openBacktickToken = MatchToken(SyntaxKind.BacktickToken);
+        ExpressionSyntax expression = ParseExpression();
+        SyntaxToken closeBacktickToken = MatchToken(SyntaxKind.BacktickToken);
+        return new BacktickExpressionSyntax(_syntaxTree,
+            openBacktickToken, expression, closeBacktickToken);
     }
 
     private ExpressionSyntax ParseBooleanLiteral()

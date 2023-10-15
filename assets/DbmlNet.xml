@@ -51,6 +51,34 @@
             <param name="message">The warning message.</param>
             <returns>A warning diagnostic.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax">
+            <summary>
+            Represents a backtick expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the backtick expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.BacktickExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.OpenBacktickToken">
+            <summary>
+            Gets the open backtick token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.Expression">
+            <summary>
+            Gets the expression.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.CloseBacktickToken">
+            <summary>
+            Gets the close backtick token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax">
             <summary>
             Represents a block statement in the syntax tree.
@@ -352,9 +380,9 @@
             Gets the colon token.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ValueToken">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.ExpressionValue">
             <summary>
-            Gets the value token.
+            Gets the expression value.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.GetChildren">

@@ -11,12 +11,12 @@ public sealed class DefaultColumnSettingClause : ColumnSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken defaultKeyword,
         SyntaxToken colonToken,
-        SyntaxToken valueToken)
+        ExpressionSyntax expressionValue)
         : base(syntaxTree)
     {
         DefaultKeyword = defaultKeyword;
         ColonToken = colonToken;
-        ValueToken = valueToken;
+        ExpressionValue = expressionValue;
     }
 
     /// <summary>
@@ -35,15 +35,15 @@ public sealed class DefaultColumnSettingClause : ColumnSettingClause
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
-    /// Gets the value token.
+    /// Gets the expression value.
     /// </summary>
-    public SyntaxToken ValueToken { get; }
+    public ExpressionSyntax ExpressionValue { get; }
 
     /// <inherits/>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return DefaultKeyword;
         yield return ColonToken;
-        yield return ValueToken;
+        yield return ExpressionValue;
     }
 }
