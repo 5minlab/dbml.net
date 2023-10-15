@@ -868,27 +868,6 @@ internal sealed class Parser
             : MatchToken(SyntaxKind.SingleQuotationMarksStringToken);
     }
 
-    private void ReadSettingByKey(
-        SyntaxKind settingKind,
-        out SyntaxToken settingKeyword,
-        out SyntaxToken colonToken,
-        out SyntaxToken settingValueToken)
-    {
-        settingKeyword = MatchToken(settingKind);
-        colonToken = MatchToken(SyntaxKind.ColonToken);
-
-        SyntaxKind valueTokenKind = Current.Kind switch
-        {
-            SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-            SyntaxKind.TrueKeyword => SyntaxKind.TrueKeyword,
-            SyntaxKind.FalseKeyword => SyntaxKind.FalseKeyword,
-            SyntaxKind.NumberToken => SyntaxKind.NumberToken,
-            _ => SyntaxKind.IdentifierToken
-        };
-        settingValueToken = MatchToken(valueTokenKind);
-    }
-
     private StatementSyntax ParseExpressionStatement()
     {
         ExpressionSyntax expression = ParseExpression();
