@@ -1,5 +1,7 @@
 # dbml.net <!-- omit in toc -->
 
+[![Build main](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml)
+
 > Inspired by <https://github.com/holistics/dbml> and elevate to .NET folks!
 
 Abbreviations:
