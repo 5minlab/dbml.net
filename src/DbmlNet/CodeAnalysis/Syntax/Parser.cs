@@ -458,7 +458,11 @@ internal sealed class Parser
 
     private StatementSyntax ParseSingleFieldIndexDeclaration()
     {
-        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken identifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
         IndexSettingListSyntax? settingList = ParseOptionalIndexSettingList();
         return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingList);
     }
