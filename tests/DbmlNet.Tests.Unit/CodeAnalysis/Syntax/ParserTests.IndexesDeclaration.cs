@@ -21,7 +21,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_IndexesDeclaration_With_Index_Identifier()
+    public void Parse_IndexesDeclaration_With_SingleFieldIndexDeclaration()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string randomText = CreateRandomString();
