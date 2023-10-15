@@ -402,6 +402,7 @@ internal sealed class Parser
                 parseExpression: ParseIndexDeclaration);
 
         SyntaxToken right = MatchToken(SyntaxKind.CloseBraceToken);
+
         return new IndexesDeclarationSyntax(_syntaxTree, indexesKeyword, left, indexes, right);
     }
 
@@ -456,7 +457,6 @@ internal sealed class Parser
     {
         SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
         IndexSettingListSyntax? settingList = ParseOptionalIndexSettingList();
-
         return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingList);
     }
 
@@ -526,14 +526,12 @@ internal sealed class Parser
     {
         SyntaxToken nameKeyword = MatchToken(SyntaxKind.NameKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
             _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new NameIndexSettingClause(_syntaxTree, nameKeyword, colonToken, valueToken);
     }
 
@@ -541,7 +539,6 @@ internal sealed class Parser
     {
         SyntaxToken typeKeyword = MatchToken(SyntaxKind.TypeKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
@@ -549,7 +546,6 @@ internal sealed class Parser
             _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }
 
@@ -557,14 +553,12 @@ internal sealed class Parser
     {
         SyntaxToken noteKeyword = MatchToken(SyntaxKind.NoteKeyword);
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
             _ => SyntaxKind.SingleQuotationMarksStringToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-
         return new NoteIndexSettingClause(_syntaxTree, noteKeyword, colonToken, valueToken);
     }
 
@@ -596,7 +590,8 @@ internal sealed class Parser
 #pragma warning restore CA1508 // Avoid dead conditional code
 
             ReportUnknownIndexSetting(identifierToken.Text, identifierToken.Start, valueToken.End);
-            return new UnknownIndexSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+            return new UnknownIndexSettingClause(
+                _syntaxTree, identifierToken, colonToken, valueToken);
         }
 
         ReportUnknownIndexSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
@@ -608,9 +603,8 @@ internal sealed class Parser
         SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
         ColumnTypeClause columnTypeClause = ParseColumnTypeClause();
         ColumnSettingListSyntax? settingList = ParseOptionalColumnSettingList();
-
-        return new ColumnDeclarationSyntax(_syntaxTree,
-            identifier, columnTypeClause, settingList);
+        return new ColumnDeclarationSyntax(
+            _syntaxTree, identifier, columnTypeClause, settingList);
     }
 
     private ColumnTypeClause ParseColumnTypeClause()
@@ -825,6 +819,7 @@ internal sealed class Parser
         else
             return null;
     }
+
     private ColumnIdentifierClause ParseColumnIdentifier()
     {
         // Read syntax: column
