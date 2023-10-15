@@ -713,11 +713,17 @@ internal sealed class Parser
             }
             case SyntaxKind.DefaultKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
-                ReadDefaultSettingTokens(
-                    out SyntaxToken defaultKeyword,
-                    out SyntaxToken colonToken,
-                    out SyntaxToken valueToken);
-
+                SyntaxToken defaultKeyword = MatchToken(SyntaxKind.DefaultKeyword);
+                SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+                SyntaxKind valueTokenKind = Current.Kind switch
+                {
+                    SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
+                    SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
+                    SyntaxKind.NumberToken => SyntaxKind.NumberToken,
+                    _ when Current.Kind.IsKeyword() => Current.Kind,
+                    _ => SyntaxKind.IdentifierToken
+                };
+                SyntaxToken valueToken = MatchToken(valueTokenKind);
                 return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, valueToken);
             }
             case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
@@ -848,16 +854,6 @@ internal sealed class Parser
         return new ColumnIdentifierClause(
             _syntaxTree, schemaIdentifier, firstDotToken,
             tableIdentifier, secondDotToken, columnIdentifier);
-    }
-
-    private void ReadDefaultSettingTokens(
-        out SyntaxToken defaultKeyword,
-        out SyntaxToken colonToken,
-        out SyntaxToken valueToken)
-    {
-        SyntaxKind settingKind = SyntaxKind.DefaultKeyword;
-        ReadSettingByKey(
-            settingKind, out defaultKeyword, out colonToken, out valueToken);
     }
 
     private void ReadNoteSettingTokens(
