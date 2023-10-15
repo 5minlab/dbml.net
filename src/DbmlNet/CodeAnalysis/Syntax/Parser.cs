@@ -435,25 +435,10 @@ internal sealed class Parser
 
         SyntaxToken closeParenthesis = MatchToken(SyntaxKind.CloseParenthesisToken);
 
-        SyntaxToken? openBracket = null;
-        SeparatedSyntaxList<ExpressionSyntax>? settings = null;
-        SyntaxToken? closeBracket = null;
+        IndexSettingListSyntax? settingsList = ParseOptionalIndexSettingList();
 
-        if (Current.Kind == SyntaxKind.OpenBracketToken)
-        {
-            openBracket = MatchToken(SyntaxKind.OpenBracketToken);
-
-            settings = ParseSeparatedList(
-                closeTokenKind: SyntaxKind.CloseBracketToken,
-                separatorKind: SyntaxKind.CommaToken,
-                parseExpression: ParseIndexSettingExpression);
-
-            closeBracket = MatchToken(SyntaxKind.CloseBracketToken);
-        }
-
-        return new CompositeIndexDeclarationSyntax(_syntaxTree,
-            openParenthesis, identifiers, closeParenthesis,
-            openBracket, settings, closeBracket);
+        return new CompositeIndexDeclarationSyntax(
+            _syntaxTree, openParenthesis, identifiers, closeParenthesis, settingsList);
     }
 
     private StatementSyntax ParseSingleFieldIndexDeclaration()
@@ -1001,62 +986,6 @@ internal sealed class Parser
     {
         SyntaxToken identifierToken = MatchToken(SyntaxKind.IdentifierToken);
         return new NameExpressionSyntax(_syntaxTree, identifierToken);
-    }
-
-    private ExpressionSyntax ParseIndexSettingExpression()
-    {
-        SyntaxToken[] identifiers;
-        static bool MatchComposedIdentifier(SyntaxToken token) =>
-            token.Kind == SyntaxKind.IdentifierToken
-            || token.Kind == SyntaxKind.NumberToken
-            || token.Kind == SyntaxKind.FalseKeyword
-            || token.Kind == SyntaxKind.TrueKeyword;
-
-        // Read index name setting
-        if (Current.Kind == SyntaxKind.NameKeyword
-            && Lookahead.Kind == SyntaxKind.ColonToken)
-        {
-            SyntaxToken nameKeyword = MatchToken(SyntaxKind.NameKeyword);
-            SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-            SyntaxKind valueTokenKind = Current.Kind switch
-            {
-                SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-                SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-                _ => SyntaxKind.IdentifierToken,
-            };
-            SyntaxToken valueToken = MatchToken(valueTokenKind);
-
-            identifiers = new SyntaxToken[] { nameKeyword, colonToken, valueToken };
-        }
-        // Read index type setting
-        else if (Current.Kind == SyntaxKind.TypeKeyword
-            && Lookahead.Kind == SyntaxKind.ColonToken)
-        {
-            SyntaxToken nameKeyword = MatchToken(SyntaxKind.TypeKeyword);
-            SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-            SyntaxKind valueTokenKind = Current.Kind switch
-            {
-                SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-                SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
-                _ => SyntaxKind.IdentifierToken,
-            };
-            SyntaxToken valueToken = MatchToken(valueTokenKind);
-
-            identifiers = new SyntaxToken[] { nameKeyword, colonToken, valueToken };
-        }
-        // Read index composed identifier setting
-        else if (MatchComposedIdentifier(Current) && MatchComposedIdentifier(Lookahead))
-        {
-            identifiers = ParseTokensUntil(condition: () => MatchComposedIdentifier(Current));
-        }
-        // Read index single identifier setting
-        else
-        {
-            SyntaxToken identifier = NextToken();
-            identifiers = new SyntaxToken[] { identifier };
-        }
-
-        return new IndexSettingExpressionSyntax(_syntaxTree, identifiers);
     }
 
     private SyntaxToken[] ParseTokensUntil(Func<bool> condition)

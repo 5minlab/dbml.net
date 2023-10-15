@@ -171,12 +171,6 @@ public abstract class SyntaxWalker
 
         foreach (ExpressionSyntax identifier in syntax.Identifiers)
             WalkExpression(identifier);
-
-        if (syntax.Settings is null)
-            return;
-
-        foreach (ExpressionSyntax setting in syntax.Settings)
-            WalkIndexSettingExpression((IndexSettingExpressionSyntax)setting);
     }
 
     /// <summary>

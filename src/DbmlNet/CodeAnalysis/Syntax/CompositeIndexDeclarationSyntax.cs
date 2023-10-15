@@ -13,17 +13,13 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
         SyntaxToken openParenthesis,
         SeparatedSyntaxList<ExpressionSyntax> identifiers,
         SyntaxToken closeParenthesis,
-        SyntaxToken? openBracket = null,
-        SeparatedSyntaxList<ExpressionSyntax>? settings = null,
-        SyntaxToken? closeBracket = null)
+        IndexSettingListSyntax? settings = null)
         : base(syntaxTree)
     {
         OpenParenthesis = openParenthesis;
         Identifiers = identifiers;
         CloseParenthesis = closeParenthesis;
-        OpenBracket = openBracket;
         Settings = settings;
-        CloseBracket = closeBracket;
     }
 
     /// <summary>
@@ -54,7 +50,7 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
     /// <summary>
     /// Gets the settings.
     /// </summary>
-    public SeparatedSyntaxList<ExpressionSyntax>? Settings { get; }
+    public IndexSettingListSyntax? Settings { get; }
 
     /// <summary>
     /// Gets the close bracket token.
@@ -71,16 +67,6 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
 
         yield return CloseParenthesis;
 
-        if (OpenBracket is not null)
-        {
-            yield return OpenBracket;
-
-            Debug.Assert(Settings is not null);
-            foreach (ExpressionSyntax setting in Settings)
-                yield return setting;
-
-            Debug.Assert(CloseBracket is not null);
-            yield return CloseBracket;
-        }
+        if (Settings is not null) yield return Settings;
     }
 }

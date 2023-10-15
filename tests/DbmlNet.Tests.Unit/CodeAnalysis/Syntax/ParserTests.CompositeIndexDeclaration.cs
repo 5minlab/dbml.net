@@ -61,6 +61,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(indexNameKind, indexNameText);
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -84,8 +85,9 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(indexNameKind, indexNameText);
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
-        e.AssertNode(SyntaxKind.IndexSettingExpression);
+        e.AssertNode(SyntaxKind.UnknownIndexSettingClause);
         e.AssertToken(settingNameKind, settingName);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -160,6 +162,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(secondIndexNameKind, secondIndexNameText);
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
@@ -188,8 +191,9 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(secondIndexNameKind, secondIndexNameText);
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
-        e.AssertNode(SyntaxKind.IndexSettingExpression);
+        e.AssertNode(SyntaxKind.UnknownIndexSettingClause);
         e.AssertToken(settingNameKind, settingNameText);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
