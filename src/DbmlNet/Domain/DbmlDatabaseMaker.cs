@@ -221,7 +221,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.DefaultValue = "0";
                         return;
                     default:
-                        throw new EvaluateException($"ERROR: Unknown column type <{typeText}>.");
+                        return;
                 }
             }
 
@@ -264,7 +264,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         return;
                     }
                     default:
-                        throw new EvaluateException($"ERROR: Unknown type <{typeText}>.");
+                        return;
                 }
             }
 
