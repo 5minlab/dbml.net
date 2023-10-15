@@ -30,6 +30,7 @@ public enum SyntaxKind
     CloseBraceToken,
     OpenBracketToken,
     CloseBracketToken,
+    BacktickToken,
     QuotationMarksStringToken,
     SingleQuotationMarksStringToken,
     IdentifierToken,
@@ -108,6 +109,7 @@ public enum SyntaxKind
 
     // Expressions
     LiteralExpression,
+    BacktickExpression,
     NameExpression,
     IndexSettingExpression,
     ParenthesizedExpression,

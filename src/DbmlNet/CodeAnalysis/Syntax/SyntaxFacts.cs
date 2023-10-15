@@ -172,6 +172,7 @@ public static class SyntaxFacts
             SyntaxKind.CloseBraceToken => "}",
             SyntaxKind.OpenBracketToken => "[",
             SyntaxKind.CloseBracketToken => "]",
+            SyntaxKind.BacktickToken => "`",
 
             _ => null
         };
