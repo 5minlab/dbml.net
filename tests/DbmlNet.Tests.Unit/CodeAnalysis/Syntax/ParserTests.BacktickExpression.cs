@@ -10,18 +10,15 @@ public partial class ParserTests
     public void Parse_BacktickExpression_With_NameExpression()
     {
         SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
-        string randomIdentifierText = CreateRandomString();
-        string identifierText = $"{randomIdentifierText}";
+        string randomIdentifierName = CreateRandomString();
+        string identifierText = $"{randomIdentifierName}";
         object? identifierValue = null;
         string text = $"`{identifierText}`";
 
-        ExpressionSyntax expression = ParseExpression(text);
+        BacktickExpressionSyntax expression = ParseBacktickExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
-        e.AssertNode(SyntaxKind.BacktickExpression);
-        e.AssertToken(SyntaxKind.BacktickToken, "`");
+        using AssertingEnumerator e = new AssertingEnumerator(expression.Expression);
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(identifierKind, identifierText, identifierValue);
-        e.AssertToken(SyntaxKind.BacktickToken, "`");
     }
 }
