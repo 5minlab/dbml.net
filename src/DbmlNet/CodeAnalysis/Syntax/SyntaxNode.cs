@@ -94,6 +94,12 @@ public abstract class SyntaxNode
     }
 
     /// <summary>
+    /// Returns the text current <see cref="SyntaxNode"/> instance.
+    /// </summary>
+    /// <returns>The text current <see cref="SyntaxNode"/> instance.</returns>
+    public virtual string Text => SyntaxTree.Text.ToString(Span);
+
+    /// <summary>
     /// Writes a tree view string of the current <see cref="SyntaxNode"/> instance to the specified <see cref="TextWriter"/>.
     /// </summary>
     /// <param name="writer">The <see cref="TextWriter"/> to write to.</param>

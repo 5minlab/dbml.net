@@ -1250,6 +1250,12 @@
             </summary>
             <returns>The last token of the current syntax node.</returns>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Text">
+            <summary>
+            Returns the text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.
+            </summary>
+            <returns>The text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.</returns>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.WriteTo(System.IO.TextWriter)">
             <summary>
             Writes a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance to the specified <see cref="T:System.IO.TextWriter"/>.
