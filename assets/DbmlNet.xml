@@ -107,6 +107,39 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax">
+            <summary>
+            Represents a call expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the call expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.CallExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Identifier">
+            <summary>
+            Gets the identifier token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.OpenParenthesisToken">
+            <summary>
+            Gets the open parenthesis token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Arguments">
+            <summary>
+            Gets the arguments.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.CloseParenthesisToken">
+            <summary>
+            Gets the close parenthesis token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax">
             <summary>
             Represents a column declaration statement.
@@ -575,39 +608,6 @@
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax.GetChildren">
-            <inherits/>
-        </member>
-        <member name="T:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax">
-            <summary>
-            Represents a call expression in the syntax tree.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Kind">
-            <summary>
-            Gets the syntax kind of the call expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.CallExpression"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Identifier">
-            <summary>
-            Gets the identifier token.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.OpenParenthesisToken">
-            <summary>
-            Gets the open parenthesis token.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Arguments">
-            <summary>
-            Gets the arguments.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.CloseParenthesisToken">
-            <summary>
-            Gets the close parenthesis token.
-            </summary>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.GetChildren">
             <inherits/>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause">
