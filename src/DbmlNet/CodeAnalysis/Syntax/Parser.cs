@@ -343,8 +343,12 @@ internal sealed class Parser
 
     private bool CanReadColumnDeclaration()
     {
-        bool canReadColumnName =
-            Current.Kind.IsKeyword() || Current.Kind == SyntaxKind.IdentifierToken;
+        static bool CanReadColumnName(SyntaxKind kind)
+        {
+            return kind == SyntaxKind.IdentifierToken
+                || kind.IsKeyword()
+                || kind.IsStringToken();
+        }
 
         static bool CanReadColumnType(SyntaxKind kind)
         {
@@ -354,8 +358,7 @@ internal sealed class Parser
                 || kind == SyntaxKind.SingleQuotationMarksStringToken;
         }
 
-        bool canReadColumnType = CanReadColumnType(Lookahead.Kind);
-        return canReadColumnName && canReadColumnType;
+        return CanReadColumnName(Current.Kind) && CanReadColumnType(Lookahead.Kind);
     }
 
     private BlockStatementSyntax ParseBlockStatement()
@@ -600,7 +603,12 @@ internal sealed class Parser
 
     private StatementSyntax ParseColumnDeclaration()
     {
-        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken identifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsStringToken() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
+
         ColumnTypeClause columnTypeClause = ParseColumnTypeClause();
         ColumnSettingListSyntax? settingList = ParseOptionalColumnSettingList();
         return new ColumnDeclarationSyntax(
