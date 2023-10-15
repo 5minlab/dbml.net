@@ -66,6 +66,10 @@ public enum SyntaxKind
     NoteProjectSettingClause,
     UnknownProjectSettingClause,
 
+    // Table nodes
+    TableSettingListClause,
+    UnknownTableSettingClause,
+
     // Index nodes
     IndexSettingListClause,
     NameIndexSettingClause,
