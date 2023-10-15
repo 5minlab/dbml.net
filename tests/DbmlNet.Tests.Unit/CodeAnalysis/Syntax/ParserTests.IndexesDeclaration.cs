@@ -40,4 +40,26 @@ public partial class ParserTests
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Fact]
+    public void Parse_IndexesDeclaration_With_CompositeIndexDeclaration()
+    {
+        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string indexNameText = CreateRandomString();
+        string indexText = "(" + indexNameText + ")";
+        string text = "indexes { " + indexText + " }";
+
+        StatementSyntax statement = ParseStatement(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.IndexesDeclarationStatement);
+        e.AssertToken(SyntaxKind.IndexesKeyword, "indexes");
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
+        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
+        e.AssertNode(SyntaxKind.NameExpression);
+        e.AssertToken(indexNameKind, indexNameText);
+        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
