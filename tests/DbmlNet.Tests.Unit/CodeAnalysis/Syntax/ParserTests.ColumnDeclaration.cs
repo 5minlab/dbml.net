@@ -149,8 +149,8 @@ public partial class ParserTests
 
             yield return new object?[]
             {
-                    columnTypeIdentifierKind, columnTypeIdentifierText, columnTypeIdentifierValue,
-                    variableLengthIdentifierKind, variableLengthIdentifierText, variableLengthIdentifierValue
+                columnTypeIdentifierKind, columnTypeIdentifierText, columnTypeIdentifierValue,
+                variableLengthIdentifierKind, variableLengthIdentifierText, variableLengthIdentifierValue
             };
         }
     }
