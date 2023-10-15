@@ -55,8 +55,12 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             else if (setting.Kind == SyntaxKind.NoteProjectSettingClause)
             {
                 NoteProjectSettingClause noteSetting = (NoteProjectSettingClause)setting;
-                string note = noteSetting.ValueToken.Text;
-                _database.AddNote(note);
+                string note = $"{noteSetting.ValueToken.Value ?? noteSetting.ValueToken.Text}";
+                _currentProject.AddNote(note);
+            }
+            else
+            {
+                throw new EvaluateException($"Unknown project setting kind: {setting.Kind}");
             }
         }
 
@@ -216,9 +220,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.MaxLength = float.MaxValue;
                         _currentTableColumn.DefaultValue = "0";
                         return;
+                    default:
+                        return;
                 }
-
-                break;
             }
 
             case SyntaxKind.ColumnTypeParenthesizedIdentifierClause:
@@ -259,9 +263,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.DefaultValue = "0";
                         return;
                     }
+                    default:
+                        return;
                 }
-
-                break;
             }
 
             default:
@@ -316,12 +320,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         if (_currentTableIndex is null)
             return;
 
-        SyntaxToken[] identifiers = syntax.Identifiers.ToArray();
-        if (identifiers.Length <= 0)
+        if (syntax.Identifiers.Any() is false)
             return;
 
         // match by kind
-        switch (identifiers[0].Kind)
+        switch (syntax.Identifiers.ElementAt(0).Kind)
         {
             case SyntaxKind.NameKeyword:
                 SyntaxToken nameToken = syntax.Identifiers.Last();
@@ -341,18 +344,17 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         }
 
         // match by text
-        string settingValue = string.Join("", identifiers.Select(i => i.Text));
-        switch (settingValue)
+        switch (syntax.Text)
         {
             case "pk":
-            case "primarykey":
+            case "primary key":
                 _currentTableIndex.IsPrimaryKey = true;
                 return;
             case "unique":
                 _currentTableIndex.IsUnique = true;
                 return;
             default:
-                _currentTableIndex.AddSetting(settingValue);
+                _currentTableIndex.AddSetting(syntax.Text);
                 return;
         }
     }

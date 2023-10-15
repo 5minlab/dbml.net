@@ -43,7 +43,7 @@ public sealed class SyntaxToken : SyntaxNode
     /// <summary>
     /// The text for this token.
     /// </summary>
-    public string Text { get; }
+    public override string Text { get; }
 
     /// <summary>
     /// The length for this token.

@@ -22,6 +22,7 @@ public static class SyntaxFacts
             "false" => SyntaxKind.FalseKeyword,
             "increment" => SyntaxKind.IncrementKeyword,
             "indexes" => SyntaxKind.IndexesKeyword,
+            "Indexes" => SyntaxKind.IndexesKeyword,
             "name" => SyntaxKind.NameKeyword,
             "note" => SyntaxKind.NoteKeyword,
             "not" => SyntaxKind.NotKeyword,

@@ -46,6 +46,20 @@ public partial class ParserTests
         return expression;
     }
 
+    private static BacktickExpressionSyntax ParseBacktickExpression(string text)
+    {
+        StatementSyntax statement = ParseStatement(text);
+
+        ExpressionStatementSyntax expressionStatementSyntax =
+            Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement);
+
+        BacktickExpressionSyntax backtickExpressionSyntax =
+            Assert.IsAssignableFrom<BacktickExpressionSyntax>(
+                expressionStatementSyntax.Expression);
+
+        return backtickExpressionSyntax;
+    }
+
     private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(string text)
     {
         StatementSyntax statement = ParseStatement(text);

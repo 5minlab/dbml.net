@@ -107,6 +107,39 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax">
+            <summary>
+            Represents a call expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the call expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.CallExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Identifier">
+            <summary>
+            Gets the identifier token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.OpenParenthesisToken">
+            <summary>
+            Gets the open parenthesis token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.Arguments">
+            <summary>
+            Gets the arguments.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.CloseParenthesisToken">
+            <summary>
+            Gets the close parenthesis token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax">
             <summary>
             Represents a column declaration statement.
@@ -1217,6 +1250,25 @@
             </summary>
             <returns>The last token of the current syntax node.</returns>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Text">
+            <summary>
+            Returns the text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.
+            </summary>
+            <returns>The text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.</returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.WriteTo(System.IO.TextWriter)">
+            <summary>
+            Writes a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance to the specified <see cref="T:System.IO.TextWriter"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to write to.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.ToString">
+            <summary>
+            Return a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/>.
+            </summary>
+            <returns>A tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/>.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken">
             <summary>
             Represents a token.
@@ -1935,9 +1987,9 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.ToString">
             <summary>
-            Returns a string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
+            Returns the span text of this <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.
             </summary>
-            <returns>A string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.</returns>
+            <returns>The span text of this <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.TextSpan">
             <summary>

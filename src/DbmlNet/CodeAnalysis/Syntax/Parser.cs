@@ -343,8 +343,12 @@ internal sealed class Parser
 
     private bool CanReadColumnDeclaration()
     {
-        bool canReadColumnName =
-            Current.Kind.IsKeyword() || Current.Kind == SyntaxKind.IdentifierToken;
+        static bool CanReadColumnName(SyntaxKind kind)
+        {
+            return kind == SyntaxKind.IdentifierToken
+                || kind.IsKeyword()
+                || kind.IsStringToken();
+        }
 
         static bool CanReadColumnType(SyntaxKind kind)
         {
@@ -354,8 +358,7 @@ internal sealed class Parser
                 || kind == SyntaxKind.SingleQuotationMarksStringToken;
         }
 
-        bool canReadColumnType = CanReadColumnType(Lookahead.Kind);
-        return canReadColumnName && canReadColumnType;
+        return CanReadColumnName(Current.Kind) && CanReadColumnType(Lookahead.Kind);
     }
 
     private BlockStatementSyntax ParseBlockStatement()
@@ -455,7 +458,11 @@ internal sealed class Parser
 
     private StatementSyntax ParseSingleFieldIndexDeclaration()
     {
-        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken identifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
         IndexSettingListSyntax? settingList = ParseOptionalIndexSettingList();
         return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingList);
     }
@@ -600,7 +607,12 @@ internal sealed class Parser
 
     private StatementSyntax ParseColumnDeclaration()
     {
-        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken identifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsStringToken() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
+
         ColumnTypeClause columnTypeClause = ParseColumnTypeClause();
         ColumnSettingListSyntax? settingList = ParseOptionalColumnSettingList();
         return new ColumnDeclarationSyntax(
@@ -886,7 +898,7 @@ internal sealed class Parser
             SyntaxKind.NumberToken => ParseNumberLiteral(),
             SyntaxKind.QuotationMarksStringToken => ParseStringLiteral(),
             SyntaxKind.SingleQuotationMarksStringToken => ParseStringLiteral(),
-            _ => ParseNameExpression(),
+            _ => ParseNameOrCallExpression(),
         };
     }
 
@@ -937,6 +949,52 @@ internal sealed class Parser
                 : MatchToken(SyntaxKind.QuotationMarksStringToken);
 
         return new LiteralExpressionSyntax(_syntaxTree, stringToken);
+    }
+
+    private ExpressionSyntax ParseNameOrCallExpression()
+    {
+        bool canReadCallExpression =
+            Current.Kind == SyntaxKind.IdentifierToken
+            && Lookahead.Kind == SyntaxKind.OpenParenthesisToken;
+
+        return canReadCallExpression
+            ? ParseCallExpression()
+            : ParseNameExpression();
+    }
+
+    private ExpressionSyntax ParseCallExpression()
+    {
+        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken openParenthesisToken = MatchToken(SyntaxKind.OpenParenthesisToken);
+        SeparatedSyntaxList<ExpressionSyntax> arguments = ParseArguments();
+        SyntaxToken closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
+        return new CallExpressionSyntax(_syntaxTree, identifier, openParenthesisToken, arguments, closeParenthesisToken);
+    }
+
+    private SeparatedSyntaxList<ExpressionSyntax> ParseArguments()
+    {
+        ImmutableArray<SyntaxNode>.Builder nodesAndSeparators = ImmutableArray.CreateBuilder<SyntaxNode>();
+
+        bool parseNextArgument = true;
+        while (parseNextArgument &&
+               Current.Kind != SyntaxKind.CloseParenthesisToken &&
+               Current.Kind != SyntaxKind.EndOfFileToken)
+        {
+            ExpressionSyntax expression = ParseExpression();
+            nodesAndSeparators.Add(expression);
+
+            if (Current.Kind == SyntaxKind.CommaToken)
+            {
+                SyntaxToken comma = MatchToken(SyntaxKind.CommaToken);
+                nodesAndSeparators.Add(comma);
+            }
+            else
+            {
+                parseNextArgument = false;
+            }
+        }
+
+        return new SeparatedSyntaxList<ExpressionSyntax>(nodesAndSeparators.ToImmutable());
     }
 
     private ExpressionSyntax ParseNameExpression()

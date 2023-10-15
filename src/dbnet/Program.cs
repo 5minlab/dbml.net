@@ -73,7 +73,7 @@ if (outputSyntax)
 
         writer.WriteLine();
         writer.WriteLine($"Syntax tree of '{dbmlFileName}':");
-        dbmlSyntaxTree.PrintSyntaxTo(writer);
+        dbmlSyntaxTree.Root.WriteTo(writer);
     }
 
     writer.WriteLine();
