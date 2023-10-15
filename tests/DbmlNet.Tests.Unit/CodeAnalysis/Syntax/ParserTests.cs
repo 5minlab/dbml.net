@@ -156,11 +156,14 @@ public partial class ParserTests
         out string keywordText,
         out object? keywordValue)
     {
-        IEnumerable<SyntaxKind> keywordKinds =
+        SyntaxKind[] keywordKinds =
             Enum.GetValues<SyntaxKind>()
-                .Where(kind => kind.IsKeyword());
+                .Where(kind => kind.IsKeyword())
+                .ToArray();
 
-        keywordKind = keywordKinds.ElementAt(GetRandomNumber());
+        int maxIndex = keywordKinds.Length == 0 ? 0 : keywordKinds.Length - 1;
+        int randomIndex = new IntRange(min: 0, max: maxIndex).GetValue();
+        keywordKind = keywordKinds[randomIndex];
         keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
         keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
     }
