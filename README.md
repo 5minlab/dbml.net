@@ -81,20 +81,20 @@ Application can be started using one of the next options:
 - via *dotnet*, on the `root folder` run next command:
 
     ```shell
-    # dbnet usage for a single file
+    # usage with a single file
     dotnet run --project ./src/dbnet/ ./samples/appDb.dbml
 
-    # dbnet usage for a folder
+    # usage with a folder
     dotnet run --project ./src/dbnet/ ./samples/
     ```
 
 - via *project-script*, on the `root folder` run next command:
 
     ```shell
-    # dbnet usage for a single file
+    # usage with a single file
     ./dbnet.cmd ./samples/appDb.dbml
 
-    # dbnet usage for a folder
+    # usage with a folder
     ./dbnet.cmd ./samples/
     ```
 
