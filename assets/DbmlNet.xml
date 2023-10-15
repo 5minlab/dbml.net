@@ -1987,9 +1987,9 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.ToString">
             <summary>
-            Returns a string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
+            Returns the span text of this <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.
             </summary>
-            <returns>A string representation of the current <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.</returns>
+            <returns>The span text of this <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.TextSpan">
             <summary>

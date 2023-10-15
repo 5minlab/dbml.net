@@ -98,8 +98,8 @@ public readonly struct TextLocation : IEquatable<TextLocation>
     }
 
     /// <summary>
-    /// Returns a string representation of the current <see cref="TextLocation"/> instance.
+    /// Returns the span text of this <see cref="TextLocation"/>.
     /// </summary>
-    /// <returns>A string representation of the current <see cref="TextLocation"/> instance.</returns>
+    /// <returns>The span text of this <see cref="TextLocation"/>.</returns>
     public override string ToString() => Span.ToString();
 }
