@@ -24,7 +24,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_CallExpression_With_False_BooleanLiteral_Argument()
+    public void Parse_CallExpression_With_Boolean_False_Argument()
     {
         SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = CreateRandomString();
@@ -45,7 +45,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_CallExpression_With_True_BooleanLiteral_Argument()
+    public void Parse_CallExpression_With_Boolean_True_Argument()
     {
         SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = CreateRandomString();
@@ -66,7 +66,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_CallExpression_With_NumberLiteral_Argument()
+    public void Parse_CallExpression_With_Number_Argument()
     {
         SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = CreateRandomString();
