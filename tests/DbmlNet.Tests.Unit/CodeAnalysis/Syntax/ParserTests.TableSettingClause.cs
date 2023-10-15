@@ -77,4 +77,40 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Fact]
+    public void Parse_UnknownTableSettingClause_With_SingleQuotationMarksString_Value()
+    {
+        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string randomText = CreateRandomString();
+        string tableNameText = randomText;
+        object? tableNameValue = null;
+        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string randomSettingName = CreateRandomString();
+        string settingNameText = randomSettingName;
+        object? settingNameValue = null;
+        SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        string randomSettingValue = CreateRandomString();
+        string settingValueText = $"\'{randomSettingValue}\'";
+        object? settingValue = randomSettingValue;
+        string settingText = $"{settingNameText}: {settingValueText}";
+        string text = $"Table {tableNameText} [ {settingText} ]" + "{ }";
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.TableDeclarationMember);
+        e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertToken(tableNameKind, tableNameText, tableNameValue);
+        e.AssertNode(SyntaxKind.TableSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownTableSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+        e.AssertNode(SyntaxKind.BlockStatement);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
