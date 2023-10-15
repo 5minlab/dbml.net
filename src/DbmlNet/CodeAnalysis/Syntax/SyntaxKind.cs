@@ -111,6 +111,7 @@ public enum SyntaxKind
     LiteralExpression,
     BacktickExpression,
     NameExpression,
+    NullExpression,
     IndexSettingExpression,
     ParenthesizedExpression,
 

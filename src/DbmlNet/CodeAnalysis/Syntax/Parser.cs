@@ -880,6 +880,7 @@ internal sealed class Parser
         {
             SyntaxKind.OpenParenthesisToken => ParseParenthesizedExpression(),
             SyntaxKind.BacktickToken => ParseBacktickExpression(),
+            SyntaxKind.NullKeyword => ParseNullExpression(),
             SyntaxKind.FalseKeyword => ParseBooleanLiteral(),
             SyntaxKind.TrueKeyword => ParseBooleanLiteral(),
             SyntaxKind.NumberToken => ParseNumberLiteral(),
@@ -905,6 +906,12 @@ internal sealed class Parser
         SyntaxToken closeBacktickToken = MatchToken(SyntaxKind.BacktickToken);
         return new BacktickExpressionSyntax(_syntaxTree,
             openBacktickToken, expression, closeBacktickToken);
+    }
+
+    private ExpressionSyntax ParseNullExpression()
+    {
+        SyntaxToken keywordToken = MatchToken(SyntaxKind.NullKeyword);
+        return new NullExpressionSyntax(_syntaxTree, keywordToken);
     }
 
     private ExpressionSyntax ParseBooleanLiteral()

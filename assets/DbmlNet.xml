@@ -758,6 +758,24 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax">
+            <summary>
+            Represents a null expression in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the null expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NullExpression"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.NullToken">
+            <summary>
+            Gets the null token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax.GetChildren">
+            <inherits/>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax">
             <summary>
             Represents a parenthesized expression in the syntax tree.

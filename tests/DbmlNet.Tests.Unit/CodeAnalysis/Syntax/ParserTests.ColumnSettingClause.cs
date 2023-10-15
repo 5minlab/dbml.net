@@ -250,7 +250,7 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
-    [Fact(Skip = "For now we cannot handle null values.")]
+    [Fact]
     public void Parse_DefaultColumnSettingClause_With_Null_Value()
     {
         SyntaxKind settingKind = SyntaxKind.NullKeyword;
@@ -266,7 +266,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
         e.AssertToken(SyntaxKind.DefaultKeyword, "default");
         e.AssertToken(SyntaxKind.ColonToken, ":");
-        e.AssertNode(SyntaxKind.LiteralExpression);
+        e.AssertNode(SyntaxKind.NullExpression);
         e.AssertToken(settingKind, settingText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
