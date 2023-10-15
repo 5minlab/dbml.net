@@ -1,4 +1,4 @@
-﻿# Database design: Application Identity
+# Database design: Application Identity
 
 ## Project Application Identity
 
@@ -60,15 +60,15 @@ There are 4 types of relationships: one-to-one, one-to-many, many-to-one and man
 | NormalizedUserName | nvarchar(256) | 256 | ❌ false | null | The normalized user name for this user. |
 | Email | nvarchar(256) | 256 | ❌ false | null | The email address for this user. |
 | NormalizedEmail | nvarchar(256) | 256 | ❌ false | null | The normalized email address for this user. |
-| EmailConfirmed | bit | 1 | ✔️ true | False | A flag indicating if a user has confirmed their email address. |
+| EmailConfirmed | bit | 1 | ✔️ true | false | A flag indicating if a user has confirmed their email address. |
 | PasswordHash | nvarchar(MAX) | MAX | ❌ false | null | A salted and hashed representation of the password for this user. |
 | SecurityStamp | nvarchar(MAX) | MAX | ❌ false | null | A random value that must change whenever a users credentials change (password changed, login removed). |
 | ConcurrencyStamp | nvarchar(MAX) | MAX | ❌ false | null | A random value that must change whenever a user is persisted to the store. |
 | PhoneNumber | nvarchar(MAX) | MAX | ❌ false | null | A telephone number for the user. |
-| PhoneNumberConfirmed | bit | 1 | ✔️ true | False | A flag indicating if a user has confirmed their telephone address. |
-| TwoFactorEnabled | bit | 1 | ✔️ true | False | A flag indicating if two factor authentication is enabled for this user. |
+| PhoneNumberConfirmed | bit | 1 | ✔️ true | false | A flag indicating if a user has confirmed their telephone address. |
+| TwoFactorEnabled | bit | 1 | ✔️ true | false | A flag indicating if two factor authentication is enabled for this user. |
 | LockoutEnd | datetimeoffset(7) | 3.155378976E+18 | ❌ false | null | The date and time, in UTC, when any user lockout ends. |
-| LockoutEnabled | bit | 1 | ✔️ true | False | A flag indicating if the user could be locked out. |
+| LockoutEnabled | bit | 1 | ✔️ true | false | A flag indicating if the user could be locked out. |
 | AccessFailedCount | int | 2147483647 | ✔️ true | 0 | The number of failed login attempts for the current user. |
 
 #### Indexes: Users

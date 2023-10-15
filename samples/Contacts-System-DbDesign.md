@@ -1,4 +1,4 @@
-﻿# Database design: Application Contacts
+# Database design: Application Contacts
 
 ## Project Application Contacts
 
@@ -127,7 +127,7 @@ There are 4 types of relationships: one-to-one, one-to-many, many-to-one and man
 | 🔑 `ContactId` | nvarchar(450) | 450 | ✔️ true | N/A | The primary key of the contact that this email belongs to. |
 | Email | nvarchar(250) | 250 | ✔️ true | N/A | The email address for this contact. |
 | 🔑 `NormalizedEmail` | nvarchar(250) | 250 | ✔️ true | N/A | The normalized email address for this contact. |
-| EmailConfirmed | bit | 1 | ✔️ true | False | A flag indicating if a contact has confirmed their email address. |
+| EmailConfirmed | bit | 1 | ✔️ true | false | A flag indicating if a contact has confirmed their email address. |
 | InactiveSince | datetimeoffset(7) | 3.155378976E+18 | ❌ false | null | The date and time, in UTC, since the email is inactive. For NULL values the email is active. |
 | Label | nvarchar(50) | 50 | ❌ false | null | The label assigned to this address residence. |
 | ConcurrencyStamp | nvarchar(MAX) | MAX | ❌ false | null | A random value that should change whenever a email is persisted to the store. |
@@ -151,7 +151,7 @@ There are 4 types of relationships: one-to-one, one-to-many, many-to-one and man
 | 🔑 `ContactId` | nvarchar(450) | 450 | ✔️ true | N/A | The primary key of the contact that this phone number belongs to. |
 | 🔑 `Prefix` | nvarchar(3) | 3 | ✔️ true | N/A | The ITU E.164 prefix for this phone number. |
 | 🔑 `Value` | nvarchar(15) | 15 | ✔️ true | N/A | The ITU E.164 value for this phone number. |
-| PhoneNumberConfirmed | bit | 1 | ✔️ true | False | A flag indicating if a contact has confirmed their phone number. |
+| PhoneNumberConfirmed | bit | 1 | ✔️ true | false | A flag indicating if a contact has confirmed their phone number. |
 | InactiveSince | datetimeoffset(7) | 3.155378976E+18 | ❌ false | null | The date and time, in UTC, since the phone number is inactive. Phone number is active for `NULL` values. |
 | Label | nvarchar(50) | 50 | ❌ false | null | The label assigned to this address residence. |
 | ConcurrencyStamp | nvarchar(MAX) | MAX | ❌ false | null | A random value that should change whenever a phone number is persisted to the store. |
