@@ -11,11 +11,13 @@ public sealed class TableDeclarationSyntax : MemberSyntax
         SyntaxTree syntaxTree,
         SyntaxToken tableKeyword,
         SyntaxToken identifierToken,
+        TableSettingListSyntax? settings,
         StatementSyntax body)
         : base(syntaxTree)
     {
         TableKeyword = tableKeyword;
         IdentifierToken = identifierToken;
+        Settings = settings;
         Body = body;
     }
 
@@ -35,6 +37,11 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     public SyntaxToken IdentifierToken { get; }
 
     /// <summary>
+    /// Gets the table setting list.
+    /// </summary>
+    public TableSettingListSyntax? Settings { get; }
+
+    /// <summary>
     /// Gets the body.
     /// </summary>
     public StatementSyntax Body { get; }
@@ -44,6 +51,7 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     {
         yield return TableKeyword;
         yield return IdentifierToken;
+        if (Settings is not null) yield return Settings;
         yield return Body;
     }
 }

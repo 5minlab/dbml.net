@@ -268,8 +268,65 @@ internal sealed class Parser
                 => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
+        TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
-        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, body);
+        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
+    }
+
+    private TableSettingListSyntax? ParseOptionalTableSettingList()
+    {
+        return Current.Kind == SyntaxKind.OpenBracketToken
+            ? ParseTableSettingList()
+            : null;
+    }
+
+    private TableSettingListSyntax ParseTableSettingList()
+    {
+        SyntaxToken openBracketToken = MatchToken(SyntaxKind.OpenBracketToken);
+
+        SeparatedSyntaxList<TableSettingClause> settings =
+            ParseSeparatedList(
+                closeTokenKind: SyntaxKind.CloseBracketToken,
+                separatorKind: SyntaxKind.CommaToken,
+                parseExpression: ParseTableSettingClause);
+
+        SyntaxToken closeBracketToken = MatchToken(SyntaxKind.CloseBracketToken);
+
+        return new TableSettingListSyntax(_syntaxTree, openBracketToken, settings, closeBracketToken);
+    }
+
+    private TableSettingClause ParseTableSettingClause()
+    {
+        switch (Current.Kind)
+        {
+            default:
+                return ParseUnknownTableSetting();
+        }
+    }
+
+    private TableSettingClause ParseUnknownTableSetting()
+    {
+        SyntaxToken identifierToken = Current.Kind.IsKeyword()
+                ? NextToken()
+                : MatchToken(SyntaxKind.IdentifierToken);
+
+        if (Current.Kind != SyntaxKind.ColonToken)
+        {
+            return new UnknownTableSettingClause(_syntaxTree, identifierToken);
+        }
+
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+
+#pragma warning disable CA1508 // Avoid dead conditional code
+        SyntaxToken valueToken = Current.Kind switch
+        {
+            SyntaxKind.QuotationMarksStringToken => MatchToken(SyntaxKind.QuotationMarksStringToken),
+            SyntaxKind.SingleQuotationMarksStringToken => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
+            _ => MatchToken(SyntaxKind.IdentifierToken),
+        };
+#pragma warning restore CA1508 // Avoid dead conditional code
+
+        return new UnknownTableSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
     }
 
     private StatementSyntax ParseStatement()
