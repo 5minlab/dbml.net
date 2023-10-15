@@ -55,8 +55,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             else if (setting.Kind == SyntaxKind.NoteProjectSettingClause)
             {
                 NoteProjectSettingClause noteSetting = (NoteProjectSettingClause)setting;
-                string note = noteSetting.ValueToken.Text;
-                _database.AddNote(note);
+                string note = $"{noteSetting.ValueToken.Value ?? noteSetting.ValueToken.Text}";
+                _currentProject.AddNote(note);
             }
         }
 
