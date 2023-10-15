@@ -1250,6 +1250,19 @@
             </summary>
             <returns>The last token of the current syntax node.</returns>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.WriteTo(System.IO.TextWriter)">
+            <summary>
+            Writes a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance to the specified <see cref="T:System.IO.TextWriter"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> to write to.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.ToString">
+            <summary>
+            Return a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/>.
+            </summary>
+            <returns>A tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/>.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken">
             <summary>
             Represents a token.
