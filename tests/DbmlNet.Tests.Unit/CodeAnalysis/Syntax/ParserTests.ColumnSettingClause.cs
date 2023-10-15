@@ -316,7 +316,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_DefaultColumnSettingClause_With_Expression_Value_Identifier()
+    public void Parse_DefaultColumnSettingClause_With_NameExpression_Value()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
         string identifierExpressionText = $"{CreateRandomString()}";
