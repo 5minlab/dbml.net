@@ -227,9 +227,6 @@ public abstract class SyntaxWalker
             case SyntaxKind.NameExpression:
                 WalkNameExpression((NameExpressionSyntax)syntax);
                 break;
-            case SyntaxKind.IndexSettingExpression:
-                WalkIndexSettingExpression((IndexSettingExpressionSyntax)syntax);
-                break;
             case SyntaxKind.ParenthesizedExpression:
                 WalkParenthesizedExpression((ParenthesizedExpressionSyntax)syntax);
                 break;
@@ -254,16 +251,6 @@ public abstract class SyntaxWalker
     /// <param name="syntax">The name expression syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkNameExpression(NameExpressionSyntax syntax)
-    {
-        ArgumentNullException.ThrowIfNull(syntax);
-    }
-
-    /// <summary>
-    /// Walks an index setting expression syntax.
-    /// </summary>
-    /// <param name="syntax">The index setting expression syntax.</param>
-    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-    protected virtual void WalkIndexSettingExpression(IndexSettingExpressionSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
     }

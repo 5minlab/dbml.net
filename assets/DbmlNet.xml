@@ -518,24 +518,6 @@
             Represents a index setting clause in the syntax tree.
             </summary>
         </member>
-        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax">
-            <summary>
-            Represents a index setting clause in the syntax tree.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Kind">
-            <summary>
-            Gets the syntax kind of the index setting expression <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IndexSettingExpression"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.Identifiers">
-            <summary>
-            Gets the identifiers.
-            </summary>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax.GetChildren">
-            <inherits/>
-        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax">
             <summary>
             Represents a list of index settings in the syntax tree.
@@ -1535,13 +1517,6 @@
             <param name="syntax">The name expression syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkIndexSettingExpression(DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax)">
-            <summary>
-            Walks an index setting expression syntax.
-            </summary>
-            <param name="syntax">The index setting expression syntax.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">
             <summary>
             Walks a parenthesized expression syntax.
@@ -2184,9 +2159,6 @@
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkNameExpression(DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkIndexSettingExpression(DbmlNet.CodeAnalysis.Syntax.IndexSettingExpressionSyntax)">
             <inheritdoc/>
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">

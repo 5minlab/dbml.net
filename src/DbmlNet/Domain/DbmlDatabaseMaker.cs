@@ -315,51 +315,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     }
 
     /// <inheritdoc/>
-    protected override void WalkIndexSettingExpression(IndexSettingExpressionSyntax syntax)
-    {
-        if (_currentTableIndex is null)
-            return;
-
-        if (syntax.Identifiers.Any() is false)
-            return;
-
-        // match by kind
-        switch (syntax.Identifiers.ElementAt(0).Kind)
-        {
-            case SyntaxKind.NameKeyword:
-                SyntaxToken nameToken = syntax.Identifiers.Last();
-                string name = $"{nameToken.Value ?? nameToken.Text}";
-                _currentTableIndex.Name = string.IsNullOrEmpty(name) ? _currentTableIndex.Name : name;
-                return;
-            case SyntaxKind.NoteKeyword:
-                SyntaxToken noteToken = syntax.Identifiers.Last();
-                string note = $"{noteToken.Value ?? noteToken.Text}";
-                _currentTableIndex.Note = string.IsNullOrEmpty(note) ? null : note;
-                return;
-            case SyntaxKind.TypeKeyword:
-                SyntaxToken typeToken = syntax.Identifiers.Last();
-                string type = $"{typeToken.Value ?? typeToken.Text}";
-                _currentTableIndex.Type = string.IsNullOrEmpty(type) ? null : type;
-                return;
-        }
-
-        // match by text
-        switch (syntax.Text)
-        {
-            case "pk":
-            case "primary key":
-                _currentTableIndex.IsPrimaryKey = true;
-                return;
-            case "unique":
-                _currentTableIndex.IsUnique = true;
-                return;
-            default:
-                _currentTableIndex.AddSetting(syntax.Text);
-                return;
-        }
-    }
-
-    /// <inheritdoc/>
     protected override void WalkParenthesizedExpression(ParenthesizedExpressionSyntax syntax)
     {
         base.WalkParenthesizedExpression(syntax);

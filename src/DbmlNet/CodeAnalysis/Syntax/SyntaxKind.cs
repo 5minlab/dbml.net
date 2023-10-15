@@ -112,7 +112,6 @@ public enum SyntaxKind
     BacktickExpression,
     NameExpression,
     NullExpression,
-    IndexSettingExpression,
     ParenthesizedExpression,
     CallExpression,
 
