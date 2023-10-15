@@ -116,8 +116,11 @@ public partial class ParserTests
     {
         foreach (string text in SqlServerDataTypes)
         {
-            if (!text.Contains("("))
-                yield return new object?[] { SyntaxKind.IdentifierToken, text, null };
+            // Skip parenthesized identifiers
+            if (text.Contains("("))
+                continue;
+
+            yield return new object?[] { SyntaxKind.IdentifierToken, text, null };
         }
     }
 
@@ -125,29 +128,30 @@ public partial class ParserTests
     {
         foreach (string text in SqlServerDataTypes)
         {
-            if (text.Contains("("))
+            // Skip non parenthesized identifiers
+            if (!text.Contains("("))
+                continue;
+
+            int indefOfOpenParenthesis = text.IndexOf("(");
+            int indefOfCloseParenthesis = text.IndexOf(")");
+            SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
+            string columnTypeIdentifierText = text[..indefOfOpenParenthesis];
+            object? columnTypeIdentifierValue = null;
+
+            SyntaxKind variableLengthIdentifierKind = SyntaxKind.IdentifierToken;
+            string variableLengthIdentifierText = text[(indefOfOpenParenthesis + 1)..indefOfCloseParenthesis];
+            object? variableLengthIdentifierValue = null;
+            if (decimal.TryParse(variableLengthIdentifierText, out decimal dVal))
             {
-                int indefOfOpenParenthesis = text.IndexOf("(");
-                int indefOfCloseParenthesis = text.IndexOf(")");
-                SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
-                string columnTypeIdentifierText = text[..indefOfOpenParenthesis];
-                object? columnTypeIdentifierValue = null;
+                variableLengthIdentifierKind = SyntaxKind.NumberToken;
+                variableLengthIdentifierValue = dVal;
+            }
 
-                SyntaxKind variableLengthIdentifierKind = SyntaxKind.IdentifierToken;
-                string variableLengthIdentifierText = text[(indefOfOpenParenthesis + 1)..indefOfCloseParenthesis];
-                object? variableLengthIdentifierValue = null;
-                if (decimal.TryParse(variableLengthIdentifierText, out decimal dVal))
-                {
-                    variableLengthIdentifierKind = SyntaxKind.NumberToken;
-                    variableLengthIdentifierValue = dVal;
-                }
-
-                yield return new object?[]
-                {
+            yield return new object?[]
+            {
                     columnTypeIdentifierKind, columnTypeIdentifierText, columnTypeIdentifierValue,
                     variableLengthIdentifierKind, variableLengthIdentifierText, variableLengthIdentifierValue
-                };
-            }
+            };
         }
     }
 
