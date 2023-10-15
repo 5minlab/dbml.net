@@ -43,19 +43,9 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
     public SyntaxToken CloseParenthesis { get; }
 
     /// <summary>
-    /// Gets the open bracket token.
-    /// </summary>
-    public SyntaxToken? OpenBracket { get; }
-
-    /// <summary>
     /// Gets the settings.
     /// </summary>
     public IndexSettingListSyntax? Settings { get; }
-
-    /// <summary>
-    /// Gets the close bracket token.
-    /// </summary>
-    public SyntaxToken? CloseBracket { get; }
 
     /// <inherits/>
     public override IEnumerable<SyntaxNode> GetChildren()

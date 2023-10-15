@@ -347,19 +347,9 @@
             Gets the close parenthesis token.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenBracket">
-            <summary>
-            Gets the open bracket token.
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.Settings">
             <summary>
             Gets the settings.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.CloseBracket">
-            <summary>
-            Gets the close bracket token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.GetChildren">
