@@ -169,7 +169,7 @@ public sealed class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Table_Name_And_Schema()
+    public void Create_Database_With_Table_Name_And_Schema_And_Database()
     {
         string text = """
         Table AdventureWorks.identity.Users
@@ -185,10 +185,15 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Notes);
         Assert.Empty(database.Note);
         Assert.Null(database.Project);
-        Assert.Single(database.Tables);
-        Assert.Equal("Users", database.Tables.ElementAt(0).Name);
-        Assert.Equal("identity", database.Tables.ElementAt(0).Schema);
-        Assert.Equal("AdventureWorks", database.Tables.ElementAt(0).Database);
-        Assert.Equal("AdventureWorks.identity.Users", database.Tables.ElementAt(0).ToString());
+        DbmlTable table = Assert.Single(database.Tables);
+        Assert.Equal("AdventureWorks", table.Database);
+        Assert.Equal("identity", table.Schema);
+        Assert.Equal("Users", table.Name);
+        Assert.Equal("AdventureWorks.identity.Users", table.ToString());
+        Assert.Empty(table.Columns);
+        Assert.Empty(table.Indexes);
+        Assert.Empty(table.Relationships);
+        Assert.Empty(table.Notes);
+        Assert.Empty(table.Note);
     }
 }
