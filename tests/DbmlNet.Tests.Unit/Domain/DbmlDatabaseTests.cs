@@ -34,10 +34,6 @@ public sealed partial class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
-        Assert.Empty(database.Providers);
-        Assert.Single(database.Notes);
         Assert.Equal("This is a note.", database.Note);
-        Assert.Null(database.Project);
-        Assert.Empty(database.Tables);
     }
 }

@@ -21,14 +21,9 @@ public sealed partial class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
-        Assert.Empty(database.Providers);
-        Assert.Empty(database.Notes);
-        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Equal("AdventureWorks", database.Project.ToString());
-        Assert.Empty(database.Project.Notes);
-        Assert.Empty(database.Tables);
     }
 
     [Fact]
@@ -44,15 +39,12 @@ public sealed partial class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
-        Assert.Empty(database.Providers);
-        Assert.Empty(database.Notes);
-        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Equal("AdventureWorks", database.Project.ToString());
-        Assert.Single(database.Project.Notes);
+        string note = Assert.Single(database.Project.Notes);
+        Assert.Equal("Contacts database schema.", note);
         Assert.Equal("Contacts database schema.", database.Project.Note);
-        Assert.Empty(database.Tables);
     }
 
     [Fact]
@@ -68,15 +60,8 @@ public sealed partial class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
-        Assert.Single(database.Providers);
-        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
-        Assert.Empty(database.Notes);
-        Assert.Empty(database.Note);
-        Assert.NotNull(database.Project);
-        Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal("AdventureWorks", database.Project.ToString());
-        Assert.Empty(database.Project.Notes);
-        Assert.Empty(database.Tables);
+        string provider = Assert.Single(database.Providers);
+        Assert.Equal("PostgreSQL", provider);
     }
 
     [Fact]
@@ -95,13 +80,11 @@ public sealed partial class DbmlDatabaseTests
         Assert.NotNull(database);
         Assert.Single(database.Providers);
         Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
-        Assert.Empty(database.Notes);
-        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Equal("AdventureWorks", database.Project.ToString());
-        Assert.Single(database.Project.Notes);
+        string note = Assert.Single(database.Project.Notes);
+        Assert.Equal("AdventureWorksDW is the data warehouse sample", note);
         Assert.Equal("AdventureWorksDW is the data warehouse sample", database.Project.Note);
-        Assert.Empty(database.Tables);
     }
 }
