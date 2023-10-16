@@ -254,17 +254,41 @@ internal sealed class Parser
     private MemberSyntax ParseTableDeclaration()
     {
         SyntaxToken tableKeyword = MatchToken(SyntaxKind.TableKeyword);
-        SyntaxToken identifier = Current.Kind switch
-        {
-            SyntaxKind.QuotationMarksStringToken
-                => MatchToken(SyntaxKind.QuotationMarksStringToken),
-            SyntaxKind.SingleQuotationMarksStringToken
-                => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
-            _ => MatchToken(SyntaxKind.IdentifierToken),
-        };
+        TableIdentifierClause identifier = ParseTableIdentifier();
         TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
         return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
+    }
+
+    private TableIdentifierClause ParseTableIdentifier()
+    {
+        // Read syntax: table
+        SyntaxToken tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+
+        // Read syntax: schema.table
+        SyntaxToken? schemaIdentifier = null;
+        SyntaxToken? secondDotToken = null;
+        if (Current.Kind == SyntaxKind.DotToken)
+        {
+            schemaIdentifier = tableIdentifier;
+            secondDotToken = MatchToken(SyntaxKind.DotToken);
+            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        }
+
+        // Read syntax: database.schema.table
+        SyntaxToken? databaseIdentifier = null;
+        SyntaxToken? firstDotToken = null;
+        if (Current.Kind == SyntaxKind.DotToken)
+        {
+            databaseIdentifier = schemaIdentifier;
+            schemaIdentifier = tableIdentifier;
+            firstDotToken = MatchToken(SyntaxKind.DotToken);
+            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        }
+
+        return new TableIdentifierClause(
+            _syntaxTree, databaseIdentifier, firstDotToken,
+            schemaIdentifier, secondDotToken, tableIdentifier);
     }
 
     private TableSettingListSyntax? ParseOptionalTableSettingList()

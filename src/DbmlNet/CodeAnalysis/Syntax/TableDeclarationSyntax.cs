@@ -10,13 +10,13 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     internal TableDeclarationSyntax(
         SyntaxTree syntaxTree,
         SyntaxToken tableKeyword,
-        SyntaxToken identifierToken,
+        TableIdentifierClause identifierToken,
         TableSettingListSyntax? settings,
         StatementSyntax body)
         : base(syntaxTree)
     {
         TableKeyword = tableKeyword;
-        IdentifierToken = identifierToken;
+        DbSchema = identifierToken;
         Settings = settings;
         Body = body;
     }
@@ -32,9 +32,9 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     public SyntaxToken TableKeyword { get; }
 
     /// <summary>
-    /// Gets the identifier token.
+    /// Gets the full table identifier (e.g: database.schema.table).
     /// </summary>
-    public SyntaxToken IdentifierToken { get; }
+    public TableIdentifierClause DbSchema { get; }
 
     /// <summary>
     /// Gets the table setting list.
@@ -50,7 +50,7 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return TableKeyword;
-        yield return IdentifierToken;
+        yield return DbSchema;
         if (Settings is not null) yield return Settings;
         yield return Body;
     }

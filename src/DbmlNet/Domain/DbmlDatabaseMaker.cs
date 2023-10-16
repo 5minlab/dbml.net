@@ -72,8 +72,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     {
         ArgumentNullException.ThrowIfNull(syntax);
 
-        string tableName = $"{syntax.IdentifierToken.Value ?? syntax.IdentifierToken.Text}";
-        _currentTable = new DbmlTable(tableName);
+        string tableName = syntax.DbSchema.TableIdentifier.Text;
+        string schemaName = syntax.DbSchema.SchemaIdentifier?.Text ?? string.Empty;
+        string databaseName = syntax.DbSchema.DatabaseIdentifier?.Text ?? string.Empty;
+        _currentTable = new DbmlTable(tableName, schemaName, databaseName);
 
         base.WalkTableDeclaration(syntax);
 

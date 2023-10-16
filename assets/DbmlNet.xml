@@ -1529,9 +1529,9 @@
             Gets the table keyword.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.IdentifierToken">
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.DbSchema">
             <summary>
-            Gets the identifier token.
+            Gets the full table identifier (e.g: database.schema.table).
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Settings">
@@ -1546,6 +1546,50 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.GetChildren">
             <inherits/>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause">
+            <summary>
+            Represents a table identifier clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.Kind">
+            <summary>
+            Gets the syntax kind of the table identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TableIdentifierClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.DatabaseIdentifier">
+            <summary>
+            Gets the schema identifier.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.FirstDotToken">
+            <summary>
+            Gets the first dot token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.SchemaIdentifier">
+            <summary>
+            Gets the table identifier.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.SecondDotToken">
+            <summary>
+            Gets the second dot token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.TableIdentifier">
+            <summary>
+            Gets the table identifier.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.GetChildren">
+            <inherits/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.ToString">
+            <summary>
+            Returns the full text for this table identifier using format {database}.{schema}.{table}.
+            </summary>
+            <returns>The full text for this table identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
             <summary>
@@ -2191,16 +2235,27 @@
             Represents a table.
             </summary>
         </member>
-        <member name="M:DbmlNet.Domain.DbmlTable.#ctor(System.String,System.String)">
+        <member name="M:DbmlNet.Domain.DbmlTable.#ctor(System.String,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTable"/> class with the specified name and optional note.
             </summary>
-            <param name="name">The name of the table.</param>
-            <param name="note">An optional note for the table.</param>
+            <param name="table">The name of the table.</param>
+            <param name="schema">The name of the schema.</param>
+            <param name="database">The name of the database.</param>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Name">
             <summary>
             Gets the name of the table.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Schema">
+            <summary>
+            Gets the name of the schema.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.Domain.DbmlTable.Database">
+            <summary>
+            Gets the name of the database.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTable.Columns">
@@ -2230,9 +2285,9 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlTable.ToString">
             <summary>
-            Returns the table name.
+            Returns the full text for this table identifier using format {database}.{schema}.{table}.
             </summary>
-            <returns>The table name.</returns>
+            <returns>The full text for this table identifier.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlTableColumn">
             <summary>

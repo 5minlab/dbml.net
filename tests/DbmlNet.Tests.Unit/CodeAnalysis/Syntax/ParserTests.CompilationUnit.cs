@@ -54,6 +54,7 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.CompilationUnitMember);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");

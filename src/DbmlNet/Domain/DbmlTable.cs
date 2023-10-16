@@ -16,20 +16,33 @@ public sealed class DbmlTable
     /// <summary>
     /// Initializes a new instance of the <see cref="DbmlTable"/> class with the specified name and optional note.
     /// </summary>
-    /// <param name="name">The name of the table.</param>
-    /// <param name="note">An optional note for the table.</param>
-    public DbmlTable(string name, string? note = null)
+    /// <param name="table">The name of the table.</param>
+    /// <param name="schema">The name of the schema.</param>
+    /// <param name="database">The name of the database.</param>
+    public DbmlTable(
+        string table,
+        string schema = "",
+        string database = "")
     {
-        Name = name;
-
-        if (note is not null)
-            _notes.Add(note);
+        Name = table;
+        Schema = schema;
+        Database = database;
     }
 
     /// <summary>
     /// Gets the name of the table.
     /// </summary>
     public string Name { get; }
+
+    /// <summary>
+    /// Gets the name of the schema.
+    /// </summary>
+    public string Schema { get; }
+
+    /// <summary>
+    /// Gets the name of the database.
+    /// </summary>
+    public string Database { get; }
 
     /// <summary>
     /// Gets the columns.
@@ -57,10 +70,18 @@ public sealed class DbmlTable
     public IEnumerable<string> Notes => _notes;
 
     /// <summary>
-    /// Returns the table name.
+    /// Returns the full text for this table identifier using format {database}.{schema}.{table}.
     /// </summary>
-    /// <returns>The table name.</returns>
-    public override string ToString() => Name;
+    /// <returns>The full text for this table identifier.</returns>
+    public override string ToString()
+    {
+        if (!string.IsNullOrEmpty(Database) && !string.IsNullOrEmpty(Schema))
+            return $"{Database}.{Schema}.{Name}";
+        else if (!string.IsNullOrEmpty(Schema))
+            return $"{Schema}.{Name}";
+        else
+            return Name;
+    }
 
     internal void AddColumn(DbmlTableColumn column)
     {

@@ -174,6 +174,9 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.Null(database.Project);
         Assert.Single(database.Tables);
-        Assert.Equal("AdventureWorks.identity.Users", database.Tables.ElementAt(0).Name);
+        Assert.Equal("Users", database.Tables.ElementAt(0).Name);
+        Assert.Equal("identity", database.Tables.ElementAt(0).Schema);
+        Assert.Equal("AdventureWorks", database.Tables.ElementAt(0).Database);
+        Assert.Equal("AdventureWorks.identity.Users", database.Tables.ElementAt(0).ToString());
     }
 }
