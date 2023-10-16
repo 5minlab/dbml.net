@@ -8,6 +8,31 @@ namespace DbmlNet.Tests.Unit.Domain;
 public sealed partial class DbmlDatabaseTests
 {
     [Fact]
+    public void Create_Database_With_Table_Empty()
+    {
+        string text = """
+        Table Users
+        {
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        Assert.Empty(table.Database);
+        Assert.Empty(table.Schema);
+        Assert.Equal("Users", table.Name);
+        Assert.Equal("Users", table.ToString());
+        Assert.Empty(table.Columns);
+        Assert.Empty(table.Indexes);
+        Assert.Empty(table.Relationships);
+        Assert.Empty(table.Notes);
+        Assert.Empty(table.Note);
+    }
+
+    [Fact]
     public void Create_Database_With_Table_Name()
     {
         string text = """
