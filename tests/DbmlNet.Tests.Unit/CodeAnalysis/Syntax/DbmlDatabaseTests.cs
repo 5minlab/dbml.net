@@ -26,6 +26,24 @@ public sealed class DbmlDatabaseTests
     }
 
     [Fact]
+    public void Create_Database_With_Note()
+    {
+        string text = """
+        note: 'This is a note.'
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.Empty(database.Providers);
+        Assert.Single(database.Notes);
+        Assert.Equal("This is a note.", database.Note);
+        Assert.Null(database.Project);
+        Assert.Empty(database.Tables);
+    }
+
+    [Fact]
     public void Create_Database_With_Project_Name()
     {
         string text = """
