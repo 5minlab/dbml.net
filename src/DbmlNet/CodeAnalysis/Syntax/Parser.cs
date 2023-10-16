@@ -137,12 +137,6 @@ internal sealed class Parser
         };
     }
 
-    private MemberSyntax ParseGlobalStatement()
-    {
-        StatementSyntax statement = ParseStatement();
-        return new GlobalStatementSyntax(_syntaxTree, statement);
-    }
-
     private MemberSyntax ParseProjectDeclaration()
     {
         SyntaxToken projectKeyword = MatchToken(SyntaxKind.ProjectKeyword);
@@ -327,6 +321,12 @@ internal sealed class Parser
 #pragma warning restore CA1508 // Avoid dead conditional code
 
         return new UnknownTableSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+    }
+
+    private MemberSyntax ParseGlobalStatement()
+    {
+        StatementSyntax statement = ParseStatement();
+        return new GlobalStatementSyntax(_syntaxTree, statement);
     }
 
     private StatementSyntax ParseStatement()
