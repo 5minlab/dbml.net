@@ -155,4 +155,25 @@ public sealed class DbmlDatabaseTests
         Assert.Single(database.Tables);
         Assert.Equal("Users", database.Tables.ElementAt(0).Name);
     }
+
+    [Fact]
+    public void Create_Database_With_Table_Name_And_Schema()
+    {
+        string text = """
+        Table AdventureWorks.identity.Users
+        {
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
+        Assert.Null(database.Project);
+        Assert.Single(database.Tables);
+        Assert.Equal("AdventureWorks.identity.Users", database.Tables.ElementAt(0).Name);
+    }
 }
