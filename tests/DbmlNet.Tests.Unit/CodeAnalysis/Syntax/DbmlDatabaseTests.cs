@@ -18,11 +18,11 @@ public sealed class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
         Assert.Null(database.Project);
         Assert.Empty(database.Tables);
-        Assert.Empty(database.Providers);
-        Assert.Empty(database.Note);
-        Assert.Empty(database.Notes);
     }
 
     [Fact]
@@ -37,13 +37,13 @@ public sealed class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Empty(database.Project.Notes);
         Assert.Empty(database.Tables);
-        Assert.Empty(database.Providers);
-        Assert.Empty(database.Note);
-        Assert.Empty(database.Notes);
     }
 
     [Fact]
@@ -59,14 +59,14 @@ public sealed class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Equal(1, database.Project.Notes.Count());
         Assert.Equal("Contacts database schema.", database.Project.Note);
         Assert.Empty(database.Tables);
-        Assert.Empty(database.Providers);
-        Assert.Empty(database.Note);
-        Assert.Empty(database.Notes);
     }
 
     [Fact]
@@ -82,14 +82,14 @@ public sealed class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
+        Assert.Single(database.Providers);
+        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Empty(database.Project.Notes);
         Assert.Empty(database.Tables);
-        Assert.Equal(1, database.Providers.Count());
-        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
-        Assert.Empty(database.Note);
-        Assert.Empty(database.Notes);
     }
 
     [Fact]
@@ -106,14 +106,14 @@ public sealed class DbmlDatabaseTests
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
+        Assert.Single(database.Providers);
+        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
+        Assert.Empty(database.Notes);
+        Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal(1, database.Project.Notes.Count());
+        Assert.Single(database.Project.Notes);
         Assert.Equal("AdventureWorksDW is the data warehouse sample", database.Project.Note);
         Assert.Empty(database.Tables);
-        Assert.Equal(1, database.Providers.Count());
-        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
-        Assert.Empty(database.Note);
-        Assert.Empty(database.Notes);
     }
 }
