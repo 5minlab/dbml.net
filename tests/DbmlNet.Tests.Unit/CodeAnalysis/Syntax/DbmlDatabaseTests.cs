@@ -60,6 +60,7 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal("AdventureWorks", database.Project.ToString());
         Assert.Empty(database.Project.Notes);
         Assert.Empty(database.Tables);
     }
@@ -82,6 +83,7 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal("AdventureWorks", database.Project.ToString());
         Assert.Single(database.Project.Notes);
         Assert.Equal("Contacts database schema.", database.Project.Note);
         Assert.Empty(database.Tables);
@@ -106,6 +108,7 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal("AdventureWorks", database.Project.ToString());
         Assert.Empty(database.Project.Notes);
         Assert.Empty(database.Tables);
     }
@@ -130,6 +133,7 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal("AdventureWorks", database.Project.ToString());
         Assert.Single(database.Project.Notes);
         Assert.Equal("AdventureWorksDW is the data warehouse sample", database.Project.Note);
         Assert.Empty(database.Tables);
