@@ -91,4 +91,29 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.Empty(database.Notes);
     }
+
+    [Fact]
+    public void Create_Database_With_Project_Fully_Setup()
+    {
+        string text = """
+        Project "AdventureWorks" {
+            database_type: 'PostgreSQL'
+            note: 'AdventureWorksDW is the data warehouse sample'
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.NotNull(database.Project);
+        Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal(1, database.Project.Notes.Count());
+        Assert.Equal("AdventureWorksDW is the data warehouse sample", database.Project.Note);
+        Assert.Empty(database.Tables);
+        Assert.Equal(1, database.Providers.Count());
+        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
+        Assert.Empty(database.Note);
+        Assert.Empty(database.Notes);
+    }
 }
