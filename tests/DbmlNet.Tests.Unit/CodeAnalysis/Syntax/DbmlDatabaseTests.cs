@@ -22,4 +22,25 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.Empty(database.Notes);
     }
+
+    [Fact]
+    public void Create_Database_With_Project_Name()
+    {
+        string text = """
+        Project "AdventureWorks" {
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.NotNull(database.Project);
+        Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Empty(database.Project.Notes);
+        Assert.Empty(database.Tables);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Note);
+        Assert.Empty(database.Notes);
+    }
 }
