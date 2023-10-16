@@ -82,7 +82,7 @@ public sealed class DbmlDatabaseTests
         Assert.Empty(database.Note);
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal(1, database.Project.Notes.Count());
+        Assert.Single(database.Project.Notes);
         Assert.Equal("Contacts database schema.", database.Project.Note);
         Assert.Empty(database.Tables);
     }
