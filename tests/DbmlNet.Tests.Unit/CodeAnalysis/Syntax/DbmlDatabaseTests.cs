@@ -1,3 +1,5 @@
+using System.Linq;
+
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
@@ -38,6 +40,29 @@ public sealed class DbmlDatabaseTests
         Assert.NotNull(database.Project);
         Assert.Equal("AdventureWorks", database.Project.Name);
         Assert.Empty(database.Project.Notes);
+        Assert.Empty(database.Tables);
+        Assert.Empty(database.Providers);
+        Assert.Empty(database.Note);
+        Assert.Empty(database.Notes);
+    }
+
+    [Fact]
+    public void Create_Database_With_Project_Note()
+    {
+        string text = """
+        Project "AdventureWorks" {
+            note: 'Contacts database schema.'
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.NotNull(database.Project);
+        Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal(1, database.Project.Notes.Count());
+        Assert.Equal("Contacts database schema.", database.Project.Note);
         Assert.Empty(database.Tables);
         Assert.Empty(database.Providers);
         Assert.Empty(database.Note);
