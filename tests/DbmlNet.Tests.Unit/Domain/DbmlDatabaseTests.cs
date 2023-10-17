@@ -1,3 +1,5 @@
+using System.Linq;
+
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
@@ -44,6 +46,13 @@ public sealed partial class DbmlDatabaseTests
     {
         SyntaxTree syntax = SyntaxTree.Parse(text);
         Assert.Empty(syntax.Diagnostics);
+        return syntax;
+    }
+
+    private static SyntaxTree ParseNoErrorDiagnostics(string text)
+    {
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+        Assert.Empty(syntax.Diagnostics.Where(d => d.IsError));
         return syntax;
     }
 

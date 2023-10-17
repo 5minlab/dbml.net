@@ -1,3 +1,4 @@
+using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
@@ -239,5 +240,33 @@ public sealed partial class DbmlDatabaseTests
         else
             Assert.True(column.HasDefaultValue, "Column should have default value");
         Assert.Equal(value, column.DefaultValue);
+    }
+
+    [Fact]
+    public void Create_Returns_Column_With_Unknown_Setting()
+    {
+        string settingName = CreateRandomString();
+        object? settingValue = null;
+        string settingText = $"{settingName}";
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}} ]
+        }
+        """;
+        SyntaxTree syntax = ParseNoErrorDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Unknown column setting '{settingName}'.", diagnostic.Message);
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        (string unknownSettingName, object? unknownSettingValue) = Assert.Single(column.UnknownSettings);
+        Assert.Equal(settingName, unknownSettingName);
+        Assert.Equal(settingValue, unknownSettingValue);
     }
 }
