@@ -1493,6 +1493,13 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
             <exception cref="T:System.Data.EvaluateException"></exception>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkNullExpression(DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax)">
+            <summary>
+            Walks a null expression syntax.
+            </summary>
+            <param name="syntax">The null expression syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkLiteralExpression(DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax)">
             <summary>
             Walks a literal expression syntax.
