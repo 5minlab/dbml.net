@@ -27,7 +27,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Returns_Index_With_Identifier()
+    public void Create_Returns_Index_With_SingleField_Name()
     {
         string randomIndexName = CreateRandomString();
         string indexText = $"{randomIndexName}";
