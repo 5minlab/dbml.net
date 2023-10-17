@@ -199,7 +199,6 @@ public sealed partial class DbmlDatabaseTests
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
-        Assert.Empty(syntax.Diagnostics);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
