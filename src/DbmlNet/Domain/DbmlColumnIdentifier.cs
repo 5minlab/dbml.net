@@ -48,6 +48,6 @@ public sealed class DbmlColumnIdentifier
         else if (!string.IsNullOrEmpty(TableName))
             return $"{TableName}.{ColumnName}";
         else
-            return $"{TableName}.{ColumnName}";
+            return ColumnName;
     }
 }
