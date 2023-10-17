@@ -1012,19 +1012,6 @@ internal sealed class Parser
         return new NameExpressionSyntax(_syntaxTree, identifierToken);
     }
 
-    private SyntaxToken[] ParseTokensUntil(Func<bool> condition)
-    {
-        List<SyntaxToken> identifiers = new List<SyntaxToken>();
-
-        while (condition())
-        {
-            SyntaxToken identifierToken = NextToken();
-            identifiers.Add(identifierToken);
-        }
-
-        return identifiers.ToArray();
-    }
-
     private SeparatedSyntaxList<TResult> ParseSeparatedList<TResult>(
         SyntaxKind closeTokenKind,
         SyntaxKind? separatorKind,
