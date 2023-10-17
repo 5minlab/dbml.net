@@ -2121,9 +2121,9 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.ToString">
             <summary>
-            Returns the schema name of the column.
+            Returns the full text for this column identifier using format {schema}.{table}.{column}.
             </summary>
-            <returns>The schema name of the column.</returns>
+            <returns>The full text for this column identifier.</returns>
         </member>
         <member name="T:DbmlNet.Domain.DbmlDatabase">
             <summary>

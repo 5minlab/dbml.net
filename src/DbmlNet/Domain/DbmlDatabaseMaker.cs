@@ -162,17 +162,16 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                             {
                                 SyntaxKind.LessToken => TableRelationshipType.OneToMany,
                                 SyntaxKind.GraterToken => TableRelationshipType.ManyToOne,
-                                SyntaxKind.MinusToken => TableRelationshipType.OneToOne,
                                 SyntaxKind.LessGraterToken => TableRelationshipType.ManyToMany,
                                 _ => TableRelationshipType.OneToOne
                             };
 
-                        string toRelation = constraintClause.ToIdentifier.ToString();
+                        string? toSchemaName = constraintClause.ToIdentifier.SchemaIdentifier?.Text ?? string.Empty;
+                        string? toTableName = constraintClause.ToIdentifier.TableIdentifier?.Text ?? string.Empty;
+                        string toColumnName = constraintClause.ToIdentifier.ColumnIdentifier.Text;
+
                         DbmlColumnIdentifier toColumn =
-                            new DbmlColumnIdentifier(
-                                schemaName: constraintClause.ToIdentifier.SchemaIdentifier?.Text ?? string.Empty,
-                                tableName: constraintClause.ToIdentifier.TableIdentifier?.Text ?? string.Empty,
-                                columnName: constraintClause.ToIdentifier.ColumnIdentifier?.Text ?? string.Empty);
+                            new DbmlColumnIdentifier(toSchemaName, toTableName, toColumnName);
 
                         _currentTableColumn.AddRelationship(relationshipType, toColumn);
                         break;
