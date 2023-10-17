@@ -306,13 +306,23 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     /// <inheritdoc/>
     protected override void WalkLiteralExpression(LiteralExpressionSyntax syntax)
     {
-        base.WalkLiteralExpression(syntax);
+        ArgumentNullException.ThrowIfNull(syntax);
+
+        if (_currentTableColumn is not null)
+        {
+            _currentTableColumn.DefaultValue = syntax.LiteralToken.Text;
+        }
     }
 
     /// <inheritdoc/>
     protected override void WalkNameExpression(NameExpressionSyntax syntax)
     {
-        base.WalkNameExpression(syntax);
+        ArgumentNullException.ThrowIfNull(syntax);
+
+        if (_currentTableColumn is not null)
+        {
+            _currentTableColumn.DefaultValue = syntax.IdentifierToken.Text;
+        }
     }
 
     /// <inheritdoc/>
