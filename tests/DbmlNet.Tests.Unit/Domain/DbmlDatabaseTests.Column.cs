@@ -139,4 +139,24 @@ public sealed partial class DbmlDatabaseTests
         DbmlTableColumn column = Assert.Single(table.Columns);
         Assert.True(column.IsAutoIncrement, "Column should be auto increment");
     }
+
+    [Fact]
+    public void Create_Returns_Column_With_Nullable_Flag()
+    {
+        string text = """
+        Table Users
+        {
+            Id nvarchar(450) [ null ]
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        Assert.True(column.IsNullable, "Column should be nullable");
+        Assert.False(column.IsRequired, "Column should not be required");
+    }
 }
