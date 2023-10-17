@@ -310,7 +310,13 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
         if (_currentTableColumn is not null)
         {
-            _currentTableColumn.DefaultValue = syntax.LiteralToken.Text;
+            string defaultValue = $"{syntax.LiteralToken.Value ?? syntax.LiteralToken.Text}";
+            _currentTableColumn.DefaultValue = defaultValue switch
+            {
+                "False" => "false",
+                "True" => "true",
+                _ => defaultValue
+            };
         }
     }
 
