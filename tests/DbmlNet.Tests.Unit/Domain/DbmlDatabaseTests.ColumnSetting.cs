@@ -183,6 +183,37 @@ public sealed partial class DbmlDatabaseTests
         Assert.Equal(value, column.DefaultValue);
     }
 
+    [Theory]
+    [InlineData("<", TableRelationshipType.OneToMany)]
+    [InlineData(">", TableRelationshipType.ManyToOne)]
+    [InlineData("-", TableRelationshipType.OneToOne)]
+    [InlineData("<>", TableRelationshipType.ManyToMany)]
+    public void Create_Returns_ColumnSetting_With_Relationship(
+        string relationshipText, TableRelationshipType relationshipType)
+    {
+        string fromDatabaseName = CreateRandomString();
+        string fromSchemaName = CreateRandomString();
+        string fromTableName = CreateRandomString();
+        string fromColumnName = CreateRandomString();
+        string toColumnName = $"{CreateRandomString()}.{CreateRandomString()}.{CreateRandomString()}";
+        string text = $$"""
+        Table {{fromDatabaseName}}.{{fromSchemaName}}.{{fromTableName}}
+        {
+            {{fromColumnName}} {{CreateRandomString()}} [ ref: {{relationshipText}} {{toColumnName}} ]
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableRelationship relationship = Assert.Single(table.Relationships);
+        Assert.Equal(relationshipType, relationship.RelationshipType);
+        Assert.Equal($"{fromSchemaName}.{fromTableName}.{fromColumnName}", relationship.FromIdentifier.ToString());
+        Assert.Equal(toColumnName, relationship.ToIdentifier.ToString());
+    }
+
     [Fact]
     public void Create_Returns_ColumnSetting_With_OneToMany_Relationship()
     {
