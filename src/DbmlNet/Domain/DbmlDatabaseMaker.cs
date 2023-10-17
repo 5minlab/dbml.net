@@ -299,6 +299,15 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableIndex.IsUnique = true;
                         break;
                     }
+                    case SyntaxKind.TypeIndexSettingClause:
+                    {
+                        TypeIndexSettingClause noteSetting = (TypeIndexSettingClause)setting;
+                        string typeValue =
+                            noteSetting.ValueToken.Value?.ToString()
+                                ?? noteSetting.ValueToken.Text;
+                        _currentTableIndex.Type = typeValue;
+                        break;
+                    }
                     default:
                         throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
                 }
