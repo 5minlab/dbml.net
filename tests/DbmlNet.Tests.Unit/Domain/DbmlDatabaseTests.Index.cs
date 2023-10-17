@@ -63,13 +63,11 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("primary key")]
     public void Create_Returns_Index_With_PrimaryKey_Flag(string settingText)
     {
-        string randomIndexName = CreateRandomString();
-        string indexText = $"{randomIndexName}";
         string text = $$"""
         Table {{CreateRandomString()}}
         {
             Indexes {
-                {{indexText}} [ {{settingText}} ]
+                {{CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;
@@ -86,13 +84,11 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Index_With_Unique_Flag()
     {
-        string randomIndexName = CreateRandomString();
-        string indexText = $"{randomIndexName}";
         string text = $$"""
         Table {{CreateRandomString()}}
         {
             Indexes {
-                {{indexText}} [ unique ]
+                {{CreateRandomString()}} [ unique ]
             }
         }
         """;
@@ -113,13 +109,11 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("hash")]
     public void Create_Returns_Index_With_Allowed_Type(string typeName)
     {
-        string randomIndexName = CreateRandomString();
-        string indexText = $"{randomIndexName}";
         string text = $$"""
         Table {{CreateRandomString()}}
         {
             Indexes {
-                {{indexText}} [ type: {{typeName}} ]
+                {{CreateRandomString()}} [ type: {{typeName}} ]
             }
         }
         """;
