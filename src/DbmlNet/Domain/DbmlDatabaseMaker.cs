@@ -230,7 +230,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
                 string typeText = columnTypeIdentifierClause.ColumnTypeIdentifier.Text;
                 string variableLengthText = columnTypeIdentifierClause.VariableLengthIdentifier.Text;
-                _currentTableColumn.Type = $"{typeText}({variableLengthText})";
+                _currentTableColumn.Type = columnTypeIdentifierClause.Text;
 
                 switch (typeText)
                 {
@@ -245,8 +245,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                             _currentTableColumn.MaxLength = double.MaxValue;
                         else if (int.TryParse(variableLengthText, out int iMax))
                             _currentTableColumn.MaxLength = iMax;
-                        else if (float.TryParse(variableLengthText, out float fMax))
-                            _currentTableColumn.MaxLength = fMax;
                         else if (double.TryParse(variableLengthText, out double dMax))
                             _currentTableColumn.MaxLength = dMax;
 
