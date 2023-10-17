@@ -57,5 +57,5 @@ public sealed partial class DbmlDatabaseTests
         new MnemonicString().GetValue();
 
     private static string CreateRandomMultiWordString() =>
-        new MnemonicString(wordCount: GetRandomNumber()).GetValue();
+        new MnemonicString(wordCount: new IntRange(min: 1, max: 10).GetValue()).GetValue();
 }
