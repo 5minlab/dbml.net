@@ -106,7 +106,7 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Index_With_QuotationMarksString_Name()
     {
         string columnName = CreateRandomString();
-        string indexName = CreateRandomString();
+        string indexName = CreateRandomMultiWordString();
         string text = $$"""
         Table {{CreateRandomString()}}
         {
@@ -130,7 +130,7 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Index_With_SingleQuotationMarksString_Name()
     {
         string columnName = CreateRandomString();
-        string indexName = CreateRandomString();
+        string indexName = CreateRandomMultiWordString();
         string text = $$"""
         Table {{CreateRandomString()}}
         {
