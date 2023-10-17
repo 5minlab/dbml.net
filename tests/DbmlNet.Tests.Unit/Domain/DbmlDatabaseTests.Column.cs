@@ -91,6 +91,28 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
+    public void Create_Returns_Column_With_QuotationMarksString_Note()
+    {
+        string noteValueText = CreateRandomMultiWordString();
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            {{CreateRandomString()}} {{CreateRandomString()}} [ note: "{{noteValueText}}" ]
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        string note = Assert.Single(column.Notes);
+        Assert.Equal(noteValueText, note);
+        Assert.Equal(noteValueText, column.Note);
+    }
+
+    [Fact]
     public void Create_Returns_Column_With_SingleQuotationMarksString_Note()
     {
         string noteValueText = CreateRandomMultiWordString();
