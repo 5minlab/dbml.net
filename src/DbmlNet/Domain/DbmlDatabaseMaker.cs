@@ -294,6 +294,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableIndex.IsPrimaryKey = true;
                         break;
                     }
+                    case SyntaxKind.UniqueIndexSettingClause:
+                    {
+                        _currentTableIndex.IsUnique = true;
+                        break;
+                    }
                     default:
                         throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
                 }
