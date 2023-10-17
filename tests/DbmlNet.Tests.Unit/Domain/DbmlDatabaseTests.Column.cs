@@ -24,6 +24,7 @@ public sealed partial class DbmlDatabaseTests
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableColumn column = Assert.Single(table.Columns);
         Assert.Equal("Id", column.Name);
+        Assert.Equal("Id", column.ToString());
         Assert.Equal("nvarchar(450)", column.Type);
     }
 
