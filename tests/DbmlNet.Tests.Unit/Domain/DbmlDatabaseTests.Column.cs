@@ -181,13 +181,13 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Theory]
-    [InlineData("'00000000-0000-0000-0000-000000000000'")]
-    [InlineData("\"00000000-0000-0000-0000-000000000000\"")]
-    [InlineData("0")]
-    [InlineData("1")]
-    [InlineData("123.123")]
+    [InlineData("someDefaultValue")]
+    [InlineData("123")]
+    [InlineData("123.456")]
     [InlineData("true")]
     [InlineData("false")]
+    [InlineData("'some string value'")]
+    [InlineData("\"some string value\"")]
     public void Create_Returns_Column_With_Default_Value(string defaultValue)
     {
         string text = $$"""
