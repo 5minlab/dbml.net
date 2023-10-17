@@ -2209,9 +2209,6 @@
         <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkNameExpression(DbmlNet.CodeAnalysis.Syntax.NameExpressionSyntax)">
             <inheritdoc/>
         </member>
-        <member name="M:DbmlNet.Domain.DbmlDatabaseMaker.WalkParenthesizedExpression(DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax)">
-            <inheritdoc/>
-        </member>
         <member name="T:DbmlNet.Domain.DbmlProject">
             <summary>
             Represents a project setting clause in the syntax tree.

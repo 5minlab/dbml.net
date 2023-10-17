@@ -22,8 +22,8 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
-        Assert.Empty(table.Database);
-        Assert.Empty(table.Schema);
+        Assert.Null(table.Database);
+        Assert.Null(table.Schema);
         Assert.Equal(randomTableName, table.Name);
         Assert.Equal(randomTableName, table.ToString());
         Assert.Empty(table.Columns);
@@ -68,7 +68,7 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
-        Assert.Empty(table.Database);
+        Assert.Null(table.Database);
         Assert.Equal(randomSchemaName, table.Schema);
         Assert.Equal(randomTableName, table.Name);
         Assert.Equal($"{randomSchemaName}.{randomTableName}", table.ToString());

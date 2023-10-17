@@ -39,15 +39,18 @@ public sealed partial class DbmlDatabaseTests
         Assert.Empty(column.Notes);
     }
 
-    [Fact]
-    public void Create_Returns_Column_With_Name_And_Type()
+    [Theory]
+    [InlineData("unknownType", null)]
+    [InlineData("bit", "false")]
+    [InlineData("int", "0")]
+    [InlineData("float", "0")]
+    public void Create_Returns_Column_With_Name_And_Type(string columnType, string? defaultValue)
     {
         string randomColumnName = CreateRandomString();
-        string randomColumnType = CreateRandomString();
         string text = $$"""
         Table {{CreateRandomString()}}
         {
-            {{randomColumnName}} {{randomColumnType}}
+            {{randomColumnName}} {{columnType}}
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -59,16 +62,31 @@ public sealed partial class DbmlDatabaseTests
         DbmlTableColumn column = Assert.Single(table.Columns);
         Assert.Equal(randomColumnName, column.Name);
         Assert.Equal(randomColumnName, column.ToString());
-        Assert.Equal(randomColumnType, column.Type);
+        Assert.Equal(columnType, column.Type);
+        Assert.Equal(defaultValue, column.DefaultValue);
     }
 
     [Theory]
+    [InlineData("unknownType(1)", null)]
+    [InlineData("datetimeoffset(1)", 3.155378976E+18)]
     [InlineData("binary(MAX)", 1.7976931348623157E+308)]
     [InlineData("varbinary(MAX)", 1.7976931348623157E+308)]
     [InlineData("char(MAX)", 1.7976931348623157E+308)]
     [InlineData("varchar(MAX)", 1.7976931348623157E+308)]
     [InlineData("nchar(MAX)", 1.7976931348623157E+308)]
     [InlineData("nvarchar(MAX)", 1.7976931348623157E+308)]
+    [InlineData("binary(123)", 123D)]
+    [InlineData("varbinary(123)", 123D)]
+    [InlineData("char(123)", 123D)]
+    [InlineData("varchar(123)", 123D)]
+    [InlineData("nchar(123)", 123D)]
+    [InlineData("nvarchar(123)", 123D)]
+    [InlineData("binary(123.456)", 123.45600128173828D)]
+    [InlineData("varbinary(123.456)", 123.45600128173828D)]
+    [InlineData("char(123.456)", 123.45600128173828D)]
+    [InlineData("varchar(123.456)", 123.45600128173828D)]
+    [InlineData("nchar(123.456)", 123.45600128173828D)]
+    [InlineData("nvarchar(123.456)", 123.45600128173828D)]
     public void Create_Returns_Column_With_Max_Length(string columnTypeText, object? maxLength)
     {
         string text = $$"""
@@ -84,8 +102,10 @@ public sealed partial class DbmlDatabaseTests
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableColumn column = Assert.Single(table.Columns);
-        Assert.True(column.HasMaxLength, "Column should have max length");
-        Assert.NotNull(column.MaxLength);
+        if (double.MaxValue.Equals(maxLength))
+            Assert.True(column.HasMaxLength, "Column should have max length");
+        else
+            Assert.False(column.HasMaxLength, "Column should not have max length");
         Assert.Equal(maxLength, column.MaxLength);
     }
 }

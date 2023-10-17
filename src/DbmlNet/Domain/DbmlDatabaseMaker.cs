@@ -1,5 +1,4 @@
 using System;
-using System.Data;
 using System.Diagnostics;
 
 using DbmlNet.CodeAnalysis.Syntax;
@@ -37,7 +36,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     {
         ArgumentNullException.ThrowIfNull(syntax);
 
-        string projectName = $"{syntax.IdentifierToken.Value ?? syntax.IdentifierToken.Text}";
+        string projectName = $"{syntax.IdentifierToken.Value}";
         _currentProject = new DbmlProject(projectName);
 
         foreach (ProjectSettingClause setting in syntax.Settings.Settings)
@@ -46,16 +45,13 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             {
                 DatabaseProviderProjectSettingClause databaseProviderSetting =
                     (DatabaseProviderProjectSettingClause)setting;
-
-                string providerName =
-                    $"{databaseProviderSetting.ValueToken.Value ?? databaseProviderSetting.ValueToken.Text}";
-
+                string providerName = $"{databaseProviderSetting.ValueToken.Value}";
                 _database.AddProvider(providerName);
             }
             else if (setting.Kind == SyntaxKind.NoteProjectSettingClause)
             {
                 NoteProjectSettingClause noteSetting = (NoteProjectSettingClause)setting;
-                string note = $"{noteSetting.ValueToken.Value ?? noteSetting.ValueToken.Text}";
+                string note = $"{noteSetting.ValueToken.Value}";
                 _currentProject.AddNote(note);
             }
             else
@@ -74,8 +70,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         ArgumentNullException.ThrowIfNull(syntax);
 
         string tableName = syntax.DbSchema.TableIdentifier.Text;
-        string schemaName = syntax.DbSchema.SchemaIdentifier?.Text ?? string.Empty;
-        string databaseName = syntax.DbSchema.DatabaseIdentifier?.Text ?? string.Empty;
+        string? schemaName = syntax.DbSchema.SchemaIdentifier?.Text;
+        string? databaseName = syntax.DbSchema.DatabaseIdentifier?.Text;
         _currentTable = new DbmlTable(tableName, schemaName, databaseName);
 
         base.WalkTableDeclaration(syntax);
@@ -134,10 +130,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case SyntaxKind.NoteColumnSettingClause:
                     {
                         NoteColumnSettingClause noteSetting = (NoteColumnSettingClause)setting;
-                        string noteValue =
-                            noteSetting.ValueToken.Value?.ToString()
-                                ?? noteSetting.ValueToken.Text;
-                        _currentTableColumn.AddNote(noteValue);
+                        string noteValue = $"{noteSetting.ValueToken.Value}";
+                        if (!string.IsNullOrEmpty(noteValue))
+                            _currentTableColumn.AddNote(noteValue);
+
                         break;
                     }
                     case SyntaxKind.UnknownColumnSettingClause:
@@ -166,8 +162,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                                 _ => TableRelationshipType.OneToOne
                             };
 
-                        string? toSchemaName = constraintClause.ToIdentifier.SchemaIdentifier?.Text ?? string.Empty;
-                        string? toTableName = constraintClause.ToIdentifier.TableIdentifier?.Text ?? string.Empty;
+                        string? toSchemaName = constraintClause.ToIdentifier.SchemaIdentifier?.Text;
+                        string? toTableName = constraintClause.ToIdentifier.TableIdentifier?.Text;
                         string toColumnName = constraintClause.ToIdentifier.ColumnIdentifier.Text;
 
                         DbmlColumnIdentifier toColumn =
@@ -185,7 +181,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
         }
 
-        _currentTable?.AddColumn(_currentTableColumn);
+        Debug.Assert(_currentTable is not null, "Current table should not be null.");
+        _currentTable.AddColumn(_currentTableColumn);
         _currentTableColumn = null;
     }
 #pragma warning restore CA1502 // Avoid excessive complexity
@@ -193,7 +190,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 #pragma warning disable CA1502 // Avoid excessive complexity
     private void WalkColumnType(ColumnTypeClause syntax)
     {
-        Debug.Assert(_currentTableColumn is not null);
+        Debug.Assert(_currentTableColumn is not null, "Current column should not be null");
 
         switch (syntax.Kind)
         {
@@ -232,8 +229,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     (ColumnTypeParenthesizedIdentifierClause)syntax;
 
                 string typeText = columnTypeIdentifierClause.ColumnTypeIdentifier.Text;
-                _currentTableColumn.Type =
-                    $"{columnTypeIdentifierClause.ColumnTypeIdentifier.Text}({columnTypeIdentifierClause.VariableLengthIdentifier.Text})";
+                string variableLengthText = columnTypeIdentifierClause.VariableLengthIdentifier.Text;
+                _currentTableColumn.Type = $"{typeText}({variableLengthText})";
 
                 switch (typeText)
                 {
@@ -244,9 +241,6 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case "nchar":
                     case "nvarchar":
                     {
-                        string variableLengthText =
-                            columnTypeIdentifierClause.VariableLengthIdentifier.Text;
-
                         if (variableLengthText.Equals("MAX", StringComparison.OrdinalIgnoreCase))
                             _currentTableColumn.MaxLength = double.MaxValue;
                         else if (int.TryParse(variableLengthText, out int iMax))
@@ -272,7 +266,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
 
             default:
-                throw new EvaluateException($"ERROR: Unknown syntax kind <{syntax.Kind}>.");
+                Debug.Assert(false, $"ERROR: Unknown syntax kind <{syntax.Kind}>.");
+                break;
         }
     }
 #pragma warning restore CA1502 // Avoid excessive complexity
@@ -304,27 +299,21 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case SyntaxKind.TypeIndexSettingClause:
                     {
                         TypeIndexSettingClause typeSetting = (TypeIndexSettingClause)setting;
-                        string typeValue =
-                            typeSetting.ValueToken.Value?.ToString()
-                                ?? typeSetting.ValueToken.Text;
+                        string typeValue = $"{typeSetting.ValueToken.Value ?? typeSetting.ValueToken.Text}";
                         _currentTableIndex.Type = typeValue;
                         break;
                     }
                     case SyntaxKind.NameIndexSettingClause:
                     {
                         NameIndexSettingClause nameSetting = (NameIndexSettingClause)setting;
-                        string nameValue =
-                            nameSetting.ValueToken.Value?.ToString()
-                                ?? nameSetting.ValueToken.Text;
+                        string nameValue = $"{nameSetting.ValueToken.Value}";
                         _currentTableIndex.Name = nameValue;
                         break;
                     }
                     case SyntaxKind.NoteIndexSettingClause:
                     {
                         NoteIndexSettingClause noteSetting = (NoteIndexSettingClause)setting;
-                        string noteValue =
-                            noteSetting.ValueToken.Value?.ToString()
-                                ?? noteSetting.ValueToken.Text;
+                        string noteValue = $"{noteSetting.ValueToken.Value}";
                         _currentTableIndex.Note = noteValue;
                         break;
                     }
@@ -349,19 +338,18 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
         }
 
-        _currentTable?.AddIndex(_currentTableIndex);
+        Debug.Assert(_currentTable is not null, "Current table should not be null.");
+        _currentTable.AddIndex(_currentTableIndex);
         _currentTableIndex = null;
     }
 
     /// <inheritdoc/>
     protected override void WalkNoteDeclarationStatement(NoteDeclarationSyntax syntax)
     {
-        string noteText = $"{syntax.Note.Value ?? syntax.Note.Text}";
+        string noteText = $"{syntax.Note.Value}";
 
         if (_currentTable is not null)
             _currentTable.AddNote(noteText);
-        else if (_currentProject is not null)
-            _currentProject.AddNote(noteText);
         else
             _database.AddNote(noteText);
 
@@ -375,7 +363,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
         if (_currentTableColumn is not null)
         {
-            string defaultValue = $"{syntax.LiteralToken.Value ?? syntax.LiteralToken.Text}";
+            string defaultValue = $"{syntax.LiteralToken.Value}";
             _currentTableColumn.DefaultValue = defaultValue switch
             {
                 "False" => "false",
@@ -394,11 +382,5 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         {
             _currentTableColumn.DefaultValue = syntax.IdentifierToken.Text;
         }
-    }
-
-    /// <inheritdoc/>
-    protected override void WalkParenthesizedExpression(ParenthesizedExpressionSyntax syntax)
-    {
-        base.WalkParenthesizedExpression(syntax);
     }
 }

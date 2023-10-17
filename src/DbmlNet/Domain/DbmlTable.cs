@@ -21,8 +21,8 @@ public sealed class DbmlTable
     /// <param name="database">The name of the database.</param>
     public DbmlTable(
         string table,
-        string schema = "",
-        string database = "")
+        string? schema = null,
+        string? database = null)
     {
         Name = table;
         Schema = schema;
@@ -37,12 +37,12 @@ public sealed class DbmlTable
     /// <summary>
     /// Gets the name of the schema.
     /// </summary>
-    public string Schema { get; }
+    public string? Schema { get; }
 
     /// <summary>
     /// Gets the name of the database.
     /// </summary>
-    public string Database { get; }
+    public string? Database { get; }
 
     /// <summary>
     /// Gets the columns.
