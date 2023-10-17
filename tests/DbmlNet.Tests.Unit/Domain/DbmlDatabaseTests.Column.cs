@@ -59,4 +59,25 @@ public sealed partial class DbmlDatabaseTests
         Assert.Equal("Id", column.ToString());
         Assert.Equal("nvarchar(450)", column.Type);
     }
+
+    [Fact]
+    public void Create_Returns_Column_With_Note()
+    {
+        string text = """
+        Table Users
+        {
+            Id nvarchar(450) [ note: 'This is a note.' ]
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        string note = Assert.Single(column.Notes);
+        Assert.Equal("This is a note.", note);
+        Assert.Equal("This is a note.", column.Note);
+    }
 }
