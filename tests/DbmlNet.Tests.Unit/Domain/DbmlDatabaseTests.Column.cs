@@ -189,6 +189,7 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("null", null)]
     [InlineData("'some string value'", "some string value")]
     [InlineData("\"some string value\"", "some string value")]
+    [InlineData("`now()`", null)]
     public void Create_Returns_Column_With_Default_Value(string valueText, object? value)
     {
         string text = $$"""
