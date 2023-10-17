@@ -301,10 +301,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     }
                     case SyntaxKind.TypeIndexSettingClause:
                     {
-                        TypeIndexSettingClause noteSetting = (TypeIndexSettingClause)setting;
+                        TypeIndexSettingClause typeSetting = (TypeIndexSettingClause)setting;
                         string typeValue =
-                            noteSetting.ValueToken.Value?.ToString()
-                                ?? noteSetting.ValueToken.Text;
+                            typeSetting.ValueToken.Value?.ToString()
+                                ?? typeSetting.ValueToken.Text;
                         _currentTableIndex.Type = typeValue;
                         break;
                     }
