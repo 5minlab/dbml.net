@@ -221,6 +221,9 @@ public abstract class SyntaxWalker
 
         switch (syntax.Kind)
         {
+            case SyntaxKind.BacktickExpression:
+                WalkBacktickExpression((BacktickExpressionSyntax)syntax);
+                break;
             case SyntaxKind.NullExpression:
                 WalkNullExpression((NullExpressionSyntax)syntax);
                 break;
@@ -236,6 +239,16 @@ public abstract class SyntaxWalker
             default:
                 throw new EvaluateException($"ERROR: Unknown syntax kind <{syntax.Kind}>.");
         }
+    }
+
+    /// <summary>
+    /// Walks a backtick expression syntax.
+    /// </summary>
+    /// <param name="syntax">The backtick expression syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    protected virtual void WalkBacktickExpression(BacktickExpressionSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>
