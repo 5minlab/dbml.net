@@ -179,4 +179,31 @@ public sealed partial class DbmlDatabaseTests
         Assert.False(column.IsNullable, "Column should not be nullable");
         Assert.True(column.IsRequired, "Column should be required");
     }
+
+    [Theory]
+    [InlineData("'00000000-0000-0000-0000-000000000000'")]
+    [InlineData("\"00000000-0000-0000-0000-000000000000\"")]
+    [InlineData("0")]
+    [InlineData("1")]
+    [InlineData("123.123")]
+    [InlineData("true")]
+    [InlineData("false")]
+    public void Create_Returns_Column_With_Default_Value(string defaultValue)
+    {
+        string text = $$"""
+        Table Users
+        {
+            Id nvarchar(450) [ default: {{defaultValue}} ]
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        Assert.True(column.HasDefaultValue, "Column should have default value");
+        Assert.Equal(defaultValue, column.DefaultValue);
+    }
 }
