@@ -317,6 +317,15 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableIndex.Name = nameValue;
                         break;
                     }
+                    case SyntaxKind.NoteIndexSettingClause:
+                    {
+                        NoteIndexSettingClause noteSetting = (NoteIndexSettingClause)setting;
+                        string noteValue =
+                            noteSetting.ValueToken.Value?.ToString()
+                                ?? noteSetting.ValueToken.Text;
+                        _currentTableIndex.Note = noteValue;
+                        break;
+                    }
                     default:
                         throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
                 }
