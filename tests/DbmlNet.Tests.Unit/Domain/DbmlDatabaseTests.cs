@@ -8,7 +8,7 @@ namespace DbmlNet.Tests.Unit.Domain;
 public sealed partial class DbmlDatabaseTests
 {
     [Fact]
-    public void Create_Database_Empty()
+    public void Create_Returns_Database_Empty()
     {
         string text = "";
         SyntaxTree syntax = SyntaxTree.Parse(text);
@@ -24,7 +24,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Note()
+    public void Create_Returns_Database_With_Note()
     {
         string text = """
         note: 'This is a note.'

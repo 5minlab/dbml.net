@@ -8,7 +8,7 @@ namespace DbmlNet.Tests.Unit.Domain;
 public sealed partial class DbmlDatabaseTests
 {
     [Fact]
-    public void Create_Database_With_Table_Empty()
+    public void Create_Returns_Table_Empty()
     {
         string text = """
         Table Users
@@ -33,7 +33,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Table_Name()
+    public void Create_Returns_Table_With_Name()
     {
         string text = """
         Table Users
@@ -51,7 +51,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Table_Name_And_Schema()
+    public void Create_Returns_Table_With_Name_And_Schema()
     {
         string text = """
         Table identity.Users
@@ -71,7 +71,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Table_Name_And_Schema_And_Database()
+    public void Create_Returns_Table_With_Name_And_Schema_And_Database()
     {
         string text = """
         Table AdventureWorks.identity.Users

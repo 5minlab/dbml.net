@@ -10,7 +10,26 @@ namespace DbmlNet.Tests.Unit.Domain;
 public sealed partial class DbmlDatabaseTests
 {
     [Fact]
-    public void Create_Database_With_Project_Name()
+    public void Create_Returns_Project_Empty()
+    {
+        string text = """
+        Project "AdventureWorks" {
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        Assert.NotNull(database.Project);
+        Assert.Equal("AdventureWorks", database.Project.Name);
+        Assert.Equal("AdventureWorks", database.Project.ToString());
+        Assert.Empty(database.Project.Note);
+        Assert.Empty(database.Project.Notes);
+    }
+
+    [Fact]
+    public void Create_Returns_Project_With_Name()
     {
         string text = """
         Project "AdventureWorks" {
@@ -27,7 +46,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Project_Note()
+    public void Create_Returns_Project_With_Note()
     {
         string text = """
         Project "AdventureWorks" {
@@ -48,7 +67,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Project_DatabaseType()
+    public void Create_Returns_Project_With_Database_Provider()
     {
         string text = """
         Project "AdventureWorks" {
@@ -65,7 +84,7 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Database_With_Project_Fully_Setup()
+    public void Create_Returns_Project_With_All_Settings()
     {
         string text = """
         Project "AdventureWorks" {
