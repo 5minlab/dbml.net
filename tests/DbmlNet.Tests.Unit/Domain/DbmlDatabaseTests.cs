@@ -1,6 +1,8 @@
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
+using Tynamix.ObjectFiller;
+
 using Xunit;
 
 namespace DbmlNet.Tests.Unit.Domain;
@@ -26,15 +28,16 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Database_With_Note()
     {
-        string text = """
-        note: 'This is a note.'
+        string randomNote = CreateRandomMultiWordString();
+        string text = $$"""
+        note: '{{randomNote}}'
         """;
         SyntaxTree syntax = SyntaxTree.Parse(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
-        Assert.Equal("This is a note.", database.Note);
+        Assert.Equal(randomNote, database.Note);
     }
 
     private static SyntaxTree ParseNoDiagnostics(string text)
@@ -43,4 +46,16 @@ public sealed partial class DbmlDatabaseTests
         Assert.Empty(syntax.Diagnostics);
         return syntax;
     }
+
+    private static int GetRandomNumber() =>
+        new IntRange(min: 0, max: 10).GetValue();
+
+    private static decimal GetRandomDecimal() =>
+        new SequenceGeneratorDecimal { From = 0.0M, To = decimal.MaxValue }.GetValue();
+
+    private static string CreateRandomString() =>
+        new MnemonicString().GetValue();
+
+    private static string CreateRandomMultiWordString() =>
+        new MnemonicString(wordCount: GetRandomNumber()).GetValue();
 }

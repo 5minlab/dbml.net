@@ -10,10 +10,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_Empty()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -25,7 +25,7 @@ public sealed partial class DbmlDatabaseTests
         DbmlTableColumn column = Assert.Single(table.Columns);
         Assert.NotNull(column.Table);
         Assert.Equal(table, column.Table);
-        Assert.Equal(450, column.MaxLength);
+        Assert.Null(column.MaxLength);
         Assert.False(column.HasMaxLength, "Column should not have max length");
         Assert.False(column.IsPrimaryKey, "Column should not be primary key");
         Assert.False(column.IsUnique, "Column should not be unique");
@@ -42,10 +42,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_With_Name_And_Type()
     {
-        string text = """
-        Table Users
+        string randomColumnName = CreateRandomString();
+        string randomColumnType = CreateRandomString();
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450)
+            {{randomColumnName}} {{randomColumnType}}
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -55,18 +57,18 @@ public sealed partial class DbmlDatabaseTests
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableColumn column = Assert.Single(table.Columns);
-        Assert.Equal("Id", column.Name);
-        Assert.Equal("Id", column.ToString());
-        Assert.Equal("nvarchar(450)", column.Type);
+        Assert.Equal(randomColumnName, column.Name);
+        Assert.Equal(randomColumnName, column.ToString());
+        Assert.Equal(randomColumnType, column.Type);
     }
 
     [Fact]
     public void Create_Returns_Column_With_Note()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ note: 'This is a note.' ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ note: 'This is a note.' ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -87,9 +89,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Column_With_PrimaryKey_Flag(string primaryKeyText)
     {
         string text = $$"""
-        Table Users
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ {{primaryKeyText}} ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ {{primaryKeyText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -105,10 +107,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_With_Unique_Flag()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ unique ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ unique ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -124,10 +126,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_With_Increment_Flag()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ increment ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ increment ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -143,10 +145,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_With_Nullable_Flag()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ null ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ null ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -163,10 +165,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Column_With_Not_Nullable_Flag()
     {
-        string text = """
-        Table Users
+        string text = $$"""
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ not null ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ not null ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -193,9 +195,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Column_With_Default_Value(string valueText, object? value)
     {
         string text = $$"""
-        Table Users
+        Table {{CreateRandomString()}}
         {
-            Id nvarchar(450) [ default: {{valueText}} ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ default: {{valueText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);

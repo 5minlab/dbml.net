@@ -10,8 +10,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_Empty()
     {
-        string text = """
-        Table Users
+        string randomTableName = CreateRandomString();
+        string text = $$"""
+        Table {{randomTableName}}
         {
         }
         """;
@@ -23,8 +24,8 @@ public sealed partial class DbmlDatabaseTests
         DbmlTable table = Assert.Single(database.Tables);
         Assert.Empty(table.Database);
         Assert.Empty(table.Schema);
-        Assert.Equal("Users", table.Name);
-        Assert.Equal("Users", table.ToString());
+        Assert.Equal(randomTableName, table.Name);
+        Assert.Equal(randomTableName, table.ToString());
         Assert.Empty(table.Columns);
         Assert.Empty(table.Indexes);
         Assert.Empty(table.Relationships);
@@ -35,8 +36,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_With_Name()
     {
-        string text = """
-        Table Users
+        string randomTableName = CreateRandomString();
+        string text = $$"""
+        Table {{randomTableName}}
         {
         }
         """;
@@ -46,15 +48,17 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
-        Assert.Equal("Users", table.Name);
-        Assert.Equal("Users", table.ToString());
+        Assert.Equal(randomTableName, table.Name);
+        Assert.Equal(randomTableName, table.ToString());
     }
 
     [Fact]
     public void Create_Returns_Table_With_Name_And_Schema()
     {
-        string text = """
-        Table identity.Users
+        string randomSchemaName = CreateRandomString();
+        string randomTableName = CreateRandomString();
+        string text = $$"""
+        Table {{randomSchemaName}}.{{randomTableName}}
         {
         }
         """;
@@ -65,16 +69,19 @@ public sealed partial class DbmlDatabaseTests
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         Assert.Empty(table.Database);
-        Assert.Equal("identity", table.Schema);
-        Assert.Equal("Users", table.Name);
-        Assert.Equal("identity.Users", table.ToString());
+        Assert.Equal(randomSchemaName, table.Schema);
+        Assert.Equal(randomTableName, table.Name);
+        Assert.Equal($"{randomSchemaName}.{randomTableName}", table.ToString());
     }
 
     [Fact]
     public void Create_Returns_Table_With_Name_And_Schema_And_Database()
     {
-        string text = """
-        Table AdventureWorks.identity.Users
+        string randomDatabaseName = CreateRandomString();
+        string randomSchemaName = CreateRandomString();
+        string randomTableName = CreateRandomString();
+        string text = $$"""
+        Table {{randomDatabaseName}}.{{randomSchemaName}}.{{randomTableName}}
         {
         }
         """;
@@ -84,10 +91,10 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
-        Assert.Equal("AdventureWorks", table.Database);
-        Assert.Equal("identity", table.Schema);
-        Assert.Equal("Users", table.Name);
-        Assert.Equal("AdventureWorks.identity.Users", table.ToString());
+        Assert.Equal(randomDatabaseName, table.Database);
+        Assert.Equal(randomSchemaName, table.Schema);
+        Assert.Equal(randomTableName, table.Name);
+        Assert.Equal($"{randomDatabaseName}.{randomSchemaName}.{randomTableName}", table.ToString());
     }
 
     [Fact]

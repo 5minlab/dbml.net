@@ -12,8 +12,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_Empty()
     {
-        string text = """
-        Project "AdventureWorks" {
+        string randomProjectName = CreateRandomMultiWordString();
+        string text = $$"""
+        Project "{{randomProjectName}}" {
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -22,8 +23,8 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         Assert.NotNull(database.Project);
-        Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal("AdventureWorks", database.Project.ToString());
+        Assert.Equal(randomProjectName, database.Project.Name);
+        Assert.Equal(randomProjectName, database.Project.ToString());
         Assert.Empty(database.Project.Note);
         Assert.Empty(database.Project.Notes);
     }
@@ -31,8 +32,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_With_Name()
     {
-        string text = """
-        Project "AdventureWorks" {
+        string randomProjectName = CreateRandomMultiWordString();
+        string text = $$"""
+        Project "{{randomProjectName}}" {
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -41,16 +43,17 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         Assert.NotNull(database.Project);
-        Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal("AdventureWorks", database.Project.ToString());
+        Assert.Equal(randomProjectName, database.Project.Name);
+        Assert.Equal(randomProjectName, database.Project.ToString());
     }
 
     [Fact]
     public void Create_Returns_Project_With_Note()
     {
-        string text = """
-        Project "AdventureWorks" {
-            note: 'Contacts database schema.'
+        string randomNoteText = CreateRandomMultiWordString();
+        string text = $$"""
+        Project "{{CreateRandomMultiWordString()}}" {
+            note: '{{randomNoteText}}'
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -59,19 +62,18 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         Assert.NotNull(database.Project);
-        Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal("AdventureWorks", database.Project.ToString());
         string note = Assert.Single(database.Project.Notes);
-        Assert.Equal("Contacts database schema.", note);
-        Assert.Equal("Contacts database schema.", database.Project.Note);
+        Assert.Equal(randomNoteText, note);
+        Assert.Equal(randomNoteText, database.Project.Note);
     }
 
     [Fact]
     public void Create_Returns_Project_With_Database_Provider()
     {
-        string text = """
-        Project "AdventureWorks" {
-            database_type: 'PostgreSQL'
+        string randomDatabaseTypeText = CreateRandomMultiWordString();
+        string text = $$"""
+        Project "{{CreateRandomMultiWordString()}}" {
+            database_type: '{{randomDatabaseTypeText}}'
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -80,16 +82,19 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         string provider = Assert.Single(database.Providers);
-        Assert.Equal("PostgreSQL", provider);
+        Assert.Equal(randomDatabaseTypeText, provider);
     }
 
     [Fact]
     public void Create_Returns_Project_With_All_Settings()
     {
-        string text = """
-        Project "AdventureWorks" {
-            database_type: 'PostgreSQL'
-            note: 'AdventureWorksDW is the data warehouse sample'
+        string randomProjectText = CreateRandomMultiWordString();
+        string randomDatabaseTypeText = CreateRandomMultiWordString();
+        string randomNoteText = CreateRandomMultiWordString();
+        string text = $$"""
+        Project "{{randomProjectText}}" {
+            database_type: '{{randomDatabaseTypeText}}'
+            note: '{{randomNoteText}}'
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -98,12 +103,12 @@ public sealed partial class DbmlDatabaseTests
 
         Assert.NotNull(database);
         Assert.Single(database.Providers);
-        Assert.Equal("PostgreSQL", database.Providers.ElementAt(0));
+        Assert.Equal(randomDatabaseTypeText, database.Providers.ElementAt(0));
         Assert.NotNull(database.Project);
-        Assert.Equal("AdventureWorks", database.Project.Name);
-        Assert.Equal("AdventureWorks", database.Project.ToString());
+        Assert.Equal(randomProjectText, database.Project.Name);
+        Assert.Equal(randomProjectText, database.Project.ToString());
         string note = Assert.Single(database.Project.Notes);
-        Assert.Equal("AdventureWorksDW is the data warehouse sample", note);
-        Assert.Equal("AdventureWorksDW is the data warehouse sample", database.Project.Note);
+        Assert.Equal(randomNoteText, note);
+        Assert.Equal(randomNoteText, database.Project.Note);
     }
 }
