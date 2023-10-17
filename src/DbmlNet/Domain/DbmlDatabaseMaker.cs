@@ -333,6 +333,18 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableIndex.Note = noteValue;
                         break;
                     }
+                    case SyntaxKind.UnknownIndexSettingClause:
+                    {
+                        UnknownIndexSettingClause unknownSetting = (UnknownIndexSettingClause)setting;
+                        string settingName = unknownSetting.NameToken.Text;
+                        string? settingValue =
+                            unknownSetting.ValueToken?.Value?.ToString()
+                                ?? unknownSetting.ValueToken?.Text
+                                ?? null;
+
+                        _currentTableIndex.AddUnknownSetting(settingName, settingValue);
+                        break;
+                    }
                     default:
                     {
                         Debug.Assert(false, $"Unknown index setting kind '{setting.Kind}'.");
