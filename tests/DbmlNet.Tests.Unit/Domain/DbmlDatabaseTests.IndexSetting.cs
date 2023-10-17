@@ -181,10 +181,14 @@ public sealed partial class DbmlDatabaseTests
             }
         }
         """;
-        SyntaxTree syntax = ParseNoDiagnostics(text);
+        SyntaxTree syntax = ParseNoErrorDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
+        Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed type of index (btree, gin, gist, hash depending on DB).", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
@@ -203,10 +207,14 @@ public sealed partial class DbmlDatabaseTests
             }
         }
         """;
-        SyntaxTree syntax = ParseNoDiagnostics(text);
+        SyntaxTree syntax = ParseNoErrorDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
+        Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed type of index (btree, gin, gist, hash depending on DB).", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
@@ -225,10 +233,14 @@ public sealed partial class DbmlDatabaseTests
             }
         }
         """;
-        SyntaxTree syntax = ParseNoDiagnostics(text);
+        SyntaxTree syntax = ParseNoErrorDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
+        Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed type of index (btree, gin, gist, hash depending on DB).", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
