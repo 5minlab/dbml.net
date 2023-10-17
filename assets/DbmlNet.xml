@@ -208,9 +208,9 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ToString">
             <summary>
-            Returns the full text for this column identifier using format {schema}.{table}.{column}.
+            Returns the text for this column identifier. Uses format {schema}.{table}.{column}.
             </summary>
-            <returns>The full text for this column identifier.</returns>
+            <returns>The text for this column identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
             <summary>
@@ -1601,9 +1601,9 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.ToString">
             <summary>
-            Returns the full text for this table identifier using format {database}.{schema}.{table}.
+            Returns the text for this table identifier. Uses format {database}.{schema}.{table}.
             </summary>
-            <returns>The full text for this table identifier.</returns>
+            <returns>The text for this table identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
             <summary>

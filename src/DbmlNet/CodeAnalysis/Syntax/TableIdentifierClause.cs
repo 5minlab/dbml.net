@@ -64,9 +64,9 @@ public sealed class TableIdentifierClause : SyntaxNode
     }
 
     /// <summary>
-    /// Returns the full text for this table identifier using format {database}.{schema}.{table}.
+    /// Returns the text for this table identifier. Uses format {database}.{schema}.{table}.
     /// </summary>
-    /// <returns>The full text for this table identifier.</returns>
+    /// <returns>The text for this table identifier.</returns>
     public override string ToString()
     {
         return $"{DatabaseIdentifier?.Text}{FirstDotToken?.Text}{SchemaIdentifier?.Text}{SecondDotToken?.Text}{TableIdentifier.Text}";

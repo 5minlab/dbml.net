@@ -64,9 +64,9 @@ public sealed class ColumnIdentifierClause : SyntaxNode
     }
 
     /// <summary>
-    /// Returns the full text for this column identifier using format {schema}.{table}.{column}.
+    /// Returns the text for this column identifier. Uses format {schema}.{table}.{column}.
     /// </summary>
-    /// <returns>The full text for this column identifier.</returns>
+    /// <returns>The text for this column identifier.</returns>
     public override string ToString()
     {
         return $"{SchemaIdentifier?.Text}{FirstDotToken?.Text}{TableIdentifier?.Text}{SecondDotToken?.Text}{ColumnIdentifier.Text}";
