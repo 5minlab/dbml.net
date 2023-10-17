@@ -29,7 +29,7 @@ public sealed class DbmlMarkdownWriter
     public static void WriterToFile(DbmlDatabase dbmlDatabase, string outputFilePath)
     {
         FileStream outputStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write);
-        using StreamWriter writer = new StreamWriter(outputStream, Encoding.UTF8);
+        using StreamWriter writer = new StreamWriter(outputStream);
 
         DbmlMarkdownWriter dbmlWriter = new DbmlMarkdownWriter(dbmlDatabase);
         dbmlWriter.WriteTo(writer);
