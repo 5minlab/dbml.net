@@ -208,6 +208,30 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
+    public void Create_Returns_ColumnSetting_With_ManyToOne_Relationship()
+    {
+        string tableName = CreateRandomString();
+        string fromColumnName = CreateRandomString();
+        string toColumnName = CreateRandomString();
+        string text = $$"""
+        Table {{tableName}}
+        {
+            {{fromColumnName}} {{CreateRandomString()}} [ ref: > {{toColumnName}} ]
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableRelationship relationship = Assert.Single(table.Relationships);
+        Assert.Equal(TableRelationshipType.ManyToOne, relationship.RelationshipType);
+        Assert.Equal($"{tableName}.{fromColumnName}", relationship.FromIdentifier.ToString());
+        Assert.Equal(toColumnName, relationship.ToIdentifier.ToString());
+    }
+
+    [Fact]
     public void Create_Returns_ColumnSetting_With_Unknown_Setting()
     {
         string settingName = CreateRandomString();
