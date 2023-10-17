@@ -57,4 +57,29 @@ public sealed partial class DbmlDatabaseTests
         Assert.Null(index.Note);
         Assert.Empty(index.Settings);
     }
+
+    [Theory]
+    [InlineData("pk")]
+    [InlineData("primary key")]
+    public void Create_Returns_Index_With_PrimaryKey_Flag(string settingText)
+    {
+        string randomIndexName = CreateRandomString();
+        string indexText = $"{randomIndexName}";
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            Indexes {
+                {{indexText}} [ {{settingText}} ]
+            }
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableIndex index = Assert.Single(table.Indexes);
+        Assert.True(index.IsPrimaryKey, "Column should be primary key");
+    }
 }
