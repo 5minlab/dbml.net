@@ -218,4 +218,26 @@ public sealed partial class DbmlDatabaseTests
         DbmlTableIndex index = Assert.Single(table.Indexes);
         Assert.Equal(typeName, index.Type);
     }
+
+    [Fact]
+    public void Create_Returns_Index_With_Unknown_SingleQuotationMarksString_Type()
+    {
+        string typeName = CreateRandomMultiWordString();
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            Indexes {
+                {{CreateRandomString()}} [ type: '{{typeName}}' ]
+            }
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableIndex index = Assert.Single(table.Indexes);
+        Assert.Equal(typeName, index.Type);
+    }
 }
