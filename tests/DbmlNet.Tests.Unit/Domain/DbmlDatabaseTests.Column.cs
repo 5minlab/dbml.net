@@ -81,12 +81,12 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("varchar(123)", 123D)]
     [InlineData("nchar(123)", 123D)]
     [InlineData("nvarchar(123)", 123D)]
-    [InlineData("binary(123.456)", 123.45600128173828D)]
-    [InlineData("varbinary(123.456)", 123.45600128173828D)]
-    [InlineData("char(123.456)", 123.45600128173828D)]
-    [InlineData("varchar(123.456)", 123.45600128173828D)]
-    [InlineData("nchar(123.456)", 123.45600128173828D)]
-    [InlineData("nvarchar(123.456)", 123.45600128173828D)]
+    [InlineData("binary(123.456)", 123.456D)]
+    [InlineData("varbinary(123.456)", 123.456D)]
+    [InlineData("char(123.456)", 123.456D)]
+    [InlineData("varchar(123.456)", 123.456D)]
+    [InlineData("nchar(123.456)", 123.456D)]
+    [InlineData("nvarchar(123.456)", 123.456D)]
     public void Create_Returns_Column_With_Max_Length(string columnTypeText, object? maxLength)
     {
         string text = $$"""
