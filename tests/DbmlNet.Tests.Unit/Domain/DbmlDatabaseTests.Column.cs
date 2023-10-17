@@ -16,7 +16,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -48,7 +48,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450)
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -69,7 +69,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ note: 'This is a note.' ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -92,7 +92,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ {{primaryKeyText}} ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -111,7 +111,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ unique ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -130,7 +130,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ increment ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -149,7 +149,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ null ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -169,7 +169,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ not null ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -196,7 +196,7 @@ public sealed partial class DbmlDatabaseTests
             Id nvarchar(450) [ default: {{valueText}} ]
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
         Assert.Empty(syntax.Diagnostics);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);

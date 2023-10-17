@@ -15,7 +15,7 @@ public sealed partial class DbmlDatabaseTests
         {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -40,7 +40,7 @@ public sealed partial class DbmlDatabaseTests
         {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -58,7 +58,7 @@ public sealed partial class DbmlDatabaseTests
         {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -78,7 +78,7 @@ public sealed partial class DbmlDatabaseTests
         {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -99,7 +99,7 @@ public sealed partial class DbmlDatabaseTests
             note: 'This is a note.'
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 

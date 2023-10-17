@@ -16,7 +16,7 @@ public sealed partial class DbmlDatabaseTests
         Project "AdventureWorks" {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -35,7 +35,7 @@ public sealed partial class DbmlDatabaseTests
         Project "AdventureWorks" {
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -53,7 +53,7 @@ public sealed partial class DbmlDatabaseTests
             note: 'Contacts database schema.'
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -74,7 +74,7 @@ public sealed partial class DbmlDatabaseTests
             database_type: 'PostgreSQL'
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
@@ -92,7 +92,7 @@ public sealed partial class DbmlDatabaseTests
             note: 'AdventureWorksDW is the data warehouse sample'
         }
         """;
-        SyntaxTree syntax = SyntaxTree.Parse(text);
+        SyntaxTree syntax = ParseNoDiagnostics(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 

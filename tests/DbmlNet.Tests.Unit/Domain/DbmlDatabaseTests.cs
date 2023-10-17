@@ -36,4 +36,11 @@ public sealed partial class DbmlDatabaseTests
         Assert.NotNull(database);
         Assert.Equal("This is a note.", database.Note);
     }
+
+    private static SyntaxTree ParseNoDiagnostics(string text)
+    {
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+        Assert.Empty(syntax.Diagnostics);
+        return syntax;
+    }
 }
