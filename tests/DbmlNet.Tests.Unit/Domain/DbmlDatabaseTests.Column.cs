@@ -186,6 +186,7 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("123.456", "123.456")]
     [InlineData("true", "true")]
     [InlineData("false", "false")]
+    [InlineData("null", null)]
     [InlineData("'some string value'", "'some string value'")]
     [InlineData("\"some string value\"", "\"some string value\"")]
     public void Create_Returns_Column_With_Default_Value(string valueText, object? value)
