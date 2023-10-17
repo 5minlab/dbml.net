@@ -181,29 +181,33 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Theory]
-    [InlineData("someDefaultValue")]
-    [InlineData("123")]
-    [InlineData("123.456")]
-    [InlineData("true")]
-    [InlineData("false")]
-    [InlineData("'some string value'")]
-    [InlineData("\"some string value\"")]
-    public void Create_Returns_Column_With_Default_Value(string defaultValue)
+    [InlineData("someDefaultValue", "someDefaultValue")]
+    [InlineData("123", "123")]
+    [InlineData("123.456", "123.456")]
+    [InlineData("true", "true")]
+    [InlineData("false", "false")]
+    [InlineData("'some string value'", "'some string value'")]
+    [InlineData("\"some string value\"", "\"some string value\"")]
+    public void Create_Returns_Column_With_Default_Value(string valueText, object? value)
     {
         string text = $$"""
         Table Users
         {
-            Id nvarchar(450) [ default: {{defaultValue}} ]
+            Id nvarchar(450) [ default: {{valueText}} ]
         }
         """;
         SyntaxTree syntax = SyntaxTree.Parse(text);
+        Assert.Empty(syntax.Diagnostics);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);
 
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableColumn column = Assert.Single(table.Columns);
-        Assert.True(column.HasDefaultValue, "Column should have default value");
-        Assert.Equal(defaultValue, column.DefaultValue);
+        if (value is null)
+            Assert.False(column.HasDefaultValue, "Column should not have default value");
+        else
+            Assert.True(column.HasDefaultValue, "Column should have default value");
+        Assert.Equal(value, column.DefaultValue);
     }
 }
