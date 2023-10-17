@@ -1,3 +1,4 @@
+using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
@@ -283,5 +284,35 @@ public sealed partial class DbmlDatabaseTests
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
         Assert.Equal(noteValue, index.Note);
+    }
+
+    [Fact]
+    public void Create_Returns_Index_With_Unknown_Setting()
+    {
+        string settingName = CreateRandomString();
+        object? settingValue = null;
+        string settingText = $"{settingName}";
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            Indexes {
+                {{CreateRandomString()}} [ {{settingText}} ]
+            }
+        }
+        """;
+        SyntaxTree syntax = ParseNoErrorDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Unknown index setting '{settingName}'.", diagnostic.Message);
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableIndex index = Assert.Single(table.Indexes);
+        (string unknownSettingName, object? unknownSettingValue) = Assert.Single(index.UnknownSettings);
+        Assert.Equal(settingName, unknownSettingName);
+        Assert.Equal(settingValue, unknownSettingValue);
     }
 }
