@@ -91,12 +91,13 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Fact]
-    public void Create_Returns_Column_With_Note()
+    public void Create_Returns_Column_With_SingleQuotationMarksString_Note()
     {
+        string noteValueText = CreateRandomMultiWordString();
         string text = $$"""
         Table {{CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ note: 'This is a note.' ]
+            {{CreateRandomString()}} {{CreateRandomString()}} [ note: '{{noteValueText}}' ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -107,8 +108,8 @@ public sealed partial class DbmlDatabaseTests
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableColumn column = Assert.Single(table.Columns);
         string note = Assert.Single(column.Notes);
-        Assert.Equal("This is a note.", note);
-        Assert.Equal("This is a note.", column.Note);
+        Assert.Equal(noteValueText, note);
+        Assert.Equal(noteValueText, column.Note);
     }
 
     [Theory]
