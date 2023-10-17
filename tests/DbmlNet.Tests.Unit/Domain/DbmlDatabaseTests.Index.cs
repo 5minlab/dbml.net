@@ -105,4 +105,31 @@ public sealed partial class DbmlDatabaseTests
         DbmlTableIndex index = Assert.Single(table.Indexes);
         Assert.True(index.IsUnique, "Column should be unique");
     }
+
+    [Theory]
+    [InlineData("btree")]
+    [InlineData("gin")]
+    [InlineData("gist")]
+    [InlineData("hash")]
+    public void Create_Returns_Index_With_Allowed_Type(string typeName)
+    {
+        string randomIndexName = CreateRandomString();
+        string indexText = $"{randomIndexName}";
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            Indexes {
+                {{indexText}} [ type: {{typeName}} ]
+            }
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableIndex index = Assert.Single(table.Indexes);
+        Assert.Equal(typeName, index.Type);
+    }
 }
