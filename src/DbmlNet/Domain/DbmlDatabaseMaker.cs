@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Diagnostics;
 
 using DbmlNet.CodeAnalysis.Syntax;
 
@@ -59,7 +60,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
             else
             {
-                throw new EvaluateException($"Unknown project setting kind: {setting.Kind}");
+                Debug.Assert(false, $"Unknown project setting kind '{setting.Kind}'.");
             }
         }
 
@@ -181,7 +182,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         break;
                     }
                     default:
-                        throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
+                    {
+                        Debug.Assert(false, $"Unknown column setting kind '{setting.Kind}'.");
+                        break;
+                    }
                 }
             }
         }
@@ -194,8 +198,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 #pragma warning disable CA1502 // Avoid excessive complexity
     private void WalkColumnType(ColumnTypeClause syntax)
     {
-        if (_currentTableColumn is null)
-            return;
+        Debug.Assert(_currentTableColumn is not null);
 
         switch (syntax.Kind)
         {
@@ -222,7 +225,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.DefaultValue = "0";
                         return;
                     default:
+                    {
                         return;
+                    }
                 }
             }
 
@@ -265,7 +270,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         return;
                     }
                     default:
+                    {
                         return;
+                    }
                 }
             }
 
@@ -327,7 +334,10 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         break;
                     }
                     default:
-                        throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
+                    {
+                        Debug.Assert(false, $"Unknown index setting kind '{setting.Kind}'.");
+                        break;
+                    }
                 }
             }
         }
