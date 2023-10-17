@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 using DbmlNet.CodeAnalysis.Text;
 
@@ -8,6 +9,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 
 internal sealed class Parser
 {
+    internal static string[] IndexSettingTypes = new[] { "btree", "gin", "gist", "hash" };
     private readonly SyntaxTree _syntaxTree;
     private readonly ImmutableArray<SyntaxToken> _tokens;
     private int _position;
@@ -562,6 +564,11 @@ internal sealed class Parser
             _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
+        if (IndexSettingTypes.Contains(valueToken.Text) == false)
+        {
+            TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
+            Diagnostics.ReportUnknownIndexSettingType(location, $"{valueToken.Value ?? valueToken.Text}");
+        }
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }
 
