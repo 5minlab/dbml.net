@@ -89,4 +89,24 @@ public sealed partial class DbmlDatabaseTests
         Assert.Equal("Users", table.Name);
         Assert.Equal("AdventureWorks.identity.Users", table.ToString());
     }
+
+    [Fact]
+    public void Create_Returns_Table_With_Note()
+    {
+        string text = """
+        Table Users
+        {
+            note: 'This is a note.'
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        string note = Assert.Single(table.Notes);
+        Assert.Equal("This is a note.", note);
+        Assert.Equal("This is a note.", table.Note);
+    }
 }
