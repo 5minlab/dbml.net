@@ -282,7 +282,23 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         string columnName = syntax.IdentifierToken.Text;
         _currentTableIndex = new DbmlTableIndex(indexName, columnName, _currentTable);
 
-        base.WalkSingleFieldIndexDeclarationStatement(syntax);
+        if (syntax.Settings is not null)
+        {
+            foreach (IndexSettingClause setting in syntax.Settings.Settings)
+            {
+                switch (setting.Kind)
+                {
+                    case SyntaxKind.PrimaryKeyIndexSettingClause:
+                    case SyntaxKind.PkIndexSettingClause:
+                    {
+                        _currentTableIndex.IsPrimaryKey = true;
+                        break;
+                    }
+                    default:
+                        throw new EvaluateException($"ERROR: Unknown syntax kind <{setting.Kind}>.");
+                }
+            }
+        }
 
         _currentTable?.AddIndex(_currentTableIndex);
         _currentTableIndex = null;
