@@ -55,7 +55,7 @@ public sealed partial class DbmlDatabaseTests
         Assert.False(index.IsUnique, "Column should not be unique");
         Assert.Null(index.Type);
         Assert.Null(index.Note);
-        Assert.Empty(index.Settings);
+        Assert.Empty(index.UnknownSettings);
     }
 
     [Theory]

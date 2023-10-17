@@ -8,7 +8,7 @@ namespace DbmlNet.Domain;
 /// </summary>
 public sealed class DbmlTableIndex
 {
-    private readonly List<string> _settings = new();
+    private readonly List<(string name, object? value)> _unknownSettings = new();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DbmlTableIndex"/>.
@@ -59,9 +59,9 @@ public sealed class DbmlTableIndex
     public string? Note { get; internal set; }
 
     /// <summary>
-    /// Gets the settings.
+    /// Gets the unknown settings.
     /// </summary>
-    public IEnumerable<string> Settings => _settings;
+    public IEnumerable<(string unknownSettingName, object? unknownSettingValue)> UnknownSettings => _unknownSettings;
 
     /// <summary>
     /// Returns the name of this index.
@@ -69,9 +69,9 @@ public sealed class DbmlTableIndex
     /// <returns>The name of this index.</returns>
     public override string ToString() => Name;
 
-    internal void AddSetting(string value)
+    internal void AddUnknownSetting(string name, object? value)
     {
-        ArgumentException.ThrowIfNullOrEmpty(value);
-        _settings.Add(value);
+        ArgumentException.ThrowIfNullOrEmpty(name);
+        _unknownSettings.Add((name, value));
     }
 }

@@ -2444,9 +2444,9 @@
             Gets the note.
             </summary>
         </member>
-        <member name="P:DbmlNet.Domain.DbmlTableIndex.Settings">
+        <member name="P:DbmlNet.Domain.DbmlTableIndex.UnknownSettings">
             <summary>
-            Gets the settings.
+            Gets the unknown settings.
             </summary>
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableIndex.ToString">
