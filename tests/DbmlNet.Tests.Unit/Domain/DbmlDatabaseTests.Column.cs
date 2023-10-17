@@ -80,4 +80,25 @@ public sealed partial class DbmlDatabaseTests
         Assert.Equal("This is a note.", note);
         Assert.Equal("This is a note.", column.Note);
     }
+
+    [Theory]
+    [InlineData("pk")]
+    [InlineData("primary key")]
+    public void Create_Returns_Column_With_PrimaryKey_Flag(string primaryKeyText)
+    {
+        string text = $$"""
+        Table Users
+        {
+            Id nvarchar(450) [ {{primaryKeyText}} ]
+        }
+        """;
+        SyntaxTree syntax = SyntaxTree.Parse(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        Assert.True(column.IsPrimaryKey, "Column should be primary key");
+    }
 }
