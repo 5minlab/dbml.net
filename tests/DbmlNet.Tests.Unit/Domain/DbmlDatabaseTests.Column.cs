@@ -62,6 +62,33 @@ public sealed partial class DbmlDatabaseTests
         Assert.Equal(randomColumnType, column.Type);
     }
 
+    [Theory]
+    [InlineData("binary(MAX)", 1.7976931348623157E+308)]
+    [InlineData("varbinary(MAX)", 1.7976931348623157E+308)]
+    [InlineData("char(MAX)", 1.7976931348623157E+308)]
+    [InlineData("varchar(MAX)", 1.7976931348623157E+308)]
+    [InlineData("nchar(MAX)", 1.7976931348623157E+308)]
+    [InlineData("nvarchar(MAX)", 1.7976931348623157E+308)]
+    public void Create_Returns_Column_With_Max_Length(string columnTypeText, object? maxLength)
+    {
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            {{CreateRandomString()}} {{columnTypeText}}
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableColumn column = Assert.Single(table.Columns);
+        Assert.True(column.HasMaxLength, "Column should have max length");
+        Assert.NotNull(column.MaxLength);
+        Assert.Equal(maxLength, column.MaxLength);
+    }
+
     [Fact]
     public void Create_Returns_Column_With_Note()
     {
