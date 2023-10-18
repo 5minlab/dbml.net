@@ -74,6 +74,36 @@ Features:
 
 ## Running the solution
 
+The simplest way to run `dbnet` is to use one of the available dbnet.[cmd|sh] scripts and from the `root folder` run next command:
+
+```shell
+./dbnet.cmd --help # Windows
+./dbnet.sh --help  # Apple and Linux
+```
+
+The `--help` option will output the fallowing:
+
+```shell
+Usage: dbnet [<file | directory>...] [options]
+
+dbnet helps converting *.dbml syntax to *.sql, *.md syntax. Check the --output-type option.
+
+Arguments:
+  <file-or-directory-path> The file or directory path to operate on.
+
+Options:
+  --ignore-warnings         Allow files be processed even if the syntax tree contains warnings.
+  --print-syntax            Prints the syntax tree.
+  --output-type <opt>       Output type to use. Supported values: [sql | markdown]
+  -o --output <OUTPUT_DIR>  The output directory to place the artifacts in.
+  -h --help                 Show command line help.
+
+Examples:
+  dbnet file.dbml   # usage with a file
+  dbnet ./dir-name/ # usage with a folder
+
+```
+
 Application requires as `<input>` parameter, a valid path to either a **.dbml** file or a path to a directory which contains at least one **.dbml** file.
 
 Application can be started using one of the next options:
