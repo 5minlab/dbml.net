@@ -64,6 +64,9 @@ if (files.Length == 0)
 
 writer.WriteInfoMessage($"Found ({files.Length}) '*{ApplicationSettings.DbmlExtension}' files in input '{inputPath}'.");
 
+int warningDiagnostics = 0;
+int errorDiagnostics = 0;
+
 Dictionary<string, SyntaxTree> fileSyntaxTreeList = new();
 
 foreach (string filePath in files)
@@ -77,6 +80,9 @@ foreach (string filePath in files)
     {
         PrintSyntax(writer, filePath, syntaxTree);
     }
+
+    errorDiagnostics += syntaxTree.Diagnostics.Count(s => s.IsError);
+    warningDiagnostics += syntaxTree.Diagnostics.Count(s => s.IsWarning);
 
     if (syntaxTree.Diagnostics.Length > 0)
     {
@@ -117,6 +123,8 @@ writer.WriteSuccess($"dbnet succeeded.");
 writer.WriteLine();
 writer.Indent += 1;
 writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} skipped File(s).");
+writer.WriteLine($"{warningDiagnostics} Warning(s)");
+writer.WriteLine($"{errorDiagnostics} Error(s)");
 writer.Indent -= 1;
 writer.WriteLine();
 writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
