@@ -167,7 +167,7 @@ void PrintHelp()
 
 static void PrintSyntax(TextWriter writer, string filePath, SyntaxTree syntaxTree)
 {
-    string dbmlFileName = Path.GetFileNameWithoutExtension(filePath);
+    string dbmlFileName = Path.GetFileName(filePath);
     writer.WriteLine();
     writer.WriteLine($"'{dbmlFileName}' syntax tree:");
     syntaxTree.Root.WriteTo(writer);
