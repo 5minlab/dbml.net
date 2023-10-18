@@ -27,7 +27,11 @@ public sealed class DbmlMarkdownWriter
     /// <param name="outputFilePath">The path of the output file.</param>
     public static void WriterToFile(DbmlDatabase dbmlDatabase, string outputFilePath)
     {
-        FileStream outputStream = new FileStream(outputFilePath, FileMode.OpenOrCreate, FileAccess.Write);
+        string filePath = Path.GetFullPath(outputFilePath);
+        if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+
+        FileStream outputStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.ReadWrite);
         using StreamWriter writer = new StreamWriter(outputStream);
 
         DbmlMarkdownWriter dbmlWriter = new DbmlMarkdownWriter(dbmlDatabase);
