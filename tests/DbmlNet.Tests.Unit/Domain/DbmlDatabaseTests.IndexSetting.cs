@@ -188,7 +188,7 @@ public sealed partial class DbmlDatabaseTests
         Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
         Assert.False(diagnostic.IsError, "Should not be error");
         Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types: btree, gin, gist, hash.", diagnostic.Message);
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types [btree|gin|gist|hash].", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
@@ -214,7 +214,7 @@ public sealed partial class DbmlDatabaseTests
         Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
         Assert.False(diagnostic.IsError, "Should not be error");
         Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types: btree, gin, gist, hash.", diagnostic.Message);
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types [btree|gin|gist|hash].", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
@@ -240,7 +240,7 @@ public sealed partial class DbmlDatabaseTests
         Diagnostic diagnostic = Assert.Single(syntax.Diagnostics);
         Assert.False(diagnostic.IsError, "Should not be error");
         Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types: btree, gin, gist, hash.", diagnostic.Message);
+        Assert.Equal($"Unknown index setting type '{typeName}'. Allowed index types [btree|gin|gist|hash].", diagnostic.Message);
         Assert.NotNull(database);
         DbmlTable table = Assert.Single(database.Tables);
         DbmlTableIndex index = Assert.Single(table.Indexes);
