@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -119,7 +119,7 @@ writer.Indent += 1;
 writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} ignored File(s).");
 writer.Indent -= 1;
 writer.WriteLine();
-writer.WriteLine($"Time Elapsed {buildWatch.Elapsed}");
+writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
 
 void PrintHelp()
 {
