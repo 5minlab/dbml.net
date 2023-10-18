@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,13 +17,36 @@ using IndentedTextWriter writer =
     new IndentedTextWriter(Console.Out);
 
 string inputPath = args.FirstOrDefault() ?? string.Empty;
-string[] arguments = new List<string>(Environment.GetCommandLineArgs())
-    .Skip(1).ToArray();
+List<string> arguments = new List<string>(Environment.GetCommandLineArgs())
+    .Skip(1).ToList();
 
 bool ignoreWarnings = arguments.Any(arg => arg == "--ignore-warnings");
 bool printSyntax = arguments.Any(arg => arg == "--print");
+bool isOutputDirectorySpecified = arguments.Any(arg => new[] { "-o", "--output" }.Contains(arg));
 bool printHelp = arguments.Any(arg => new[] { "-h", "--help" }.Contains(arg));
 bool outputToMarkdown = true;
+string? outputPath = null;
+if (isOutputDirectorySpecified)
+{
+    int outputArgumentIndex =
+        arguments.IndexOf("--output") < 0
+        ? arguments.IndexOf("-o")
+        : arguments.IndexOf("--output");
+
+    bool hasOutputPathArg = arguments.Count > outputArgumentIndex + 1;
+    if (hasOutputPathArg)
+    {
+        outputPath = arguments[outputArgumentIndex + 1];
+    }
+
+    if (string.IsNullOrEmpty(outputPath))
+    {
+        writer.WriteErrorMessage("Output path is not specified.");
+        writer.WriteLine();
+        PrintHelp();
+        return;
+    }
+}
 const string helpMessage = """
     Usage: dbnet [<file | directory>...] [options]
 
@@ -33,10 +56,11 @@ const string helpMessage = """
       <file-or-directory-path> The file or directory path to operate on.
 
     Options:
-      --ignore-warnings    Allow files be processed even if the syntax tree contains warnings.
-      --print-syntax       Prints the syntax tree.
-      --output-type <opt>  Output type to use. Supported values: [sql | markdown]
-      -h --help            Show command line help.
+      --ignore-warnings         Allow files be processed even if the syntax tree contains warnings.
+      --print-syntax            Prints the syntax tree.
+      --output-type <opt>       Output type to use. Supported values: [sql | markdown]
+      -o --output <OUTPUT_DIR>  The output directory to place the artifacts in.
+      -h --help                 Show command line help.
     """;
 
 if (printHelp)
@@ -108,7 +132,7 @@ if (outputToMarkdown)
         SyntaxTree dbmlSyntaxTree = fileSyntaxTree.Value;
         string outputDirectoryPath = Path.GetDirectoryName(dbmlFilePath) ?? "./";
         string outputFileName = Path.GetFileNameWithoutExtension(dbmlFilePath) + ".md";
-        string outputFilePath = Path.Combine(outputDirectoryPath, outputFileName);
+        string outputFilePath = Path.Combine(outputPath ?? outputDirectoryPath, outputFileName);
         writer.WriteInfoMessage($"Writing to output '{outputFilePath}'.");
 
         DbmlDatabase dbmlDatabase = DbmlDatabase.Create(dbmlSyntaxTree);
