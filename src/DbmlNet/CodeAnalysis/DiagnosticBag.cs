@@ -77,7 +77,7 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
 
     public void ReportUnknownIndexSettingType(TextLocation location, string unknownType)
     {
-        string message = $"Unknown index setting type '{unknownType}'. Allowed type of index ({string.Join(", ", Parser.IndexSettingTypes)} depending on DB).";
+        string message = $"Unknown index setting type '{unknownType}'. Allowed index types: {string.Join(", ", Parser.IndexSettingTypes)}.";
         ReportWarning(location, message);
     }
 }
