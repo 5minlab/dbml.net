@@ -122,8 +122,10 @@ foreach (string filePath in files)
         bool skipFile = allWarnings && !ignoreWarnings;
         if (skipFile)
         {
-            writer.WriteWarningMessage($"Skipping file '{filePath}' due to warnings.");
-            writer.WriteInfoMessage($"Use '--ignore-warnings' to ignore warnings.");
+            string message = $"""
+            Skipping file '{filePath}' due to warnings. Use '--ignore-warnings' to allow files to be processed.
+            """;
+            writer.WriteWarningMessage(message);
             continue; // skipping file due to diagnostics
         }
     }
