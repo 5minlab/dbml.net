@@ -16,23 +16,42 @@ buildWatch.Start();
 using IndentedTextWriter writer =
     new IndentedTextWriter(Console.Out);
 
-bool outputSyntax = true;
-bool outputToMarkdown = true;
+string inputPath = args.FirstOrDefault() ?? string.Empty;
+string[] arguments = new List<string>(Environment.GetCommandLineArgs())
+    .Skip(1).ToArray();
 
-if (args.Length <= 0)
+bool ignoreWarnings = arguments.Any(arg => arg == "--ignore-warnings");
+bool printSyntax = arguments.Any(arg => arg == "--print");
+bool printHelp = arguments.Any(arg => new[] { "-h", "--help" }.Contains(arg));
+bool outputToMarkdown = true;
+const string helpMessage = """
+    Usage: dbnet [<file | directory>...] [options]
+
+    dbnet helps converting *.dbml syntax to *.sql, *.md syntax. Check the --output-type option.
+
+    Arguments:
+      <file-or-directory-path> The file or directory path to operate on.
+
+    Options:
+      --ignore-warnings    Allow files be processed even if the syntax tree contains warnings.
+      --print-syntax       Prints the syntax tree.
+      --output-type <opt>  Output type to use. Supported values: [sql | markdown]
+      -h --help            Show command line help.
+    """;
+
+if (printHelp)
+{
+    PrintHelp();
+    return;
+}
+
+if (string.IsNullOrWhiteSpace(inputPath))
 {
     writer.WriteErrorMessage("provide a valid file or directory path");
-    writer.WriteInfoMessage("usage: dbnet <file-or-directory-path>");
+    writer.WriteLine();
+    PrintHelp();
     return;
 }
-
-if (args.Length > 1)
-{
-    writer.WriteErrorMessage("only one path supported right now");
-    return;
-}
-
-string inputPath = args.Single();
 
 writer.WriteInfoMessage($"Lookup '*{ApplicationSettings.DbmlExtension}' files in input '{inputPath}'.");
 
@@ -54,29 +73,25 @@ foreach (string filePath in files)
     string inputText = File.ReadAllText(filePath);
     SyntaxTree syntaxTree = SyntaxTree.Parse(inputText);
 
+    if (printSyntax)
+    {
+        PrintSyntax(writer, filePath, syntaxTree);
+    }
+
     if (syntaxTree.Diagnostics.Length > 0)
     {
         writer.WriteDiagnostics(syntaxTree.Diagnostics);
-        return;
+        bool allWarnings = syntaxTree.Diagnostics.All(s => s.IsWarning);
+        bool skipFile = allWarnings && !ignoreWarnings;
+        if (skipFile)
+        {
+            writer.WriteWarningMessage($"Skipping file '{filePath}' due to warnings.");
+            writer.WriteInfoMessage($"Use '--ignore-warnings' to ignore warnings.");
+            continue; // skipping file due to diagnostics
+        }
     }
 
     fileSyntaxTreeList.Add(filePath, syntaxTree);
-}
-
-if (outputSyntax)
-{
-    foreach (KeyValuePair<string, SyntaxTree> fileSyntaxTree in fileSyntaxTreeList)
-    {
-        string dbmlFilePath = fileSyntaxTree.Key;
-        string dbmlFileName = Path.GetFileNameWithoutExtension(dbmlFilePath);
-        SyntaxTree dbmlSyntaxTree = fileSyntaxTree.Value;
-
-        writer.WriteLine();
-        writer.WriteLine($"Syntax tree of '{dbmlFileName}':");
-        dbmlSyntaxTree.Root.WriteTo(writer);
-    }
-
-    writer.WriteLine();
 }
 
 if (outputToMarkdown)
@@ -101,7 +116,24 @@ writer.WriteLine();
 writer.WriteSuccess($"dbnet succeeded.");
 writer.WriteLine();
 writer.Indent += 1;
-writer.WriteLine($"{files.Length} File(s).");
+writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} ignored File(s).");
 writer.Indent -= 1;
 writer.WriteLine();
 writer.WriteLine($"Time Elapsed {buildWatch.Elapsed}");
+
+void PrintHelp()
+{
+    writer.Write(helpMessage);
+    writer.WriteLine();
+    writer.WriteLine();
+}
+
+static void PrintSyntax(TextWriter writer, string filePath, SyntaxTree syntaxTree)
+{
+    string dbmlFileName = Path.GetFileNameWithoutExtension(filePath);
+    writer.WriteLine();
+    writer.WriteLine($"'{dbmlFileName}' syntax tree:");
+    syntaxTree.Root.WriteTo(writer);
+    writer.WriteLine();
+}
+

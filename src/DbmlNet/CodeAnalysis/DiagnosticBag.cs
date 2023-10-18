@@ -74,4 +74,10 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         string message = $"Unknown index setting '{settingName}'.";
         ReportWarning(location, message);
     }
+
+    public void ReportUnknownIndexSettingType(TextLocation location, string unknownType)
+    {
+        string message = $"Unknown index setting type '{unknownType}'. Allowed type of index ({string.Join(", ", Parser.IndexSettingTypes)} depending on DB).";
+        ReportWarning(location, message);
+    }
 }

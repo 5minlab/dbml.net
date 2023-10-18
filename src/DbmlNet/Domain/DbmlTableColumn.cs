@@ -130,7 +130,7 @@ public sealed class DbmlTableColumn
     {
         DbmlColumnIdentifier fromColumn =
             new DbmlColumnIdentifier(
-                schemaName: string.Empty,
+                schemaName: Table?.Schema ?? string.Empty,
                 tableName: Table?.Name ?? string.Empty,
                 columnName: Name);
 

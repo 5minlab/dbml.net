@@ -68,6 +68,7 @@ public enum SyntaxKind
     UnknownProjectSettingClause,
 
     // Table nodes
+    TableIdentifierClause,
     TableSettingListClause,
     UnknownTableSettingClause,
 

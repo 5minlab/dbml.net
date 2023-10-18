@@ -13,8 +13,8 @@ public sealed class DbmlColumnIdentifier
     /// <param name="tableName">The table name.</param>
     /// <param name="columnName">The column name.</param>
     public DbmlColumnIdentifier(
-        string schemaName,
-        string tableName,
+        string? schemaName,
+        string? tableName,
         string columnName)
     {
         SchemaName = schemaName;
@@ -25,12 +25,12 @@ public sealed class DbmlColumnIdentifier
     /// <summary>
     /// Gets the schema name.
     /// </summary>
-    public string SchemaName { get; }
+    public string? SchemaName { get; }
 
     /// <summary>
     /// Gets the table name.
     /// </summary>
-    public string TableName { get; }
+    public string? TableName { get; }
 
     /// <summary>
     /// Gets the column name.
@@ -38,9 +38,9 @@ public sealed class DbmlColumnIdentifier
     public string ColumnName { get; }
 
     /// <summary>
-    /// Returns the schema name of the column.
+    /// Returns the full text for this column identifier using format {schema}.{table}.{column}.
     /// </summary>
-    /// <returns>The schema name of the column.</returns>
+    /// <returns>The full text for this column identifier.</returns>
     public override string ToString()
     {
         if (!string.IsNullOrEmpty(SchemaName))
@@ -48,6 +48,6 @@ public sealed class DbmlColumnIdentifier
         else if (!string.IsNullOrEmpty(TableName))
             return $"{TableName}.{ColumnName}";
         else
-            return $"{TableName}.{ColumnName}";
+            return ColumnName;
     }
 }

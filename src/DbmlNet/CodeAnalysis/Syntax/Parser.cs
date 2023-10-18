@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 using DbmlNet.CodeAnalysis.Text;
 
@@ -8,6 +9,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 
 internal sealed class Parser
 {
+    internal static string[] IndexSettingTypes = new[] { "btree", "gin", "gist", "hash" };
     private readonly SyntaxTree _syntaxTree;
     private readonly ImmutableArray<SyntaxToken> _tokens;
     private int _position;
@@ -254,17 +256,41 @@ internal sealed class Parser
     private MemberSyntax ParseTableDeclaration()
     {
         SyntaxToken tableKeyword = MatchToken(SyntaxKind.TableKeyword);
-        SyntaxToken identifier = Current.Kind switch
-        {
-            SyntaxKind.QuotationMarksStringToken
-                => MatchToken(SyntaxKind.QuotationMarksStringToken),
-            SyntaxKind.SingleQuotationMarksStringToken
-                => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
-            _ => MatchToken(SyntaxKind.IdentifierToken),
-        };
+        TableIdentifierClause identifier = ParseTableIdentifier();
         TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
         return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
+    }
+
+    private TableIdentifierClause ParseTableIdentifier()
+    {
+        // Read syntax: table
+        SyntaxToken tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+
+        // Read syntax: schema.table
+        SyntaxToken? schemaIdentifier = null;
+        SyntaxToken? secondDotToken = null;
+        if (Current.Kind == SyntaxKind.DotToken)
+        {
+            schemaIdentifier = tableIdentifier;
+            secondDotToken = MatchToken(SyntaxKind.DotToken);
+            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        }
+
+        // Read syntax: database.schema.table
+        SyntaxToken? databaseIdentifier = null;
+        SyntaxToken? firstDotToken = null;
+        if (Current.Kind == SyntaxKind.DotToken)
+        {
+            databaseIdentifier = schemaIdentifier;
+            schemaIdentifier = tableIdentifier;
+            firstDotToken = MatchToken(SyntaxKind.DotToken);
+            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        }
+
+        return new TableIdentifierClause(
+            _syntaxTree, databaseIdentifier, firstDotToken,
+            schemaIdentifier, secondDotToken, tableIdentifier);
     }
 
     private TableSettingListSyntax? ParseOptionalTableSettingList()
@@ -538,6 +564,11 @@ internal sealed class Parser
             _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
+        if (IndexSettingTypes.Contains(valueToken.Text) == false)
+        {
+            TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
+            Diagnostics.ReportUnknownIndexSettingType(location, $"{valueToken.Value ?? valueToken.Text}");
+        }
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }
 
@@ -986,19 +1017,6 @@ internal sealed class Parser
     {
         SyntaxToken identifierToken = MatchToken(SyntaxKind.IdentifierToken);
         return new NameExpressionSyntax(_syntaxTree, identifierToken);
-    }
-
-    private SyntaxToken[] ParseTokensUntil(Func<bool> condition)
-    {
-        List<SyntaxToken> identifiers = new List<SyntaxToken>();
-
-        while (condition())
-        {
-            SyntaxToken identifierToken = NextToken();
-            identifiers.Add(identifierToken);
-        }
-
-        return identifiers.ToArray();
     }
 
     private SeparatedSyntaxList<TResult> ParseSeparatedList<TResult>(

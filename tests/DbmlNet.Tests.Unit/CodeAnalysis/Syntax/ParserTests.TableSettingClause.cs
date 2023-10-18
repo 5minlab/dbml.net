@@ -25,6 +25,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.TableSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
@@ -55,6 +56,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.TableSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
@@ -89,6 +91,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.TableSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
@@ -125,6 +128,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.TableSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
@@ -161,6 +165,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);
         e.AssertNode(SyntaxKind.TableSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
