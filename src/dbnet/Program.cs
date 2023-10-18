@@ -48,24 +48,23 @@ if (isOutputDirectorySpecified)
     }
 }
 const string helpMessage = """
-    Usage: dbnet [<file | directory>...] [options]
+    Usage: dbnet <file-or-directory-path> [options]
 
-    dbnet helps converting *.dbml syntax to *.sql, *.md syntax. Check the --output-type option.
+    dbnet is a utility for converting *.dbml syntax to either *.sql or *.md format. Specify the desired output type using the --output-type option.
 
     Arguments:
-      <file-or-directory-path> The file or directory path to operate on.
+      <file-or-directory-path>  File or directory to process.
 
     Options:
-      --ignore-warnings         Allow files be processed even if the syntax tree contains warnings.
-      --print-syntax            Prints the syntax tree.
-      --output-type <opt>       Output type to use. Supported values: [sql | markdown]
-      -o --output <OUTPUT_DIR>  The output directory to place the artifacts in.
-      -h --help                 Show command line help.
+      --ignore-warnings         Process files with syntax tree warnings.
+      --print-syntax            Display the syntax tree.
+      --output-type <option>    Output type: [sql | markdown]
+      -o --output <OUTPUT_DIR>  Set output directory for resulting files.
+      -h --help                 Display command line help.
 
     Examples:
-      dbnet file.dbml   # usage with a file
-      dbnet ./dir-name/ # usage with a folder
-
+      dbnet file.dbml          # Convert a file
+      dbnet ./dir-name/        # Convert all files in the folder
 
 
     """;
