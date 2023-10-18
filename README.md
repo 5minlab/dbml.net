@@ -1,41 +1,39 @@
 # dbml.net <!-- omit in toc -->
 
-[![Build main](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml)
+[![Build Status](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/Catalin-Andronie/dbml.net/actions/workflows/build.yml)
 
-> Inspired by <https://github.com/holistics/dbml> and elevate to .NET folks!
+**Inspired by [Holistics DBML](https://github.com/holistics/dbml) and tailored for .NET developers.**
 
-Abbreviations:
+**Abbreviations:**
 
 - **DBML**: Database Markup Language
 
-This repo contains:
+**Repository Contents:**
 
-1. The **dbml.net** or **DbmlNet** library. A parser library build on **.NET** for parsing any **\*.dbml** files.
-2. The **dbnet** CLI tool. A **.NET** CLI tool which facilitates generation of a *ready to use* **.sql** file, base on the provided **.dbml** input files.
+1. **DbmlNet Library:** A .NET parser library for parsing *.dbml files.
+2. **dbnet CLI Tool:** A .NET CLI tool to generate SQL files from *.dbml inputs.
 
-**Table of contents:**
+**Table of Contents:**
 
-- [DbmlNet parser features](#dbmlnet-parser-features)
+- [DbmlNet Parser Features](#dbmlnet-parser-features)
 - [Prerequisites](#prerequisites)
-- [Running the solution](#running-the-solution)
-- [Build solution](#build-solution)
-- [Unit tests](#unit-tests)
-- [Integration tests](#integration-tests)
+- [Running the Solution](#running-the-solution)
+- [Building the Solution](#building-the-solution)
+- [Unit Tests](#unit-tests)
+- [Integration Tests](#integration-tests)
 - [Code Coverage](#code-coverage)
-- [Other commands](#other-commands)
+- [Additional Commands](#additional-commands)
 
-## DbmlNet parser features
+## DbmlNet Parser Features
 
-Features:
-
-**DbmlNet** features:
+**DbmlNet Features:**
 
 - [X] [Project Definition](https://dbml.dbdiagram.io/docs/#project-definition)
 - [X] [Schema Definition](https://dbml.dbdiagram.io/docs/#schema-definition)
 - [X] [Public Schema](https://dbml.dbdiagram.io/docs/#public-schema)
 - [ ] [Table Definition](https://dbml.dbdiagram.io/docs/#table-definition)
   - [ ] [Table Alias](https://dbml.dbdiagram.io/docs/#table-alias)
-    - [ ] You can alias the table, and use them in the references later on.
+    - [ ] Alias tables for reference.
   - [X] [Table Notes](https://dbml.dbdiagram.io/docs/#table-notes)
   - [X] [Table Settings](https://dbml.dbdiagram.io/docs/#table-settings)
 - [X] [Column Definition](https://dbml.dbdiagram.io/docs/#column-definition)
@@ -44,8 +42,8 @@ Features:
 - [X] [Index Definition](https://dbml.dbdiagram.io/docs/#index-definition)
   - [X] [Index Settings](https://dbml.dbdiagram.io/docs/#index-settings)
 - [X] [Relationships & Foreign Key Definitions](https://dbml.dbdiagram.io/docs/#relationships-foreign-key-definitions)
-  - [X] [Relationship settings](https://dbml.dbdiagram.io/docs/#relationship-settings)
-  - [X] [Many-to-many relationship](https://dbml.dbdiagram.io/docs/#many-to-many-relationship)
+  - [X] [Relationship Settings](https://dbml.dbdiagram.io/docs/#relationship-settings)
+  - [X] [Many-to-Many Relationship](https://dbml.dbdiagram.io/docs/#many-to-many-relationship)
 - [ ] [Comments](https://dbml.dbdiagram.io/docs/#comments)
 - [X] [Note Definition](https://dbml.dbdiagram.io/docs/#note-definition)
   - [X] [Project Notes](https://dbml.dbdiagram.io/docs/#project-notes)
@@ -58,127 +56,91 @@ Features:
 
 ## Prerequisites
 
-01. Install latest [NET Core 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
+1. Install the latest [.NET Core 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0).
 
-02. Check if *dotnet* is installed by running next command:
+2. Verify that *dotnet* is installed by running the following command:
 
-    ```shell
-    dotnet --version
-    ```
+   ```shell
+   dotnet --version
+   ```
 
-03. Restore tools used in development by running next command:
+3. Restore development tools by running:
 
-    ```shell
-    dotnet tool restore
-    ```
+   ```shell
+   dotnet tool restore
+   ```
 
-## Running the solution
+## Running the Solution
 
-The simplest way to run `dbnet` is to use one of the available dbnet.[cmd|sh] scripts and from the `root folder` run next command:
+To run `dbnet`, use the available scripts in the root folder based on your platform:
 
-```shell
-./dbnet.cmd --help # Windows
-./dbnet.sh --help  # Apple and Linux
-```
-
-The `--help` option will output the fallowing:
+**Windows:**
 
 ```shell
-Usage: dbnet [<file | directory>...] [options]
-
-dbnet helps converting *.dbml syntax to *.sql, *.md syntax. Check the --output-type option.
-
-Arguments:
-  <file-or-directory-path> The file or directory path to operate on.
-
-Options:
-  --ignore-warnings         Allow files be processed even if the syntax tree contains warnings.
-  --print-syntax            Prints the syntax tree.
-  --output-type <opt>       Output type to use. Supported values: [sql | markdown]
-  -o --output <OUTPUT_DIR>  The output directory to place the artifacts in.
-  -h --help                 Show command line help.
-
-Examples:
-  dbnet file.dbml   # usage with a file
-  dbnet ./dir-name/ # usage with a folder
-
+./dbnet.cmd --help
 ```
 
-Application requires as `<input>` parameter, a valid path to either a **.dbml** file or a path to a directory which contains at least one **.dbml** file.
+**Apple and Linux:**
 
-Application can be started using one of the next options:
+```shell
+./dbnet.sh --help
+```
 
-- via *dotnet*, on the `root folder` run next command:
+The `--help` option provides usage instructions. You can provide a file or directory path as an input parameter.
 
-    ```shell
-    # usage with a single file
-    dotnet run --project ./src/dbnet/ ./samples/appDb.dbml
+For more examples, check the documentation.
 
-    # usage with a folder
-    dotnet run --project ./src/dbnet/ ./samples/
-    ```
+## Building the Solution
 
-- via *project-script*, on the `root folder` run next command:
+1. [Check the build runs on CI][CI-link] **--or--**
 
-    ```shell
-    # usage with a single file
-    ./dbnet.cmd ./samples/appDb.dbml
+2. On the root folder, run:
 
-    # usage with a folder
-    ./dbnet.cmd ./samples/
-    ```
+   ```shell
+   dotnet build
+   ```
 
-## Build solution
+## Unit Tests
 
-01. [Check build runs on CI][CI-link] **--or--**
+1. [Check test runs on CI][CI-link] **--or--**
 
-02. On the `root folder` run next command:
+2. On the root folder, run:
 
-    ```shell
-    dotnet build
-    ```
+   ```shell
+   dotnet cake --task=unit-tests
+   ```
 
-## Unit tests
+## Integration Tests
 
-01. [Check test runs on CI][CI-link] **--or--**
+1. [Check test runs on CI][CI-link] **--or--**
 
-02. On the `root folder` run next command:
+2. On the root folder, run:
 
-    ```shell
-    dotnet cake --task=unit-tests
-    ```
-
-## Integration tests
-
-01. [Check test runs on CI][CI-link] **--or--**
-
-02. On the `root folder` run next command:
-
-    ```shell
-    dotnet cake --task=integration-tests
-    ```
+   ```shell
+   dotnet cake --task=integration-tests
+   ```
 
 ## Code Coverage
 
-01. [Check coverage reports on CI][CI-link] **--or--**
+1. [Check coverage reports on CI][CI-link] **--or--**
 
-02. On the `root folder` run next command:
+2. On the root folder, run:
 
-    ```shell
-    dotnet cake --task=code-coverage
-    ```
+   ```shell
+   dotnet cake --task=code-coverage
+   ```
 
-    - Generated coverage results are open automatically if option `-open-coverage-results` is present:
+   - Automatically open coverage results with `-open-coverage-results`:
 
-    ```shell
-    dotnet cake --task=code-coverage --open-coverage-results
-    ```
+   ```shell
+   dotnet cake --task=code-coverage --open-coverage-results
+   ```
 
-## Other commands
+## Additional Commands
 
 - Push commits one by one automatically:
 
-  - Windows (powershell):
+  - Windows (PowerShell):
 
     ```powershell
     foreach ($rev in $(git rev-list --reverse origin/branch-name..branch-name))
@@ -187,7 +149,7 @@ Application can be started using one of the next options:
     }
     ```
 
-  - Linux (shell):
+  - Linux (Shell):
 
     ```shell
     for rev in $(git rev-list --reverse origin/branch-name..branch-name); do
