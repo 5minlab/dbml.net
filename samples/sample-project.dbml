@@ -1,0 +1,20 @@
+Project "UsersDb" {
+  database_type: 'mssql'
+  note: 'Sample user database schema.'
+}
+
+Table Users
+{
+    Id uniqueidentifier [
+        primary key,
+        note: 'The primary key for this user.']
+    Email nvarchar(256) [
+        not null,
+        note: 'The email address for this user.']
+
+    indexes {
+        Email [unique, name: 'EmailIndex', type: btree]
+    }
+
+    note: 'Represents a user in the application.'
+}

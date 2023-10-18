@@ -1,0 +1,6 @@
+Table Users
+{
+    indexes {
+        Email [unique, name: 'EmailIndex', type: unknown]
+    }
+}

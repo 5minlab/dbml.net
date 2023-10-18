@@ -18,6 +18,10 @@
 - [DbmlNet Parser Features](#dbmlnet-parser-features)
 - [Prerequisites](#prerequisites)
 - [Running the Solution](#running-the-solution)
+- [Sample Databases](#sample-databases)
+  - [Contoso Data Warehouse](#contoso-data-warehouse)
+  - [AdventureWorks](#adventureworks)
+  - [Wide World Importers](#wide-world-importers)
 - [Building the Solution](#building-the-solution)
 - [Unit Tests](#unit-tests)
 - [Integration Tests](#integration-tests)
@@ -89,6 +93,32 @@ To run `dbnet`, use the available scripts in the root folder based on your platf
 The `--help` option provides usage instructions. You can provide a file or directory path as an input parameter.
 
 For more examples, check the documentation.
+
+## Sample Databases
+
+The `./sample/` directory contains sample databases like [Contoso Data Warehouse](#contoso-data-warehouse), [AdventureWorks](#adventureworks), and [Wide World Importers](#wide-world-importers). Learning materials use the pattern `sample-*.dbml` for the file name.
+
+**Visualize the Syntax Tree:**
+
+Use the `--print` flag to visualize the syntax tree of a *.dbml file.
+
+Example:
+
+```shell
+./dbnet.[cmd|sh] ./samples/sample-project.dbml --print
+```
+
+### Contoso Data Warehouse
+
+A sample data warehouse demonstrating data loading into Azure SQL Data Warehouse.
+
+### AdventureWorks
+
+Sample databases and Analysis Services models for use with SQL Server.
+
+### Wide World Importers
+
+A new sample database for SQL Server 2016 and Azure SQL Database, illustrating core capabilities for transaction processing, data warehousing, analytics, and hybrid transaction and analytics processing (HTAP).
 
 ## Building the Solution
 
