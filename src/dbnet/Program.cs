@@ -76,9 +76,9 @@ if (printHelp)
     return;
 }
 
-if (string.IsNullOrWhiteSpace(inputPath))
+if (!Path.Exists(inputPath))
 {
-    writer.WriteErrorMessage("provide a valid file or directory path");
+    writer.WriteErrorMessage($"path does not exist or is not accessible '{inputPath}'.");
     writer.WriteLine();
     PrintHelp();
     return;
