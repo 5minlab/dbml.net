@@ -61,6 +61,13 @@ const string helpMessage = """
       --output-type <opt>       Output type to use. Supported values: [sql | markdown]
       -o --output <OUTPUT_DIR>  The output directory to place the artifacts in.
       -h --help                 Show command line help.
+
+    Examples:
+      dbnet file.dbml   # usage with a file
+      dbnet ./dir-name/ # usage with a folder
+
+
+
     """;
 
 if (printHelp)
@@ -156,8 +163,6 @@ writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
 void PrintHelp()
 {
     writer.Write(helpMessage);
-    writer.WriteLine();
-    writer.WriteLine();
 }
 
 static void PrintSyntax(TextWriter writer, string filePath, SyntaxTree syntaxTree)
