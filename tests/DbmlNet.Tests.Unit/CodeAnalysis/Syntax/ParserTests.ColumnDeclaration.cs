@@ -27,6 +27,26 @@ public partial class ParserTests
     }
 
     [Fact]
+    public void Parse_ColumnDeclaration_With_Name_QuotationMarksString()
+    {
+        SyntaxKind columnNameKind = SyntaxKind.QuotationMarksStringToken;
+        string randomColumnName = CreateRandomMultiWordString();
+        string columnNameText = $"\"{randomColumnName}\"";
+        object? columnNameValue = randomColumnName;
+        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        string columnTypeText = CreateRandomString();
+        string text = $"{columnNameText} {columnTypeText}";
+
+        StatementSyntax statement = ParseStatement(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
+        e.AssertToken(columnNameKind, columnNameText, columnNameValue);
+        e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
+        e.AssertToken(columnTypeKind, columnTypeText);
+    }
+
+    [Fact]
     public void Parse_ColumnDeclaration_With_ColumnType_Identifier()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
