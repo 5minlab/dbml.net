@@ -7,6 +7,18 @@ Table AlreadyDeclaredColumn
     AlreadyDeclaredColumn nvarchar(MAX)
 }
 
+Table DuplicatedColumnSetting
+{
+    ColumnName int [default: 123, default: 123]
+}
+
+Table DuplicatedIndexSetting
+{
+    indexes {
+        ColumnName [name: "Index1", name: "Index1"]
+    }
+}
+
 Table UnknownIndexType
 {
     indexes {
