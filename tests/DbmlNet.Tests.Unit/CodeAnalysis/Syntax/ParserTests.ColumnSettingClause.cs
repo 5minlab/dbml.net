@@ -533,4 +533,30 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.IdentifierToken, toColumnName);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
+
+    [Theory]
+    [InlineData("pk", "pk")]
+    [InlineData("primarykey", "primary key")]
+    [InlineData("null", "null")]
+    [InlineData("notnull", "not null")]
+    [InlineData("unique", "unique")]
+    [InlineData("increment", "increment")]
+    [InlineData("default", "default: Some_value")]
+    [InlineData("default", "default: \"Some value\"")]
+    [InlineData("default", "default: \'Some value\'")]
+    [InlineData("note", "note: \"Some value\"")]
+    [InlineData("note", "note: \'Some value\'")]
+    public void Parse_ColumnSettingClause_With_Warning_Column_Setting_Already_Declared(
+        string settingName, string settingText)
+    {
+        string text = $$"""
+        {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Column setting '{settingName}' already declared.", diagnostic.Message);
+    }
 }
