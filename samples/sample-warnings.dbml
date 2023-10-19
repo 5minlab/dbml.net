@@ -1,3 +1,6 @@
+Table ExistingTable { }
+Table ExistingTable { }
+
 Table Users
 {
     ExistingColumn nvarchar(MAX)
