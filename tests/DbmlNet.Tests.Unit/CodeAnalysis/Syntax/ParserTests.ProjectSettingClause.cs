@@ -90,23 +90,6 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownProjectSettingClause_With_Warning_Diagnostic()
-    {
-        string randomText = CreateRandomString();
-        string settingNameText = randomText;
-        string text = $"Project {CreateRandomString()} " + "{" + settingNameText + "}";
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        string expectedDiagnosticMessage = $"Unknown project setting '{settingNameText}'.";
-        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
-        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
-        Assert.True(diagnostic.IsWarning, "Diagnostic should be warning.");
-        Assert.False(diagnostic.IsError, "Diagnostic should not be error.");
-    }
-
-    [Fact]
     public void Parse_UnknownProjectSettingClause_With_Simple_Setting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;

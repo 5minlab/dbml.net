@@ -12,7 +12,7 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
         SyntaxToken noteKeyword,
         SyntaxToken colonToken,
         SyntaxToken valueToken)
-        : base(syntaxTree)
+        : base(syntaxTree, noteKeyword.Text)
     {
         NoteKeyword = noteKeyword;
         ColonToken = colonToken;

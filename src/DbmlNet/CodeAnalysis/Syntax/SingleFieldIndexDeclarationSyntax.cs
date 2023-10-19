@@ -5,7 +5,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 /// <summary>
 /// Represents a single field index declaration statement in the syntax tree.
 /// </summary>
-public sealed class SingleFieldIndexDeclarationSyntax : StatementSyntax
+public sealed class SingleFieldIndexDeclarationSyntax : IndexDeclarationStatementSyntax
 {
     internal SingleFieldIndexDeclarationSyntax(
         SyntaxTree syntaxTree,
@@ -15,12 +15,16 @@ public sealed class SingleFieldIndexDeclarationSyntax : StatementSyntax
     {
         IdentifierToken = identifierToken;
         Settings = settings;
+        IdentifierName = identifierToken.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the single field index declaration statement <see cref="SyntaxKind.SingleFieldIndexDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.SingleFieldIndexDeclarationStatement;
+
+    /// <inherits/>
+    public override string IdentifierName { get; }
 
     /// <summary>
     /// Gets the identifier token.

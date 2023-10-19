@@ -10,7 +10,7 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     internal IncrementColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken incrementKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, incrementKeyword.Text)
     {
         IncrementKeyword = incrementKeyword;
     }

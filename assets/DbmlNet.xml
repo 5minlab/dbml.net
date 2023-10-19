@@ -206,15 +206,14 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.GetChildren">
             <inherits/>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ToString">
-            <summary>
-            Returns the text for this column identifier. Uses format {schema}.{table}.{column}.
-            </summary>
-            <returns>The text for this column identifier.</returns>
-        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
             <summary>
             Represents a column setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause.SettingName">
+            <summary>
+            Gets the setting name.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax">
@@ -331,6 +330,9 @@
             <summary>
             Gets the syntax kind of the composite index declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.CompositeIndexDeclarationStatement"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.IdentifierName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax.OpenParenthesis">
             <summary>
@@ -470,6 +472,16 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.GetChildren">
             <inherits/>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexDeclarationStatementSyntax">
+            <summary>
+            Represents an index declaration statement.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexDeclarationStatementSyntax.IdentifierName">
+            <summary>
+            Gets the identifier name.
+            </summary>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexesDeclarationSyntax">
             <summary>
             Represents a indexes declaration in the syntax tree.
@@ -506,6 +518,11 @@
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingClause">
             <summary>
             Represents a index setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IndexSettingClause.SettingName">
+            <summary>
+            Gets the setting name.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingListSyntax">
@@ -592,6 +609,9 @@
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NameIndexSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.NameKeyword">
             <summary>
             Gets the name keyword.
@@ -675,6 +695,9 @@
             <summary>
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteIndexSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.NoteKeyword">
             <summary>
@@ -843,6 +866,9 @@
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkIndexSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.PkKeyword">
             <summary>
             Gets the pk keyword.
@@ -883,6 +909,9 @@
             <summary>
             Gets the syntax kind of the primary key index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyIndexSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.PrimaryKeyword">
             <summary>
@@ -1031,6 +1060,11 @@
             </summary>
             <typeparam name="T">The type of the syntax nodes in the list.</typeparam>
         </member>
+        <member name="F:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Empty">
+            <summary>
+            Gets an empty separated syntax list.
+            </summary>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Count">
             <summary>
             Gets the number of nodes in the list.
@@ -1070,6 +1104,9 @@
             <summary>
             Gets the syntax kind of the single field index declaration statement <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.SingleFieldIndexDeclarationStatement"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.IdentifierName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SingleFieldIndexDeclarationSyntax.IdentifierToken">
             <summary>
@@ -1599,12 +1636,6 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.GetChildren">
             <inherits/>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.ToString">
-            <summary>
-            Returns the text for this table identifier. Uses format {database}.{schema}.{table}.
-            </summary>
-            <returns>The text for this table identifier.</returns>
-        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
             <summary>
             Represents a table setting clause in the syntax tree.
@@ -1647,6 +1678,9 @@
             <summary>
             Gets the syntax kind of the type index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TypeIndexSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.TypeKeyword">
             <summary>
@@ -1694,6 +1728,9 @@
             Gets the syntax kind of the unique index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueIndexSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.UniqueKeyword">
             <summary>
             Gets the unique keyword.
@@ -1739,6 +1776,9 @@
             <summary>
             Gets the syntax kind of the unknown index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownIndexSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.NameToken">
             <summary>

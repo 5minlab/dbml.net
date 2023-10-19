@@ -10,7 +10,7 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     internal NullColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken nullKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, nullKeyword.Text)
     {
         NullKeyword = nullKeyword;
     }

@@ -12,7 +12,7 @@ public sealed class RelationshipColumnSettingClause : ColumnSettingClause
         SyntaxToken refKeyword,
         SyntaxToken colonToken,
         RelationshipConstraintClause constraintClause)
-        : base(syntaxTree)
+        : base(syntaxTree, refKeyword.Text)
     {
         RefKeyword = refKeyword;
         ColonToken = colonToken;

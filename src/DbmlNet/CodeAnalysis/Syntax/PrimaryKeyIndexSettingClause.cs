@@ -15,12 +15,16 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
     {
         PrimaryKeyword = primaryKeyword;
         KeyKeyword = keyKeyword;
+        SettingName = primaryKeyword.Text + keyKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the primary key index setting clause <see cref="SyntaxKind.PrimaryKeyIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyIndexSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the primary keyword.

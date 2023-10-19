@@ -12,7 +12,7 @@ public sealed class DefaultColumnSettingClause : ColumnSettingClause
         SyntaxToken defaultKeyword,
         SyntaxToken colonToken,
         ExpressionSyntax expressionValue)
-        : base(syntaxTree)
+        : base(syntaxTree, defaultKeyword.Text)
     {
         DefaultKeyword = defaultKeyword;
         ColonToken = colonToken;

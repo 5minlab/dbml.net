@@ -11,7 +11,7 @@ public sealed class PrimaryKeyColumnSettingClause : ColumnSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken primaryKeyword,
         SyntaxToken keyKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, primaryKeyword.Text + keyKeyword.Text)
     {
         PrimaryKeyword = primaryKeyword;
         KeyKeyword = keyKeyword;

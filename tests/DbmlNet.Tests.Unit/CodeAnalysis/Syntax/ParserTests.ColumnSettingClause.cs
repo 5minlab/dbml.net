@@ -341,23 +341,6 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownColumnSettingClause_With_Warning_Diagnostic()
-    {
-        string randomText = CreateRandomString();
-        string settingNameText = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingNameText} ]";
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        string expectedDiagnosticMessage = $"Unknown column setting '{settingNameText}'.";
-        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
-        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
-        Assert.True(diagnostic.IsWarning, "Diagnostic should be warning.");
-        Assert.False(diagnostic.IsError, "Diagnostic should not be error.");
-    }
-
-    [Fact]
     public void Parse_UnknownColumnSettingClause_With_Simple_Setting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
@@ -484,7 +467,6 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertNode(SyntaxKind.RelationshipConstraintClause);
         e.AssertNode(SyntaxKind.ColumnIdentifierClause);
-        Assert.Equal(fromIdentifierText, $"{e.Node}");
         e.AssertToken(SyntaxKind.IdentifierToken, fromSchemaName);
         e.AssertToken(SyntaxKind.DotToken, ".");
         e.AssertToken(SyntaxKind.IdentifierToken, fromTableName);
@@ -492,7 +474,6 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.IdentifierToken, fromColumnName);
         e.AssertToken(relationshipTypeKind, relationshipTypeText);
         e.AssertNode(SyntaxKind.ColumnIdentifierClause);
-        Assert.Equal(toIdentifierText, $"{e.Node}");
         e.AssertToken(SyntaxKind.IdentifierToken, toSchemaName);
         e.AssertToken(SyntaxKind.DotToken, ".");
         e.AssertToken(SyntaxKind.IdentifierToken, toTableName);
@@ -528,7 +509,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.RelationshipConstraintClause);
         e.AssertToken(relationshipTypeKind, relationshipTypeText);
         e.AssertNode(SyntaxKind.ColumnIdentifierClause);
-        Assert.Equal(toIdentifierText, $"{e.Node}");
         e.AssertToken(SyntaxKind.IdentifierToken, toSchemaName);
         e.AssertToken(SyntaxKind.DotToken, ".");
         e.AssertToken(SyntaxKind.IdentifierToken, toTableName);

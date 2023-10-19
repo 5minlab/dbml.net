@@ -9,4 +9,9 @@ public abstract class IndexSettingClause : SyntaxNode
         : base(syntaxTree)
     {
     }
+
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
+    public abstract string SettingName { get; }
 }

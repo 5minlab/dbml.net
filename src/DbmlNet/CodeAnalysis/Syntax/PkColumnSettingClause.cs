@@ -10,7 +10,7 @@ public sealed class PkColumnSettingClause : ColumnSettingClause
     internal PkColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken pkKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, pkKeyword.Text)
     {
         PkKeyword = pkKeyword;
     }

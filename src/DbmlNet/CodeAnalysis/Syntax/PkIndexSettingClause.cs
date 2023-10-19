@@ -13,12 +13,16 @@ public sealed class PkIndexSettingClause : IndexSettingClause
         : base(syntaxTree)
     {
         PkKeyword = pkKeyword;
+        SettingName = pkKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the index setting clause <see cref="SyntaxKind.PkIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PkIndexSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the pk keyword.

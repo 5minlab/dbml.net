@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -33,12 +31,6 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         _diagnostics.Add(diagnostic);
     }
 
-    public void ReportInvalidNumber(TextLocation location, string text, Type type)
-    {
-        string message = $"The number {text} isn't valid {type}.";
-        ReportError(location, message);
-    }
-
     public void ReportBadCharacter(TextLocation location, char character)
     {
         string message = $"Bad character input: '{character}'.";
@@ -66,6 +58,30 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
     public void ReportUnknownProjectSetting(TextLocation location, string settingName)
     {
         string message = $"Unknown project setting '{settingName}'.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateTableName(TextLocation location, string columnName)
+    {
+        string message = $"Table '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateColumnName(TextLocation location, string columnName)
+    {
+        string message = $"Column '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateColumnSettingName(TextLocation location, string settingName)
+    {
+        string message = $"Column setting '{settingName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateIndexSettingName(TextLocation location, string settingName)
+    {
+        string message = $"Index setting '{settingName}' already declared.";
         ReportWarning(location, message);
     }
 

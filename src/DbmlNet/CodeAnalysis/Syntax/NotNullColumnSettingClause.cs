@@ -11,7 +11,7 @@ public sealed class NotNullColumnSettingClause : ColumnSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken notKeyword,
         SyntaxToken nullKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, notKeyword.Text + nullKeyword.Text)
     {
         NotKeyword = notKeyword;
         NullKeyword = nullKeyword;

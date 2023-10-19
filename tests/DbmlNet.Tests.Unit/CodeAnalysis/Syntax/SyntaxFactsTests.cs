@@ -48,6 +48,6 @@ public class SyntaxFactsTests
         if (kind == SyntaxKind.SingleQuotationMarksStringToken) return skip;
         if (kind == SyntaxKind.IdentifierToken) return skip;
 
-        return false;
+        return !skip;
     }
 }

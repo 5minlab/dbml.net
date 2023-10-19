@@ -62,13 +62,4 @@ public sealed class ColumnIdentifierClause : SyntaxNode
         if (SecondDotToken is not null) yield return SecondDotToken;
         yield return ColumnIdentifier;
     }
-
-    /// <summary>
-    /// Returns the text for this column identifier. Uses format {schema}.{table}.{column}.
-    /// </summary>
-    /// <returns>The text for this column identifier.</returns>
-    public override string ToString()
-    {
-        return $"{SchemaIdentifier?.Text}{FirstDotToken?.Text}{TableIdentifier?.Text}{SecondDotToken?.Text}{ColumnIdentifier.Text}";
-    }
 }

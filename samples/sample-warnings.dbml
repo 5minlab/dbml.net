@@ -1,6 +1,27 @@
-Table Users
+Table AlreadyDeclaredTable { }
+Table AlreadyDeclaredTable { }
+
+Table AlreadyDeclaredColumn
+{
+    AlreadyDeclaredColumn nvarchar(MAX)
+    AlreadyDeclaredColumn nvarchar(MAX)
+}
+
+Table DuplicatedColumnSetting
+{
+    ColumnName int [default: 123, default: 123]
+}
+
+Table DuplicatedIndexSetting
 {
     indexes {
-        Email [unique, name: 'EmailIndex', type: unknown]
+        ColumnName [name: "Index1", name: "Index1"]
+    }
+}
+
+Table UnknownIndexType
+{
+    indexes {
+        ColumnName [type: unknown]
     }
 }
