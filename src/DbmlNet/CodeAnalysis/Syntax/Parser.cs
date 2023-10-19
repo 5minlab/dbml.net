@@ -99,6 +99,22 @@ internal sealed class Parser
     public CompilationUnitSyntax ParseCompilationUnit()
     {
         ImmutableArray<MemberSyntax> members = ParseMembers();
+
+        TableDeclarationSyntax[] tableDeclarations =
+            members.OfType<TableDeclarationSyntax>().ToArray();
+
+        HashSet<string> seenTableNames = new HashSet<string>();
+        foreach (TableDeclarationSyntax tableDeclaration in tableDeclarations)
+        {
+            string tableNameText = tableDeclaration.DbSchema.Text;
+            if (!seenTableNames.Add(tableNameText))
+            {
+                TextSpan columnNameSpan = tableDeclaration.DbSchema.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, columnNameSpan);
+                Diagnostics.ReportDuplicateTableName(location, tableNameText);
+            }
+        }
+
         SyntaxToken endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
         return new CompilationUnitSyntax(_syntaxTree, members, endOfFileToken);
     }

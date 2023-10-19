@@ -69,6 +69,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportWarning(location, message);
     }
 
+    public void ReportDuplicateTableName(TextLocation location, string columnName)
+    {
+        string message = $"Table '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
     public void ReportDuplicateColumnName(TextLocation location, string columnName)
     {
         string message = $"Column '{columnName}' already declared.";
