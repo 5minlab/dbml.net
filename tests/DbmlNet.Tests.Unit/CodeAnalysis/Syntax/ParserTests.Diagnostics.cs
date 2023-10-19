@@ -152,12 +152,9 @@ public partial class ParserTests
         string settingName, string settingText)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        indexes
         {
-            indexes
-            {
-                {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
-            }
+            {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
         }
         """;
 
