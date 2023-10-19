@@ -33,12 +33,6 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         _diagnostics.Add(diagnostic);
     }
 
-    public void ReportInvalidNumber(TextLocation location, string text, Type type)
-    {
-        string message = $"The number {text} isn't valid {type}.";
-        ReportError(location, message);
-    }
-
     public void ReportBadCharacter(TextLocation location, char character)
     {
         string message = $"Bad character input: '{character}'.";
