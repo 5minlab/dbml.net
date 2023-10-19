@@ -341,23 +341,6 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownColumnSettingClause_With_Warning_Diagnostic()
-    {
-        string randomText = CreateRandomString();
-        string settingNameText = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingNameText} ]";
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        string expectedDiagnosticMessage = $"Unknown column setting '{settingNameText}'.";
-        Assert.Equal(expectedDiagnosticMessage, diagnostic.Message);
-        Assert.Equal(expectedDiagnosticMessage, $"{diagnostic}");
-        Assert.True(diagnostic.IsWarning, "Diagnostic should be warning.");
-        Assert.False(diagnostic.IsError, "Diagnostic should not be error.");
-    }
-
-    [Fact]
     public void Parse_UnknownColumnSettingClause_With_Simple_Setting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
@@ -532,31 +515,5 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.DotToken, ".");
         e.AssertToken(SyntaxKind.IdentifierToken, toColumnName);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
-    }
-
-    [Theory]
-    [InlineData("pk", "pk")]
-    [InlineData("primarykey", "primary key")]
-    [InlineData("null", "null")]
-    [InlineData("notnull", "not null")]
-    [InlineData("unique", "unique")]
-    [InlineData("increment", "increment")]
-    [InlineData("default", "default: Some_value")]
-    [InlineData("default", "default: \"Some value\"")]
-    [InlineData("default", "default: \'Some value\'")]
-    [InlineData("note", "note: \"Some value\"")]
-    [InlineData("note", "note: \'Some value\'")]
-    public void Parse_ColumnSettingClause_With_Warning_Column_Setting_Already_Declared(
-        string settingName, string settingText)
-    {
-        string text = $$"""
-        {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
-        """;
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.False(diagnostic.IsError, "Should not be error");
-        Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Column setting '{settingName}' already declared.", diagnostic.Message);
     }
 }

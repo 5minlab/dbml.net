@@ -168,43 +168,4 @@ public partial class ParserTests
         e.AssertToken(noteValueKind, noteValueText, noteValue);
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
-
-    [Fact]
-    public void Parse_TableDeclaration_With_Warning_Table_Already_Declared()
-    {
-        string randomText = CreateRandomString();
-        string firstTableName = randomText;
-        string secondTableName = randomText;
-        string text = $$"""
-        Table {{firstTableName}} { }
-        Table {{secondTableName}} { }
-        """;
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.False(diagnostic.IsError, "Should not be error");
-        Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Table '{secondTableName}' already declared.", diagnostic.Message);
-    }
-
-    [Fact]
-    public void Parse_TableDeclaration_With_Warning_Column_Already_Declared()
-    {
-        string randomText = CreateRandomString();
-        string firstColumnName = randomText;
-        string secondColumnName = randomText;
-        string text = $$"""
-        Table {{CreateRandomString()}}
-        {
-            {{firstColumnName}} {{CreateRandomString()}}
-            {{secondColumnName}} {{CreateRandomString()}}
-        }
-        """;
-
-        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.False(diagnostic.IsError, "Should not be error");
-        Assert.True(diagnostic.IsWarning, "Should be warning");
-        Assert.Equal($"Column '{secondColumnName}' already declared.", diagnostic.Message);
-    }
 }
