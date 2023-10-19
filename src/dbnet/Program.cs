@@ -167,16 +167,8 @@ if (errorDiagnostics == 0 && isForceEnabled)
 }
 writer.Indent += 1;
 writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} skipped File(s).");
-if (isForceEnabled)
-    writer.Write($"{warningDiagnostics} Warning(s)");
-else
-    writer.WriteWarning($"{warningDiagnostics} Warning(s)");
-writer.WriteLine();
-if (errorDiagnostics > 0)
-    writer.WriteError($"{errorDiagnostics} Error(s)");
-else
-    writer.Write($"{errorDiagnostics} Error(s)");
-writer.WriteLine();
+WriteWarningCount(writer, isForceEnabled, warningDiagnostics);
+WriteErrorCount(writer, errorDiagnostics);
 writer.Indent -= 1;
 writer.WriteLine();
 writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
@@ -195,3 +187,22 @@ static void PrintSyntax(TextWriter writer, string filePath, SyntaxTree syntaxTre
     writer.WriteLine();
 }
 
+static void WriteWarningCount(IndentedTextWriter writer, bool isForceEnabled, int warningDiagnostics)
+{
+    if (isForceEnabled)
+        writer.Write($"{warningDiagnostics} Warning(s)");
+    else if (warningDiagnostics > 0)
+        writer.WriteWarning($"{warningDiagnostics} Warning(s)");
+    else
+        writer.Write($"{warningDiagnostics} Warning(s)");
+    writer.WriteLine();
+}
+
+static void WriteErrorCount(IndentedTextWriter writer, int errorDiagnostics)
+{
+    if (errorDiagnostics > 0)
+        writer.WriteError($"{errorDiagnostics} Error(s)");
+    else
+        writer.Write($"{errorDiagnostics} Error(s)");
+    writer.WriteLine();
+}
