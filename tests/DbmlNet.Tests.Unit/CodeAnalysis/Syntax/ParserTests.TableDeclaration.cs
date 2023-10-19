@@ -1,3 +1,6 @@
+using System.Collections.Immutable;
+
+using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -164,5 +167,26 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(noteValueKind, noteValueText, noteValue);
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
+
+    [Fact]
+    public void Parse_TableDeclaration_With_Warning_Column_Already_Declared()
+    {
+        string randomText = CreateRandomString();
+        string firstColumnName = randomText;
+        string secondColumnName = randomText;
+        string text = $$"""
+        Table {{CreateRandomString()}}
+        {
+            {{firstColumnName}} {{CreateRandomString()}}
+            {{secondColumnName}} {{CreateRandomString()}}
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Column '{secondColumnName}' already declared.", diagnostic.Message);
     }
 }
