@@ -11,6 +11,9 @@ internal static class DataGenerator
     public static int GetRandomNumber() =>
         new IntRange(min: 0, max: 10).GetValue();
 
+    public static int GetRandomNumber(int min) =>
+        new IntRange(min: min, max: min + 10).GetValue();
+
     public static decimal GetRandomDecimal() =>
         new SequenceGeneratorDecimal { From = 0.0M, To = decimal.MaxValue }.GetValue();
 

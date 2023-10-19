@@ -28,4 +28,22 @@ public sealed class SourceTextTests
         Assert.True(0 == line.SpanIncludingLineBreak.Length, $"Expected 0 == line.SpanIncludingLineBreak.Length, and got {line.SpanIncludingLineBreak.Length}");
         Assert.True(0 == line.SpanIncludingLineBreak.End, $"Expected 0 == line.SpanIncludingLineBreak.End, and got {line.SpanIncludingLineBreak.End}");
     }
+
+    [Theory]
+    [InlineData(0, 0)]
+    [InlineData(0, 1)]
+    [InlineData(1, 1)]
+    public void SourceText_From_Creates_SourceText_With_MultiLine_Text(
+        int minLineCount, int maxLineCount)
+    {
+        Assert.True(minLineCount >= 0, "Invalid test input expected param minLineCount >= 0");
+        Assert.True(minLineCount <= maxLineCount, "Invalid test input expected param minLineCount <= param maxLineCount");
+        string inputText = DataGenerator.CreateRandomMultiLineText(minLineCount, maxLineCount);
+
+        SourceText text = SourceText.From(inputText);
+
+        Assert.Equal(inputText, text.ToString());
+        Assert.True(text.Lines.Length >= minLineCount, $"Expect text.Lines.Length >= minLineCount, and got {text.Lines.Length} >= {minLineCount}");
+        Assert.True(text.Lines.Length <= maxLineCount + 1, $"Expect text.Lines.Length <= maxLineCount, and got {text.Lines.Length} <= {maxLineCount + 1}");
+    }
 }
