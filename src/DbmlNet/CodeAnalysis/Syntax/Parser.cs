@@ -259,6 +259,22 @@ internal sealed class Parser
         TableIdentifierClause identifier = ParseTableIdentifier();
         TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
+
+        ColumnDeclarationSyntax[] columnDeclarations =
+            body.GetChildren().OfType<ColumnDeclarationSyntax>().ToArray();
+
+        HashSet<string> seenColumNames = new HashSet<string>();
+        foreach (ColumnDeclarationSyntax columDeclaration in columnDeclarations)
+        {
+            string columnNameText = columDeclaration.IdentifierToken.Text;
+            if (!seenColumNames.Add(columnNameText))
+            {
+                TextSpan columnNameSpan = columDeclaration.IdentifierToken.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, columnNameSpan);
+                Diagnostics.ReportDuplicateColumnName(location, columnNameText);
+            }
+        }
+
         return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
     }
 

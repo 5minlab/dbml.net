@@ -69,6 +69,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportWarning(location, message);
     }
 
+    public void ReportDuplicateColumnName(TextLocation location, string columnName)
+    {
+        string message = $"Column '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
     public void ReportUnknownIndexSetting(TextLocation location, string settingName)
     {
         string message = $"Unknown index setting '{settingName}'.";
