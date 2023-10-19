@@ -10,7 +10,7 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     internal UniqueColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken uniqueKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, uniqueKeyword.Text)
     {
         UniqueKeyword = uniqueKeyword;
     }

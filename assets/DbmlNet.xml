@@ -211,6 +211,11 @@
             Represents a column setting clause in the syntax tree.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingListSyntax">
             <summary>
             Represents a column setting list clause in the syntax tree.
@@ -1024,6 +1029,11 @@
             Represents a list of syntax nodes that includes both the nodes and the separators.
             </summary>
             <typeparam name="T">The type of the syntax nodes in the list.</typeparam>
+        </member>
+        <member name="F:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Empty">
+            <summary>
+            Gets an empty separated syntax list.
+            </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.Count">
             <summary>

@@ -36,6 +36,11 @@ public sealed class SeparatedSyntaxList<T> : SeparatedSyntaxList, IEnumerable<T>
     }
 
     /// <summary>
+    /// Gets an empty separated syntax list.
+    /// </summary>
+    public static readonly SeparatedSyntaxList<T> Empty = new(ImmutableArray<SyntaxNode>.Empty);
+
+    /// <summary>
     /// Gets the number of nodes in the list.
     /// </summary>
     public int Count => (_nodesAndSeparators.Length + 1) / 2;

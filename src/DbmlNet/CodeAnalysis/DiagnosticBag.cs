@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -72,6 +70,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
     public void ReportDuplicateColumnName(TextLocation location, string columnName)
     {
         string message = $"Column '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateColumnSettingName(TextLocation location, string settingName)
+    {
+        string message = $"Column setting '{settingName}' already declared.";
         ReportWarning(location, message);
     }
 

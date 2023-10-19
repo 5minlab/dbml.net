@@ -12,7 +12,7 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
         SyntaxToken settingNameToken,
         SyntaxToken? colonToken = null,
         SyntaxToken? settingValueToken = null)
-        : base(syntaxTree)
+        : base(syntaxTree, settingNameToken.Text)
     {
         NameToken = settingNameToken;
         ColonToken = colonToken;

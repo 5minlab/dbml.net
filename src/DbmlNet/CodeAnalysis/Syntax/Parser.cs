@@ -663,6 +663,21 @@ internal sealed class Parser
 
         ColumnTypeClause columnTypeClause = ParseColumnTypeClause();
         ColumnSettingListSyntax? settingList = ParseOptionalColumnSettingList();
+        SeparatedSyntaxList<ColumnSettingClause> settings =
+            settingList?.Settings ?? SeparatedSyntaxList<ColumnSettingClause>.Empty;
+
+        HashSet<string> seenSettingNames = new HashSet<string>();
+        foreach (ColumnSettingClause columnSetting in settings)
+        {
+            string settingNameText = columnSetting.SettingName;
+            if (!seenSettingNames.Add(settingNameText))
+            {
+                TextSpan settingNameSpan = columnSetting.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                Diagnostics.ReportDuplicateColumnSettingName(location, settingNameText);
+            }
+        }
+
         return new ColumnDeclarationSyntax(
             _syntaxTree, identifier, columnTypeClause, settingList);
     }
