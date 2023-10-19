@@ -62,13 +62,4 @@ public sealed class TableIdentifierClause : SyntaxNode
         if (SecondDotToken is not null) yield return SecondDotToken;
         yield return TableIdentifier;
     }
-
-    /// <summary>
-    /// Returns the text for this table identifier. Uses format {database}.{schema}.{table}.
-    /// </summary>
-    /// <returns>The text for this table identifier.</returns>
-    public override string ToString()
-    {
-        return $"{DatabaseIdentifier?.Text}{FirstDotToken?.Text}{SchemaIdentifier?.Text}{SecondDotToken?.Text}{TableIdentifier.Text}";
-    }
 }

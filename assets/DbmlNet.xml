@@ -206,12 +206,6 @@
         <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.GetChildren">
             <inherits/>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause.ToString">
-            <summary>
-            Returns the text for this column identifier. Uses format {schema}.{table}.{column}.
-            </summary>
-            <returns>The text for this column identifier.</returns>
-        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
             <summary>
             Represents a column setting clause in the syntax tree.
@@ -1598,12 +1592,6 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.GetChildren">
             <inherits/>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause.ToString">
-            <summary>
-            Returns the text for this table identifier. Uses format {database}.{schema}.{table}.
-            </summary>
-            <returns>The text for this table identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
             <summary>
