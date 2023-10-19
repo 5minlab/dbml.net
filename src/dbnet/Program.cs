@@ -20,7 +20,7 @@ string inputPath = args.FirstOrDefault() ?? string.Empty;
 List<string> arguments = new List<string>(Environment.GetCommandLineArgs())
     .Skip(1).ToList();
 
-bool ignoreWarnings = arguments.Any(arg => arg == "--ignore-warnings");
+bool isForceEnabled = arguments.Any(arg => arg == "--force");
 bool printSyntax = arguments.Any(arg => arg == "--print");
 bool isOutputDirectorySpecified = arguments.Any(arg => new[] { "-o", "--output" }.Contains(arg));
 bool printHelp = arguments.Any(arg => new[] { "-h", "--help" }.Contains(arg));
@@ -56,9 +56,9 @@ const string helpMessage = """
       <file-or-directory-path>  File or directory to process.
 
     Options:
-      --ignore-warnings         Process files with syntax tree warnings.
       --print-syntax            Display the syntax tree.
       --output-type <option>    Output type: [sql | markdown]
+      --force                   Generate content, even if it modifies existing files.
       -o --output <OUTPUT_DIR>  Set output directory for resulting files.
       -h --help                 Display command line help.
 
@@ -118,11 +118,20 @@ foreach (string filePath in files)
     {
         writer.WriteDiagnostics(syntaxTree.Diagnostics);
         bool allWarnings = syntaxTree.Diagnostics.All(s => s.IsWarning);
-        bool skipFile = allWarnings && !ignoreWarnings;
+        if (!allWarnings)
+        {
+            string message = $"""
+            Skipping file '{filePath}' due to errors.
+            """;
+            writer.WriteErrorMessage(message);
+            continue; // skipping file due to diagnostics
+        }
+
+        bool skipFile = allWarnings && !isForceEnabled;
         if (skipFile)
         {
             string message = $"""
-            Skipping file '{filePath}' due to warnings. Use '--ignore-warnings' to allow files to be processed.
+            Skipping file '{filePath}' due to warnings. Use '--force' to allow files to be processed.
             """;
             writer.WriteWarningMessage(message);
             continue; // skipping file due to diagnostics
@@ -151,12 +160,23 @@ if (outputToMarkdown)
 buildWatch.Stop();
 
 writer.WriteLine();
-writer.WriteSuccess($"dbnet succeeded.");
-writer.WriteLine();
+if (errorDiagnostics == 0 && isForceEnabled)
+{
+    writer.WriteSuccess($"dbnet succeeded.");
+    writer.WriteLine();
+}
 writer.Indent += 1;
 writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} skipped File(s).");
-writer.WriteLine($"{warningDiagnostics} Warning(s)");
-writer.WriteLine($"{errorDiagnostics} Error(s)");
+if (isForceEnabled)
+    writer.Write($"{warningDiagnostics} Warning(s)");
+else
+    writer.WriteWarning($"{warningDiagnostics} Warning(s)");
+writer.WriteLine();
+if (errorDiagnostics > 0)
+    writer.WriteError($"{errorDiagnostics} Error(s)");
+else
+    writer.Write($"{errorDiagnostics} Error(s)");
+writer.WriteLine();
 writer.Indent -= 1;
 writer.WriteLine();
 writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
