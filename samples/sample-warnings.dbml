@@ -1,11 +1,15 @@
-Table ExistingTable { }
-Table ExistingTable { }
+Table AlreadyDeclaredTable { }
+Table AlreadyDeclaredTable { }
 
-Table Users
+Table AlreadyDeclaredColumn
 {
-    ExistingColumn nvarchar(MAX)
-    ExistingColumn nvarchar(MAX)
+    AlreadyDeclaredColumn nvarchar(MAX)
+    AlreadyDeclaredColumn nvarchar(MAX)
+}
+
+Table UnknownIndexType
+{
     indexes {
-        Email [unique, name: 'EmailIndex', type: unknown]
+        ColumnName [type: unknown]
     }
 }
