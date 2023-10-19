@@ -13,6 +13,8 @@
 1. **DbmlNet Library:** A .NET parser library for parsing *.dbml files.
 2. **dbnet CLI Tool:** A .NET CLI tool to generate SQL files from *.dbml inputs.
 
+![dbnet run --print](assets/cli-run-print.gif)
+
 **Table of Contents:**
 
 - [DbmlNet Parser Features](#dbmlnet-parser-features)
@@ -91,6 +93,8 @@ To run `dbnet`, use the available scripts in the root folder based on your platf
 ```
 
 The `--help` option provides usage instructions. You can provide a file or directory path as an input parameter.
+
+![dbnet --help](assets/cli-run-help.png)
 
 For more examples, check the documentation.
 
