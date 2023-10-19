@@ -1,5 +1,7 @@
 Table Users
 {
+    ExistingColumn nvarchar(MAX)
+    ExistingColumn nvarchar(MAX)
     indexes {
         Email [unique, name: 'EmailIndex', type: unknown]
     }
