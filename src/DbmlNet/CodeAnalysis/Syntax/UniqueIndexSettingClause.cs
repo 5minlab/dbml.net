@@ -13,12 +13,16 @@ public sealed class UniqueIndexSettingClause : IndexSettingClause
         : base(syntaxTree)
     {
         UniqueKeyword = uniqueKeyword;
+        SettingName = uniqueKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unique index setting clause <see cref="SyntaxKind.UniqueIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueIndexSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the unique keyword.

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
 /// Represents a composite index declaration statement.
 /// </summary>
-public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
+public sealed class CompositeIndexDeclarationSyntax : IndexDeclarationStatementSyntax
 {
     internal CompositeIndexDeclarationSyntax(
         SyntaxTree syntaxTree,
@@ -19,12 +20,16 @@ public sealed class CompositeIndexDeclarationSyntax : StatementSyntax
         Identifiers = identifiers;
         CloseParenthesis = closeParenthesis;
         Settings = settings;
+        IdentifierName = string.Join("", identifiers.Select(index => index.Text));
     }
 
     /// <summary>
     /// Gets the syntax kind of the composite index declaration statement <see cref="SyntaxKind.CompositeIndexDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.CompositeIndexDeclarationStatement;
+
+    /// <inherits/>
+    public override string IdentifierName { get; }
 
     /// <summary>
     /// Gets the open parenthesis token.

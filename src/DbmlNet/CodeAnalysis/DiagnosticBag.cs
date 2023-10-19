@@ -79,6 +79,18 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportWarning(location, message);
     }
 
+    public void ReportDuplicateIndexName(TextLocation location, string indexName)
+    {
+        string message = $"Index '{indexName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateIndexSettingName(TextLocation location, string settingName)
+    {
+        string message = $"Index setting '{settingName}' already declared.";
+        ReportWarning(location, message);
+    }
+
     public void ReportUnknownIndexSetting(TextLocation location, string settingName)
     {
         string message = $"Unknown index setting '{settingName}'.";

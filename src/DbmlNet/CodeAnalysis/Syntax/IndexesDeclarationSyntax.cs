@@ -11,7 +11,7 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
         SyntaxTree syntaxTree,
         SyntaxToken indexesKeyword,
         SyntaxToken openBraceToken,
-        SeparatedSyntaxList<StatementSyntax> indexes,
+        SeparatedSyntaxList<IndexDeclarationStatementSyntax> indexes,
         SyntaxToken closeBraceToken)
         : base(syntaxTree)
     {
@@ -39,7 +39,7 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
     /// <summary>
     /// Gets the indexes.
     /// </summary>
-    public SeparatedSyntaxList<StatementSyntax> Indexes { get; }
+    public SeparatedSyntaxList<IndexDeclarationStatementSyntax> Indexes { get; }
 
     /// <summary>
     /// Gets the close brace token.
@@ -51,7 +51,7 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
     {
         yield return IndexesKeyword;
         yield return OpenBraceToken;
-        foreach (StatementSyntax index in Indexes)
+        foreach (IndexDeclarationStatementSyntax index in Indexes)
             yield return index;
         yield return CloseBraceToken;
     }

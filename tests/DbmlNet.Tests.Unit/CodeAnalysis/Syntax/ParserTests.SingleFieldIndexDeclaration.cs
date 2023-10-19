@@ -555,7 +555,7 @@ public partial class ParserTests
     [InlineData("pk", "pk")]
     [InlineData("primarykey", "primary key")]
     [InlineData("unique", "unique")]
-    [InlineData("name", "name: Some_value", Skip = "Identifier(s) are not recognized as a valid value for name setting.")]
+    [InlineData("name", "name: Some_value")]
     [InlineData("name", "name: \"Some value\"")]
     [InlineData("name", "name: \'Some value\'")]
     [InlineData("type", "type: btree")]

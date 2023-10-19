@@ -456,7 +456,7 @@ internal sealed class Parser
 
         SyntaxToken left = MatchToken(SyntaxKind.OpenBraceToken);
 
-        SeparatedSyntaxList<StatementSyntax> indexes =
+        SeparatedSyntaxList<IndexDeclarationStatementSyntax> indexes =
             ParseSeparatedList(
                 closeTokenKind: SyntaxKind.CloseBraceToken,
                 separatorKind: null,
@@ -467,7 +467,7 @@ internal sealed class Parser
         return new IndexesDeclarationSyntax(_syntaxTree, indexesKeyword, left, indexes, right);
     }
 
-    private StatementSyntax ParseIndexDeclaration()
+    private IndexDeclarationStatementSyntax ParseIndexDeclaration()
     {
         return Current.Kind switch
         {
@@ -476,7 +476,7 @@ internal sealed class Parser
         };
     }
 
-    private StatementSyntax ParseCompositeIndexDeclaration()
+    private IndexDeclarationStatementSyntax ParseCompositeIndexDeclaration()
     {
         ExpressionSyntax ParseCompositeIndexIdentifierExpression()
         {
@@ -499,15 +499,16 @@ internal sealed class Parser
             _syntaxTree, openParenthesis, identifiers, closeParenthesis, settingsList);
     }
 
-    private StatementSyntax ParseSingleFieldIndexDeclaration()
+    private IndexDeclarationStatementSyntax ParseSingleFieldIndexDeclaration()
     {
         SyntaxToken identifier = Current.Kind switch
         {
             _ when Current.Kind.IsKeyword() => NextToken(),
             _ => MatchToken(SyntaxKind.IdentifierToken)
         };
-        IndexSettingListSyntax? settingList = ParseOptionalIndexSettingList();
-        return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingList);
+        IndexSettingListSyntax? settingsList = ParseOptionalIndexSettingList();
+
+        return new SingleFieldIndexDeclarationSyntax(_syntaxTree, identifier, settingsList);
     }
 
     private IndexSettingListSyntax? ParseOptionalIndexSettingList()
@@ -526,6 +527,18 @@ internal sealed class Parser
                 closeTokenKind: SyntaxKind.CloseBracketToken,
                 separatorKind: SyntaxKind.CommaToken,
                 parseExpression: ParseIndexSettingClause);
+
+        HashSet<string> seenSettingNames = new HashSet<string>();
+        foreach (IndexSettingClause indexSetting in settings)
+        {
+            string settingNameText = indexSetting.SettingName;
+            if (!seenSettingNames.Add(settingNameText))
+            {
+                TextSpan settingNameSpan = indexSetting.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                Diagnostics.ReportDuplicateIndexSettingName(location, settingNameText);
+            }
+        }
 
         SyntaxToken closeBracketToken = MatchToken(SyntaxKind.CloseBracketToken);
 
@@ -579,7 +592,8 @@ internal sealed class Parser
         SyntaxKind valueTokenKind = Current.Kind switch
         {
             SyntaxKind.QuotationMarksStringToken => SyntaxKind.QuotationMarksStringToken,
-            _ => SyntaxKind.SingleQuotationMarksStringToken,
+            SyntaxKind.SingleQuotationMarksStringToken => SyntaxKind.SingleQuotationMarksStringToken,
+            _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
         return new NameIndexSettingClause(_syntaxTree, nameKeyword, colonToken, valueToken);
@@ -596,10 +610,11 @@ internal sealed class Parser
             _ => SyntaxKind.IdentifierToken,
         };
         SyntaxToken valueToken = MatchToken(valueTokenKind);
-        if (IndexSettingTypes.Contains(valueToken.Text) == false)
+        string columnTypeName = $"{valueToken.Value ?? valueToken.Text}";
+        if (IndexSettingTypes.Contains(columnTypeName) == false)
         {
             TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
-            Diagnostics.ReportUnknownIndexSettingType(location, $"{valueToken.Value ?? valueToken.Text}");
+            Diagnostics.ReportUnknownIndexSettingType(location, columnTypeName);
         }
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }

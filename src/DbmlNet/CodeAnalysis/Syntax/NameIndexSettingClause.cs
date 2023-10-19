@@ -17,12 +17,16 @@ public sealed class NameIndexSettingClause : IndexSettingClause
         NameKeyword = nameKeyword;
         ColonToken = colonToken;
         ValueToken = valueToken;
+        SettingName = nameKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the index setting clause <see cref="SyntaxKind.NameIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NameIndexSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the name keyword.

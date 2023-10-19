@@ -17,12 +17,16 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
         NameToken = nameToken;
         ColonToken = colonToken;
         ValueToken = settingValueToken;
+        SettingName = nameToken.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unknown index setting clause <see cref="SyntaxKind.UnknownIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownIndexSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the name token.
