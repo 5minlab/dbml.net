@@ -169,7 +169,7 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
-    [Fact(Skip = "Skip to avoid infinite loop.")]
+    [Fact]
     public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
