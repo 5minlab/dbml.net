@@ -56,6 +56,21 @@ public class LexerTests
     }
 
     [Theory]
+    [InlineData("\t")]
+    [InlineData(" ")]
+    [InlineData("  ")]
+    public void Lexer_Lex_Trivia_Whitespace(string text)
+    {
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
+
+        SyntaxToken token = Assert.Single(tokens);
+        SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
+        Assert.Equal(SyntaxKind.WhitespaceTrivia, trivia.Kind);
+        Assert.Empty(diagnostics);
+    }
+
+    [Theory]
     [InlineData("\r")]
     [InlineData("\n")]
     [InlineData("\r\n")]
