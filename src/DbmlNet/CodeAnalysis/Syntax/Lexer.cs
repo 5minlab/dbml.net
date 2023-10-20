@@ -83,8 +83,15 @@ internal sealed class Lexer
                         done = true;
                     ReadLineBreak();
                     break;
+                case ' ':
+                case '\t':
+                    ReadWhiteSpace();
+                    break;
                 default:
-                    done = true;
+                    if (char.IsWhiteSpace(Current))
+                        ReadWhiteSpace();
+                    else
+                        done = true;
                     break;
             }
 
@@ -112,6 +119,31 @@ internal sealed class Lexer
         _kind = SyntaxKind.LineBreakTrivia;
     }
 
+    private void ReadWhiteSpace()
+    {
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    done = true;
+                    break;
+                default:
+                    if (!char.IsWhiteSpace(Current))
+                        done = true;
+                    else
+                        _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.WhitespaceTrivia;
+    }
+
 #pragma warning disable CA1502 // Avoid excessive complexity
     private void ReadToken()
     {
@@ -123,14 +155,6 @@ internal sealed class Lexer
         {
             case '\0':
                 _kind = SyntaxKind.EndOfFileToken;
-                break;
-            case '\n':
-            case '\r':
-                _kind = SyntaxKind.WhitespaceTrivia;
-                if (Current == '\r' && Lookahead == '\n')
-                    _position += 2;
-                else
-                    _position++;
                 break;
             case '0':
             case '1':
@@ -223,11 +247,7 @@ internal sealed class Lexer
                 ReadSingleQuotationString();
                 break;
             default:
-                if (char.IsWhiteSpace(Current))
-                {
-                    ReadWhitespace();
-                }
-                else if (char.IsLetterOrDigit(Current) || Current == '_')
+                if (char.IsLetterOrDigit(Current) || Current == '_')
                 {
                     ReadIdentifier();
                 }
@@ -282,31 +302,6 @@ internal sealed class Lexer
         _kind = SyntaxKind.SingleQuotationMarksStringToken;
         _value = _text.ToString(stringQuoteValueStart, stringQuoteValueLength);
     }
-
-    private void ReadWhitespace()
-    {
-        bool done = false;
-        while (!done)
-        {
-            switch (Current)
-            {
-                case '\0':
-                case '\r':
-                case '\n':
-                    done = true;
-                    break;
-                default:
-                    if (!char.IsWhiteSpace(Current))
-                        done = true;
-                    else
-                        _position++;
-                    break;
-            }
-        }
-
-        _kind = SyntaxKind.WhitespaceTrivia;
-    }
-
     private void ReadNumber()
     {
         // Number literals are defined via next syntaxes:
