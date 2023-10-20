@@ -177,6 +177,21 @@ public class LexerTests
     }
 
     [Fact]
+    public void Lexer_Lex_Unterminated_SingleQuotationMarksStringToken()
+    {
+        const string text = "\'text";
+        ImmutableArray<SyntaxToken> tokens = SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
+        Assert.Equal("Unterminated string literal.", diagnostic.Message);
+    }
+
+    [Fact]
     public void Lexer_Covers_AllTokens()
     {
         IEnumerable<SyntaxKind> tokenKinds =
