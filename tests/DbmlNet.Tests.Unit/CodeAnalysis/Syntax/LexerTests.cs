@@ -5,6 +5,7 @@ using System.Linq;
 
 using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
+using DbmlNet.CodeAnalysis.Text;
 
 using Xunit;
 
@@ -158,6 +159,21 @@ public class LexerTests
         Assert.Equal("The number '99999999999999999999999999999.9' is too large.", diagnostic.Message);
         Assert.True(diagnostic.IsError, "Diagnostic show be error.");
         Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+    }
+
+    [Fact]
+    public void Lexer_Lex_Unterminated_QuotationMarksStringToken()
+    {
+        const string text = "\"text";
+        ImmutableArray<SyntaxToken> tokens = SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.QuotationMarksStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
+        Assert.Equal("Unterminated string literal.", diagnostic.Message);
     }
 
     [Fact]
