@@ -2,7 +2,7 @@ using DbmlNet.CodeAnalysis.Text;
 
 using Xunit;
 
-namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
+namespace DbmlNet.Tests.Unit.CodeAnalysis.Text;
 
 public sealed class SourceTextTests
 {
