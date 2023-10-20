@@ -181,16 +181,4 @@ public partial class ParserTests
         keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
         keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
     }
-
-    private static int GetRandomNumber() =>
-        new IntRange(min: 0, max: 10).GetValue();
-
-    private static decimal GetRandomDecimal() =>
-        new SequenceGeneratorDecimal { From = 0.0M, To = decimal.MaxValue }.GetValue();
-
-    private static string CreateRandomString() =>
-        new MnemonicString().GetValue();
-
-    private static string CreateRandomMultiWordString() =>
-        new MnemonicString(wordCount: new IntRange(min: 1, max: 10).GetValue()).GetValue();
 }

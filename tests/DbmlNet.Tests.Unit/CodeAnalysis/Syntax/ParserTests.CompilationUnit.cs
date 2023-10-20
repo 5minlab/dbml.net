@@ -22,7 +22,7 @@ public partial class ParserTests
     public void Parse_CompilationUnit_With_ProjectDeclaration()
     {
         SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string projectNameText = $"{randomText}";
         object? projectNameValue = null;
         string text = $"Project {projectNameText} " + "{ }";
@@ -43,7 +43,7 @@ public partial class ParserTests
     public void Parse_CompilationUnit_With_TableDeclaration()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string tableNameText = randomText;
         object? tableNameValue = null;
         string text = $"Table {tableNameText} " + "{ }";

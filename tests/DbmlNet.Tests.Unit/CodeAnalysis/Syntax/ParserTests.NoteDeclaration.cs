@@ -10,7 +10,7 @@ public partial class ParserTests
     public void Parse_NoteDeclaration_With_QuotationMarksString()
     {
         SyntaxKind noteKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteText = $"\"{randomText}\"";
         string text = $"note: {noteText}";
         object noteValue = randomText;
@@ -28,7 +28,7 @@ public partial class ParserTests
     public void Parse_NoteDeclaration_With_SingleQuotationMarksString()
     {
         SyntaxKind noteKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteText = $"\'{randomText}\'";
         object noteValue = randomText;
         string text = $"note: {noteText}";

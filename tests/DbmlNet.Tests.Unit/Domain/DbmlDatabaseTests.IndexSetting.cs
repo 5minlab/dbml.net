@@ -11,12 +11,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_QuotationMarksString_Note()
     {
-        string noteValue = CreateRandomMultiWordString();
+        string noteValue = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ note: "{{noteValue}}" ]
+                {{DataGenerator.CreateRandomString()}} [ note: "{{noteValue}}" ]
             }
         }
         """;
@@ -33,12 +33,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_SingleQuotationMarksString_Note()
     {
-        string noteValue = CreateRandomMultiWordString();
+        string noteValue = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ note: '{{noteValue}}' ]
+                {{DataGenerator.CreateRandomString()}} [ note: '{{noteValue}}' ]
             }
         }
         """;
@@ -58,10 +58,10 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_IndexSetting_With_PrimaryKey_Flag(string settingText)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ {{settingText}} ]
+                {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;
@@ -79,10 +79,10 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_IndexSetting_With_Unique_Flag()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ unique ]
+                {{DataGenerator.CreateRandomString()}} [ unique ]
             }
         }
         """;
@@ -99,10 +99,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_QuotationMarksString_Name()
     {
-        string columnName = CreateRandomString();
-        string indexName = CreateRandomMultiWordString();
+        string columnName = DataGenerator.CreateRandomString();
+        string indexName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
                 {{columnName}} [ name: "{{indexName}}" ]
@@ -123,10 +123,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_SingleQuotationMarksString_Name()
     {
-        string columnName = CreateRandomString();
-        string indexName = CreateRandomMultiWordString();
+        string columnName = DataGenerator.CreateRandomString();
+        string indexName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
                 {{columnName}} [ name: '{{indexName}}' ]
@@ -152,10 +152,10 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_IndexSetting_With_Known_Type(string typeName)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ type: {{typeName}} ]
+                {{DataGenerator.CreateRandomString()}} [ type: {{typeName}} ]
             }
         }
         """;
@@ -172,12 +172,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_Identifier_Type()
     {
-        string typeName = CreateRandomString();
+        string typeName = DataGenerator.CreateRandomString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ type: {{typeName}} ]
+                {{DataGenerator.CreateRandomString()}} [ type: {{typeName}} ]
             }
         }
         """;
@@ -198,12 +198,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_QuotationMarksString_Type()
     {
-        string typeName = CreateRandomMultiWordString();
+        string typeName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ type: "{{typeName}}" ]
+                {{DataGenerator.CreateRandomString()}} [ type: "{{typeName}}" ]
             }
         }
         """;
@@ -224,12 +224,12 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_SingleQuotationMarksString_Type()
     {
-        string typeName = CreateRandomMultiWordString();
+        string typeName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ type: '{{typeName}}' ]
+                {{DataGenerator.CreateRandomString()}} [ type: '{{typeName}}' ]
             }
         }
         """;
@@ -250,14 +250,14 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_Setting()
     {
-        string settingName = CreateRandomString();
+        string settingName = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string settingText = $"{settingName}";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ {{settingText}} ]
+                {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;
@@ -280,14 +280,14 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_Setting_Identifier_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomString();
         string settingText = $"{settingName}: {settingValue}";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ {{settingText}} ]
+                {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;
@@ -310,14 +310,14 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_Setting_QuotationMarksString_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomMultiWordString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"{settingName}: \"{settingValue}\"";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ {{settingText}} ]
+                {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;
@@ -340,14 +340,14 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_IndexSetting_With_Unknown_Setting_SingleQuotationMarksString_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomMultiWordString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"{settingName}: '{settingValue}'";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
-                {{CreateRandomString()}} [ {{settingText}} ]
+                {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
             }
         }
         """;

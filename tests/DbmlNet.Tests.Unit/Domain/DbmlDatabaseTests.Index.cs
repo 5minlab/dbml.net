@@ -11,7 +11,7 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Indexes_Empty()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
             }
@@ -29,10 +29,10 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_SingleFieldIndex_Empty()
     {
-        string randomIndexName = CreateRandomString();
+        string randomIndexName = DataGenerator.CreateRandomString();
         string indexText = $"{randomIndexName}";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             Indexes {
                 {{indexText}}

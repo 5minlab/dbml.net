@@ -11,9 +11,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Column_Empty()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -46,9 +46,9 @@ public sealed partial class DbmlDatabaseTests
     [InlineData("float", "0")]
     public void Create_Returns_Column_With_Name_And_Type(string columnType, string? defaultValue)
     {
-        string randomColumnName = CreateRandomString();
+        string randomColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
             {{randomColumnName}} {{columnType}}
         }
@@ -90,9 +90,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_Column_With_Max_Length(string columnTypeText, object? maxLength)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{columnTypeText}}
+            {{DataGenerator.CreateRandomString()}} {{columnTypeText}}
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);

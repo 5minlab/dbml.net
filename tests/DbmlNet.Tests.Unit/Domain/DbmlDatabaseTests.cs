@@ -3,8 +3,6 @@ using System.Linq;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
 
-using Tynamix.ObjectFiller;
-
 using Xunit;
 
 namespace DbmlNet.Tests.Unit.Domain;
@@ -30,7 +28,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Database_With_Note()
     {
-        string randomNote = CreateRandomMultiWordString();
+        string randomNote = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
         note: '{{randomNote}}'
         """;
@@ -55,16 +53,4 @@ public sealed partial class DbmlDatabaseTests
         Assert.Empty(syntax.Diagnostics.Where(d => d.IsError));
         return syntax;
     }
-
-    private static int GetRandomNumber() =>
-        new IntRange(min: 0, max: 10).GetValue();
-
-    private static decimal GetRandomDecimal() =>
-        new SequenceGeneratorDecimal { From = 0.0M, To = decimal.MaxValue }.GetValue();
-
-    private static string CreateRandomString() =>
-        new MnemonicString().GetValue();
-
-    private static string CreateRandomMultiWordString() =>
-        new MnemonicString(wordCount: new IntRange(min: 1, max: 10).GetValue()).GetValue();
 }

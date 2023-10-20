@@ -22,7 +22,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_BlockStatement_With_Statement()
     {
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string expectedText = "{" + randomText + "}";
 
         StatementSyntax statement = ParseStatement(expectedText);

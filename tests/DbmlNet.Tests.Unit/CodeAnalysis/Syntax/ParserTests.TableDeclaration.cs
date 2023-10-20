@@ -10,7 +10,7 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Name_Identifier()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string tableNameText = randomText;
         object? tableNameValue = null;
         string text = $"Table {tableNameText} " + "{ }";
@@ -31,11 +31,11 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Name_And_Schema_Identifier()
     {
         SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
-        string randomSchemaName = CreateRandomString();
+        string randomSchemaName = DataGenerator.CreateRandomString();
         string schemaNameText = randomSchemaName;
         object? schemaNameValue = null;
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomTableName = CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string tableNameText = randomTableName;
         object? tableNameValue = null;
         string text = $"Table {schemaNameText}.{tableNameText} " + "{ }";
@@ -58,15 +58,15 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Name_And_Schema_And_Database_Identifier()
     {
         SyntaxKind databaseNameKind = SyntaxKind.IdentifierToken;
-        string randomDatabaseName = CreateRandomString();
+        string randomDatabaseName = DataGenerator.CreateRandomString();
         string databaseNameText = randomDatabaseName;
         object? databaseNameValue = null;
         SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
-        string randomSchemaName = CreateRandomString();
+        string randomSchemaName = DataGenerator.CreateRandomString();
         string schemaNameText = randomSchemaName;
         object? schemaNameValue = null;
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomTableName = CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string tableNameText = randomTableName;
         object? tableNameValue = null;
         string text = $"Table {databaseNameText}.{schemaNameText}.{tableNameText} " + "{ }";
@@ -91,7 +91,7 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Empty_Body()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string tableNameText = randomText;
         object? tableNameValue = null;
         string text = $"Table {tableNameText} " + "{ }";
@@ -112,11 +112,11 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Note_QuotationMarksString()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string tableNameText = randomText;
         object? tableNameValue = null;
         SyntaxKind noteValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomNoteText = CreateRandomMultiWordString();
+        string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\"{randomNoteText}\"";
         object? noteValue = randomNoteText;
         string text = $"Table {tableNameText} {{ note: {noteValueText} }}";
@@ -141,11 +141,11 @@ public partial class ParserTests
     public void Parse_TableDeclaration_With_Note_SingleQuotationMarksString()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string tableNameText = randomText;
         object? tableNameValue = null;
         SyntaxKind noteValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomNoteText = CreateRandomMultiWordString();
+        string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\'{randomNoteText}\'";
         object? noteValue = randomNoteText;
         string text = $"Table {tableNameText} {{ note: {noteValueText} }}";

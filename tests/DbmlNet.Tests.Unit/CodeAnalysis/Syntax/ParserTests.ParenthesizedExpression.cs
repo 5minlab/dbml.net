@@ -28,7 +28,7 @@ public partial class ParserTests
     public void Parse_ParenthesizedExpression_With_Expression()
     {
         SyntaxKind expectedKind = SyntaxKind.NumberToken;
-        decimal randomNumber = GetRandomDecimal();
+        decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string expectedText = $"{randomNumber}";
         object? expectedValue = randomNumber;
         string text = "(" + expectedText + ")";
