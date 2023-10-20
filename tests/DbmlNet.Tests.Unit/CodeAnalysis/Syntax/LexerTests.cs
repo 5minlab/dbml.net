@@ -86,6 +86,21 @@ public class LexerTests
         Assert.Equal(SyntaxKind.LineBreakTrivia, trivia.Kind);
     }
 
+    [Fact]
+    public void Lexer_Lex_Trivia_SingleLineComment()
+    {
+        string text = $"// {DataGenerator.CreateRandomMultiWordString()}";
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
+
+        Assert.Empty(diagnostics);
+        SyntaxToken token = Assert.Single(tokens);
+        SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
+        Assert.Equal(text, trivia.Text);
+        Assert.Equal(SyntaxKind.SingleLineCommentTrivia, trivia.Kind);
+    }
+
     [Theory]
     [InlineData("0", 0)]
     [InlineData("1", 1)]

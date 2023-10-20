@@ -101,6 +101,7 @@ public static class SyntaxFacts
         {
             case SyntaxKind.LineBreakTrivia:
             case SyntaxKind.WhitespaceTrivia:
+            case SyntaxKind.SingleLineCommentTrivia:
                 return true;
             default:
                 return false;
