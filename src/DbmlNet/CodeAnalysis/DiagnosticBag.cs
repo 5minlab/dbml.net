@@ -37,6 +37,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, message);
     }
 
+    public void ReportUnterminatedString(TextLocation location)
+    {
+        const string Message = "Unterminated string literal.";
+        ReportError(location, Message);
+    }
+
     public void ReportNumberToLarge(TextLocation location, string numberText)
     {
         string message = $"The number '{numberText}' is too large.";

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 using DbmlNet.CodeAnalysis.Text;
 
@@ -265,22 +266,46 @@ internal sealed class Lexer
 
     private void ReadQuotationString()
     {
-        _position++; // skip the current quotation mark
+        int start = _position;
 
-        int stringValueStart = _position;
-        char[] unterminatedStringCharacters = new char[] { '"', '\0', '\r', '\n' };
-        while (!unterminatedStringCharacters.Contains(Current))
-            _position++;
+        // Skip the current quote
+        _position++;
 
-        int stringValueLength = _position - stringValueStart;
-
-#pragma warning disable CA1508 // Avoid dead conditional code
-        if (Current == '"')
-            _position++; // skip the current quotation mark
-#pragma warning restore CA1508 // Avoid dead conditional code
+        StringBuilder sb = new StringBuilder();
+        bool done = false;
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    TextSpan span = new TextSpan(start, 1);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedString(location);
+                    done = true;
+                    break;
+                case '"':
+                    if (Lookahead == '"')
+                    {
+                        sb.Append(Current);
+                        _position += 2;
+                    }
+                    else
+                    {
+                        _position++;
+                        done = true;
+                    }
+                    break;
+                default:
+                    sb.Append(Current);
+                    _position++;
+                    break;
+            }
+        }
 
         _kind = SyntaxKind.QuotationMarksStringToken;
-        _value = _text.ToString(stringValueStart, stringValueLength);
+        _value = sb.ToString();
     }
 
     private void ReadSingleQuotationString()
