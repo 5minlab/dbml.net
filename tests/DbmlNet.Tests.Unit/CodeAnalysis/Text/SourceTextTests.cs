@@ -17,15 +17,15 @@ public sealed class SourceTextTests
     }
 
     [Fact]
-    public void SourceText_From_Creates_SourceText_With_Empty_Text()
+    public void SourceText_From_Returns_SourceText_With_Empty_Text()
     {
-        const string inputText = "";
+        const string text = "";
 
-        SourceText text = SourceText.From(inputText);
+        SourceText sourceText = SourceText.From(text);
 
-        Assert.Equal(inputText, text.ToString());
-        Assert.True(0 == text.Length, $"Expected 0 == text.Length, and got {text.Length} ");
-        TextLine line = Assert.Single(text.Lines);
+        Assert.Equal(text, sourceText.ToString());
+        Assert.True(0 == sourceText.Length, $"Expected 0 == text.Length, and got {sourceText.Length} ");
+        TextLine line = Assert.Single(sourceText.Lines);
         Assert.Equal("", line.ToString());
         Assert.True(0 == line.Start, $"Expected 0 == line.Start, and got {line.Start}");
         Assert.True(0 == line.Length, $"Expected 0 == line.Length, and got {line.Length}");
@@ -43,17 +43,17 @@ public sealed class SourceTextTests
     [InlineData(0, 0)]
     [InlineData(0, 1)]
     [InlineData(1, 1)]
-    public void SourceText_From_Creates_SourceText_With_MultiLine_Text(
+    public void SourceText_From_Returns_SourceText_With_MultiLine_Text(
         int minLineCount, int maxLineCount)
     {
         Assert.True(minLineCount >= 0, "Invalid test input expected param minLineCount >= 0");
         Assert.True(minLineCount <= maxLineCount, "Invalid test input expected param minLineCount <= param maxLineCount");
-        string inputText = DataGenerator.CreateRandomMultiLineText(minLineCount, maxLineCount);
+        string text = DataGenerator.CreateRandomMultiLineText(minLineCount, maxLineCount);
 
-        SourceText text = SourceText.From(inputText);
+        SourceText sourceText = SourceText.From(text);
 
-        Assert.Equal(inputText, text.ToString());
-        Assert.True(text.Lines.Length >= minLineCount, $"Expect text.Lines.Length >= minLineCount, and got {text.Lines.Length} >= {minLineCount}");
-        Assert.True(text.Lines.Length <= maxLineCount + 1, $"Expect text.Lines.Length <= maxLineCount, and got {text.Lines.Length} <= {maxLineCount + 1}");
+        Assert.Equal(text, sourceText.ToString());
+        Assert.True(sourceText.Lines.Length >= minLineCount, $"Expect text.Lines.Length >= minLineCount, and got {sourceText.Lines.Length} >= {minLineCount}");
+        Assert.True(sourceText.Lines.Length <= maxLineCount + 1, $"Expect text.Lines.Length <= maxLineCount, and got {sourceText.Lines.Length} <= {maxLineCount + 1}");
     }
 }
