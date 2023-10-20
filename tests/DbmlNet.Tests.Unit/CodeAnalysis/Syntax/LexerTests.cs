@@ -49,7 +49,6 @@ public class LexerTests
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.BadToken, token.Kind);
         Assert.False(token.IsMissing);
-
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal($"Bad character input: '{text}'.", diagnostic.Message);
         Assert.True(diagnostic.IsError, "Diagnostic should be error.");
@@ -97,7 +96,6 @@ public class LexerTests
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
         SyntaxToken token = Assert.Single(tokens);
-
         Assert.Equal(SyntaxKind.NumberToken, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.IsType<decimal>(token.Value);
@@ -113,8 +111,8 @@ public class LexerTests
     {
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
-        SyntaxToken token = Assert.Single(tokens);
 
+        SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.NumberToken, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.IsType<decimal>(token.Value);
@@ -132,8 +130,8 @@ public class LexerTests
     {
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
-        SyntaxToken token = Assert.Single(tokens);
 
+        SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.NumberToken, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.IsType<decimal>(token.Value);
@@ -146,15 +144,15 @@ public class LexerTests
     public void Lexer_Lex_Number_WhenNumberTooLarge()
     {
         const string text = "99999999999999999999999999999.9";
+
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
-        SyntaxToken token = Assert.Single(tokens);
 
+        SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(text, token.Text);
         Assert.Equal(SyntaxKind.NumberToken, token.Kind);
         Assert.False(token.IsMissing, "Token should not be missing.");
         Assert.Null(token.Value);
-
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal("The number '99999999999999999999999999999.9' is too large.", diagnostic.Message);
         Assert.True(diagnostic.IsError, "Diagnostic show be error.");
@@ -209,12 +207,13 @@ public class LexerTests
     public void Lexer_Lex_Unterminated_QuotationMarksStringToken()
     {
         const string text = "\"text";
-        ImmutableArray<SyntaxToken> tokens = SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.QuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
-
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
         Assert.Equal("Unterminated string literal.", diagnostic.Message);
@@ -224,12 +223,13 @@ public class LexerTests
     public void Lexer_Lex_Unterminated_SingleQuotationMarksStringToken()
     {
         const string text = "\'text";
-        ImmutableArray<SyntaxToken> tokens = SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
-
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
         Assert.Equal("Unterminated string literal.", diagnostic.Message);
