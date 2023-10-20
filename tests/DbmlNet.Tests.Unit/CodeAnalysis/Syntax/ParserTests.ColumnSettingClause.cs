@@ -1,6 +1,3 @@
-using System.Collections.Immutable;
-
-using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
