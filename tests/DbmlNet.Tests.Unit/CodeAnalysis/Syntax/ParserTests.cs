@@ -33,6 +33,7 @@ public partial class ParserTests
     {
         MemberSyntax member = ParseMember(text);
         Assert.Equal(SyntaxKind.GlobalStatementMember, member.Kind);
+        Assert.Single(member.GetChildren());
         StatementSyntax statement =
             Assert.IsAssignableFrom<GlobalStatementSyntax>(member).Statement;
         return statement;
