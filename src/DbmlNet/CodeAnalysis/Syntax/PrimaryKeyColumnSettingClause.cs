@@ -11,16 +11,20 @@ public sealed class PrimaryKeyColumnSettingClause : ColumnSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken primaryKeyword,
         SyntaxToken keyKeyword)
-        : base(syntaxTree, primaryKeyword.Text + keyKeyword.Text)
+        : base(syntaxTree)
     {
         PrimaryKeyword = primaryKeyword;
         KeyKeyword = keyKeyword;
+        SettingName = primaryKeyword.Text + keyKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the primary key column setting clause <see cref="SyntaxKind.PrimaryKeyColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyColumnSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the primary keyword.

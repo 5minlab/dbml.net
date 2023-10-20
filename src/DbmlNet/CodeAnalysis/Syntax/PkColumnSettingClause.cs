@@ -10,15 +10,19 @@ public sealed class PkColumnSettingClause : ColumnSettingClause
     internal PkColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken pkKeyword)
-        : base(syntaxTree, pkKeyword.Text)
+        : base(syntaxTree)
     {
         PkKeyword = pkKeyword;
+        SettingName = pkKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the pk column setting clause <see cref="SyntaxKind.PkColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PkColumnSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the pk keyword.

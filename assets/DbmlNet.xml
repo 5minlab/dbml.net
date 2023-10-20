@@ -395,6 +395,9 @@
             Gets the syntax kind of the default column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.DefaultColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.DefaultKeyword">
             <summary>
             Gets the default keyword.
@@ -463,6 +466,9 @@
             <summary>
             Gets the syntax kind of the increment column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IncrementColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.IncrementKeyword">
             <summary>
@@ -640,6 +646,9 @@
             Gets the syntax kind of the note column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.NoteKeyword">
             <summary>
             Gets the note keyword.
@@ -755,6 +764,9 @@
             Gets the syntax kind of the not null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NotNullColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NotKeyword">
             <summary>
             Gets the not keyword.
@@ -777,6 +789,9 @@
             <summary>
             Gets the syntax kind of the null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NullColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.NullKeyword">
             <summary>
@@ -848,6 +863,9 @@
             Gets the syntax kind of the pk column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.PkKeyword">
             <summary>
             Gets the pk keyword.
@@ -886,6 +904,9 @@
             <summary>
             Gets the syntax kind of the primary key column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.PrimaryKeyword">
             <summary>
@@ -996,6 +1017,9 @@
             <summary>
             Gets the syntax kind of the relationship column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.RefKeyword">
             <summary>
@@ -1786,6 +1810,9 @@
             Gets the syntax kind of the unique column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.UniqueKeyword">
             <summary>
             Gets the unique keyword.
@@ -1824,6 +1851,9 @@
             <summary>
             Gets the syntax kind of the unknown column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.NameToken">
             <summary>
