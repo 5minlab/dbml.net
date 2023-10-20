@@ -56,21 +56,19 @@ public class LexerTests
     }
 
     [Theory]
-    [InlineData("\t ")]
     [InlineData("\r")]
     [InlineData("\n")]
     [InlineData("\r\n")]
-    public void Lexer_Lex_Whitespace(string text)
+    public void Lexer_Lex_Trivia_LineBreak(string text)
     {
         ImmutableArray<SyntaxToken> tokens =
-            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
 
-        SyntaxToken token = Assert.Single(tokens);
-
-        Assert.Equal(text, token.Text);
-        Assert.Equal(SyntaxKind.WhitespaceTrivia, token.Kind);
-        Assert.False(token.IsMissing, "Token should not be missing.");
         Assert.Empty(diagnostics);
+        SyntaxToken token = Assert.Single(tokens);
+        SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
+        Assert.Equal(text, trivia.Text);
+        Assert.Equal(SyntaxKind.LineBreakTrivia, trivia.Kind);
     }
 
     [Theory]

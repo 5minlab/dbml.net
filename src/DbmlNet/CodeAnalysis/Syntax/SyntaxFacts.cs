@@ -91,6 +91,23 @@ public static class SyntaxFacts
     }
 
     /// <summary>
+    /// A flag indicating whether the given kind is a trivia.
+    /// </summary>
+    /// <param name="kind">The syntax kind to check.</param>
+    /// <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/></returns>
+    public static bool IsTrivia(this SyntaxKind kind)
+    {
+        switch (kind)
+        {
+            case SyntaxKind.LineBreakTrivia:
+            case SyntaxKind.WhitespaceTrivia:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>
     /// A flag indicating whether the given kind is a token.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>

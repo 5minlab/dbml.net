@@ -9,6 +9,7 @@ public enum SyntaxKind
     BadToken,
 
     // Trivia
+    LineBreakTrivia,
     WhitespaceTrivia,
 
     // Tokens

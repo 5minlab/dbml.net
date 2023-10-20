@@ -40,6 +40,7 @@ public class SyntaxFactsTests
         if (kind.IsSyntaxStatement()) return skip;
         if (kind.IsSyntaxExpression()) return skip;
 
+        if (kind.IsTrivia()) return skip;
         if (kind == SyntaxKind.BadToken) return skip;
         if (kind == SyntaxKind.WhitespaceTrivia) return skip;
         if (kind == SyntaxKind.EndOfFileToken) return skip;
