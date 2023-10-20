@@ -77,6 +77,12 @@ internal sealed class Lexer
                 case '\0':
                     done = true;
                     break;
+                case '/':
+                    if (Lookahead == '/')
+                        ReadSingleLineComment();
+                    else
+                        done = true;
+                    break;
                 case '\n':
                 case '\r':
                     if (!leading)
@@ -142,6 +148,30 @@ internal sealed class Lexer
         }
 
         _kind = SyntaxKind.WhitespaceTrivia;
+    }
+
+    private void ReadSingleLineComment()
+    {
+        // Skip the current '//'
+        _position += 2;
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    done = true;
+                    break;
+                default:
+                    _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.SingleLineCommentTrivia;
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
