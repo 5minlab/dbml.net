@@ -184,6 +184,28 @@ public class LexerTests
     }
 
     [Fact]
+    public void Lexer_Lex_SingleQuotationMarksStringToken()
+    {
+        const string textValue = """
+        error: ...the 'message' is 'my message'.
+        """;
+        const string text = """
+        'error: ...the ''message'' is ''my message''.'
+        """;
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+        Assert.IsType<string>(token.Value);
+        Assert.Equal(textValue, token.Value);
+        Assert.False(token.IsMissing, "Token should not be missing.");
+        Assert.Empty(diagnostics);
+    }
+
+    [Fact]
     public void Lexer_Lex_Unterminated_QuotationMarksStringToken()
     {
         const string text = "\"text";
