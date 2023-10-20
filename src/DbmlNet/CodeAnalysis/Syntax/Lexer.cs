@@ -16,6 +16,7 @@ internal sealed class Lexer
     private int _position;
     private SyntaxKind _kind = SyntaxKind.BadToken;
     private object? _value;
+    private readonly ImmutableArray<SyntaxTrivia>.Builder _triviaBuilder = ImmutableArray.CreateBuilder<SyntaxTrivia>();
 
     public Lexer(SyntaxTree syntaxTree)
     {
@@ -39,6 +40,10 @@ internal sealed class Lexer
 
     public SyntaxToken Lex()
     {
+        ReadTrivia(leading: true);
+
+        ImmutableArray<SyntaxTrivia> leadingTrivia = _triviaBuilder.ToImmutable();
+
         int tokenStart = _position;
 
         ReadToken();
@@ -48,7 +53,63 @@ internal sealed class Lexer
         int tokenLength = _position - tokenStart;
         string tokenText = tokenKind.GetKnownText() ?? _text.ToString(tokenStart, tokenLength);
 
-        return new SyntaxToken(_syntaxTree, tokenKind, tokenStart, tokenText, tokenValue);
+        ReadTrivia(leading: false);
+
+        ImmutableArray<SyntaxTrivia> trailingTrivia = _triviaBuilder.ToImmutable();
+
+        return new SyntaxToken(_syntaxTree, tokenKind, tokenStart, tokenText, tokenValue, leadingTrivia, trailingTrivia);
+    }
+
+    private void ReadTrivia(bool leading)
+    {
+        _triviaBuilder.Clear();
+
+        bool done = false;
+
+        while (!done)
+        {
+            _start = _position;
+            _kind = SyntaxKind.BadToken;
+            _value = null;
+
+            switch (Current)
+            {
+                case '\0':
+                    done = true;
+                    break;
+                case '\n':
+                case '\r':
+                    if (!leading)
+                        done = true;
+                    ReadLineBreak();
+                    break;
+                default:
+                    done = true;
+                    break;
+            }
+
+            int length = _position - _start;
+            if (length > 0)
+            {
+                string text = _text.ToString(_start, length);
+                SyntaxTrivia trivia = new SyntaxTrivia(_syntaxTree, _kind, _start, text);
+                _triviaBuilder.Add(trivia);
+            }
+        }
+    }
+
+    private void ReadLineBreak()
+    {
+        if (Current == '\r' && Lookahead == '\n')
+        {
+            _position += 2;
+        }
+        else
+        {
+            _position++;
+        }
+
+        _kind = SyntaxKind.LineBreakTrivia;
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
