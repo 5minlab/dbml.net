@@ -6,6 +6,16 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Text;
 
 public sealed class SourceTextTests
 {
+    [Theory]
+    [InlineData(".", 1)]
+    [InlineData(".\r\n", 2)]
+    [InlineData(".\r\n\r\n", 3)]
+    public void SourceText_IncludesLastLine(string text, int expectedLineCount)
+    {
+        SourceText sourceText = SourceText.From(text);
+        Assert.Equal(expectedLineCount, sourceText.Lines.Length);
+    }
+
     [Fact]
     public void SourceText_From_Creates_SourceText_With_Empty_Text()
     {
