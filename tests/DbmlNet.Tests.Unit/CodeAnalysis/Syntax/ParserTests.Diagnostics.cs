@@ -102,6 +102,23 @@ public partial class ParserTests
         Assert.Equal($"Table '{secondTableName}' already declared.", diagnostic.Message);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordsTextData))]
+    public void Parse_Warning_Table_Already_Declared_For_Keyword_ColumnName(
+        string tableNameText)
+    {
+        string text = $$"""
+        Table {{tableNameText}} { }
+        Table {{tableNameText}} { }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Table '{tableNameText}' already declared.", diagnostic.Message);
+    }
+
     [Fact]
     public void Parse_Warning_Column_Already_Declared()
     {
