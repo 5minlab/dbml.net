@@ -34,6 +34,7 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the increment column setting.
     /// </summary>
+    /// <returns>The children of the increment column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IncrementKeyword;

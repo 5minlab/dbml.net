@@ -42,6 +42,7 @@ public sealed class IndexSettingListSyntax : SyntaxNode
     /// <summary>
     /// Gets the children of the index setting list.
     /// </summary>
+    /// <returns>The children of the index setting list.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBracketToken;

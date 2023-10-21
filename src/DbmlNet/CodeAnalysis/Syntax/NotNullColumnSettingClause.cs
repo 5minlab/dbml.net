@@ -41,6 +41,7 @@ public sealed class NotNullColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the not null column setting.
     /// </summary>
+    /// <returns>The children of the not null column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NotKeyword;

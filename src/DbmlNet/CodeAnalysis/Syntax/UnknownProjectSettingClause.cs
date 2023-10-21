@@ -42,6 +42,7 @@ public sealed class UnknownProjectSettingClause : ProjectSettingClause
     /// <summary>
     /// Gets the children of the unknown project setting.
     /// </summary>
+    /// <returns>The children of the unknown project setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

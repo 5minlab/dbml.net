@@ -17,27 +17,27 @@ public sealed class SyntaxTrivia
     }
 
     /// <summary>
-    /// The syntax tree containing the trivia.
+    /// Gets the syntax tree containing the trivia.
     /// </summary>
     public SyntaxTree SyntaxTree { get; }
 
     /// <summary>
-    /// The kind of the trivia.
+    /// Gets the kind of the trivia.
     /// </summary>
     public SyntaxKind Kind { get; }
 
     /// <summary>
-    /// The position of the trivia in the syntax tree.
+    /// Gets the position of the trivia in the syntax tree.
     /// </summary>
     public int Position { get; }
 
     /// <summary>
-    /// The span of the trivia.
+    /// Gets the span of the trivia.
     /// </summary>
     public TextSpan Span => new(Position, Text?.Length ?? 0);
 
     /// <summary>
-    /// The text of the trivia.
+    /// Gets the text of the trivia.
     /// </summary>
     public string Text { get; }
 }

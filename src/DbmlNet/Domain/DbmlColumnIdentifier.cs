@@ -5,9 +5,8 @@ namespace DbmlNet.Domain;
 /// </summary>
 public sealed class DbmlColumnIdentifier
 {
-
     /// <summary>
-    /// Initializes a new instance of the <see cref="DbmlColumnIdentifier"/> with the specified schema name, table name, and column name.
+    /// Initializes a new instance of the <see cref="DbmlColumnIdentifier"/> class.
     /// </summary>
     /// <param name="schemaName">The schema name.</param>
     /// <param name="tableName">The table name.</param>

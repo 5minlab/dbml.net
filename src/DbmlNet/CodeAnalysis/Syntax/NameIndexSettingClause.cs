@@ -48,6 +48,7 @@ public sealed class NameIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the index setting.
     /// </summary>
+    /// <returns>The children of the index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameKeyword;

@@ -16,7 +16,7 @@ internal static class ApplicationSettings
             return Directory.GetFiles(inputPath, $"*{DbmlExtension}");
 
         return Path.GetExtension(inputPath).Equals(DbmlExtension, StringComparison.Ordinal)
-            ? (new[] { inputPath })
+            ? new[] { inputPath }
             : Array.Empty<string>();
     }
 }

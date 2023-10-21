@@ -41,6 +41,7 @@ public sealed class SingleFieldIndexDeclarationSyntax : IndexDeclarationStatemen
     /// <summary>
     /// Gets the children of the single field index declaration.
     /// </summary>
+    /// <returns>The children of the single field index declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;

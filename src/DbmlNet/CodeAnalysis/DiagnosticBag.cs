@@ -19,18 +19,6 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         _diagnostics.AddRange(diagnostics);
     }
 
-    private void ReportError(TextLocation location, string message)
-    {
-        Diagnostic diagnostic = Diagnostic.Error(location, message);
-        _diagnostics.Add(diagnostic);
-    }
-
-    private void ReportWarning(TextLocation location, string message)
-    {
-        Diagnostic diagnostic = Diagnostic.Warning(location, message);
-        _diagnostics.Add(diagnostic);
-    }
-
     public void ReportBadCharacter(TextLocation location, char character)
     {
         string message = $"Bad character input: '{character}'.";
@@ -113,5 +101,17 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
     {
         string message = $"Unknown index setting type '{unknownType}'. Allowed index types [{string.Join("|", Parser.IndexSettingTypes)}].";
         ReportWarning(location, message);
+    }
+
+    private void ReportError(TextLocation location, string message)
+    {
+        Diagnostic diagnostic = Diagnostic.Error(location, message);
+        _diagnostics.Add(diagnostic);
+    }
+
+    private void ReportWarning(TextLocation location, string message)
+    {
+        Diagnostic diagnostic = Diagnostic.Warning(location, message);
+        _diagnostics.Add(diagnostic);
     }
 }

@@ -42,6 +42,7 @@ public sealed class DatabaseProviderProjectSettingClause : ProjectSettingClause
     /// <summary>
     /// Gets the children of the database provider project setting.
     /// </summary>
+    /// <returns>The children of the database provider project setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return DatabaseProviderKeyword;

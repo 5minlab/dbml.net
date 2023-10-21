@@ -5,6 +5,8 @@ using System.Collections.Immutable;
 
 namespace DbmlNet.CodeAnalysis.Syntax;
 
+#pragma warning disable SA1402 // File may only contain a single type.
+
 /// <summary>
 /// Represents a list of expressions in the syntax tree.
 /// </summary>
@@ -28,17 +30,17 @@ public abstract class SeparatedSyntaxList
 public sealed class SeparatedSyntaxList<T> : SeparatedSyntaxList, IEnumerable<T>
     where T : SyntaxNode
 {
+    /// <summary>
+    /// Gets an empty separated syntax list.
+    /// </summary>
+    public static readonly SeparatedSyntaxList<T> Empty = new(ImmutableArray<SyntaxNode>.Empty);
+
     private readonly ImmutableArray<SyntaxNode> _nodesAndSeparators;
 
     internal SeparatedSyntaxList(ImmutableArray<SyntaxNode> nodesAndSeparators)
     {
         _nodesAndSeparators = nodesAndSeparators;
     }
-
-    /// <summary>
-    /// Gets an empty separated syntax list.
-    /// </summary>
-    public static readonly SeparatedSyntaxList<T> Empty = new(ImmutableArray<SyntaxNode>.Empty);
 
     /// <summary>
     /// Gets the number of nodes in the list.
@@ -48,6 +50,7 @@ public sealed class SeparatedSyntaxList<T> : SeparatedSyntaxList, IEnumerable<T>
     /// <summary>
     /// Gets the node at the specified index.
     /// </summary>
+    /// <param name="index">The index of the node.</param>
     public T this[int index] => (T)_nodesAndSeparators[index * 2];
 
     /// <summary>
@@ -60,7 +63,7 @@ public sealed class SeparatedSyntaxList<T> : SeparatedSyntaxList, IEnumerable<T>
     {
         return index < 0 || index >= Count - 1
             ? throw new ArgumentOutOfRangeException(nameof(index))
-            : (SyntaxToken)_nodesAndSeparators[index * 2 + 1];
+            : (SyntaxToken)_nodesAndSeparators[(index * 2) + 1];
     }
 
     /// <summary>

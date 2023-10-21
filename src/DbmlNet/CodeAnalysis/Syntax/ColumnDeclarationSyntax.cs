@@ -42,6 +42,7 @@ public sealed class ColumnDeclarationSyntax : StatementSyntax
     /// <summary>
     /// Gets the children of the column declaration.
     /// </summary>
+    /// <returns>The children of the column declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;

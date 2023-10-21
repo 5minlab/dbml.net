@@ -12,8 +12,8 @@ namespace DbmlNet.Extensions;
 /// </summary>
 public sealed class DbmlMarkdownWriter
 {
-    private readonly DbmlDatabase _database;
     private const string UnknownValue = "N/A";
+    private readonly DbmlDatabase _database;
 
     private DbmlMarkdownWriter(DbmlDatabase database)
     {
@@ -49,36 +49,36 @@ public sealed class DbmlMarkdownWriter
         using IndentedTextWriter indentedWriter =
             new IndentedTextWriter(writer, "  ");
 
-        Write(indentedWriter);
+        Write(indentedWriter, _database);
     }
 
-    private void Write(IndentedTextWriter writer)
+    private static void Write(IndentedTextWriter writer, DbmlDatabase database)
     {
         writer.Write("# Database design");
-        if (!string.IsNullOrWhiteSpace($"{_database.Project}"))
-            writer.Write($": {_database.Project}");
+        if (!string.IsNullOrWhiteSpace($"{database.Project}"))
+            writer.Write($": {database.Project}");
 
         writer.WriteLine();
 
-        if (_database.Project is not null)
+        if (database.Project is not null)
         {
             writer.WriteLine();
-            WriteProjectDeclaration(writer, _database.Project);
+            WriteProjectDeclaration(writer, database.Project);
         }
 
         writer.WriteLine();
-        WriteTableOfContents(writer);
+        WriteTableOfContents(writer, database);
 
         writer.WriteLine();
-        WriteLegend(writer);
+        WriteLegend(writer, database);
 
-        if (_database.Tables.Any())
+        if (database.Tables.Any())
         {
             writer.WriteLine();
             writer.WriteLine("## Tables");
             writer.WriteLine();
-            DbmlTable? lastChild = _database.Tables.LastOrDefault();
-            foreach (DbmlTable table in _database.Tables)
+            DbmlTable? lastChild = database.Tables.LastOrDefault();
+            foreach (DbmlTable table in database.Tables)
             {
                 WriteTableDeclaration(writer, table);
 
@@ -90,15 +90,15 @@ public sealed class DbmlMarkdownWriter
 
 #pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
 
-    private void WriteTableOfContents(IndentedTextWriter writer)
+    private static void WriteTableOfContents(IndentedTextWriter writer, DbmlDatabase database)
     {
 #pragma warning disable CA1308 // Normalize strings to uppercase
 
         writer.WriteLine("## Table of contents");
 
         string projectNameLink =
-            !string.IsNullOrWhiteSpace($"{_database.Project}")
-                ? $"{_database.Project}"
+            !string.IsNullOrWhiteSpace($"{database.Project}")
+                ? $"{database.Project}"
                     .Replace(" ", "-", StringComparison.CurrentCulture)
                     .ToLowerInvariant()
                 : string.Empty;
@@ -108,7 +108,7 @@ public sealed class DbmlMarkdownWriter
 
         string databaseDesignLink =
             !string.IsNullOrWhiteSpace(projectNameLink)
-                ? $"- [Database design: {_database.Project}](#database-design-{projectNameLink})"
+                ? $"- [Database design: {database.Project}](#database-design-{projectNameLink})"
                 : "- [Database design](#database-design)";
 
         writer.WriteLine();
@@ -116,12 +116,12 @@ public sealed class DbmlMarkdownWriter
         writer.Indent += 1;
 
         if (shouldRenderProjectInfo)
-            writer.WriteLine($"- [Project {_database.Project}](#project-{projectNameLink})");
+            writer.WriteLine($"- [Project {database.Project}](#project-{projectNameLink})");
 
         writer.WriteLine($"- [Table of contents](#table-of-contents)");
         writer.WriteLine($"- [Legend](#legend)");
         writer.WriteLine($"- [Tables](#tables)");
-        foreach (DbmlTable table in _database.Tables)
+        foreach (DbmlTable table in database.Tables)
         {
             writer.Indent += 1;
 
@@ -158,7 +158,7 @@ public sealed class DbmlMarkdownWriter
 
 #pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
-    private void WriteLegend(IndentedTextWriter writer)
+    private static void WriteLegend(IndentedTextWriter writer, DbmlDatabase database)
     {
         writer.WriteLine("## Legend");
         writer.WriteLine();
@@ -166,7 +166,7 @@ public sealed class DbmlMarkdownWriter
         writer.WriteLine("For more information, please check out [DBML homepage](https://dbml.dbdiagram.io/home/).");
 
         bool hasIndexes =
-            _database
+            database
                 .Tables
                 .SelectMany(p => p.Indexes)
                 .Any();
@@ -183,7 +183,7 @@ public sealed class DbmlMarkdownWriter
         }
 
         bool hasRelations =
-            _database
+            database
                 .Tables
                 .SelectMany(p => p.Relationships)
                 .Any();

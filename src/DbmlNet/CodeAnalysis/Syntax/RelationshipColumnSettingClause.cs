@@ -48,6 +48,7 @@ public sealed class RelationshipColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the relationship column setting.
     /// </summary>
+    /// <returns>The children of the relationship column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return RefKeyword;

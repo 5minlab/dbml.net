@@ -41,6 +41,7 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the primary key index setting.
     /// </summary>
+    /// <returns>The children of the primary key index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PrimaryKeyword;

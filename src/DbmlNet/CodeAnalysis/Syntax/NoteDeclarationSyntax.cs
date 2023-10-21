@@ -42,6 +42,7 @@ public sealed class NoteDeclarationSyntax : StatementSyntax
     /// <summary>
     /// Gets the children of the note declaration.
     /// </summary>
+    /// <returns>The children of the note declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

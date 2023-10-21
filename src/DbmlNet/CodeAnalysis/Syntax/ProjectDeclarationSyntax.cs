@@ -56,6 +56,7 @@ public sealed class ProjectDeclarationSyntax : MemberSyntax
     /// <summary>
     /// Gets the children of the project declaration.
     /// </summary>
+    /// <returns>The children of the project declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return ProjectKeyword;

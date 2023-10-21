@@ -34,6 +34,7 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the null column setting.
     /// </summary>
+    /// <returns>The children of the null column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NullKeyword;

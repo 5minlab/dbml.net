@@ -8,7 +8,7 @@ namespace DbmlNet.CodeAnalysis.Text;
 public readonly struct TextLocation : IEquatable<TextLocation>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="TextLocation"/>.
+    /// Initializes a new instance of the <see cref="TextLocation"/> struct.
     /// </summary>
     /// <param name="text">The source text.</param>
     /// <param name="span">The text span.</param>
@@ -53,28 +53,6 @@ public readonly struct TextLocation : IEquatable<TextLocation>
     /// </summary>
     public readonly int EndCharacter => Span.End - Text.Lines[EndLine].Start;
 
-    /// <inheritdoc/>
-    public override int GetHashCode()
-    {
-        return Text.GetHashCode() ^ Span.GetHashCode();
-    }
-
-    /// <inheritdoc/>
-    public override bool Equals(object? obj)
-    {
-        return obj is TextLocation span && Equals(span);
-    }
-
-    /// <summary>
-    /// Determines whether the current instance of the <see cref="TextLocation"/> class is equal to given <see cref="TextLocation"/> instance.
-    /// </summary>
-    /// <param name="other">The <see cref="TextLocation"/> instance to compare with the current instance.</param>
-    /// <returns>True if the current instance is equal to the other instance; otherwise, false.</returns>
-    public bool Equals(TextLocation other)
-    {
-        return Text == other.Text && Span == other.Span;
-    }
-
     /// <summary>
     /// Determines whether two <see cref="TextLocation"/> instances are equal.
     /// </summary>
@@ -95,6 +73,28 @@ public readonly struct TextLocation : IEquatable<TextLocation>
     public static bool operator !=(TextLocation left, TextLocation right)
     {
         return !left.Equals(right);
+    }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+    {
+        return Text.GetHashCode() ^ Span.GetHashCode();
+    }
+
+    /// <inheritdoc/>
+    public override bool Equals(object? obj)
+    {
+        return obj is TextLocation span && Equals(span);
+    }
+
+    /// <summary>
+    /// Determines whether the current instance of the <see cref="TextLocation"/> class is equal to given <see cref="TextLocation"/> instance.
+    /// </summary>
+    /// <param name="other">The <see cref="TextLocation"/> instance to compare with the current instance.</param>
+    /// <returns>True if the current instance is equal to the other instance; otherwise, false.</returns>
+    public bool Equals(TextLocation other)
+    {
+        return Text == other.Text && Span == other.Span;
     }
 
     /// <summary>

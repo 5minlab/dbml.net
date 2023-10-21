@@ -48,6 +48,7 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the unknown index setting.
     /// </summary>
+    /// <returns>The children of the unknown index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

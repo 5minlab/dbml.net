@@ -8,10 +8,10 @@ namespace DbmlNet.Domain;
 /// </summary>
 public sealed class DbmlTableIndex
 {
-    private readonly List<(string name, object? value)> _unknownSettings = new();
+    private readonly List<(string Name, object? Value)> _unknownSettings = new();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DbmlTableIndex"/>.
+    /// Initializes a new instance of the <see cref="DbmlTableIndex"/> class.
     /// </summary>
     /// <param name="name">The name of the table index.</param>
     /// <param name="columnName">The name of the column.</param>
@@ -39,17 +39,17 @@ public sealed class DbmlTableIndex
     public DbmlTable? Table { get; }
 
     /// <summary>
-    /// A flag indicating if the index is a primary key.
+    /// Gets a value indicating whether the index is a primary key.
     /// </summary>
     public bool IsPrimaryKey { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the index is unique.
+    /// Gets a value indicating whether the index is unique.
     /// </summary>
     public bool IsUnique { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the index is auto incremented.
+    /// Gets a value indicating whether the index is auto incremented.
     /// </summary>
     public string? Type { get; internal set; }
 
@@ -61,7 +61,7 @@ public sealed class DbmlTableIndex
     /// <summary>
     /// Gets the unknown settings.
     /// </summary>
-    public IEnumerable<(string unknownSettingName, object? unknownSettingValue)> UnknownSettings => _unknownSettings;
+    public IEnumerable<(string Name, object? Value)> UnknownSettings => _unknownSettings;
 
     /// <summary>
     /// Returns the name of this index.

@@ -26,6 +26,7 @@ public sealed class ExpressionStatementSyntax : StatementSyntax
     /// <summary>
     /// Gets the children of the expression.
     /// </summary>
+    /// <returns>The children of the expression.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return Expression;

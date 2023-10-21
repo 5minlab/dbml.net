@@ -48,6 +48,7 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the note column setting.
     /// </summary>
+    /// <returns>The children of the note column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

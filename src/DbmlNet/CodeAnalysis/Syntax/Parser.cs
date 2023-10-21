@@ -27,70 +27,11 @@ internal sealed class Parser
         Diagnostics.AddRange(diagnostics);
     }
 
-    static void ParseTokens(
-        SyntaxTree syntaxTree,
-        out ImmutableArray<SyntaxToken> tokens,
-        out ImmutableArray<Diagnostic> diagnostics)
-    {
-        Lexer lexer = new Lexer(syntaxTree);
-
-        ImmutableArray<SyntaxToken>.Builder tokenList =
-            ImmutableArray.CreateBuilder<SyntaxToken>();
-
-        ImmutableArray<SyntaxToken>.Builder badTokens =
-            ImmutableArray.CreateBuilder<SyntaxToken>();
-
-        SyntaxToken token;
-        do
-        {
-            token = lexer.Lex();
-
-            bool skipToken = token.Kind switch
-            {
-                SyntaxKind.BadToken => true,
-                SyntaxKind.WhitespaceTrivia => true,
-                _ => false
-            };
-
-            if (skipToken)
-                badTokens.Add(token);
-            else
-                tokenList.Add(token);
-
-        } while (token.Kind != SyntaxKind.EndOfFileToken);
-
-        diagnostics = lexer.Diagnostics.ToImmutableArray();
-        tokens = tokenList.ToImmutableArray();
-    }
-
     public DiagnosticBag Diagnostics { get; } = new DiagnosticBag();
 
-    private SyntaxToken Peek(int offset)
-    {
-        int index = _position + offset;
-        return index < _tokens.Length
-            ? _tokens[index]
-            : _tokens[^1];
-    }
-
     private SyntaxToken Current => Peek(offset: 0);
+
     private SyntaxToken Lookahead => Peek(offset: 1);
-
-    private SyntaxToken NextToken()
-    {
-        SyntaxToken token = Current;
-        _position++;
-        return token;
-    }
-
-    private SyntaxToken MatchToken(SyntaxKind kind)
-    {
-        if (Current.Kind == kind)
-            return NextToken();
-
-        Diagnostics.ReportUnexpectedToken(Current.Location, Current.Kind, kind);
-        return new SyntaxToken(_syntaxTree, kind, Current.Start, text: null, value: null);
-    }
 
     /// <summary>
     /// Parses the compilation unit and returns the resulting <see cref="CompilationUnitSyntax"/>.
@@ -118,6 +59,67 @@ internal sealed class Parser
 
         SyntaxToken endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
         return new CompilationUnitSyntax(_syntaxTree, members, endOfFileToken);
+    }
+
+    private static void ParseTokens(
+        SyntaxTree syntaxTree,
+        out ImmutableArray<SyntaxToken> tokens,
+        out ImmutableArray<Diagnostic> diagnostics)
+    {
+        Lexer lexer = new Lexer(syntaxTree);
+
+        ImmutableArray<SyntaxToken>.Builder tokenList =
+            ImmutableArray.CreateBuilder<SyntaxToken>();
+
+        ImmutableArray<SyntaxToken>.Builder badTokens =
+            ImmutableArray.CreateBuilder<SyntaxToken>();
+
+        SyntaxToken token;
+
+        do
+        {
+            token = lexer.Lex();
+
+            bool skipToken = token.Kind switch
+            {
+                SyntaxKind.BadToken => true,
+                SyntaxKind.WhitespaceTrivia => true,
+                _ => false
+            };
+
+            if (skipToken)
+                badTokens.Add(token);
+            else
+                tokenList.Add(token);
+        }
+        while (token.Kind != SyntaxKind.EndOfFileToken);
+
+        diagnostics = lexer.Diagnostics.ToImmutableArray();
+        tokens = tokenList.ToImmutableArray();
+    }
+
+    private SyntaxToken Peek(int offset)
+    {
+        int index = _position + offset;
+        return index < _tokens.Length
+            ? _tokens[index]
+            : _tokens[^1];
+    }
+
+    private SyntaxToken NextToken()
+    {
+        SyntaxToken token = Current;
+        _position++;
+        return token;
+    }
+
+    private SyntaxToken MatchToken(SyntaxKind kind)
+    {
+        if (Current.Kind == kind)
+            return NextToken();
+
+        Diagnostics.ReportUnexpectedToken(Current.Location, Current.Kind, kind);
+        return new SyntaxToken(_syntaxTree, kind, Current.Start);
     }
 
     private ImmutableArray<MemberSyntax> ParseMembers()
@@ -170,8 +172,7 @@ internal sealed class Parser
         SyntaxToken closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
 
         return new ProjectDeclarationSyntax(
-            _syntaxTree, projectKeyword, identifier,
-            openBraceToken, settings, closeBraceToken);
+            _syntaxTree, projectKeyword, identifier, openBraceToken, settings, closeBraceToken);
     }
 
     private ProjectSettingListSyntax ParseProjectSettingList()
@@ -329,8 +330,7 @@ internal sealed class Parser
         }
 
         return new TableIdentifierClause(
-            _syntaxTree, databaseIdentifier, firstDotToken,
-            schemaIdentifier, secondDotToken, tableIdentifier);
+            _syntaxTree, databaseIdentifier, firstDotToken, schemaIdentifier, secondDotToken, tableIdentifier);
     }
 
     private TableSettingListSyntax? ParseOptionalTableSettingList()
@@ -454,8 +454,7 @@ internal sealed class Parser
 
         SyntaxToken closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
 
-        return new BlockStatementSyntax(_syntaxTree,
-            openBraceToken, statements.ToArray(), closeBraceToken);
+        return new BlockStatementSyntax(_syntaxTree, openBraceToken, statements.ToArray(), closeBraceToken);
     }
 
     private StatementSyntax ParseIndexesDeclaration()
@@ -614,12 +613,14 @@ internal sealed class Parser
             _ when Current.Kind.IsStringToken() => NextToken(),
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
+
         string columnTypeName = $"{valueToken.Value ?? valueToken.Text}";
         if (!IndexSettingTypes.Contains(columnTypeName, StringComparer.InvariantCulture))
         {
             TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
             Diagnostics.ReportUnknownIndexSettingType(location, columnTypeName);
         }
+
         return new TypeIndexSettingClause(_syntaxTree, typeKeyword, colonToken, valueToken);
     }
 
@@ -769,32 +770,38 @@ internal sealed class Parser
                 SyntaxToken keyKeyword = MatchToken(SyntaxKind.KeyKeyword);
                 return new PrimaryKeyColumnSettingClause(_syntaxTree, primaryKeyword, keyKeyword);
             }
+
             case SyntaxKind.PkKeyword:
             {
                 SyntaxToken pkKeyword = MatchToken(SyntaxKind.PkKeyword);
                 return new PkColumnSettingClause(_syntaxTree, pkKeyword);
             }
+
             case SyntaxKind.NullKeyword:
             {
                 SyntaxToken nullKeyword = MatchToken(SyntaxKind.NullKeyword);
                 return new NullColumnSettingClause(_syntaxTree, nullKeyword);
             }
+
             case SyntaxKind.NotKeyword when Lookahead.Kind == SyntaxKind.NullKeyword:
             {
                 SyntaxToken notKeyword = MatchToken(SyntaxKind.NotKeyword);
                 SyntaxToken nullKeyword = MatchToken(SyntaxKind.NullKeyword);
                 return new NotNullColumnSettingClause(_syntaxTree, notKeyword, nullKeyword);
             }
+
             case SyntaxKind.UniqueKeyword:
             {
                 SyntaxToken uniqueKeyword = MatchToken(SyntaxKind.UniqueKeyword);
                 return new UniqueColumnSettingClause(_syntaxTree, uniqueKeyword);
             }
+
             case SyntaxKind.IncrementKeyword:
             {
                 SyntaxToken incrementKeyword = MatchToken(SyntaxKind.IncrementKeyword);
                 return new IncrementColumnSettingClause(_syntaxTree, incrementKeyword);
             }
+
             case SyntaxKind.DefaultKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
                 SyntaxToken defaultKeyword = MatchToken(SyntaxKind.DefaultKeyword);
@@ -818,6 +825,7 @@ internal sealed class Parser
 
                 return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, expressionValue);
             }
+
             case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
                 ReadNoteSettingTokens(
@@ -827,6 +835,7 @@ internal sealed class Parser
 
                 return new NoteColumnSettingClause(_syntaxTree, noteKeyword, colonToken, noteToken);
             }
+
             case SyntaxKind.RefKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
             {
                 ReadRelationshipSettingTokens(
@@ -836,6 +845,7 @@ internal sealed class Parser
 
                 return new RelationshipColumnSettingClause(_syntaxTree, refKeyword, colonToken, constraintClause);
             }
+
             default:
             {
                 SyntaxToken identifierToken = Current.Kind.IsKeyword()
@@ -905,7 +915,8 @@ internal sealed class Parser
 
         ColumnIdentifierClause toIdentifier = ParseColumnIdentifier();
         constraintClause =
-            new RelationshipConstraintClause(_syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
+            new RelationshipConstraintClause(
+                _syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
     }
 
     private ColumnIdentifierClause? ParseOptionalColumnIdentifier()
@@ -943,8 +954,7 @@ internal sealed class Parser
         }
 
         return new ColumnIdentifierClause(
-            _syntaxTree, schemaIdentifier, firstDotToken,
-            tableIdentifier, secondDotToken, columnIdentifier);
+            _syntaxTree, schemaIdentifier, firstDotToken, tableIdentifier, secondDotToken, columnIdentifier);
     }
 
     private void ReadNoteSettingTokens(
@@ -991,8 +1001,8 @@ internal sealed class Parser
         SyntaxToken openParenthesisToken = MatchToken(SyntaxKind.OpenParenthesisToken);
         ExpressionSyntax expression = ParseExpression();
         SyntaxToken closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
-        return new ParenthesizedExpressionSyntax(_syntaxTree,
-            openParenthesisToken, expression, closeParenthesisToken);
+        return new ParenthesizedExpressionSyntax(
+            _syntaxTree, openParenthesisToken, expression, closeParenthesisToken);
     }
 
     private ExpressionSyntax ParseBacktickExpression()
@@ -1000,8 +1010,8 @@ internal sealed class Parser
         SyntaxToken openBacktickToken = MatchToken(SyntaxKind.BacktickToken);
         ExpressionSyntax expression = ParseExpression();
         SyntaxToken closeBacktickToken = MatchToken(SyntaxKind.BacktickToken);
-        return new BacktickExpressionSyntax(_syntaxTree,
-            openBacktickToken, expression, closeBacktickToken);
+        return new BacktickExpressionSyntax(
+            _syntaxTree, openBacktickToken, expression, closeBacktickToken);
     }
 
     private ExpressionSyntax ParseNullExpression()
@@ -1107,9 +1117,7 @@ internal sealed class Parser
             if (separatorKind is null)
             {
                 SyntaxToken emptySeparator =
-                    new SyntaxToken(
-                        _syntaxTree, SyntaxKind.BadToken, Current.Start,
-                        text: null, value: null);
+                    new SyntaxToken(_syntaxTree, SyntaxKind.BadToken, Current.Start);
 
                 nodesAndSeparators.Add(emptySeparator);
             }

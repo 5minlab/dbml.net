@@ -36,7 +36,7 @@ public abstract class SyntaxWalker
     /// </summary>
     /// <param name="syntax">The member syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-    /// <exception cref="EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    /// <exception cref="EvaluateException"><paramref name="syntax.Kind"/> is unknown.</exception>
     protected virtual void WalkMember(MemberSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -94,7 +94,7 @@ public abstract class SyntaxWalker
     /// </summary>
     /// <param name="syntax">The statement syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-    /// <exception cref="EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    /// <exception cref="EvaluateException"><paramref name="syntax.Kind"/> is unknown.</exception>
     protected virtual void WalkStatement(StatementSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
@@ -165,7 +165,7 @@ public abstract class SyntaxWalker
     /// </summary>
     /// <param name="syntax">The composite index declaration statement syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-    private void WalkCompositeIndexDeclarationStatement(CompositeIndexDeclarationSyntax syntax)
+    protected virtual void WalkCompositeIndexDeclarationStatement(CompositeIndexDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
 
@@ -214,7 +214,7 @@ public abstract class SyntaxWalker
     /// </summary>
     /// <param name="syntax">The expression syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-    /// <exception cref="EvaluateException"></exception>
+    /// <exception cref="EvaluateException"><paramref name="syntax.Kind"/> is unknown.</exception>
     protected virtual void WalkExpression(ExpressionSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);

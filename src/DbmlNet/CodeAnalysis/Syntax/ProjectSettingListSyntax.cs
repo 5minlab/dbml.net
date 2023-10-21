@@ -29,6 +29,7 @@ public sealed class ProjectSettingListSyntax : SyntaxNode
     /// <summary>
     /// Gets the children of the project setting list.
     /// </summary>
+    /// <returns>The children of the project setting list.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         foreach (SyntaxNode setting in Settings)

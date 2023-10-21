@@ -49,6 +49,7 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     /// <summary>
     /// Gets the children of the table declaration.
     /// </summary>
+    /// <returns>The children of the table declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return TableKeyword;

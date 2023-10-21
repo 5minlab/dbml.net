@@ -34,6 +34,7 @@ public sealed class PkIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the pk column setting.
     /// </summary>
+    /// <returns>The children of the pk column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PkKeyword;

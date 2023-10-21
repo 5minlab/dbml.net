@@ -42,7 +42,7 @@ public sealed class RelationshipConstraintClause : SyntaxNode
     /// <summary>
     /// Gets the children of the relationship constraint.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The children of the relationship constraint.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         if (FromIdentifier is not null) yield return FromIdentifier;

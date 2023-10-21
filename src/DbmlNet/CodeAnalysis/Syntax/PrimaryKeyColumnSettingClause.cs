@@ -41,6 +41,7 @@ public sealed class PrimaryKeyColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the primary key column setting.
     /// </summary>
+    /// <returns>The children of the primary key column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PrimaryKeyword;

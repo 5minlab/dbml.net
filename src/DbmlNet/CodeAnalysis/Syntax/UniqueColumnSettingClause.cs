@@ -34,6 +34,7 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the unique column setting.
     /// </summary>
+    /// <returns>The children of the unique column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return UniqueKeyword;

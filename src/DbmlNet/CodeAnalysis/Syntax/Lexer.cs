@@ -11,12 +11,13 @@ internal sealed class Lexer
 {
     private readonly SourceText _text;
     private readonly SyntaxTree _syntaxTree;
+    private readonly ImmutableArray<SyntaxTrivia>.Builder _triviaBuilder =
+        ImmutableArray.CreateBuilder<SyntaxTrivia>();
 
     private int _start;
     private int _position;
     private SyntaxKind _kind = SyntaxKind.BadToken;
     private object? _value;
-    private readonly ImmutableArray<SyntaxTrivia>.Builder _triviaBuilder = ImmutableArray.CreateBuilder<SyntaxTrivia>();
 
     public Lexer(SyntaxTree syntaxTree)
     {
@@ -29,14 +30,6 @@ internal sealed class Lexer
     private char Current => Peek(0);
 
     private char Lookahead => Peek(1);
-
-    private char Peek(int offset = 0)
-    {
-        int index = _position + offset;
-        return index < _text.Length
-            ? _text[index]
-            : '\0';
-    }
 
     public SyntaxToken Lex()
     {
@@ -58,6 +51,14 @@ internal sealed class Lexer
         ImmutableArray<SyntaxTrivia> trailingTrivia = _triviaBuilder.ToImmutable();
 
         return new SyntaxToken(_syntaxTree, tokenKind, tokenStart, tokenText, tokenValue, leadingTrivia, trailingTrivia);
+    }
+
+    private char Peek(int offset = 0)
+    {
+        int index = _position + offset;
+        return index < _text.Length
+            ? _text[index]
+            : '\0';
     }
 
     private void ReadTrivia(bool leading)
@@ -200,6 +201,7 @@ internal sealed class Lexer
                         _position++;
                         done = true;
                     }
+
                     _position++;
                     break;
                 default:
@@ -276,6 +278,7 @@ internal sealed class Lexer
                     _kind = SyntaxKind.LessToken;
                     _position++;
                 }
+
                 break;
             case '>':
                 _kind = SyntaxKind.GraterToken;
@@ -327,6 +330,7 @@ internal sealed class Lexer
                     Diagnostics.ReportBadCharacter(location, Current);
                     _position++; // skip bad token
                 }
+
                 break;
         }
     }
@@ -366,6 +370,7 @@ internal sealed class Lexer
                         _position++;
                         done = true;
                     }
+
                     break;
                 default:
                     sb.Append(Current);
@@ -410,6 +415,7 @@ internal sealed class Lexer
                         _position++;
                         done = true;
                     }
+
                     break;
                 default:
                     sb.Append(Current);
@@ -424,11 +430,13 @@ internal sealed class Lexer
 
     private void ReadNumber()
     {
-        // Number literals are defined via next syntaxes:
-        //   - numbers: `0`, `1`, `1000000`
-        //   - ...with decimals: `2.7`, `3.14`, `2121296.32201`
-        //   - ...with separators: `1_000_000`, `2_121_296.322_01`
-        //   - ...or be crazy: `1__0__0_0___.__21_22_1____`
+        /*
+          Number literals are defined via next syntaxes:
+            - numbers: `0`, `1`, `1000000`
+            - ...with decimals: `2.7`, `3.14`, `2121296.32201`
+            - ...with separators: `1_000_000`, `2_121_296.322_01`
+            - ...or be crazy: `1__0__0_0___.__21_22_1____`
+        */
 
         _kind = SyntaxKind.NumberToken;
 

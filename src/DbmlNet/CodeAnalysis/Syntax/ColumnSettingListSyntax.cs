@@ -42,6 +42,7 @@ public sealed class ColumnSettingListSyntax : SyntaxNode
     /// <summary>
     /// Gets the children of the column setting list.
     /// </summary>
+    /// <returns>The children of the column setting list.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBracketToken;

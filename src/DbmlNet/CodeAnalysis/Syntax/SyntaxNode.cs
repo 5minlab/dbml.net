@@ -52,6 +52,12 @@ public abstract class SyntaxNode
     public TextLocation Location => new TextLocation(SyntaxTree.Text, Span);
 
     /// <summary>
+    /// Gets the text current <see cref="SyntaxNode"/> instance.
+    /// </summary>
+    /// <returns>The text current <see cref="SyntaxNode"/> instance.</returns>
+    public virtual string Text => SyntaxTree.Text.ToString(Span);
+
+    /// <summary>
     /// Gets the child syntax nodes of the current syntax node.
     /// </summary>
     /// <returns>An enumerable collection of child syntax nodes.</returns>
@@ -97,12 +103,6 @@ public abstract class SyntaxNode
     }
 
     /// <summary>
-    /// Returns the text current <see cref="SyntaxNode"/> instance.
-    /// </summary>
-    /// <returns>The text current <see cref="SyntaxNode"/> instance.</returns>
-    public virtual string Text => SyntaxTree.Text.ToString(Span);
-
-    /// <summary>
     /// Writes a tree view string of the current <see cref="SyntaxNode"/> instance to the specified <see cref="TextWriter"/>.
     /// </summary>
     /// <param name="writer">The <see cref="TextWriter"/> to write to.</param>
@@ -111,6 +111,17 @@ public abstract class SyntaxNode
     {
         ArgumentNullException.ThrowIfNull(writer);
         PrintSyntaxTo(writer, this);
+    }
+
+    /// <summary>
+    /// Return a tree view string of the current <see cref="SyntaxNode"/>.
+    /// </summary>
+    /// <returns>A tree view string of the current <see cref="SyntaxNode"/>.</returns>
+    public override string ToString()
+    {
+        using StringWriter writer = new();
+        WriteTo(writer);
+        return writer.ToString();
     }
 
 #pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
@@ -206,15 +217,4 @@ public abstract class SyntaxNode
     }
 
 #pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
-
-    /// <summary>
-    /// Return a tree view string of the current <see cref="SyntaxNode"/>.
-    /// </summary>
-    /// <returns>A tree view string of the current <see cref="SyntaxNode"/>.</returns>
-    public override string ToString()
-    {
-        using StringWriter writer = new();
-        WriteTo(writer);
-        return writer.ToString();
-    }
 }

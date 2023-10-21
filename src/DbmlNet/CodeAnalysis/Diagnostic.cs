@@ -21,25 +21,19 @@ public sealed class Diagnostic
     public bool IsError { get; }
 
     /// <summary>
-    /// The location associated with the diagnostic.
+    /// Gets location associated with the diagnostic.
     /// </summary>
     public TextLocation Location { get; }
 
     /// <summary>
-    /// The message associated with the diagnostic.
+    /// Gets the diagnostic message.
     /// </summary>
     public string Message { get; }
 
     /// <summary>
-    /// A flag indicating whether this diagnostic is a warning.
+    /// Gets a value indicating whether the diagnostic is an warning.
     /// </summary>
     public bool IsWarning { get; }
-
-    /// <summary>
-    /// Returns the text for this diagnostic.
-    /// </summary>
-    /// <returns>The text for this diagnostic.</returns>
-    public override string ToString() => Message;
 
     /// <summary>
     /// Creates a new error diagnostic with the specified location and message.
@@ -62,4 +56,10 @@ public sealed class Diagnostic
     {
         return new Diagnostic(isError: false, location, message);
     }
+
+    /// <summary>
+    /// Returns the diagnostic message.
+    /// </summary>
+    /// <returns>The diagnostic message.</returns>
+    public override string ToString() => Message;
 }

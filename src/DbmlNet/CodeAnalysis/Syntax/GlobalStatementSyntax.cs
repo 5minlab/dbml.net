@@ -26,6 +26,7 @@ public sealed class GlobalStatementSyntax : MemberSyntax
     /// <summary>
     /// Gets the children of the global statement.
     /// </summary>
+    /// <returns>The children of the global statement.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return Statement;

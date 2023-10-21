@@ -42,6 +42,7 @@ public sealed class LiteralExpressionSyntax : ExpressionSyntax
     /// <summary>
     /// Gets the children of the literal expression.
     /// </summary>
+    /// <returns>The children of the literal expression.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return LiteralToken;

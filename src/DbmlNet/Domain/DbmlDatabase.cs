@@ -15,7 +15,7 @@ public sealed class DbmlDatabase
     private readonly List<DbmlTable> _tables = new();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DbmlDatabase"/>.
+    /// Initializes a new instance of the <see cref="DbmlDatabase"/> class.
     /// </summary>
     public DbmlDatabase()
     {
@@ -27,7 +27,7 @@ public sealed class DbmlDatabase
     public IEnumerable<string> Providers => _databaseProviders;
 
     /// <summary>
-    /// Gets the list of tables.
+    /// Gets or sets the list of tables.
     /// </summary>
     public DbmlProject? Project { get; set; }
 

@@ -16,24 +16,18 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Location">
             <summary>
-            The location associated with the diagnostic.
+            Gets location associated with the diagnostic.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.Message">
             <summary>
-            The message associated with the diagnostic.
+            Gets the diagnostic message.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Diagnostic.IsWarning">
             <summary>
-            A flag indicating whether this diagnostic is a warning.
+            Gets a value indicating whether the diagnostic is an warning.
             </summary>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Diagnostic.ToString">
-            <summary>
-            Returns the text for this diagnostic.
-            </summary>
-            <returns>The text for this diagnostic.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Diagnostic.Error(DbmlNet.CodeAnalysis.Text.TextLocation,System.String)">
             <summary>
@@ -50,6 +44,12 @@
             <param name="location">The location of the warning.</param>
             <param name="message">The warning message.</param>
             <returns>A warning diagnostic.</returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Diagnostic.ToString">
+            <summary>
+            Returns the diagnostic message.
+            </summary>
+            <returns>The diagnostic message.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax">
             <summary>
@@ -80,6 +80,7 @@
             <summary>
             Gets the children of the backtick expression.
             </summary>
+            <returns>The children of the backtick expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax">
             <summary>
@@ -98,7 +99,7 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.Statements">
             <summary>
-            Description of the Statements property.
+            Gets the block statements.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax.CloseBraceToken">
@@ -110,6 +111,7 @@
             <summary>
             Gets the children of the block statement.
             </summary>
+            <returns>The children of the block statement.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.CallExpressionSyntax">
             <summary>
@@ -145,6 +147,7 @@
             <summary>
             Gets the children of the call expression.
             </summary>
+            <returns>The children of the call expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax">
             <summary>
@@ -175,6 +178,7 @@
             <summary>
             Gets the children of the column declaration.
             </summary>
+            <returns>The children of the column declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnIdentifierClause">
             <summary>
@@ -215,6 +219,7 @@
             <summary>
             Gets the children of the column identifier.
             </summary>
+            <returns>The children of the column identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnSettingClause">
             <summary>
@@ -255,6 +260,7 @@
             <summary>
             Gets the children of the column setting list.
             </summary>
+            <returns>The children of the column setting list.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeClause">
             <summary>
@@ -280,6 +286,7 @@
             <summary>
             Gets the children of the column type identifier.
             </summary>
+            <returns>The children of the column type identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ColumnTypeParenthesizedIdentifierClause">
             <summary>
@@ -315,6 +322,7 @@
             <summary>
             Gets the children of the column type identifier.
             </summary>
+            <returns>The children of the column type identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.CompilationUnitSyntax">
             <summary>
@@ -338,6 +346,7 @@
             <summary>
             Gets the children of the compilation unit.
             </summary>
+            <returns>The children of the compilation unit.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.CompositeIndexDeclarationSyntax">
             <summary>
@@ -378,6 +387,7 @@
             <summary>
             Gets the children of the composite index declaration.
             </summary>
+            <returns>The children of the composite index declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.DatabaseProviderProjectSettingClause">
             <summary>
@@ -408,6 +418,7 @@
             <summary>
             Gets the children of the database provider project setting.
             </summary>
+            <returns>The children of the database provider project setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause">
             <summary>
@@ -443,6 +454,7 @@
             <summary>
             Gets the children of the default column setting.
             </summary>
+            <returns>The children of the default column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax">
             <summary>
@@ -463,6 +475,7 @@
             <summary>
             Gets the children of the expression.
             </summary>
+            <returns>The children of the expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionSyntax">
             <summary>
@@ -488,6 +501,7 @@
             <summary>
             Gets the children of the global statement.
             </summary>
+            <returns>The children of the global statement.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause">
             <summary>
@@ -513,6 +527,7 @@
             <summary>
             Gets the children of the increment column setting.
             </summary>
+            <returns>The children of the increment column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexDeclarationStatementSyntax">
             <summary>
@@ -558,6 +573,7 @@
             <summary>
             Gets the children of the indexes declaration.
             </summary>
+            <returns>The children of the indexes declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IndexSettingClause">
             <summary>
@@ -598,6 +614,7 @@
             <summary>
             Gets the children of the index setting list.
             </summary>
+            <returns>The children of the index setting list.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.LiteralExpressionSyntax">
             <summary>
@@ -623,6 +640,7 @@
             <summary>
             Gets the children of the literal expression.
             </summary>
+            <returns>The children of the literal expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.MemberSyntax">
             <summary>
@@ -648,6 +666,7 @@
             <summary>
             Gets the children of the name expression.
             </summary>
+            <returns>The children of the name expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause">
             <summary>
@@ -683,6 +702,7 @@
             <summary>
             Gets the children of the index setting.
             </summary>
+            <returns>The children of the index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause">
             <summary>
@@ -718,6 +738,7 @@
             <summary>
             Gets the children of the note column setting.
             </summary>
+            <returns>The children of the note column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteDeclarationSyntax">
             <summary>
@@ -748,6 +769,7 @@
             <summary>
             Gets the children of the note declaration.
             </summary>
+            <returns>The children of the note declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause">
             <summary>
@@ -783,7 +805,7 @@
             <summary>
             Gets the children of the note index setting.
             </summary>
-            <returns></returns>
+            <returns>The children of the note index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteProjectSettingClause">
             <summary>
@@ -814,6 +836,7 @@
             <summary>
             Gets the children of the note project setting.
             </summary>
+            <returns>The children of the note project setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause">
             <summary>
@@ -844,6 +867,7 @@
             <summary>
             Gets the children of the not null column setting.
             </summary>
+            <returns>The children of the not null column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause">
             <summary>
@@ -869,6 +893,7 @@
             <summary>
             Gets the children of the null column setting.
             </summary>
+            <returns>The children of the null column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NullExpressionSyntax">
             <summary>
@@ -889,6 +914,7 @@
             <summary>
             Gets the children of the null expression.
             </summary>
+            <returns>The children of the null expression.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ParenthesizedExpressionSyntax">
             <summary>
@@ -919,6 +945,7 @@
             <summary>
             Gets the children of the parenthesized expression.
             </summary>
+            <returns>The children of the parenthesized expression.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.Parser.ParseCompilationUnit">
             <summary>
@@ -950,6 +977,7 @@
             <summary>
             Gets the children of the pk column setting.
             </summary>
+            <returns>The children of the pk column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause">
             <summary>
@@ -975,6 +1003,7 @@
             <summary>
             Gets the children of the pk column setting.
             </summary>
+            <returns>The children of the pk column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause">
             <summary>
@@ -1005,6 +1034,7 @@
             <summary>
             Gets the children of the primary key column setting.
             </summary>
+            <returns>The children of the primary key column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause">
             <summary>
@@ -1035,6 +1065,7 @@
             <summary>
             Gets the children of the primary key index setting.
             </summary>
+            <returns>The children of the primary key index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax">
             <summary>
@@ -1075,6 +1106,7 @@
             <summary>
             Gets the children of the project declaration.
             </summary>
+            <returns>The children of the project declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ProjectSettingClause">
             <summary>
@@ -1100,6 +1132,7 @@
             <summary>
             Gets the children of the project setting list.
             </summary>
+            <returns>The children of the project setting list.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause">
             <summary>
@@ -1135,6 +1168,7 @@
             <summary>
             Gets the children of the relationship column setting.
             </summary>
+            <returns>The children of the relationship column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipConstraintClause">
             <summary>
@@ -1165,7 +1199,7 @@
             <summary>
             Gets the children of the relationship constraint.
             </summary>
-            <returns></returns>
+            <returns>The children of the relationship constraint.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList">
             <summary>
@@ -1198,6 +1232,7 @@
             <summary>
             Gets the node at the specified index.
             </summary>
+            <param name="index">The index of the node.</param>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList`1.GetSeparator(System.Int32)">
             <summary>
@@ -1248,6 +1283,7 @@
             <summary>
             Gets the children of the single field index declaration.
             </summary>
+            <returns>The children of the single field index declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.StatementSyntax">
             <summary>
@@ -1298,35 +1334,35 @@
             A flag indicating whether the given kind is a keyword.
             </summary>
             <param name="kind">The syntax kind to check.</param>
-            <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/></returns>
+            <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsTrivia(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
             A flag indicating whether the given kind is a trivia.
             </summary>
             <param name="kind">The syntax kind to check.</param>
-            <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/></returns>
+            <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
             A flag indicating whether the given kind is a token.
             </summary>
             <param name="kind">The syntax kind to check.</param>
-            <returns><see langword="true"/> if the given kind is a token; otherwise, <see langword="false"/> </returns>
+            <returns><see langword="true"/> if the given kind is a token; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsStringToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
             A flag indicating whether the given kind is a string token.
             </summary>
             <param name="kind">The syntax kind to check.</param>
-            <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/> </returns>
+            <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownValue(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
             A flag indicating whether the given kind is a known value.
             </summary>
             <param name="kind">The syntax kind to check.</param>
-            <returns><see langword="true"/> if the given kind is a known value; otherwise, <see langword="false"/></returns>
+            <returns><see langword="true"/> if the given kind is a known value; otherwise, <see langword="false"/>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.GetKnownText(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
@@ -1370,6 +1406,12 @@
             Gets the text location of the syntax node.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Text">
+            <summary>
+            Gets the text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.
+            </summary>
+            <returns>The text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.</returns>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.GetChildren">
             <summary>
             Gets the child syntax nodes of the current syntax node.
@@ -1394,12 +1436,6 @@
             </summary>
             <returns>The last token of the current syntax node.</returns>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.Text">
-            <summary>
-            Returns the text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.
-            </summary>
-            <returns>The text current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance.</returns>
-        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxNode.WriteTo(System.IO.TextWriter)">
             <summary>
             Writes a tree view string of the current <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxNode"/> instance to the specified <see cref="T:System.IO.TextWriter"/>.
@@ -1420,26 +1456,26 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32)">
             <summary>
-            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/> class.
             </summary>
-            <param name="syntaxTree"></param>
+            <param name="syntaxTree">The syntax tree.</param>
             <param name="kind">The token kind.</param>
             <param name="start">The token start character position in the source text.</param>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String)">
             <summary>
-            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/> class.
             </summary>
-            <param name="syntaxTree"></param>
+            <param name="syntaxTree">The syntax tree.</param>
             <param name="kind">The token kind.</param>
             <param name="start">The token start character position in the source text.</param>
             <param name="text">The token text.</param>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String,System.Object)">
             <summary>
-            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/> class.
             </summary>
-            <param name="syntaxTree"></param>
+            <param name="syntaxTree">The syntax tree.</param>
             <param name="kind">The token kind.</param>
             <param name="start">The token start character position in the source text.</param>
             <param name="text">The token text.</param>
@@ -1447,9 +1483,9 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String,System.Object,System.Nullable{System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia}},System.Nullable{System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia}})">
             <summary>
-            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/> class.
             </summary>
-            <param name="syntaxTree"></param>
+            <param name="syntaxTree">The syntax tree.</param>
             <param name="kind">The token kind.</param>
             <param name="start">The token start character position in the source text.</param>
             <param name="text">The token text.</param>
@@ -1459,64 +1495,66 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Kind">
             <summary>
-            The kind of this token.
+            Gets the kind of this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Start">
             <summary>
-            The start character position in the source text for this token.
+            Gets the start character position in the source text for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Text">
             <summary>
-            The text for this token.
+            Gets the text for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Length">
             <summary>
-            The length for this token.
+            Gets the length for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.End">
             <summary>
-            The end character position in the source text for this token.
+            Gets the end character position in the source text for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Value">
             <summary>
-            The value for this token.
+            Gets the value for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.LeadingTrivia">
             <summary>
-            The leading trivia for this token.
+            Gets the leading trivia for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.TrailingTrivia">
             <summary>
-            The trailing trivia for this token.
+            Gets the trailing trivia for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.IsMissing">
             <summary>
-            A token is missing if it was inserted by the parser and doesn't
-            appear in source.
+            Gets a value indicating whether the token is missing, as it is the case
+            with the inserted token by the parser which do not appear in source.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Span">
             <summary>
-            The span for this token.
+            Gets the span for this token.
             </summary>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.GetChildren">
             <summary>
             Returns an empty array since a token has no children.
             </summary>
+            <returns>An empty array.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.ToString">
             <summary>
             Returns the text for this token.
             </summary>
+            <returns>The text for this token.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTree">
             <summary>
@@ -1600,27 +1638,27 @@
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.SyntaxTree">
             <summary>
-            The syntax tree containing the trivia.
+            Gets the syntax tree containing the trivia.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Kind">
             <summary>
-            The kind of the trivia.
+            Gets the kind of the trivia.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Position">
             <summary>
-            The position of the trivia in the syntax tree.
+            Gets the position of the trivia in the syntax tree.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Span">
             <summary>
-            The span of the trivia.
+            Gets the span of the trivia.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Text">
             <summary>
-            The text of the trivia.
+            Gets the text of the trivia.
             </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker">
@@ -1648,7 +1686,7 @@
             </summary>
             <param name="syntax">The member syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax.Kind.Kind"/> is unknown.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkProjectDeclaration(DbmlNet.CodeAnalysis.Syntax.ProjectDeclarationSyntax)">
             <summary>
@@ -1677,7 +1715,7 @@
             </summary>
             <param name="syntax">The statement syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax.Kind.Kind"/> is unknown.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkBlockStatement(DbmlNet.CodeAnalysis.Syntax.BlockStatementSyntax)">
             <summary>
@@ -1734,7 +1772,7 @@
             </summary>
             <param name="syntax">The expression syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
-            <exception cref="T:System.Data.EvaluateException"></exception>
+            <exception cref="T:System.Data.EvaluateException"><paramref name="syntax.Kind.Kind"/> is unknown.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkBacktickExpression(DbmlNet.CodeAnalysis.Syntax.BacktickExpressionSyntax)">
             <summary>
@@ -1805,6 +1843,7 @@
             <summary>
             Gets the children of the table declaration.
             </summary>
+            <returns>The children of the table declaration.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableIdentifierClause">
             <summary>
@@ -1845,6 +1884,7 @@
             <summary>
             Gets the children of the table identifier.
             </summary>
+            <returns>The children of the table identifier.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableSettingClause">
             <summary>
@@ -1880,6 +1920,7 @@
             <summary>
             Gets the children of the table setting list.
             </summary>
+            <returns>The children of the table setting list.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause">
             <summary>
@@ -1915,6 +1956,7 @@
             <summary>
             Gets the children of the type index setting.
             </summary>
+            <returns>The children of the type index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause">
             <summary>
@@ -1940,6 +1982,7 @@
             <summary>
             Gets the children of the unique column setting.
             </summary>
+            <returns>The children of the unique column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause">
             <summary>
@@ -1965,6 +2008,7 @@
             <summary>
             Gets the children of the unique index setting.
             </summary>
+            <returns>The children of the unique index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause">
             <summary>
@@ -2000,6 +2044,7 @@
             <summary>
             Gets the children of the unknown column setting.
             </summary>
+            <returns>The children of the unknown column setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause">
             <summary>
@@ -2035,6 +2080,7 @@
             <summary>
             Gets the children of the unknown index setting.
             </summary>
+            <returns>The children of the unknown index setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownProjectSettingClause">
             <summary>
@@ -2065,6 +2111,7 @@
             <summary>
             Gets the children of the unknown project setting.
             </summary>
+            <returns>The children of the unknown project setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownTableSettingClause">
             <summary>
@@ -2095,31 +2142,17 @@
             <summary>
             Gets the children of the unknown table setting.
             </summary>
+            <returns>The children of the unknown table setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Text.SourceText">
             <summary>
             Represents a source text.
             </summary>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.From(System.String,System.String)">
-            <summary>
-            Creates a new instance of SourceText from the specified text and optional file name.
-            </summary>
-            <param name="text">The text content of the source.</param>
-            <param name="fileName">The optional file name.</param>
-            <returns>A new instance of SourceText.</returns>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Lines">
             <summary>
             Gets the lines of the source text.
             </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Item(System.Int32)">
-            <summary>
-            Gets or sets the character at the specified index.
-            </summary>
-            <param name="index">The zero-based index of the character to get or set.</param>
-            <returns>The character at the specified index.</returns>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Length">
             <summary>
@@ -2130,6 +2163,21 @@
             <summary>
             Gets the file name of the source text.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Text.SourceText.Item(System.Int32)">
+            <summary>
+            Gets or sets the character at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the character to get or set.</param>
+            <returns>The character at the specified index.</returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.From(System.String,System.String)">
+            <summary>
+            Creates a new instance of SourceText from the specified text and optional file name.
+            </summary>
+            <param name="text">The text content of the source.</param>
+            <param name="fileName">The optional file name.</param>
+            <returns>A new instance of SourceText.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.SourceText.GetLineIndex(System.Int32)">
             <summary>
@@ -2166,7 +2214,7 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLine.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLine"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLine"/> class.
             </summary>
             <param name="text">The source text containing the line.</param>
             <param name="start">The starting position of the line within the source text.</param>
@@ -2221,7 +2269,7 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.#ctor(DbmlNet.CodeAnalysis.Text.SourceText,DbmlNet.CodeAnalysis.Text.TextSpan)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> struct.
             </summary>
             <param name="text">The source text.</param>
             <param name="span">The text span.</param>
@@ -2261,19 +2309,6 @@
             Gets the end of the character within the line.
             </summary>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(DbmlNet.CodeAnalysis.Text.TextLocation)">
-            <summary>
-            Determines whether the current instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> class is equal to given <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
-            </summary>
-            <param name="other">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare with the current instance.</param>
-            <returns>True if the current instance is equal to the other instance; otherwise, false.</returns>
-        </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.op_Equality(DbmlNet.CodeAnalysis.Text.TextLocation,DbmlNet.CodeAnalysis.Text.TextLocation)">
             <summary>
             Determines whether two <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instances are equal.
@@ -2290,6 +2325,19 @@
             <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare.</param>
             <returns>True if the two instances are not equal; otherwise, false.</returns>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.Equals(DbmlNet.CodeAnalysis.Text.TextLocation)">
+            <summary>
+            Determines whether the current instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> class is equal to given <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance.
+            </summary>
+            <param name="other">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/> instance to compare with the current instance.</param>
+            <returns>True if the current instance is equal to the other instance; otherwise, false.</returns>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextLocation.ToString">
             <summary>
             Returns the span text of this <see cref="T:DbmlNet.CodeAnalysis.Text.TextLocation"/>.
@@ -2303,7 +2351,7 @@
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> struct.
             </summary>
             <param name="start">The start of the span.</param>
             <param name="length">The length of the span.</param>
@@ -2322,6 +2370,22 @@
             <summary>
             Gets the end of the span.
             </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Equality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are equal.
+            </summary>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <returns><c>true</c> if the two instances are equal; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Inequality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
+            <summary>
+            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are not equal.
+            </summary>
+            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
+            <returns><c>true</c> if the two instances are not equal; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.FromBounds(System.Int32,System.Int32)">
             <summary>
@@ -2351,22 +2415,6 @@
             <param name="other">The <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare with the current instance.</param>
             <returns><c>true</c> if the current instance is equal to the other <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Equality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
-            <summary>
-            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are equal.
-            </summary>
-            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
-            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
-            <returns><c>true</c> if the two instances are equal; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.op_Inequality(DbmlNet.CodeAnalysis.Text.TextSpan,DbmlNet.CodeAnalysis.Text.TextSpan)">
-            <summary>
-            Determines whether two instances of <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> are not equal.
-            </summary>
-            <param name="left">The first <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
-            <param name="right">The second <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/> to compare.</param>
-            <returns><c>true</c> if the two instances are not equal; otherwise, <c>false</c>.</returns>
-        </member>
         <member name="M:DbmlNet.CodeAnalysis.Text.TextSpan.ToString">
             <summary>
             Returns a string representation of the <see cref="T:DbmlNet.CodeAnalysis.Text.TextSpan"/>.
@@ -2380,7 +2428,7 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlColumnIdentifier.#ctor(System.String,System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlColumnIdentifier"/> with the specified schema name, table name, and column name.
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlColumnIdentifier"/> class.
             </summary>
             <param name="schemaName">The schema name.</param>
             <param name="tableName">The table name.</param>
@@ -2414,7 +2462,7 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlDatabase.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlDatabase"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlDatabase"/> class.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Providers">
@@ -2424,7 +2472,7 @@
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Project">
             <summary>
-            Gets the list of tables.
+            Gets or sets the list of tables.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlDatabase.Tables">
@@ -2606,42 +2654,42 @@
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.MaxLength">
             <summary>
-            The max length of the column.
+            Gets the max length of the column.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.HasMaxLength">
             <summary>
-            A flag indicating if the column has a max length.
+            Gets a value indicating whether the column has a max length.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsPrimaryKey">
             <summary>
-            A flag indicating if the column is a primary key.
+            Gets a value indicating whether the column is a primary key.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsUnique">
             <summary>
-            A flag indicating if the column is unique.
+            Gets a value indicating whether the column is unique.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsAutoIncrement">
             <summary>
-            A flag indicating if the column is auto incremented.
+            Gets a value indicating whether the column is auto incremented.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsNullable">
             <summary>
-            A flag indicating if the column is nullable.
+            Gets a value indicating whether the column is nullable.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.IsRequired">
             <summary>
-            A flag indicating if the column is required.
+            Gets a value indicating whether the column is required.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.HasDefaultValue">
             <summary>
-            A flag indicating if the column has a default value.
+            Gets a value indicating whether the column has a default value.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableColumn.DefaultValue">
@@ -2682,7 +2730,7 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableIndex.#ctor(System.String,System.String,DbmlNet.Domain.DbmlTable)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableIndex"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableIndex"/> class.
             </summary>
             <param name="name">The name of the table index.</param>
             <param name="columnName">The name of the column.</param>
@@ -2705,17 +2753,17 @@
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.IsPrimaryKey">
             <summary>
-            A flag indicating if the index is a primary key.
+            Gets a value indicating whether the index is a primary key.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.IsUnique">
             <summary>
-            A flag indicating if the index is unique.
+            Gets a value indicating whether the index is unique.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Type">
             <summary>
-            A flag indicating if the index is auto incremented.
+            Gets a value indicating whether the index is auto incremented.
             </summary>
         </member>
         <member name="P:DbmlNet.Domain.DbmlTableIndex.Note">
@@ -2741,7 +2789,7 @@
         </member>
         <member name="M:DbmlNet.Domain.DbmlTableRelationship.#ctor(DbmlNet.Domain.DbmlColumnIdentifier,DbmlNet.Domain.TableRelationshipType,DbmlNet.Domain.DbmlColumnIdentifier)">
             <summary>
-            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableRelationship"/>.
+            Initializes a new instance of the <see cref="T:DbmlNet.Domain.DbmlTableRelationship"/> class.
             </summary>
             <param name="fromIdentifier">The identifier of the source column.</param>
             <param name="relationshipType">The type of relationship between the tables.</param>
@@ -2776,19 +2824,19 @@
         <member name="F:DbmlNet.Domain.TableRelationshipType.ManyToOne">
             <summary>
             Many-to-one, `>` token.
-            E.g: posts.user_id > users.id
+            E.g: posts.user_id > users.id.
             </summary>
         </member>
         <member name="F:DbmlNet.Domain.TableRelationshipType.OneToOne">
             <summary>
             One-to-one, `-` token.
-            E.g: users.id - user_infos.user_id
+            E.g: users.id - user_infos.user_id.
             </summary>
         </member>
         <member name="F:DbmlNet.Domain.TableRelationshipType.ManyToMany">
             <summary>
             Many-to-many, <![CDATA[`<>`]]> token.
-            E.g: authors.id <![CDATA[<>]]> books.id
+            E.g: authors.id <![CDATA[<>]]> books.id.
             </summary>
         </member>
         <member name="T:DbmlNet.IO.TextWriterExtensions">
@@ -2909,7 +2957,7 @@
         </member>
         <member name="M:DbmlNet.IO.TextWriterExtensions.WriteDiagnostics(System.IO.TextWriter,System.Collections.Generic.ICollection{DbmlNet.CodeAnalysis.Diagnostic})">
             <summary>
-            Writes diagnostics to the specified text writer
+            Writes diagnostics to the specified text writer.
             </summary>
             <param name="writer">The text writer to write the diagnostics to.</param>
             <param name="diagnostics">The diagnostics to write.</param>

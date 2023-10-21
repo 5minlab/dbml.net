@@ -10,7 +10,7 @@ namespace DbmlNet.CodeAnalysis.Text;
 public readonly struct TextSpan : IEquatable<TextSpan>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="TextSpan"/>.
+    /// Initializes a new instance of the <see cref="TextSpan"/> struct.
     /// </summary>
     /// <param name="start">The start of the span.</param>
     /// <param name="length">The length of the span.</param>
@@ -34,6 +34,28 @@ public readonly struct TextSpan : IEquatable<TextSpan>
     /// Gets the end of the span.
     /// </summary>
     public readonly int End => Start + Length;
+
+    /// <summary>
+    /// Determines whether two instances of <see cref="TextSpan"/> are equal.
+    /// </summary>
+    /// <param name="left">The first <see cref="TextSpan"/> to compare.</param>
+    /// <param name="right">The second <see cref="TextSpan"/> to compare.</param>
+    /// <returns><c>true</c> if the two instances are equal; otherwise, <c>false</c>.</returns>
+    public static bool operator ==(TextSpan left, TextSpan right)
+    {
+        return left.Equals(right);
+    }
+
+    /// <summary>
+    /// Determines whether two instances of <see cref="TextSpan"/> are not equal.
+    /// </summary>
+    /// <param name="left">The first <see cref="TextSpan"/> to compare.</param>
+    /// <param name="right">The second <see cref="TextSpan"/> to compare.</param>
+    /// <returns><c>true</c> if the two instances are not equal; otherwise, <c>false</c>.</returns>
+    public static bool operator !=(TextSpan left, TextSpan right)
+    {
+        return !left.Equals(right);
+    }
 
     /// <summary>
     /// Creates a new <see cref="TextSpan"/> from the specified start and end bounds.
@@ -78,28 +100,6 @@ public readonly struct TextSpan : IEquatable<TextSpan>
     public bool Equals(TextSpan other)
     {
         return Start == other.Start && End == other.End;
-    }
-
-    /// <summary>
-    /// Determines whether two instances of <see cref="TextSpan"/> are equal.
-    /// </summary>
-    /// <param name="left">The first <see cref="TextSpan"/> to compare.</param>
-    /// <param name="right">The second <see cref="TextSpan"/> to compare.</param>
-    /// <returns><c>true</c> if the two instances are equal; otherwise, <c>false</c>.</returns>
-    public static bool operator ==(TextSpan left, TextSpan right)
-    {
-        return left.Equals(right);
-    }
-
-    /// <summary>
-    /// Determines whether two instances of <see cref="TextSpan"/> are not equal.
-    /// </summary>
-    /// <param name="left">The first <see cref="TextSpan"/> to compare.</param>
-    /// <param name="right">The second <see cref="TextSpan"/> to compare.</param>
-    /// <returns><c>true</c> if the two instances are not equal; otherwise, <c>false</c>.</returns>
-    public static bool operator !=(TextSpan left, TextSpan right)
-    {
-        return !left.Equals(right);
     }
 
     /// <summary>

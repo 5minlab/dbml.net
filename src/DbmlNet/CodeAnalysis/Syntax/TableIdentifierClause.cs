@@ -56,6 +56,7 @@ public sealed class TableIdentifierClause : SyntaxNode
     /// <summary>
     /// Gets the children of the table identifier.
     /// </summary>
+    /// <returns>The children of the table identifier.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         if (DatabaseIdentifier is not null) yield return DatabaseIdentifier;

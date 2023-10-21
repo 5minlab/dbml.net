@@ -30,7 +30,7 @@ public sealed class BlockStatementSyntax : StatementSyntax
     public SyntaxToken OpenBraceToken { get; }
 
     /// <summary>
-    /// Description of the Statements property.
+    /// Gets the block statements.
     /// </summary>
     public IEnumerable<StatementSyntax> Statements { get; }
 
@@ -42,6 +42,7 @@ public sealed class BlockStatementSyntax : StatementSyntax
     /// <summary>
     /// Gets the children of the block statement.
     /// </summary>
+    /// <returns>The children of the block statement.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBraceToken;

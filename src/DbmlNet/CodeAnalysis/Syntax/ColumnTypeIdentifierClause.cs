@@ -26,6 +26,7 @@ public sealed class ColumnTypeIdentifierClause : ColumnTypeClause
     /// <summary>
     /// Gets the children of the column type identifier.
     /// </summary>
+    /// <returns>The children of the column type identifier.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return ColumnTypeIdentifier;

@@ -104,32 +104,38 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.IsPrimaryKey = true;
                         break;
                     }
+
                     case SyntaxKind.NullColumnSettingClause:
                     {
                         _currentTableColumn.IsNullable = true;
                         break;
                     }
+
                     case SyntaxKind.NotNullColumnSettingClause:
                     {
                         _currentTableColumn.IsNullable = false;
                         break;
                     }
+
                     case SyntaxKind.UniqueColumnSettingClause:
                     {
                         _currentTableColumn.IsUnique = true;
                         break;
                     }
+
                     case SyntaxKind.IncrementColumnSettingClause:
                     {
                         _currentTableColumn.IsAutoIncrement = true;
                         break;
                     }
+
                     case SyntaxKind.DefaultColumnSettingClause:
                     {
                         DefaultColumnSettingClause defaultSetting = (DefaultColumnSettingClause)setting;
                         WalkExpression(defaultSetting.ExpressionValue);
                         break;
                     }
+
                     case SyntaxKind.NoteColumnSettingClause:
                     {
                         NoteColumnSettingClause noteSetting = (NoteColumnSettingClause)setting;
@@ -139,6 +145,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
                         break;
                     }
+
                     case SyntaxKind.UnknownColumnSettingClause:
                     {
                         UnknownColumnSettingClause unknownSetting = (UnknownColumnSettingClause)setting;
@@ -151,6 +158,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.AddUnknownSetting(settingName, settingValue);
                         break;
                     }
+
                     case SyntaxKind.RelationshipColumnSettingClause:
                     {
                         RelationshipColumnSettingClause relationshipSetting = (RelationshipColumnSettingClause)setting;
@@ -175,6 +183,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         _currentTableColumn.AddRelationship(relationshipType, toColumn);
                         break;
                     }
+
                     default:
                     {
                         Debug.Assert(false, $"Unknown column setting kind '{setting.Kind}'.");
@@ -190,6 +199,128 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     }
 #pragma warning restore CA1502 // Avoid excessive complexity
 #pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
+
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
+    /// <inheritdoc/>
+    protected override void WalkSingleFieldIndexDeclarationStatement(SingleFieldIndexDeclarationSyntax syntax)
+    {
+        string indexName = syntax.IdentifierToken.Text;
+        string columnName = syntax.IdentifierToken.Text;
+        _currentTableIndex = new DbmlTableIndex(indexName, columnName, _currentTable);
+
+        if (syntax.Settings is not null)
+        {
+            foreach (IndexSettingClause setting in syntax.Settings.Settings)
+            {
+                switch (setting.Kind)
+                {
+                    case SyntaxKind.PrimaryKeyIndexSettingClause:
+                    case SyntaxKind.PkIndexSettingClause:
+                    {
+                        _currentTableIndex.IsPrimaryKey = true;
+                        break;
+                    }
+
+                    case SyntaxKind.UniqueIndexSettingClause:
+                    {
+                        _currentTableIndex.IsUnique = true;
+                        break;
+                    }
+
+                    case SyntaxKind.TypeIndexSettingClause:
+                    {
+                        TypeIndexSettingClause typeSetting = (TypeIndexSettingClause)setting;
+                        string typeValue = $"{typeSetting.ValueToken.Value ?? typeSetting.ValueToken.Text}";
+                        _currentTableIndex.Type = typeValue;
+                        break;
+                    }
+
+                    case SyntaxKind.NameIndexSettingClause:
+                    {
+                        NameIndexSettingClause nameSetting = (NameIndexSettingClause)setting;
+                        string nameValue = $"{nameSetting.ValueToken.Value}";
+                        _currentTableIndex.Name = nameValue;
+                        break;
+                    }
+
+                    case SyntaxKind.NoteIndexSettingClause:
+                    {
+                        NoteIndexSettingClause noteSetting = (NoteIndexSettingClause)setting;
+                        string noteValue = $"{noteSetting.ValueToken.Value}";
+                        _currentTableIndex.Note = noteValue;
+                        break;
+                    }
+
+                    case SyntaxKind.UnknownIndexSettingClause:
+                    {
+                        UnknownIndexSettingClause unknownSetting = (UnknownIndexSettingClause)setting;
+                        string settingName = unknownSetting.NameToken.Text;
+                        string? settingValue =
+                            unknownSetting.ValueToken?.Value?.ToString()
+                                ?? unknownSetting.ValueToken?.Text
+                                ?? null;
+
+                        _currentTableIndex.AddUnknownSetting(settingName, settingValue);
+                        break;
+                    }
+
+                    default:
+                    {
+                        Debug.Assert(false, $"Unknown index setting kind '{setting.Kind}'.");
+                        break;
+                    }
+                }
+            }
+        }
+
+        Debug.Assert(_currentTable is not null, "Current table should not be null.");
+        _currentTable.AddIndex(_currentTableIndex);
+        _currentTableIndex = null;
+    }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
+
+    /// <inheritdoc/>
+    protected override void WalkNoteDeclarationStatement(NoteDeclarationSyntax syntax)
+    {
+        string noteText = $"{syntax.Note.Value}";
+
+        if (_currentTable is not null)
+            _currentTable.AddNote(noteText);
+        else
+            _database.AddNote(noteText);
+
+        base.WalkNoteDeclarationStatement(syntax);
+    }
+
+    /// <inheritdoc/>
+    protected override void WalkLiteralExpression(LiteralExpressionSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
+
+        if (_currentTableColumn is not null)
+        {
+            string defaultValue = $"{syntax.LiteralToken.Value}";
+            _currentTableColumn.DefaultValue = defaultValue switch
+            {
+                "False" => "false",
+                "True" => "true",
+                _ => defaultValue
+            };
+        }
+    }
+
+    /// <inheritdoc/>
+    protected override void WalkNameExpression(NameExpressionSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
+
+        if (_currentTableColumn is not null)
+        {
+            _currentTableColumn.DefaultValue = syntax.IdentifierToken.Text;
+        }
+    }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
 #pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
@@ -256,12 +387,14 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
                         return;
                     }
+
                     case "datetimeoffset":
                     {
                         _currentTableColumn.MaxLength = DateTimeOffset.MaxValue.Ticks;
                         _currentTableColumn.DefaultValue = "0";
                         return;
                     }
+
                     default:
                     {
                         return;
@@ -278,119 +411,4 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 #pragma warning restore CA1502 // Avoid excessive complexity
 #pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
-#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
-
-    /// <inheritdoc/>
-    protected override void WalkSingleFieldIndexDeclarationStatement(SingleFieldIndexDeclarationSyntax syntax)
-    {
-        string indexName = syntax.IdentifierToken.Text;
-        string columnName = syntax.IdentifierToken.Text;
-        _currentTableIndex = new DbmlTableIndex(indexName, columnName, _currentTable);
-
-        if (syntax.Settings is not null)
-        {
-            foreach (IndexSettingClause setting in syntax.Settings.Settings)
-            {
-                switch (setting.Kind)
-                {
-                    case SyntaxKind.PrimaryKeyIndexSettingClause:
-                    case SyntaxKind.PkIndexSettingClause:
-                    {
-                        _currentTableIndex.IsPrimaryKey = true;
-                        break;
-                    }
-                    case SyntaxKind.UniqueIndexSettingClause:
-                    {
-                        _currentTableIndex.IsUnique = true;
-                        break;
-                    }
-                    case SyntaxKind.TypeIndexSettingClause:
-                    {
-                        TypeIndexSettingClause typeSetting = (TypeIndexSettingClause)setting;
-                        string typeValue = $"{typeSetting.ValueToken.Value ?? typeSetting.ValueToken.Text}";
-                        _currentTableIndex.Type = typeValue;
-                        break;
-                    }
-                    case SyntaxKind.NameIndexSettingClause:
-                    {
-                        NameIndexSettingClause nameSetting = (NameIndexSettingClause)setting;
-                        string nameValue = $"{nameSetting.ValueToken.Value}";
-                        _currentTableIndex.Name = nameValue;
-                        break;
-                    }
-                    case SyntaxKind.NoteIndexSettingClause:
-                    {
-                        NoteIndexSettingClause noteSetting = (NoteIndexSettingClause)setting;
-                        string noteValue = $"{noteSetting.ValueToken.Value}";
-                        _currentTableIndex.Note = noteValue;
-                        break;
-                    }
-                    case SyntaxKind.UnknownIndexSettingClause:
-                    {
-                        UnknownIndexSettingClause unknownSetting = (UnknownIndexSettingClause)setting;
-                        string settingName = unknownSetting.NameToken.Text;
-                        string? settingValue =
-                            unknownSetting.ValueToken?.Value?.ToString()
-                                ?? unknownSetting.ValueToken?.Text
-                                ?? null;
-
-                        _currentTableIndex.AddUnknownSetting(settingName, settingValue);
-                        break;
-                    }
-                    default:
-                    {
-                        Debug.Assert(false, $"Unknown index setting kind '{setting.Kind}'.");
-                        break;
-                    }
-                }
-            }
-        }
-
-        Debug.Assert(_currentTable is not null, "Current table should not be null.");
-        _currentTable.AddIndex(_currentTableIndex);
-        _currentTableIndex = null;
-    }
-
-#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
-
-    /// <inheritdoc/>
-    protected override void WalkNoteDeclarationStatement(NoteDeclarationSyntax syntax)
-    {
-        string noteText = $"{syntax.Note.Value}";
-
-        if (_currentTable is not null)
-            _currentTable.AddNote(noteText);
-        else
-            _database.AddNote(noteText);
-
-        base.WalkNoteDeclarationStatement(syntax);
-    }
-
-    /// <inheritdoc/>
-    protected override void WalkLiteralExpression(LiteralExpressionSyntax syntax)
-    {
-        ArgumentNullException.ThrowIfNull(syntax);
-
-        if (_currentTableColumn is not null)
-        {
-            string defaultValue = $"{syntax.LiteralToken.Value}";
-            _currentTableColumn.DefaultValue = defaultValue switch
-            {
-                "False" => "false",
-                "True" => "true",
-                _ => defaultValue
-            };
-        }
-    }
-
-    /// <inheritdoc/>
-    protected override void WalkNameExpression(NameExpressionSyntax syntax)
-    {
-        ArgumentNullException.ThrowIfNull(syntax);
-
-        if (_currentTableColumn is not null)
-        {
-            _currentTableColumn.DefaultValue = syntax.IdentifierToken.Text;
-        }
-    }
 }

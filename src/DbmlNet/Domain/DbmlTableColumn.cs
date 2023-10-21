@@ -9,7 +9,7 @@ namespace DbmlNet.Domain;
 public sealed class DbmlTableColumn
 {
     private readonly List<string> _notes = new();
-    private readonly List<(string name, object? value)> _unknownSettings = new();
+    private readonly List<(string Name, object? Value)> _unknownSettings = new();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DbmlTableColumn"/> class with the specified name and table.
@@ -33,42 +33,42 @@ public sealed class DbmlTableColumn
     public string? Type { get; internal set; }
 
     /// <summary>
-    /// The max length of the column.
+    /// Gets the max length of the column.
     /// </summary>
     public double? MaxLength { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the column has a max length.
+    /// Gets a value indicating whether the column has a max length.
     /// </summary>
     public bool HasMaxLength => MaxLength == double.MaxValue;
 
     /// <summary>
-    /// A flag indicating if the column is a primary key.
+    /// Gets a value indicating whether the column is a primary key.
     /// </summary>
     public bool IsPrimaryKey { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the column is unique.
+    /// Gets a value indicating whether the column is unique.
     /// </summary>
     public bool IsUnique { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the column is auto incremented.
+    /// Gets a value indicating whether the column is auto incremented.
     /// </summary>
     public bool IsAutoIncrement { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the column is nullable.
+    /// Gets a value indicating whether the column is nullable.
     /// </summary>
     public bool IsNullable { get; internal set; }
 
     /// <summary>
-    /// A flag indicating if the column is required.
+    /// Gets a value indicating whether the column is required.
     /// </summary>
     public bool IsRequired => !IsNullable;
 
     /// <summary>
-    /// A flag indicating if the column has a default value.
+    /// Gets a value indicating whether the column has a default value.
     /// </summary>
     public bool HasDefaultValue => DefaultValue is not null;
 
@@ -104,7 +104,7 @@ public sealed class DbmlTableColumn
     /// <summary>
     /// Gets the unknown settings.
     /// </summary>
-    public IEnumerable<(string name, object? value)> UnknownSettings => _unknownSettings;
+    public IEnumerable<(string Name, object? Value)> UnknownSettings => _unknownSettings;
 
     /// <summary>
     /// Returns the name of this column.

@@ -34,6 +34,7 @@ public sealed class CompilationUnitSyntax : SyntaxNode
     /// <summary>
     /// Gets the children of the compilation unit.
     /// </summary>
+    /// <returns>The children of the compilation unit.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         foreach (MemberSyntax member in Members)

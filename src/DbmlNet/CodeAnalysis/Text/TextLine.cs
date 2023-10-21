@@ -6,7 +6,7 @@ namespace DbmlNet.CodeAnalysis.Text;
 public sealed class TextLine
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="TextLine"/>.
+    /// Initializes a new instance of the <see cref="TextLine"/> class.
     /// </summary>
     /// <param name="text">The source text containing the line.</param>
     /// <param name="start">The starting position of the line within the source text.</param>

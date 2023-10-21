@@ -6,7 +6,7 @@ namespace DbmlNet.Domain;
 public sealed class DbmlTableRelationship
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="DbmlTableRelationship"/>.
+    /// Initializes a new instance of the <see cref="DbmlTableRelationship"/> class.
     /// </summary>
     /// <param name="fromIdentifier">The identifier of the source column.</param>
     /// <param name="relationshipType">The type of relationship between the tables.</param>

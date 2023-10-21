@@ -42,6 +42,7 @@ public sealed class UnknownTableSettingClause : TableSettingClause
     /// <summary>
     /// Gets the children of the unknown table setting.
     /// </summary>
+    /// <returns>The children of the unknown table setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

@@ -12,6 +12,8 @@ using DbmlNet.CodeAnalysis.Text;
 
 namespace DbmlNet.IO
 {
+#pragma warning disable SA1202 // disable 'public' members should come before 'private' members
+
     /// <summary>
     /// Provides extension methods for the <see cref="TextWriter"/>.
     /// </summary>
@@ -21,11 +23,9 @@ namespace DbmlNet.IO
         {
             if (writer == Console.Out)
                 return !Console.IsOutputRedirected;
-
             else if (writer == Console.Error)
                 // Color codes are always output to Console.Out
                 return !Console.IsErrorRedirected && !Console.IsOutputRedirected;
-
             else if (writer is IndentedTextWriter iw && iw.InnerWriter.IsConsole())
                 return true;
 
@@ -129,9 +129,9 @@ namespace DbmlNet.IO
         {
             ArgumentNullException.ThrowIfNull(writer);
 
-            Debug.Assert(kind.IsKeyword());
+            Debug.Assert(kind.IsKeyword(), "kind is not a keyword");
             string? text = kind.GetKnownText();
-            Debug.Assert(text != null);
+            Debug.Assert(text != null, "kind is not a known keyword");
 
             writer.WriteKeyword(text);
         }
@@ -219,7 +219,7 @@ namespace DbmlNet.IO
             ArgumentNullException.ThrowIfNull(writer);
 
             string? text = SyntaxFacts.GetKnownText(kind);
-            Debug.Assert(text != null);
+            Debug.Assert(text != null, "kind is not a known punctuation");
 
             writer.WritePunctuation(text);
         }
@@ -257,7 +257,7 @@ namespace DbmlNet.IO
 #pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
 
         /// <summary>
-        /// Writes diagnostics to the specified text writer
+        /// Writes diagnostics to the specified text writer.
         /// </summary>
         /// <param name="writer">The text writer to write the diagnostics to.</param>
         /// <param name="diagnostics">The diagnostics to write.</param>
@@ -333,4 +333,3 @@ namespace DbmlNet.IO
 #pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
     }
 }
-

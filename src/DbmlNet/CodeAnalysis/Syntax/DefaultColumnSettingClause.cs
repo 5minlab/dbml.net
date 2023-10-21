@@ -48,6 +48,7 @@ public sealed class DefaultColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the default column setting.
     /// </summary>
+    /// <returns>The children of the default column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return DefaultKeyword;

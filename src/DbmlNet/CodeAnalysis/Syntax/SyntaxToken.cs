@@ -12,9 +12,9 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 public sealed class SyntaxToken : SyntaxNode
 {
     /// <summary>
-    /// Initializes a new instance of <see cref="SyntaxToken"/>.
+    /// Initializes a new instance of the <see cref="SyntaxToken"/> class.
     /// </summary>
-    /// <param name="syntaxTree"></param>
+    /// <param name="syntaxTree">The syntax tree.</param>
     /// <param name="kind">The token kind.</param>
     /// <param name="start">The token start character position in the source text.</param>
     public SyntaxToken(
@@ -27,9 +27,9 @@ public sealed class SyntaxToken : SyntaxNode
     }
 
     /// <summary>
-    /// Initializes a new instance of <see cref="SyntaxToken"/>.
+    /// Initializes a new instance of the <see cref="SyntaxToken"/> class.
     /// </summary>
-    /// <param name="syntaxTree"></param>
+    /// <param name="syntaxTree">The syntax tree.</param>
     /// <param name="kind">The token kind.</param>
     /// <param name="start">The token start character position in the source text.</param>
     /// <param name="text">The token text.</param>
@@ -43,9 +43,9 @@ public sealed class SyntaxToken : SyntaxNode
     }
 
     /// <summary>
-    /// Initializes a new instance of <see cref="SyntaxToken"/>.
+    /// Initializes a new instance of the <see cref="SyntaxToken"/> class.
     /// </summary>
-    /// <param name="syntaxTree"></param>
+    /// <param name="syntaxTree">The syntax tree.</param>
     /// <param name="kind">The token kind.</param>
     /// <param name="start">The token start character position in the source text.</param>
     /// <param name="text">The token text.</param>
@@ -56,17 +56,14 @@ public sealed class SyntaxToken : SyntaxNode
         int start,
         string? text,
         object? value)
-        : this(
-            syntaxTree, kind, start, text, value,
-            leadingTrivia: ImmutableArray<SyntaxTrivia>.Empty,
-            trailingTrivia: ImmutableArray<SyntaxTrivia>.Empty)
+        : this(syntaxTree, kind, start, text, value, leadingTrivia: ImmutableArray<SyntaxTrivia>.Empty, trailingTrivia: ImmutableArray<SyntaxTrivia>.Empty)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of <see cref="SyntaxToken"/>.
+    /// Initializes a new instance of the <see cref="SyntaxToken"/> class.
     /// </summary>
-    /// <param name="syntaxTree"></param>
+    /// <param name="syntaxTree">The syntax tree.</param>
     /// <param name="kind">The token kind.</param>
     /// <param name="start">The token start character position in the source text.</param>
     /// <param name="text">The token text.</param>
@@ -95,59 +92,60 @@ public sealed class SyntaxToken : SyntaxNode
     }
 
     /// <summary>
-    /// The kind of this token.
+    /// Gets the kind of this token.
     /// </summary>
     public override SyntaxKind Kind { get; }
 
     /// <summary>
-    /// The start character position in the source text for this token.
+    /// Gets the start character position in the source text for this token.
     /// </summary>
     public int Start { get; }
 
     /// <summary>
-    /// The text for this token.
+    /// Gets the text for this token.
     /// </summary>
     public override string Text { get; }
 
     /// <summary>
-    /// The length for this token.
+    /// Gets the length for this token.
     /// </summary>
     public int Length { get; }
 
     /// <summary>
-    /// The end character position in the source text for this token.
+    /// Gets the end character position in the source text for this token.
     /// </summary>
     public int End { get; }
 
     /// <summary>
-    /// The value for this token.
+    /// Gets the value for this token.
     /// </summary>
     public object? Value { get; }
 
     /// <summary>
-    /// The leading trivia for this token.
+    /// Gets the leading trivia for this token.
     /// </summary>
     public ImmutableArray<SyntaxTrivia> LeadingTrivia { get; }
 
     /// <summary>
-    /// The trailing trivia for this token.
+    /// Gets the trailing trivia for this token.
     /// </summary>
     public ImmutableArray<SyntaxTrivia> TrailingTrivia { get; }
 
     /// <summary>
-    /// A token is missing if it was inserted by the parser and doesn't
-    /// appear in source.
+    /// Gets a value indicating whether the token is missing, as it is the case
+    /// with the inserted token by the parser which do not appear in source.
     /// </summary>
     public bool IsMissing { get; }
 
     /// <summary>
-    /// The span for this token.
+    /// Gets the span for this token.
     /// </summary>
     public override TextSpan Span => new TextSpan(Start, Text.Length);
 
     /// <summary>
     /// Returns an empty array since a token has no children.
     /// </summary>
+    /// <returns>An empty array.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         return Array.Empty<SyntaxNode>();
@@ -156,5 +154,6 @@ public sealed class SyntaxToken : SyntaxNode
     /// <summary>
     /// Returns the text for this token.
     /// </summary>
+    /// <returns>The text for this token.</returns>
     public override string ToString() => Text;
 }

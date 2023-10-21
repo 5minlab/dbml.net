@@ -42,6 +42,7 @@ public sealed class BacktickExpressionSyntax : ExpressionSyntax
     /// <summary>
     /// Gets the children of the backtick expression.
     /// </summary>
+    /// <returns>The children of the backtick expression.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBacktickToken;

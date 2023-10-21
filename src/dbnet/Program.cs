@@ -47,6 +47,7 @@ if (isOutputDirectorySpecified)
         return;
     }
 }
+
 const string helpMessage = """
     Usage: dbnet <file-or-directory-path> [options]
 
@@ -162,9 +163,10 @@ buildWatch.Stop();
 writer.WriteLine();
 if (fileSyntaxTreeList.Count > 0)
 {
-    writer.WriteSuccess($"dbnet succeeded.");
+    writer.WriteSuccess("dbnet succeeded.");
     writer.WriteLine();
 }
+
 writer.Indent += 1;
 
 writer.Write($"{files.Length} found");

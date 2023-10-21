@@ -6,6 +6,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 public enum SyntaxKind
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member.
+#pragma warning disable SA1602 // Enumeration items should be documented.
     BadToken,
 
     // Trivia
@@ -120,4 +121,5 @@ public enum SyntaxKind
     CallExpression,
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member.
+#pragma warning restore SA1602 // Enumeration items should be documented.
 }

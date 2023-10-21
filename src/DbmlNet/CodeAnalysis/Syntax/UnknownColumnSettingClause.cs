@@ -48,6 +48,7 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
     /// <summary>
     /// Gets the children of the unknown column setting.
     /// </summary>
+    /// <returns>The children of the unknown column setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

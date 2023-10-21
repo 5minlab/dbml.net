@@ -49,6 +49,7 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
     /// <summary>
     /// Gets the children of the indexes declaration.
     /// </summary>
+    /// <returns>The children of the indexes declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IndexesKeyword;

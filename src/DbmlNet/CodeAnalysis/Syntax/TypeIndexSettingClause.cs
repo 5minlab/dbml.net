@@ -48,6 +48,7 @@ public sealed class TypeIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the type index setting.
     /// </summary>
+    /// <returns>The children of the type index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return TypeKeyword;

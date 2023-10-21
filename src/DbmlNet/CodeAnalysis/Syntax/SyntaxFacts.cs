@@ -85,7 +85,7 @@ public static class SyntaxFacts
     /// A flag indicating whether the given kind is a keyword.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>
-    /// <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/></returns>
+    /// <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/>.</returns>
     public static bool IsKeyword(this SyntaxKind kind)
     {
         return kind.ToString().EndsWith("Keyword", StringComparison.InvariantCulture);
@@ -95,7 +95,7 @@ public static class SyntaxFacts
     /// A flag indicating whether the given kind is a trivia.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>
-    /// <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/></returns>
+    /// <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/>.</returns>
     public static bool IsTrivia(this SyntaxKind kind)
     {
         switch (kind)
@@ -114,7 +114,7 @@ public static class SyntaxFacts
     /// A flag indicating whether the given kind is a token.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>
-    /// <returns><see langword="true"/> if the given kind is a token; otherwise, <see langword="false"/> </returns>
+    /// <returns><see langword="true"/> if the given kind is a token; otherwise, <see langword="false"/>.</returns>
     public static bool IsToken(this SyntaxKind kind)
     {
         return kind.IsKeyword()
@@ -125,7 +125,7 @@ public static class SyntaxFacts
     /// A flag indicating whether the given kind is a string token.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>
-    /// <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/> </returns>
+    /// <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/>.</returns>
     public static bool IsStringToken(this SyntaxKind kind)
     {
         return kind == SyntaxKind.QuotationMarksStringToken
@@ -136,7 +136,7 @@ public static class SyntaxFacts
     /// A flag indicating whether the given kind is a known value.
     /// </summary>
     /// <param name="kind">The syntax kind to check.</param>
-    /// <returns><see langword="true"/> if the given kind is a known value; otherwise, <see langword="false"/></returns>
+    /// <returns><see langword="true"/> if the given kind is a known value; otherwise, <see langword="false"/>.</returns>
     public static object? GetKnownValue(this SyntaxKind kind)
     {
         return kind switch

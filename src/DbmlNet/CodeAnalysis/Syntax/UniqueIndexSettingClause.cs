@@ -34,6 +34,7 @@ public sealed class UniqueIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the unique index setting.
     /// </summary>
+    /// <returns>The children of the unique index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return UniqueKeyword;

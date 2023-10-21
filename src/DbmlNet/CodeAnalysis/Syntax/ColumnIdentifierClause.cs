@@ -56,6 +56,7 @@ public sealed class ColumnIdentifierClause : SyntaxNode
     /// <summary>
     /// Gets the children of the column identifier.
     /// </summary>
+    /// <returns>The children of the column identifier.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         if (SchemaIdentifier is not null) yield return SchemaIdentifier;

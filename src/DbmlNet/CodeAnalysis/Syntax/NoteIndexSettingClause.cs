@@ -48,7 +48,7 @@ public sealed class NoteIndexSettingClause : IndexSettingClause
     /// <summary>
     /// Gets the children of the note index setting.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The children of the note index setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

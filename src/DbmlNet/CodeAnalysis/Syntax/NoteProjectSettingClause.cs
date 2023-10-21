@@ -42,6 +42,7 @@ public sealed class NoteProjectSettingClause : ProjectSettingClause
     /// <summary>
     /// Gets the children of the note project setting.
     /// </summary>
+    /// <returns>The children of the note project setting.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

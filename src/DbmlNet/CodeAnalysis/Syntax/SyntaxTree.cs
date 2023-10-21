@@ -16,10 +16,6 @@ public sealed class SyntaxTree
 {
     private Dictionary<SyntaxNode, SyntaxNode?>? _parents;
 
-    private delegate void ParseHandler(SyntaxTree syntaxTree,
-                                       out CompilationUnitSyntax root,
-                                       out ImmutableArray<Diagnostic> diagnostics);
-
     private SyntaxTree(SourceText text, ParseHandler handler)
     {
         Text = text;
@@ -30,6 +26,11 @@ public sealed class SyntaxTree
         Diagnostics = diagnostics;
         Root = root;
     }
+
+    private delegate void ParseHandler(
+        SyntaxTree syntaxTree,
+        out CompilationUnitSyntax root,
+        out ImmutableArray<Diagnostic> diagnostics);
 
     /// <summary>
     /// Gets the source text.

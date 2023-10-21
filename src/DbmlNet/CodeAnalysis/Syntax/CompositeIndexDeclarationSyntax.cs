@@ -20,7 +20,7 @@ public sealed class CompositeIndexDeclarationSyntax : IndexDeclarationStatementS
         Identifiers = identifiers;
         CloseParenthesis = closeParenthesis;
         Settings = settings;
-        IdentifierName = string.Join("", identifiers.Select(index => index.Text));
+        IdentifierName = string.Join(string.Empty, identifiers.Select(index => index.Text));
     }
 
     /// <summary>
@@ -56,6 +56,7 @@ public sealed class CompositeIndexDeclarationSyntax : IndexDeclarationStatementS
     /// <summary>
     /// Gets the children of the composite index declaration.
     /// </summary>
+    /// <returns>The children of the composite index declaration.</returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenParenthesis;
