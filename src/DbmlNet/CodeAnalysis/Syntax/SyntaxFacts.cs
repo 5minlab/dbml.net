@@ -102,6 +102,7 @@ public static class SyntaxFacts
             case SyntaxKind.LineBreakTrivia:
             case SyntaxKind.WhitespaceTrivia:
             case SyntaxKind.SingleLineCommentTrivia:
+            case SyntaxKind.MultiLineCommentTrivia:
                 return true;
             default:
                 return false;

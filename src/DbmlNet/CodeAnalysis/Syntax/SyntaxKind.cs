@@ -12,6 +12,7 @@ public enum SyntaxKind
     LineBreakTrivia,
     WhitespaceTrivia,
     SingleLineCommentTrivia,
+    MultiLineCommentTrivia,
 
     // Tokens
     EndOfFileToken,
