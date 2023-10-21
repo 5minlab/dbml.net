@@ -50,6 +50,8 @@
         "DbNet",
         "endregion",
         "FromArgb",
+        "getdate",
+        "headercolor",
         "Holistics",
         "Hsts",
         "HTAP",
@@ -90,6 +92,7 @@
         "uniqueidentifier",
         "UseHsts",
         "varbinary",
+        "varchar",
         "webp",
         "Xunit"
     ],
