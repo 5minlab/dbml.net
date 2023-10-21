@@ -131,6 +131,31 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_TableDeclaration_With_Name_And_Schema_And_Database_Keyword(
+        SyntaxKind keywordKind,
+        string keywordText,
+        object? keywordValue)
+    {
+        string text = $"Table {keywordText}.{keywordText}.{keywordText} " + "{ }";
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.TableDeclarationMember);
+        e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
+        e.AssertToken(keywordKind, keywordText, keywordValue);
+        e.AssertToken(SyntaxKind.DotToken, ".");
+        e.AssertToken(keywordKind, keywordText, keywordValue);
+        e.AssertToken(SyntaxKind.DotToken, ".");
+        e.AssertToken(keywordKind, keywordText, keywordValue);
+        e.AssertNode(SyntaxKind.BlockStatement);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
+
     [Fact]
     public void Parse_TableDeclaration_With_Empty_Body()
     {
