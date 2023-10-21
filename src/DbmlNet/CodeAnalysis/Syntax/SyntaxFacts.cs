@@ -25,6 +25,7 @@ public static class SyntaxFacts
             "Indexes" => SyntaxKind.IndexesKeyword,
             "name" => SyntaxKind.NameKeyword,
             "note" => SyntaxKind.NoteKeyword,
+            "Note" => SyntaxKind.NoteKeyword,
             "not" => SyntaxKind.NotKeyword,
             "null" => SyntaxKind.NullKeyword,
             "pk" => SyntaxKind.PkKeyword,
