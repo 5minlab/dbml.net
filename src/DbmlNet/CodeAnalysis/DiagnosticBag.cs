@@ -43,6 +43,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, Message);
     }
 
+    public void ReportUnterminatedMultiLineComment(TextLocation location)
+    {
+        const string message = "Unterminated multi-line comment.";
+        ReportError(location, message);
+    }
+
     public void ReportNumberToLarge(TextLocation location, string numberText)
     {
         string message = $"The number '{numberText}' is too large.";

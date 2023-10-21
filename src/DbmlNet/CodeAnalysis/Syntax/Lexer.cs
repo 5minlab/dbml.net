@@ -189,6 +189,9 @@ internal sealed class Lexer
             switch (Current)
             {
                 case '\0':
+                    TextSpan span = new TextSpan(start, 2);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedMultiLineComment(location);
                     done = true;
                     break;
                 case '*':
