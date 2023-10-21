@@ -80,6 +80,8 @@ internal sealed class Lexer
                 case '/':
                     if (Lookahead == '/')
                         ReadSingleLineComment();
+                    else if (Lookahead == '*')
+                        ReadMultiLineComment();
                     else
                         done = true;
                     break;
@@ -172,6 +174,38 @@ internal sealed class Lexer
         }
 
         _kind = SyntaxKind.SingleLineCommentTrivia;
+    }
+
+    private void ReadMultiLineComment()
+    {
+        int start = _position;
+
+        // Skip the current '/*'
+        _position += 2;
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                    done = true;
+                    break;
+                case '*':
+                    if (Lookahead == '/')
+                    {
+                        _position++;
+                        done = true;
+                    }
+                    _position++;
+                    break;
+                default:
+                    _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.MultiLineCommentTrivia;
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
