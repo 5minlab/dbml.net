@@ -128,8 +128,13 @@ public static class SyntaxFacts
     /// <returns><see langword="true"/> if the given kind is a string token; otherwise, <see langword="false"/>.</returns>
     public static bool IsStringToken(this SyntaxKind kind)
     {
-        return kind == SyntaxKind.QuotationMarksStringToken
-            || kind == SyntaxKind.SingleQuotationMarksStringToken;
+        return kind switch
+        {
+            SyntaxKind.QuotationMarksStringToken => true,
+            SyntaxKind.SingleQuotationMarksStringToken => true,
+            SyntaxKind.MultiLineStringToken => true,
+            _ => false
+        };
     }
 
     /// <summary>
