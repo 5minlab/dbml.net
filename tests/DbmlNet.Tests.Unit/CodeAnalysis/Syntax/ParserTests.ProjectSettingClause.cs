@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -187,6 +189,44 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingKind, settingNameText, settingValue);
+    }
+
+    public static IEnumerable<object[]?> GetUnknownProjectSettingNameAllowedKeywordsData()
+    {
+        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
+        {
+            bool skip =
+                itemKind == SyntaxKind.NoteKeyword
+                || itemKind == SyntaxKind.DatabaseTypeKeyword;
+
+            if (!skip)
+            {
+                yield return new object[] { itemKind, itemText, itemValue! };
+            }
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(GetUnknownProjectSettingNameAllowedKeywordsData))]
+    public void Parse_UnknownProjectSettingClause_With_ComposedSetting_Name_Keyword(
+        SyntaxKind settingNameKind,
+        string settingNameText,
+        object? settingNameValue)
+    {
+        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = DataGenerator.CreateRandomString();
+        object? settingValue = null;
+        string settingText = $"{settingNameText}: {settingValueText}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+
+        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ProjectSettingListClause);
+        e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
     }
 
     [Fact]
