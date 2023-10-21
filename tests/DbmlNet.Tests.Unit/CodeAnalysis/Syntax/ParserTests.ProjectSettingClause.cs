@@ -253,6 +253,29 @@ public partial class ParserTests
         e.AssertToken(settingValueKind, settingValueText, settingValue);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_UnknownProjectSettingClause_With_Composed_Setting_Keyword_Value(
+        SyntaxKind settingValueKind,
+        string settingValueText,
+        object? settingValue)
+    {
+        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
+        object? settingNameValue = null;
+        string settingText = $"{settingNameText}: {settingValueText}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+
+        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ProjectSettingListClause);
+        e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+    }
+
     [Fact]
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_QuotationMarksString_Value()
     {
