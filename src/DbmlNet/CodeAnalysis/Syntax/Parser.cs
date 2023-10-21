@@ -392,8 +392,10 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.OpenBraceToken => ParseBlockStatement(),
-            SyntaxKind.IndexesKeyword => ParseIndexesDeclaration(),
-            SyntaxKind.NoteKeyword => ParseNoteDeclaration(),
+            SyntaxKind.IndexesKeyword when Lookahead.Kind == SyntaxKind.OpenBraceToken
+                => ParseIndexesDeclaration(),
+            SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken
+                => ParseNoteDeclaration(),
             _ when CanReadColumnDeclaration() => ParseColumnDeclaration(),
             _ => ParseExpressionStatement(),
         };
@@ -672,6 +674,7 @@ internal sealed class Parser
     {
         SyntaxToken identifier = Current.Kind switch
         {
+            _ when Current.Kind.IsKeyword() => NextToken(),
             _ when Current.Kind.IsStringToken() => NextToken(),
             _ => MatchToken(SyntaxKind.IdentifierToken)
         };
