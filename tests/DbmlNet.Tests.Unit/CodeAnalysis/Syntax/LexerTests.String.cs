@@ -55,6 +55,34 @@ public partial class LexerTests
     }
 
     [Fact]
+    public void Lexer_Lex_String_MultiLine()
+    {
+        const string textValue = """
+        This is a block of string
+        This string can spans over multiple lines.
+        error: \ ...the '''message''' is '''my message'''.
+        """;
+        const string text = """
+        '''
+            This is a block of string
+            This string can spans over multiple lines.
+            error: \\ ...the \'''message\''' is \'''my message\'''.
+        '''
+        """;
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        Assert.Empty(diagnostics);
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.MultiLineStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+        Assert.IsType<string>(token.Value);
+        Assert.Equal(textValue, token.Value);
+        Assert.False(token.IsMissing, "Token should not be missing.");
+    }
+
+    [Fact]
     public void Lexer_Lex_String_Unterminated_QuotationMarks()
     {
         const string text = "\"text";

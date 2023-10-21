@@ -37,6 +37,7 @@ public enum SyntaxKind
     BacktickToken,
     QuotationMarksStringToken,
     SingleQuotationMarksStringToken,
+    MultiLineStringToken,
     IdentifierToken,
 
     // Keywords

@@ -107,6 +107,9 @@ public partial class LexerTests
             (SyntaxKind.SingleQuotationMarksStringToken, "\'Test\'"),
             (SyntaxKind.SingleQuotationMarksStringToken, $"\'...message: \'\'message here\'\' or \'\'message here\'\'\'"),
             (SyntaxKind.SingleQuotationMarksStringToken, $"\'{DataGenerator.CreateRandomMultiWordString()}\'"),
+            (SyntaxKind.MultiLineStringToken, "'''Test'''"),
+            (SyntaxKind.MultiLineStringToken, """'''...message: \\ \'''message here\''' or \'''message here\''''''"""),
+            (SyntaxKind.MultiLineStringToken, $"'''{DataGenerator.CreateRandomMultiWordString()}'''"),
 
             (SyntaxKind.IdentifierToken, "a"),
             (SyntaxKind.IdentifierToken, "abc"),
