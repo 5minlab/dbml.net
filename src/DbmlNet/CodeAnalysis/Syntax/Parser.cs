@@ -243,9 +243,11 @@ internal sealed class Parser
             Diagnostics.ReportUnknownProjectSetting(location, settingName);
         }
 
-        SyntaxToken identifierToken = Current.Kind.IsKeyword()
-                ? NextToken()
-                : MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken identifierToken = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
 
         if (Current.Kind == SyntaxKind.ColonToken)
         {
