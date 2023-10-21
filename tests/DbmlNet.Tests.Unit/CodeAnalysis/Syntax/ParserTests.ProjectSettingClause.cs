@@ -175,7 +175,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownProjectSettingClause_With_Simple_Setting()
+    public void Parse_UnknownProjectSettingClause_With_SimpleSetting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
         string randomText = DataGenerator.CreateRandomString();
@@ -230,7 +230,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownProjectSettingClause_With_Composed_Setting_Identifier_Value()
+    public void Parse_UnknownProjectSettingClause_With_ComposedSetting_Identifier_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
         string randomSettingName = DataGenerator.CreateRandomString();
