@@ -160,13 +160,31 @@ if (outputToMarkdown)
 buildWatch.Stop();
 
 writer.WriteLine();
-if (errorDiagnostics == 0 && isForceEnabled)
+if (fileSyntaxTreeList.Count > 0)
 {
     writer.WriteSuccess($"dbnet succeeded.");
     writer.WriteLine();
 }
 writer.Indent += 1;
-writer.WriteLine($"{files.Length} found | {fileSyntaxTreeList.Count} processed | {files.Length - fileSyntaxTreeList.Count} skipped File(s).");
+
+writer.Write($"{files.Length} found");
+writer.Write(" | ");
+
+if (fileSyntaxTreeList.Count > 0)
+    writer.WriteSuccess($"{fileSyntaxTreeList.Count} processed");
+else
+    writer.WriteError($"{fileSyntaxTreeList.Count} processed");
+
+writer.Write(" | ");
+
+if (files.Length - fileSyntaxTreeList.Count > 0)
+    writer.WriteWarning($"{files.Length - fileSyntaxTreeList.Count} skipped");
+else
+    writer.Write("0 skipped");
+writer.Write(" File(s).");
+
+writer.WriteLine();
+
 WriteWarningCount(writer, isForceEnabled, warningDiagnostics);
 WriteErrorCount(writer, errorDiagnostics);
 writer.Indent -= 1;
