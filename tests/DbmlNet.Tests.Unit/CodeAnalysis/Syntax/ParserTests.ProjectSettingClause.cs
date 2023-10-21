@@ -109,6 +109,26 @@ public partial class ParserTests
     }
 
     [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_NoteProjectSettingClause_With_Keyword_Value(
+        SyntaxKind settingValueKind,
+        string settingValueText,
+        object? settingValue)
+    {
+        string settingText = $"note: {settingValueText}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+
+        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ProjectSettingListClause);
+        e.AssertNode(SyntaxKind.NoteProjectSettingClause);
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+    }
+
+    [Theory]
     [InlineData("Note")]
     [InlineData("note")]
     public void Parse_NoteProjectSettingClause_With_QuotationMarksString_Value(string noteKeywordText)
