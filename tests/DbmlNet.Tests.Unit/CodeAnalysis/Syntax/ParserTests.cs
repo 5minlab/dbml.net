@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
@@ -201,5 +202,13 @@ public partial class ParserTests
         keywordKind = keywordKinds[randomIndex];
         keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
         keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
+    }
+
+    public static IEnumerable<object[]?> GetSyntaxKeywordTokensData()
+    {
+        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
+        {
+            yield return new object[] { itemKind, itemText, itemValue! };
+        }
     }
 }

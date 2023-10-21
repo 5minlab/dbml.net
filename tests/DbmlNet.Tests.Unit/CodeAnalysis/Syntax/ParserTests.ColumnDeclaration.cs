@@ -351,12 +351,4 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
-
-    public static IEnumerable<object[]?> GetSyntaxKeywordTokensData()
-    {
-        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
-        {
-            yield return new object[] { itemKind, itemText, itemValue! };
-        }
-    }
 }
