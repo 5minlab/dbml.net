@@ -14,18 +14,6 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
 public class LexerTests
 {
     [Fact]
-    public void Lexer_Throws_ArgumentNullException_For_null_syntax()
-    {
-        ImmutableArray<SyntaxToken> tokens =
-            SyntaxTree.ParseTokens(string.Empty, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
-
-        Assert.Empty(diagnostics);
-        SyntaxToken token = Assert.Single(tokens);
-        Assert.Equal(SyntaxKind.EndOfFileToken, token.Kind);
-        Assert.False(token.IsMissing, "Token should not be missing.");
-    }
-
-    [Fact]
     public void Lexer_Lex_EndOfFile()
     {
         ImmutableArray<SyntaxToken> tokens =
