@@ -124,6 +124,26 @@ public partial class ParserTests
     }
 
     [Theory]
+    [MemberData(nameof(GetSyntaxKeywordsTextData))]
+    public void Parse_Warning_Column_Already_Declared_For_Keyword_ColumnName(
+        string columnNameText)
+    {
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{DataGenerator.CreateRandomString()}}
+            {{columnNameText}} {{DataGenerator.CreateRandomString()}}
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Column '{columnNameText}' already declared.", diagnostic.Message);
+    }
+
+    [Theory]
     [InlineData("pk", "pk")]
     [InlineData("primarykey", "primary key")]
     [InlineData("null", "null")]

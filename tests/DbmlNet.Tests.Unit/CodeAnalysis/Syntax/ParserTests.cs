@@ -211,4 +211,12 @@ public partial class ParserTests
             yield return new object[] { itemKind, itemText, itemValue! };
         }
     }
+
+    public static IEnumerable<object[]?> GetSyntaxKeywordsTextData()
+    {
+        foreach ((_, string itemText, _) in DataGenerator.GetSyntaxKeywords())
+        {
+            yield return new object[] { itemText };
+        }
+    }
 }
