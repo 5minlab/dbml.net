@@ -19,10 +19,10 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(string.Empty, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.EndOfFileToken, token.Kind);
         Assert.False(token.IsMissing, "Token should not be missing.");
-        Assert.Empty(diagnostics);
     }
 
     [Fact]
@@ -31,10 +31,10 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(string.Empty, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.EndOfFileToken, token.Kind);
         Assert.False(token.IsMissing, "Token should not be missing.");
-        Assert.Empty(diagnostics);
     }
 
     [Theory]
@@ -46,13 +46,13 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
-        SyntaxToken token = Assert.Single(tokens);
-        Assert.Equal(SyntaxKind.BadToken, token.Kind);
-        Assert.False(token.IsMissing);
         Diagnostic diagnostic = Assert.Single(diagnostics);
         Assert.Equal($"Bad character input: '{text}'.", diagnostic.Message);
         Assert.True(diagnostic.IsError, "Diagnostic should be error.");
         Assert.False(diagnostic.IsWarning, "Diagnostic should not be warning.");
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.BadToken, token.Kind);
+        Assert.False(token.IsMissing);
     }
 
     [Theory]
@@ -64,10 +64,11 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
         Assert.Equal(SyntaxKind.WhitespaceTrivia, trivia.Kind);
-        Assert.Empty(diagnostics);
+        Assert.Equal(text, trivia.Text);
     }
 
     [Theory]
@@ -82,8 +83,8 @@ public class LexerTests
         Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
-        Assert.Equal(text, trivia.Text);
         Assert.Equal(SyntaxKind.LineBreakTrivia, trivia.Kind);
+        Assert.Equal(text, trivia.Text);
     }
 
     [Fact]
@@ -97,8 +98,8 @@ public class LexerTests
         Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
-        Assert.Equal(text, trivia.Text);
         Assert.Equal(SyntaxKind.SingleLineCommentTrivia, trivia.Kind);
+        Assert.Equal(text, trivia.Text);
     }
 
     [Fact]
@@ -119,8 +120,8 @@ public class LexerTests
         Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
-        Assert.Equal(text, trivia.Text);
         Assert.Equal(SyntaxKind.MultiLineCommentTrivia, trivia.Kind);
+        Assert.Equal(text, trivia.Text);
     }
 
     [Theory]
@@ -185,15 +186,15 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.Equal("The number '99999999999999999999999999999.9' is too large.", diagnostic.Message);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(text, token.Text);
         Assert.Equal(SyntaxKind.NumberToken, token.Kind);
         Assert.False(token.IsMissing, "Token should not be missing.");
         Assert.Null(token.Value);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.Equal("The number '99999999999999999999999999999.9' is too large.", diagnostic.Message);
-        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
-        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
     }
 
     [Fact]
@@ -209,13 +210,13 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.QuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.IsType<string>(token.Value);
         Assert.Equal(textValue, token.Value);
         Assert.False(token.IsMissing, "Token should not be missing.");
-        Assert.Empty(diagnostics);
     }
 
     [Fact]
@@ -231,13 +232,13 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.IsType<string>(token.Value);
         Assert.Equal(textValue, token.Value);
         Assert.False(token.IsMissing, "Token should not be missing.");
-        Assert.Empty(diagnostics);
     }
 
     [Fact]
@@ -248,12 +249,14 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
+        Assert.Equal("Unterminated string literal.", diagnostic.Message);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.QuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
-        Assert.Equal("Unterminated string literal.", diagnostic.Message);
     }
 
     [Fact]
@@ -264,12 +267,14 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
+        Assert.Equal("Unterminated string literal.", diagnostic.Message);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
-        Diagnostic diagnostic = Assert.Single(diagnostics);
-        Assert.Equal(new TextSpan(0, 1), diagnostic.Location.Span);
-        Assert.Equal("Unterminated string literal.", diagnostic.Message);
     }
 
     [Fact]
@@ -326,11 +331,11 @@ public class LexerTests
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
 
+        Assert.Empty(diagnostics);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(kind, token.Kind);
         Assert.Equal(text, token.Text);
         Assert.False(token.IsMissing);
-        Assert.Empty(diagnostics);
     }
 
     public static IEnumerable<object[]> GetTokensData()
