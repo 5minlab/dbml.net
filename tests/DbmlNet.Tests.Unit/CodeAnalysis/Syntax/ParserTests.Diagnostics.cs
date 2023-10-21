@@ -51,7 +51,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_Warning_Unknown_Project_Setting()
+    public void Parse_Warning_Unknown_ProjectSetting()
     {
         string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
@@ -68,7 +68,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_Warning_Unknown_Column_Setting()
+    public void Parse_Warning_Unknown_ColumnSetting()
     {
         string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
@@ -136,7 +136,7 @@ public partial class ParserTests
     [InlineData("note", "note: \'Some value\'")]
     [InlineData("note", "Note: \"Some value\"")]
     [InlineData("note", "Note: \'Some value\'")]
-    public void Parse_Warning_Column_Setting_Already_Declared(
+    public void Parse_Warning_ColumnSetting_Already_Declared(
         string settingName, string settingText)
     {
         string text = $$"""
@@ -169,7 +169,7 @@ public partial class ParserTests
     [InlineData("type", "type: hash")]
     [InlineData("type", "type: \"hash\"")]
     [InlineData("type", "type: \'hash\'")]
-    public void Parse_Warning_Index_Setting_Already_Declared(
+    public void Parse_Warning_IndexSetting_Already_Declared(
         string settingName, string settingText)
     {
         string text = $$"""
