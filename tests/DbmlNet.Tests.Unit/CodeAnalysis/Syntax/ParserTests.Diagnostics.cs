@@ -115,6 +115,8 @@ public partial class ParserTests
     [InlineData("default", "default: \'Some value\'")]
     [InlineData("note", "note: \"Some value\"")]
     [InlineData("note", "note: \'Some value\'")]
+    [InlineData("note", "Note: \"Some value\"")]
+    [InlineData("note", "Note: \'Some value\'")]
     public void Parse_Warning_Column_Setting_Already_Declared(
         string settingName, string settingText)
     {
