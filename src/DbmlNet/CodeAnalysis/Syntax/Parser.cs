@@ -250,14 +250,12 @@ internal sealed class Parser
         if (Current.Kind == SyntaxKind.ColonToken)
         {
             SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
-
-#pragma warning disable CA1508 // Avoid dead conditional code
             SyntaxToken valueToken = Current.Kind switch
             {
                 _ when Current.Kind.IsStringToken() => NextToken(),
+                _ when Current.Kind.IsKeyword() => NextToken(),
                 _ => MatchToken(SyntaxKind.IdentifierToken),
             };
-#pragma warning restore CA1508 // Avoid dead conditional code
 
             ReportUnknownProjectSetting(identifierToken.Text, identifierToken.Start, valueToken.End);
             return new UnknownProjectSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
