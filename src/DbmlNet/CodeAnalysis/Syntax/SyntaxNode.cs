@@ -86,11 +86,14 @@ public abstract class SyntaxNode
     /// <returns>The last token of the current syntax node.</returns>
     public SyntaxToken GetLastToken()
     {
-        if (this is SyntaxToken token)
-            return token;
-
-        // A syntax node should always contain at least 1 token.
-        return GetChildren().Last().GetLastToken();
+#pragma warning disable S3060 // Offload the code that's conditional on this type test to the appropriate subclass and remove the condition.
+        return this switch
+        {
+            SyntaxToken token => token,
+            // A syntax node should always contain at least 1 token.
+            _ => GetChildren().Last().GetLastToken(),
+        };
+#pragma warning restore S3060 // Offload the code that's conditional on this type test to the appropriate subclass and remove the condition.
     }
 
     /// <summary>
@@ -181,11 +184,13 @@ public abstract class SyntaxNode
             bool nodeIsMember = node.Kind.IsSyntaxMember();
             string kindText = $"{node.Kind}";
 
-            string displayText =
-                nodeIsExpression ? $"Expression: {kindText[..^10]}"
-                : nodeIsStatement ? $"Statement: {kindText[..^9]}"
-                : nodeIsMember ? kindText[..^6]
-                : kindText;
+            string displayText = true switch
+            {
+                _ when nodeIsExpression => $"Expression: {kindText[..^10]}",
+                _ when nodeIsStatement => $"Statement: {kindText[..^9]}",
+                _ when nodeIsMember => kindText[..^6],
+                _ => kindText
+            };
 
             writer.WriteSuccess(displayText);
         }

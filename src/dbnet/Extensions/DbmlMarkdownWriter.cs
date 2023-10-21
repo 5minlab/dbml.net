@@ -285,20 +285,20 @@ public sealed class DbmlMarkdownWriter
             : column.Name;
 
         string type = column.Type ?? UnknownValue;
-        string maxLength =
-            column.HasMaxLength
-                ? "MAX"
-                : column.MaxLength.HasValue
-                ? $"{column.MaxLength}"
-                : UnknownValue;
+        string maxLength = column switch
+        {
+            { HasMaxLength: true } => "MAX",
+            { MaxLength: { } } => $"{column.MaxLength}",
+            _ => UnknownValue
+        };
 
         string isRequired = column.IsRequired ? "✔️ true" : "❌ false";
-        string defaultValue =
-            !column.IsRequired
-            ? "null"
-            : column.HasDefaultValue
-                ? $"{column.DefaultValue}"
-                : UnknownValue;
+        string defaultValue = column switch
+        {
+            { IsRequired: false } => "null",
+            { HasDefaultValue: true } => $"{column.DefaultValue}",
+            _ => UnknownValue
+        };
 
         string note = column.Note ?? UnknownValue;
         writer.WriteLine($"| {name} | {type} | {maxLength} | {isRequired} | {defaultValue} | {note} |");

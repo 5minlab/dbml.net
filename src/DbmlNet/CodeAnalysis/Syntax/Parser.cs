@@ -9,7 +9,7 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 
 internal sealed class Parser
 {
-    internal static string[] IndexSettingTypes = new[] { "btree", "gin", "gist", "hash" };
+    internal static readonly string[] IndexSettingTypes = new[] { "btree", "gin", "gist", "hash" };
     private readonly SyntaxTree _syntaxTree;
     private readonly ImmutableArray<SyntaxToken> _tokens;
     private int _position;
@@ -104,8 +104,9 @@ internal sealed class Parser
             members.OfType<TableDeclarationSyntax>().ToArray();
 
         HashSet<string> seenTableNames = new HashSet<string>(StringComparer.InvariantCulture);
-        foreach (TableDeclarationSyntax tableDeclaration in tableDeclarations)
+        for (int i = 0; i < tableDeclarations.Length; i++)
         {
+            TableDeclarationSyntax tableDeclaration = tableDeclarations[i];
             string tableNameText = tableDeclaration.DbSchema.Text;
             if (!seenTableNames.Add(tableNameText))
             {
@@ -274,8 +275,9 @@ internal sealed class Parser
             body.GetChildren().OfType<ColumnDeclarationSyntax>().ToArray();
 
         HashSet<string> seenColumNames = new HashSet<string>(StringComparer.InvariantCulture);
-        foreach (ColumnDeclarationSyntax columDeclaration in columnDeclarations)
+        for (int i = 0; i < columnDeclarations.Length; i++)
         {
+            ColumnDeclarationSyntax columDeclaration = columnDeclarations[i];
             string columnNameText = columDeclaration.IdentifierToken.Text;
             if (!seenColumNames.Add(columnNameText))
             {
