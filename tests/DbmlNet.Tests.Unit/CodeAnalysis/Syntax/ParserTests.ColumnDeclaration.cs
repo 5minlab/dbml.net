@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 using DbmlNet.CodeAnalysis.Syntax;
 
@@ -234,7 +236,7 @@ public partial class ParserTests
         foreach (string text in SqlServerDataTypes)
         {
             // Skip parenthesized identifiers
-            if (text.Contains("("))
+            if (text.Contains('(', StringComparison.Ordinal))
                 continue;
 
             yield return new object?[] { SyntaxKind.IdentifierToken, text, null };
@@ -277,11 +279,11 @@ public partial class ParserTests
         foreach (string text in SqlServerDataTypes)
         {
             // Skip non parenthesized identifiers
-            if (!text.Contains("("))
+            if (!text.Contains('(', StringComparison.Ordinal))
                 continue;
 
-            int indefOfOpenParenthesis = text.IndexOf("(");
-            int indefOfCloseParenthesis = text.IndexOf(")");
+            int indefOfOpenParenthesis = text.IndexOf('(', StringComparison.Ordinal);
+            int indefOfCloseParenthesis = text.IndexOf(')', StringComparison.Ordinal);
             SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
             string columnTypeIdentifierText = text[..indefOfOpenParenthesis];
             object? columnTypeIdentifierValue = null;
@@ -289,7 +291,7 @@ public partial class ParserTests
             SyntaxKind variableLengthIdentifierKind = SyntaxKind.IdentifierToken;
             string variableLengthIdentifierText = text[(indefOfOpenParenthesis + 1)..indefOfCloseParenthesis];
             object? variableLengthIdentifierValue = null;
-            if (decimal.TryParse(variableLengthIdentifierText, out decimal dVal))
+            if (decimal.TryParse(variableLengthIdentifierText, NumberFormatInfo.InvariantInfo, out decimal dVal))
             {
                 variableLengthIdentifierKind = SyntaxKind.NumberToken;
                 variableLengthIdentifierValue = dVal;

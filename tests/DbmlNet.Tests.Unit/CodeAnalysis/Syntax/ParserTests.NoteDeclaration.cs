@@ -6,7 +6,6 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
 
 public partial class ParserTests
 {
-
     [Theory]
     [InlineData("Note")]
     [InlineData("note")]
@@ -22,7 +21,7 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
-        e.AssertToken(SyntaxKind.NoteKeyword, noteKeywordText.ToLowerInvariant());
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(noteKind, noteText, noteValue);
     }
@@ -42,7 +41,7 @@ public partial class ParserTests
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
-        e.AssertToken(SyntaxKind.NoteKeyword, noteKeywordText.ToLowerInvariant());
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(noteKind, noteText, noteValue);
     }

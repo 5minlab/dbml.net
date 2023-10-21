@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -189,7 +191,7 @@ public partial class ParserTests
     {
         SyntaxKind settingKind = SyntaxKind.NumberToken;
         string settingText = $"{DataGenerator.GetRandomNumber(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}";
-        object? settingValue = decimal.Parse(settingText);
+        object? settingValue = decimal.Parse(settingText, CultureInfo.InvariantCulture);
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);

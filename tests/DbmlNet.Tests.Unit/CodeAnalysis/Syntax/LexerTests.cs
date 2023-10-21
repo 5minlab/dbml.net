@@ -87,7 +87,7 @@ public partial class LexerTests
     {
         IEnumerable<(SyntaxKind Kind, string Text)> fixedTokens =
             Enum.GetValues<SyntaxKind>()
-                .Select(kind => (Kind: kind, Text: SyntaxFacts.GetKnownText(kind) ?? null!))
+                .Select(kind => (Kind: kind, Text: kind.GetKnownText() ?? null!))
                 .Where(t => !string.IsNullOrEmpty(t.Text));
 
         (SyntaxKind, string)[] dynamicTokens = new[]

@@ -63,7 +63,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
-        e.AssertToken(SyntaxKind.NoteKeyword, noteKeywordText.ToLowerInvariant());
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(settingKind, noteValueText, noteValue);
     }
@@ -85,7 +85,7 @@ public partial class ParserTests
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
-        e.AssertToken(SyntaxKind.NoteKeyword, noteKeywordText.ToLowerInvariant());
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
         e.AssertToken(settingKind, noteValueText, noteValue);
     }

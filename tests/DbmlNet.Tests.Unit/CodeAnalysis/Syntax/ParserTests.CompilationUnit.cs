@@ -9,13 +9,13 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompilationUnit_With_No_Members()
     {
-        string text = "";
+        string text = string.Empty;
 
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(syntaxTree.Root);
         e.AssertNode(SyntaxKind.CompilationUnitMember);
-        e.AssertToken(SyntaxKind.EndOfFileToken, "");
+        e.AssertToken(SyntaxKind.EndOfFileToken, string.Empty);
     }
 
     [Fact]
@@ -36,7 +36,7 @@ public partial class ParserTests
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
-        e.AssertToken(SyntaxKind.EndOfFileToken, "");
+        e.AssertToken(SyntaxKind.EndOfFileToken, string.Empty);
     }
 
     [Fact]
@@ -59,6 +59,6 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
-        e.AssertToken(SyntaxKind.EndOfFileToken, "");
+        e.AssertToken(SyntaxKind.EndOfFileToken, string.Empty);
     }
 }

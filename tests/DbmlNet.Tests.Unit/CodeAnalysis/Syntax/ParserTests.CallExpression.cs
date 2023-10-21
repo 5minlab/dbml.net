@@ -63,6 +63,7 @@ public partial class ParserTests
             object? argValue = null;
             arguments.Add((argKind, argText, argValue));
         }
+
         string argsText = string.Join(", ", arguments.Select(arg => arg.Text));
         string text = $"{functionNameText} ( {argsText} ) ";
 
@@ -77,6 +78,7 @@ public partial class ParserTests
             e.AssertNode(SyntaxKind.NameExpression);
             e.AssertToken(argKind, argText, argValue);
         }
+
         e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
     }
 

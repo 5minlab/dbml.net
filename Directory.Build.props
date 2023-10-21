@@ -14,8 +14,11 @@
     <IsTestProject>$(MSBuildProjectName.Contains('Tests'))</IsTestProject>
   </PropertyGroup>
 
-  <PropertyGroup Condition="!$(IsTestProject)">
+  <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Ignore API doc requirements for test assets -->
+    <NoWarn Condition="'$(IsTestProject)' == 'true'">$(NoWarn);CA1707;CS1591;S4144;SA1201;SA1202;SA1204;SA1601;</NoWarn>
 
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>All</AnalysisMode>
@@ -24,7 +27,7 @@
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(MSBuildProjectExtension) == '.csproj' AND '!$(IsTestProject)'">
+  <ItemGroup>
     <PackageReference Include="AsyncFixer" PrivateAssets="all" />
     <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" PrivateAssets="all" />

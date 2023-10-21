@@ -24,19 +24,19 @@ public sealed class SourceTextTests
         SourceText sourceText = SourceText.From(text);
 
         Assert.Equal(text, sourceText.ToString());
-        Assert.True(0 == sourceText.Length, $"Expected 0 == text.Length, and got {sourceText.Length} ");
+        Assert.True(sourceText.Length == 0, $"Expected 0 == text.Length, and got {sourceText.Length} ");
         TextLine line = Assert.Single(sourceText.Lines);
-        Assert.Equal("", line.ToString());
-        Assert.True(0 == line.Start, $"Expected 0 == line.Start, and got {line.Start}");
-        Assert.True(0 == line.Length, $"Expected 0 == line.Length, and got {line.Length}");
-        Assert.True(0 == line.End, $"Expected 0 == line.End, and got {line.End}");
-        Assert.True(0 == line.LengthIncludingLineBreak, $"Expected 0 == line.LengthIncludingLineBreak, and got {line.LengthIncludingLineBreak}");
-        Assert.True(0 == line.Span.Start, $"Expected 0 == line.Span.Start, and got {line.Span.Start}");
-        Assert.True(0 == line.Span.Length, $"Expected 0 == line.Span.Length, and got {line.Span.Length}");
-        Assert.True(0 == line.Span.End, $"Expected 0 == line.Span.End, and got {line.Span.End}");
-        Assert.True(0 == line.SpanIncludingLineBreak.Start, $"Expected 0 == line.SpanIncludingLineBreak.Start, and got {line.SpanIncludingLineBreak.Start}");
-        Assert.True(0 == line.SpanIncludingLineBreak.Length, $"Expected 0 == line.SpanIncludingLineBreak.Length, and got {line.SpanIncludingLineBreak.Length}");
-        Assert.True(0 == line.SpanIncludingLineBreak.End, $"Expected 0 == line.SpanIncludingLineBreak.End, and got {line.SpanIncludingLineBreak.End}");
+        Assert.Equal(string.Empty, line.ToString());
+        Assert.True(line.Start == 0, $"Expected 0 == line.Start, and got {line.Start}");
+        Assert.True(line.Length == 0, $"Expected 0 == line.Length, and got {line.Length}");
+        Assert.True(line.End == 0, $"Expected 0 == line.End, and got {line.End}");
+        Assert.True(line.LengthIncludingLineBreak == 0, $"Expected 0 == line.LengthIncludingLineBreak, and got {line.LengthIncludingLineBreak}");
+        Assert.True(line.Span.Start == 0, $"Expected 0 == line.Span.Start, and got {line.Span.Start}");
+        Assert.True(line.Span.Length == 0, $"Expected 0 == line.Span.Length, and got {line.Span.Length}");
+        Assert.True(line.Span.End == 0, $"Expected 0 == line.Span.End, and got {line.Span.End}");
+        Assert.True(line.SpanIncludingLineBreak.Start == 0, $"Expected 0 == line.SpanIncludingLineBreak.Start, and got {line.SpanIncludingLineBreak.Start}");
+        Assert.True(line.SpanIncludingLineBreak.Length == 0, $"Expected 0 == line.SpanIncludingLineBreak.Length, and got {line.SpanIncludingLineBreak.Length}");
+        Assert.True(line.SpanIncludingLineBreak.End == 0, $"Expected 0 == line.SpanIncludingLineBreak.End, and got {line.SpanIncludingLineBreak.End}");
     }
 
     [Theory]

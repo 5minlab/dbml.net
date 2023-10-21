@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Tynamix.ObjectFiller;
+
+namespace DbmlNet.Tests.Unit;
 
 internal static class DataGenerator
 {
@@ -56,6 +59,7 @@ internal static class DataGenerator
         {
             sb.AppendLine(CreateRandomMultiWordString());
         }
+
         return sb.ToString();
     }
 
@@ -138,8 +142,8 @@ internal static class DataGenerator
         int maxIndex = keywordKinds.Length == 0 ? 0 : keywordKinds.Length - 1;
         int randomIndex = new IntRange(min: 0, max: maxIndex).GetValue();
         keywordKind = keywordKinds[randomIndex];
-        keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
-        keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
+        keywordText = keywordKind.GetKnownText() ?? string.Empty;
+        keywordValue = keywordKind.GetKnownValue();
     }
 
     /// <summary>
@@ -157,9 +161,8 @@ internal static class DataGenerator
         {
             yield return (
                 Kind: keywordKind,
-                Text: SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty,
-                Value: SyntaxFacts.GetKnownValue(keywordKind)
-            );
+                Text: keywordKind.GetKnownText() ?? string.Empty,
+                Value: keywordKind.GetKnownValue());
         }
     }
 
@@ -167,7 +170,7 @@ internal static class DataGenerator
     /// Gets a random syntax kind.
     /// </summary>
     /// <returns>A random syntax kind.</returns>
-    /// <exception cref="Exception">In case a syntax kind cannot be generated.</exception>
+    /// <exception cref="EvaluateException">In case a syntax kind cannot be generated.</exception>
     public static SyntaxKind GetRandomSyntaxKind()
     {
         int min = Enum.GetValues<SyntaxKind>().Min(kind => (int)kind);
@@ -176,6 +179,6 @@ internal static class DataGenerator
 
         return Enum.TryParse($"{randomNumber}", out SyntaxKind randomKind)
             ? randomKind
-            : throw new Exception($"ERROR: Cannot generate random SyntaxKind from <{randomNumber}>.");
+            : throw new EvaluateException($"ERROR: Cannot generate random SyntaxKind from <{randomNumber}>.");
     }
 }

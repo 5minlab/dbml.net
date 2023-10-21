@@ -92,8 +92,7 @@ public partial class ParserTests
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             Assert.IsAssignableFrom<SingleFieldIndexDeclarationSyntax>(
-                Assert.Single(indexesDeclarationSyntax.Indexes)
-            );
+                Assert.Single(indexesDeclarationSyntax.Indexes));
 
         return singleFieldIndexDeclarationSyntax;
     }
@@ -107,8 +106,7 @@ public partial class ParserTests
 
         CompositeIndexDeclarationSyntax compositeIndexDeclarationSyntax =
             Assert.IsAssignableFrom<CompositeIndexDeclarationSyntax>(
-                Assert.Single(indexesDeclarationSyntax.Indexes)
-            );
+                Assert.Single(indexesDeclarationSyntax.Indexes));
 
         return compositeIndexDeclarationSyntax;
     }
@@ -130,7 +128,7 @@ public partial class ParserTests
         return columnDeclarationStatement.SettingList;
     }
 
-    static readonly string[] SqlServerDataTypes = new string[]
+    private static readonly string[] SqlServerDataTypes = new string[]
     {
         // Exact numerics: These are data types that store integer or decimal numbers with exact precision and scale.
         "bigint",
@@ -200,8 +198,8 @@ public partial class ParserTests
         int maxIndex = keywordKinds.Length == 0 ? 0 : keywordKinds.Length - 1;
         int randomIndex = new IntRange(min: 0, max: maxIndex).GetValue();
         keywordKind = keywordKinds[randomIndex];
-        keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
-        keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
+        keywordText = keywordKind.GetKnownText() ?? string.Empty;
+        keywordValue = keywordKind.GetKnownValue();
     }
 
     public static IEnumerable<object[]?> GetSyntaxKeywordTokensData()

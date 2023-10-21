@@ -12,7 +12,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Database_Empty()
     {
-        string text = "";
+        string text = string.Empty;
         SyntaxTree syntax = SyntaxTree.Parse(text);
 
         DbmlDatabase database = DbmlDatabase.Create(syntax);

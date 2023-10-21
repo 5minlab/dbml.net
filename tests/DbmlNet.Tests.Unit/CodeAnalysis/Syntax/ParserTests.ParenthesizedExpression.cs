@@ -10,7 +10,7 @@ public partial class ParserTests
     public void Parse_ParenthesizedExpression_With_No_Expression()
     {
         SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
-        string expectedText = "";
+        string expectedText = string.Empty;
         string text = "()";
         object? expectedValue = null;
 
