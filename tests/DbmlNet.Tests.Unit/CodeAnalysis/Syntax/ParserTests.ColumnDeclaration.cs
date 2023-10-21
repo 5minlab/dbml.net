@@ -15,9 +15,14 @@ public partial class ParserTests
         string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -60,9 +65,14 @@ public partial class ParserTests
         object? columnNameValue = randomColumnName;
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -80,9 +90,14 @@ public partial class ParserTests
         object? columnNameValue = randomColumName;
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -98,9 +113,14 @@ public partial class ParserTests
         string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -118,9 +138,14 @@ public partial class ParserTests
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -138,9 +163,14 @@ public partial class ParserTests
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\"{randomText}\"";
         object columnTypeValue = randomText;
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -158,9 +188,14 @@ public partial class ParserTests
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\'{randomText}\'";
         object? columnTypeValue = randomText;
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -171,48 +206,27 @@ public partial class ParserTests
 
     [Theory]
     [MemberData(nameof(GetSqlServerColumnTypeIdentifiersData))]
-    public void Parse_ColumnDeclaration_With_SqlServer_ColumnTypeIdentifier(
+    public void Parse_ColumnDeclaration_With_ColumnType_SqlServerIdentifier(
         SyntaxKind columnTypeKind,
         string columnTypeText,
         object? columnTypeValue)
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
         e.AssertToken(columnTypeKind, columnTypeText, columnTypeValue);
-    }
-
-    [Theory]
-    [MemberData(nameof(GetSqlServerColumnTypeParenthesizedIdentifiersData))]
-    public void Parse_ColumnDeclaration_With_SqlServer_ColumnTypeParenthesizedIdentifier(
-        SyntaxKind columnTypeIdentifierKind,
-        string columnTypeIdentifierText,
-        object? columnTypeIdentifierValue,
-        SyntaxKind variableLengthIdentifierKind,
-        string variableLengthIdentifierText,
-        object? variableLengthIdentifierValue)
-    {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeIdentifierText}({variableLengthIdentifierText})";
-
-        StatementSyntax statement = ParseStatement(text);
-
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
-        e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
-        e.AssertToken(columnNameKind, columnNameText);
-        e.AssertNode(SyntaxKind.ColumnTypeParenthesizedIdentifierClause);
-        e.AssertToken(columnTypeIdentifierKind, columnTypeIdentifierText, columnTypeIdentifierValue);
-        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
-        e.AssertToken(variableLengthIdentifierKind, variableLengthIdentifierText, variableLengthIdentifierValue);
-        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
     }
 
     public static IEnumerable<object?[]> GetSqlServerColumnTypeIdentifiersData()
@@ -225,6 +239,37 @@ public partial class ParserTests
 
             yield return new object?[] { SyntaxKind.IdentifierToken, text, null };
         }
+    }
+
+    [Theory]
+    [MemberData(nameof(GetSqlServerColumnTypeParenthesizedIdentifiersData))]
+    public void Parse_ColumnDeclaration_With_ColumnType_SqlServerParenthesizedIdentifier(
+        SyntaxKind columnTypeIdentifierKind,
+        string columnTypeIdentifierText,
+        object? columnTypeIdentifierValue,
+        SyntaxKind variableLengthIdentifierKind,
+        string variableLengthIdentifierText,
+        object? variableLengthIdentifierValue)
+    {
+        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        string columnNameText = DataGenerator.CreateRandomString();
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeIdentifierText}}({{variableLengthIdentifierText}})
+        }
+        """;
+
+        StatementSyntax statement = ParseColumnDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
+        e.AssertToken(columnNameKind, columnNameText);
+        e.AssertNode(SyntaxKind.ColumnTypeParenthesizedIdentifierClause);
+        e.AssertToken(columnTypeIdentifierKind, columnTypeIdentifierText, columnTypeIdentifierValue);
+        e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
+        e.AssertToken(variableLengthIdentifierKind, variableLengthIdentifierText, variableLengthIdentifierValue);
+        e.AssertToken(SyntaxKind.CloseParenthesisToken, ")");
     }
 
     public static IEnumerable<object?[]> GetSqlServerColumnTypeParenthesizedIdentifiersData()
@@ -265,9 +310,14 @@ public partial class ParserTests
         string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText}";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
@@ -283,9 +333,14 @@ public partial class ParserTests
         string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
-        string text = $"{columnNameText} {columnTypeText} [ ]";
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}} [ ]
+        }
+        """;
 
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseColumnDeclaration(text);
 
         using AssertingEnumerator e = new AssertingEnumerator(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
