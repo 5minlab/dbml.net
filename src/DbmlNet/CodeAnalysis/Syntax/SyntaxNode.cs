@@ -110,6 +110,8 @@ public abstract class SyntaxNode
         PrintSyntaxTo(writer, this);
     }
 
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     private static void PrintSyntaxTo(
         TextWriter writer,
         SyntaxNode node,
@@ -197,6 +199,8 @@ public abstract class SyntaxNode
         foreach (SyntaxNode child in node.GetChildren())
             PrintSyntaxTo(writer, child, indent, child == lastChild);
     }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     /// <summary>
     /// Return a tree view string of the current <see cref="SyntaxNode"/>.

@@ -107,7 +107,6 @@ public sealed class DbmlTable
         DbmlColumnIdentifier toColumn)
     {
         ArgumentNullException.ThrowIfNull(fromColumn);
-        ArgumentNullException.ThrowIfNull(relationshipType);
         ArgumentNullException.ThrowIfNull(toColumn);
 
         DbmlTableRelationship relationship =

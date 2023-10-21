@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 
 using DbmlNet.CodeAnalysis.Syntax;
 
@@ -81,6 +82,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     /// <inheritdoc/>
     protected override void WalkColumnDeclarationStatement(ColumnDeclarationSyntax syntax)
     {
@@ -186,8 +189,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         _currentTableColumn = null;
     }
 #pragma warning restore CA1502 // Avoid excessive complexity
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
 #pragma warning disable CA1502 // Avoid excessive complexity
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     private void WalkColumnType(ColumnTypeClause syntax)
     {
         Debug.Assert(_currentTableColumn is not null, "Current column should not be null");
@@ -243,9 +249,9 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     {
                         if (variableLengthText.Equals("MAX", StringComparison.OrdinalIgnoreCase))
                             _currentTableColumn.MaxLength = double.MaxValue;
-                        else if (int.TryParse(variableLengthText, out int iMax))
+                        else if (int.TryParse(variableLengthText, NumberFormatInfo.InvariantInfo, out int iMax))
                             _currentTableColumn.MaxLength = iMax;
-                        else if (double.TryParse(variableLengthText, out double dMax))
+                        else if (double.TryParse(variableLengthText, NumberFormatInfo.InvariantInfo, out double dMax))
                             _currentTableColumn.MaxLength = dMax;
 
                         return;
@@ -268,7 +274,11 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                 break;
         }
     }
+
 #pragma warning restore CA1502 // Avoid excessive complexity
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
+
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
 
     /// <inheritdoc/>
     protected override void WalkSingleFieldIndexDeclarationStatement(SingleFieldIndexDeclarationSyntax syntax)
@@ -340,6 +350,8 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
         _currentTable.AddIndex(_currentTableIndex);
         _currentTableIndex = null;
     }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     /// <inheritdoc/>
     protected override void WalkNoteDeclarationStatement(NoteDeclarationSyntax syntax)

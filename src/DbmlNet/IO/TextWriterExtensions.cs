@@ -1,5 +1,6 @@
 using System;
 using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -253,6 +254,8 @@ namespace DbmlNet.IO
             writer.ResetColor();
         }
 
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
         /// <summary>
         /// Writes diagnostics to the specified text writer
         /// </summary>
@@ -278,7 +281,7 @@ namespace DbmlNet.IO
 
             foreach (Diagnostic diagnostic in diagnostics
                                                 .Where(d => d.Location.Text != null)
-                                                .OrderBy(d => d.Location.FileName)
+                                                .OrderBy(d => d.Location.FileName, StringComparer.Ordinal)
                                                 .ThenBy(d => d.Location.Span.Start)
                                                 .ThenBy(d => d.Location.Span.Length))
             {
@@ -326,6 +329,8 @@ namespace DbmlNet.IO
 
             writer.WriteLine();
         }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
     }
 }
 

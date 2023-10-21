@@ -103,7 +103,7 @@ internal sealed class Parser
         TableDeclarationSyntax[] tableDeclarations =
             members.OfType<TableDeclarationSyntax>().ToArray();
 
-        HashSet<string> seenTableNames = new HashSet<string>();
+        HashSet<string> seenTableNames = new HashSet<string>(StringComparer.InvariantCulture);
         foreach (TableDeclarationSyntax tableDeclaration in tableDeclarations)
         {
             string tableNameText = tableDeclaration.DbSchema.Text;
@@ -273,7 +273,7 @@ internal sealed class Parser
         ColumnDeclarationSyntax[] columnDeclarations =
             body.GetChildren().OfType<ColumnDeclarationSyntax>().ToArray();
 
-        HashSet<string> seenColumNames = new HashSet<string>();
+        HashSet<string> seenColumNames = new HashSet<string>(StringComparer.InvariantCulture);
         foreach (ColumnDeclarationSyntax columDeclaration in columnDeclarations)
         {
             string columnNameText = columDeclaration.IdentifierToken.Text;
@@ -534,7 +534,7 @@ internal sealed class Parser
                 separatorKind: SyntaxKind.CommaToken,
                 parseExpression: ParseIndexSettingClause);
 
-        HashSet<string> seenSettingNames = new HashSet<string>();
+        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
         foreach (IndexSettingClause indexSetting in settings)
         {
             string settingNameText = indexSetting.SettingName;
@@ -613,7 +613,7 @@ internal sealed class Parser
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
         string columnTypeName = $"{valueToken.Value ?? valueToken.Text}";
-        if (IndexSettingTypes.Contains(columnTypeName) == false)
+        if (!IndexSettingTypes.Contains(columnTypeName, StringComparer.InvariantCulture))
         {
             TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
             Diagnostics.ReportUnknownIndexSettingType(location, columnTypeName);
@@ -679,7 +679,7 @@ internal sealed class Parser
         SeparatedSyntaxList<ColumnSettingClause> settings =
             settingList?.Settings ?? SeparatedSyntaxList<ColumnSettingClause>.Empty;
 
-        HashSet<string> seenSettingNames = new HashSet<string>();
+        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
         foreach (ColumnSettingClause columnSetting in settings)
         {
             string settingNameText = columnSetting.SettingName;
@@ -755,6 +755,8 @@ internal sealed class Parser
         return new ColumnSettingListSyntax(_syntaxTree, openBracketToken, settings, closeBracketToken);
     }
 
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     private ColumnSettingClause ParseColumnSettingClause()
     {
         switch (Current.Kind)
@@ -810,7 +812,7 @@ internal sealed class Parser
                         // Disallow expression
                         Diagnostics.ReportDisallowedColumnSettingDefaultValue(expressionValue.Location, expressionValue.Kind);
                         break;
-                };
+                }
 
                 return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, expressionValue);
             }
@@ -864,6 +866,8 @@ internal sealed class Parser
             Diagnostics.ReportUnknownColumnSetting(location, settingName);
         }
     }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     private StatementSyntax ParseNoteDeclaration()
     {

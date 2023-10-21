@@ -1,10 +1,12 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace DbmlNet.CodeAnalysis.Text;
 
 /// <summary>
 /// Represents a text span.
 /// </summary>
+[StructLayout(LayoutKind.Auto)]
 public readonly struct TextSpan : IEquatable<TextSpan>
 {
     /// <summary>

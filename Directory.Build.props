@@ -26,7 +26,7 @@
 
   <ItemGroup Condition="$(MSBuildProjectExtension) == '.csproj' AND '!$(IsTestProject)'">
     <PackageReference Include="AsyncFixer" PrivateAssets="all" />
-    <!-- <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all" /> -->
+    <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all" />
     <!-- <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" /> -->
     <!-- <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" PrivateAssets="all" /> -->

@@ -212,6 +212,8 @@ internal sealed class Lexer
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     private void ReadToken()
     {
         _start = _position;
@@ -328,7 +330,9 @@ internal sealed class Lexer
                 break;
         }
     }
+
 #pragma warning restore CA1502 // Avoid excessive complexity
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     private void ReadQuotationString()
     {
