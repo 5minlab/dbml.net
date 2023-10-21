@@ -84,6 +84,26 @@ public partial class ParserTests
         e.AssertToken(columnTypeKind, columnTypeText);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_ColumnDeclaration_With_ColumnType_Keyword(
+        SyntaxKind columnTypeKind,
+        string columnTypeText,
+        object? columnTypeValue)
+    {
+        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        string columnNameText = DataGenerator.CreateRandomString();
+        string text = $"{columnNameText} {columnTypeText}";
+
+        StatementSyntax statement = ParseStatement(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
+        e.AssertToken(columnNameKind, columnNameText);
+        e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
+        e.AssertToken(columnTypeKind, columnTypeText, columnTypeValue);
+    }
+
     [Fact]
     public void Parse_ColumnDeclaration_With_ColumnType_QuotationMarksString()
     {
@@ -250,5 +270,13 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    public static IEnumerable<object[]?> GetSyntaxKeywordTokensData()
+    {
+        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
+        {
+            yield return new object[] { itemKind, itemText, itemValue! };
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -139,6 +140,27 @@ internal static class DataGenerator
         keywordKind = keywordKinds[randomIndex];
         keywordText = SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty;
         keywordValue = SyntaxFacts.GetKnownValue(keywordKind);
+    }
+
+    /// <summary>
+    /// Gets a list of all available syntax keywords.
+    /// </summary>
+    /// <returns>A list of all syntax keywords.</returns>
+    public static IEnumerable<(SyntaxKind Kind, string Text, object? Value)> GetSyntaxKeywords()
+    {
+        SyntaxKind[] keywordKinds =
+            Enum.GetValues<SyntaxKind>()
+                .Where(kind => kind.IsKeyword())
+                .ToArray();
+
+        foreach (SyntaxKind keywordKind in keywordKinds)
+        {
+            yield return (
+                Kind: keywordKind,
+                Text: SyntaxFacts.GetKnownText(keywordKind) ?? string.Empty,
+                Value: SyntaxFacts.GetKnownValue(keywordKind)
+            );
+        }
     }
 
     /// <summary>
