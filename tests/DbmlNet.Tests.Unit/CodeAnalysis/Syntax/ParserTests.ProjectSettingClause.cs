@@ -7,6 +7,26 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
 public partial class ParserTests
 {
     [Fact]
+    public void Parse_DatabaseProviderProjectSettingClause_With_Identifier_Value()
+    {
+        SyntaxKind providerKind = SyntaxKind.IdentifierToken;
+        string randomText = DataGenerator.CreateRandomString();
+        string providerText = $"{randomText}";
+        object? providerValue = null;
+        string settingText = $"database_type: {providerText}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+
+        ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        e.AssertNode(SyntaxKind.ProjectSettingListClause);
+        e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
+        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(providerKind, providerText, providerValue);
+    }
+
+    [Fact]
     public void Parse_DatabaseProviderProjectSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
