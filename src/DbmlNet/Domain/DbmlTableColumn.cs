@@ -33,7 +33,7 @@ public sealed class DbmlTableColumn
     public string? Type { get; internal set; }
 
     /// <summary>
-    /// 
+    /// The max length of the column.
     /// </summary>
     public double? MaxLength { get; internal set; }
 

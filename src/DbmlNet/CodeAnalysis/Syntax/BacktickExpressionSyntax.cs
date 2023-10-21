@@ -39,7 +39,9 @@ public sealed class BacktickExpressionSyntax : ExpressionSyntax
     /// </summary>
     public SyntaxToken CloseBacktickToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the backtick expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBacktickToken;

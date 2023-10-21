@@ -46,7 +46,9 @@ public sealed class ColumnTypeParenthesizedIdentifierClause : ColumnTypeClause
     /// </summary>
     public SyntaxToken CloseParenthesisToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the column type identifier.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return ColumnTypeIdentifier;

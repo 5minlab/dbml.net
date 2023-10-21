@@ -46,7 +46,9 @@ public sealed class CallExpressionSyntax : ExpressionSyntax
     /// </summary>
     public SyntaxToken CloseParenthesisToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the call expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return Identifier;

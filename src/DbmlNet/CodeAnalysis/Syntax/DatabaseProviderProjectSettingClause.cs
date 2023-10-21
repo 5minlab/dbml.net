@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace DbmlNet.CodeAnalysis.Syntax;
 
 /// <summary>
-/// Represents a database provider project setting clause.
+/// Represents a database provider project setting.
 /// </summary>
 public sealed class DatabaseProviderProjectSettingClause : ProjectSettingClause
 {
@@ -39,7 +39,9 @@ public sealed class DatabaseProviderProjectSettingClause : ProjectSettingClause
     /// </summary>
     public SyntaxToken ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the database provider project setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return DatabaseProviderKeyword;

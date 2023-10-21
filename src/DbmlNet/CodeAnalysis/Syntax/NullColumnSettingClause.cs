@@ -21,7 +21,9 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NullColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -29,7 +31,9 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken NullKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the null column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NullKeyword;

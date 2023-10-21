@@ -19,11 +19,13 @@ public sealed class SingleFieldIndexDeclarationSyntax : IndexDeclarationStatemen
     }
 
     /// <summary>
-    /// Gets the syntax kind of the single field index declaration statement <see cref="SyntaxKind.SingleFieldIndexDeclarationStatement"/>.
+    /// Gets the syntax kind of the single field index declaration <see cref="SyntaxKind.SingleFieldIndexDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.SingleFieldIndexDeclarationStatement;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string IdentifierName { get; }
 
     /// <summary>
@@ -36,7 +38,9 @@ public sealed class SingleFieldIndexDeclarationSyntax : IndexDeclarationStatemen
     /// </summary>
     public IndexSettingListSyntax? Settings { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the single field index declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;

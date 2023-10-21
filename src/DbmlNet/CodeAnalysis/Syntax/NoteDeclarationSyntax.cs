@@ -20,7 +20,7 @@ public sealed class NoteDeclarationSyntax : StatementSyntax
     }
 
     /// <summary>
-    /// Gets the syntax kind of the note declaration statement <see cref="SyntaxKind.NoteDeclarationStatement"/>.
+    /// Gets the syntax kind of the note declaration <see cref="SyntaxKind.NoteDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteDeclarationStatement;
 
@@ -39,7 +39,9 @@ public sealed class NoteDeclarationSyntax : StatementSyntax
     /// </summary>
     public SyntaxToken Note { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the note declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

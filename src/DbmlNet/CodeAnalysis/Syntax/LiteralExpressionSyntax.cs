@@ -39,7 +39,9 @@ public sealed class LiteralExpressionSyntax : ExpressionSyntax
     /// </summary>
     public object Value { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the literal expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return LiteralToken;

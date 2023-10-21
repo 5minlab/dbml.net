@@ -31,7 +31,9 @@ public sealed class CompilationUnitSyntax : SyntaxNode
     /// </summary>
     public SyntaxToken EndOfFileToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the compilation unit.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         foreach (MemberSyntax member in Members)

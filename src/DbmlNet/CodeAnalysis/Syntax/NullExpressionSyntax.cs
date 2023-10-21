@@ -25,7 +25,9 @@ public sealed class NullExpressionSyntax : ExpressionSyntax
     /// </summary>
     public SyntaxToken NullToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the null expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NullToken;

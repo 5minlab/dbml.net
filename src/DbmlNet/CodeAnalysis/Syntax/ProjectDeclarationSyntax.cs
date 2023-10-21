@@ -53,7 +53,9 @@ public sealed class ProjectDeclarationSyntax : MemberSyntax
     /// </summary>
     public SyntaxToken CloseBraceToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the project declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return ProjectKeyword;

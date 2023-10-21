@@ -23,7 +23,9 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyIndexSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -36,7 +38,9 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
     /// </summary>
     public SyntaxToken KeyKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the primary key index setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PrimaryKeyword;

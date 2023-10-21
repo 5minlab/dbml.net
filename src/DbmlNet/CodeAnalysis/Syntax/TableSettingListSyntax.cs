@@ -39,7 +39,9 @@ public sealed class TableSettingListSyntax : SyntaxNode
     /// </summary>
     public SyntaxToken CloseBracketToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the table setting list.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBracketToken;

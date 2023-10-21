@@ -26,7 +26,9 @@ public sealed class ProjectSettingListSyntax : SyntaxNode
     /// </summary>
     public ImmutableArray<ProjectSettingClause> Settings { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the project setting list.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         foreach (SyntaxNode setting in Settings)

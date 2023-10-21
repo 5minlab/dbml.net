@@ -23,7 +23,9 @@ public sealed class PrimaryKeyColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -36,7 +38,9 @@ public sealed class PrimaryKeyColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken KeyKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the primary key column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PrimaryKeyword;

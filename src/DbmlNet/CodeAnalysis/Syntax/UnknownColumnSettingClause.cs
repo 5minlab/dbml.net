@@ -25,7 +25,9 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -43,7 +45,9 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the unknown column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

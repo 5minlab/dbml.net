@@ -39,7 +39,9 @@ public sealed class UnknownProjectSettingClause : ProjectSettingClause
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the unknown project setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

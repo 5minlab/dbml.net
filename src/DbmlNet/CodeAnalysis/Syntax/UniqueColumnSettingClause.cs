@@ -21,7 +21,9 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -29,7 +31,9 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken UniqueKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the unique column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return UniqueKeyword;

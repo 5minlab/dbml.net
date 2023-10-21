@@ -25,7 +25,9 @@ public sealed class NameIndexSettingClause : IndexSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NameIndexSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -43,7 +45,9 @@ public sealed class NameIndexSettingClause : IndexSettingClause
     /// </summary>
     public SyntaxToken ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the index setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameKeyword;

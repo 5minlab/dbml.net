@@ -39,7 +39,10 @@ public sealed class RelationshipConstraintClause : SyntaxNode
     /// </summary>
     public ColumnIdentifierClause ToIdentifier { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the relationship constraint.
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         if (FromIdentifier is not null) yield return FromIdentifier;

@@ -30,7 +30,7 @@ public sealed class ColumnSettingListSyntax : SyntaxNode
     public SyntaxToken OpenBracketToken { get; }
 
     /// <summary>
-    /// Gets the column setting list.
+    /// Gets the column settings.
     /// </summary>
     public SeparatedSyntaxList<ColumnSettingClause> Settings { get; }
 
@@ -39,7 +39,9 @@ public sealed class ColumnSettingListSyntax : SyntaxNode
     /// </summary>
     public SyntaxToken CloseBracketToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the column setting list.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBracketToken;

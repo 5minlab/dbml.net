@@ -24,11 +24,13 @@ public sealed class CompositeIndexDeclarationSyntax : IndexDeclarationStatementS
     }
 
     /// <summary>
-    /// Gets the syntax kind of the composite index declaration statement <see cref="SyntaxKind.CompositeIndexDeclarationStatement"/>.
+    /// Gets the syntax kind of the composite index declaration <see cref="SyntaxKind.CompositeIndexDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.CompositeIndexDeclarationStatement;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the index identifier name.
+    /// </summary>
     public override string IdentifierName { get; }
 
     /// <summary>
@@ -51,7 +53,9 @@ public sealed class CompositeIndexDeclarationSyntax : IndexDeclarationStatementS
     /// </summary>
     public IndexSettingListSyntax? Settings { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the composite index declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenParenthesis;

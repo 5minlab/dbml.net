@@ -25,7 +25,9 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -43,7 +45,9 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the note column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

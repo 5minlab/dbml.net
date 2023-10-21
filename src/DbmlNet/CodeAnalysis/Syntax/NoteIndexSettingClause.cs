@@ -25,7 +25,9 @@ public sealed class NoteIndexSettingClause : IndexSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteIndexSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -43,7 +45,10 @@ public sealed class NoteIndexSettingClause : IndexSettingClause
     /// </summary>
     public SyntaxToken ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the note index setting.
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NoteKeyword;

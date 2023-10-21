@@ -20,7 +20,7 @@ public sealed class ColumnDeclarationSyntax : StatementSyntax
     }
 
     /// <summary>
-    /// Gets the syntax kind of the column declaration statement <see cref="SyntaxKind.ColumnDeclarationStatement"/>.
+    /// Gets the syntax kind of the column declaration <see cref="SyntaxKind.ColumnDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ColumnDeclarationStatement;
 
@@ -30,16 +30,18 @@ public sealed class ColumnDeclarationSyntax : StatementSyntax
     public SyntaxToken IdentifierToken { get; }
 
     /// <summary>
-    /// Gets the column type clause.
+    /// Gets the column type.
     /// </summary>
     public ColumnTypeClause ColumnTypeClause { get; }
 
     /// <summary>
-    /// Gets the column setting list clause.
+    /// Gets the column settings.
     /// </summary>
     public ColumnSettingListSyntax? SettingList { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the column declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;

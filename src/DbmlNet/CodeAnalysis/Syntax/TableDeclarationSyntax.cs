@@ -46,7 +46,9 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     /// </summary>
     public StatementSyntax Body { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the table declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return TableKeyword;

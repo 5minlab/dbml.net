@@ -21,7 +21,9 @@ public sealed class PkIndexSettingClause : IndexSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PkIndexSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -29,7 +31,9 @@ public sealed class PkIndexSettingClause : IndexSettingClause
     /// </summary>
     public SyntaxToken PkKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the pk column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return PkKeyword;

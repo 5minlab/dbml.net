@@ -25,7 +25,9 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownIndexSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -43,7 +45,9 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the unknown index setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;

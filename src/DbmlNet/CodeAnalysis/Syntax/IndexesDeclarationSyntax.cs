@@ -22,7 +22,7 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
     }
 
     /// <summary>
-    /// Gets the syntax kind of the indexes declaration statement <see cref="SyntaxKind.IndexesDeclarationStatement"/>.
+    /// Gets the syntax kind of the indexes declaration <see cref="SyntaxKind.IndexesDeclarationStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IndexesDeclarationStatement;
 
@@ -46,7 +46,9 @@ public sealed class IndexesDeclarationSyntax : StatementSyntax
     /// </summary>
     public SyntaxToken CloseBraceToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the indexes declaration.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IndexesKeyword;

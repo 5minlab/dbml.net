@@ -145,7 +145,9 @@ public sealed class SyntaxToken : SyntaxNode
     /// </summary>
     public override TextSpan Span => new TextSpan(Start, Text.Length);
 
-    /// <inherits/>
+    /// <summary>
+    /// Returns an empty array since a token has no children.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         return Array.Empty<SyntaxNode>();

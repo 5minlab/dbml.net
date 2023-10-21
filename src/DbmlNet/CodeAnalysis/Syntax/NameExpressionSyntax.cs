@@ -25,7 +25,9 @@ public sealed class NameExpressionSyntax : ExpressionSyntax
     /// </summary>
     public SyntaxToken IdentifierToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the name expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IdentifierToken;

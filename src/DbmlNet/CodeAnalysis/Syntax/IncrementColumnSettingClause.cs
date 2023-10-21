@@ -21,7 +21,9 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IncrementColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -29,7 +31,9 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     /// </summary>
     public SyntaxToken IncrementKeyword { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the increment column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return IncrementKeyword;

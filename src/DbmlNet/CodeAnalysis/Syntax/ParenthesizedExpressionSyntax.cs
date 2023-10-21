@@ -39,7 +39,9 @@ public sealed class ParenthesizedExpressionSyntax : ExpressionSyntax
     /// </summary>
     public SyntaxToken CloseParenthesisToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the parenthesized expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenParenthesisToken;

@@ -14,7 +14,7 @@ public sealed class ExpressionStatementSyntax : StatementSyntax
     }
 
     /// <summary>
-    /// Gets the syntax kind of the expression statement <see cref="SyntaxKind.ExpressionStatement"/>.
+    /// Gets the syntax kind of the expression <see cref="SyntaxKind.ExpressionStatement"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.ExpressionStatement;
 
@@ -23,7 +23,9 @@ public sealed class ExpressionStatementSyntax : StatementSyntax
     /// </summary>
     public ExpressionSyntax Expression { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the expression.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return Expression;

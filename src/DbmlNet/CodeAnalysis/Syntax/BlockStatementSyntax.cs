@@ -39,7 +39,9 @@ public sealed class BlockStatementSyntax : StatementSyntax
     /// </summary>
     public SyntaxToken CloseBraceToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the block statement.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBraceToken;

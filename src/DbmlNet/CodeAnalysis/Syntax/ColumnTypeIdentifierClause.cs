@@ -23,7 +23,9 @@ public sealed class ColumnTypeIdentifierClause : ColumnTypeClause
     /// </summary>
     public SyntaxToken ColumnTypeIdentifier { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the column type identifier.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return ColumnTypeIdentifier;

@@ -30,7 +30,7 @@ public sealed class IndexSettingListSyntax : SyntaxNode
     public SyntaxToken OpenBracketToken { get; }
 
     /// <summary>
-    /// Gets the index setting list.
+    /// Gets the index settings.
     /// </summary>
     public SeparatedSyntaxList<IndexSettingClause> Settings { get; }
 
@@ -39,7 +39,9 @@ public sealed class IndexSettingListSyntax : SyntaxNode
     /// </summary>
     public SyntaxToken CloseBracketToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the index setting list.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return OpenBracketToken;

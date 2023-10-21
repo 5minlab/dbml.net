@@ -25,7 +25,9 @@ public sealed class RelationshipColumnSettingClause : ColumnSettingClause
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.RelationshipColumnSettingClause;
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the setting name.
+    /// </summary>
     public override string SettingName { get; }
 
     /// <summary>
@@ -39,11 +41,13 @@ public sealed class RelationshipColumnSettingClause : ColumnSettingClause
     public SyntaxToken ColonToken { get; }
 
     /// <summary>
-    /// Gets the constraint clause.
+    /// Gets the relationship constraint.
     /// </summary>
     public RelationshipConstraintClause ConstraintClause { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the relationship column setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return RefKeyword;

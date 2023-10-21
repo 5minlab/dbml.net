@@ -39,7 +39,9 @@ public sealed class UnknownTableSettingClause : TableSettingClause
     /// </summary>
     public SyntaxToken? ValueToken { get; }
 
-    /// <inherits/>
+    /// <summary>
+    /// Gets the children of the unknown table setting.
+    /// </summary>
     public override IEnumerable<SyntaxNode> GetChildren()
     {
         yield return NameToken;
