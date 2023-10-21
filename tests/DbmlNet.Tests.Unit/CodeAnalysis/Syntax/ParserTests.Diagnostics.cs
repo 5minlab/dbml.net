@@ -31,6 +31,26 @@ public partial class ParserTests
     }
 
     [Fact]
+    public void Parse_Error_Disallowed_Default_ColumnSetting_Value_NameExpression()
+    {
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}}
+            [
+                default: {{DataGenerator.CreateRandomString()}}
+            ]
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Should not be error");
+        Assert.False(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal("Disallowed 'default' column setting value expression 'NameExpression'.", diagnostic.Message);
+    }
+
+    [Fact]
     public void Parse_Warning_Unknown_Project_Setting()
     {
         string randomText = DataGenerator.CreateRandomString();
