@@ -99,13 +99,13 @@ public partial class LexerTests
             (SyntaxKind.NumberToken, "123.123"),
             (SyntaxKind.NumberToken, "1_123.1_123"),
             (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomNumber(min: 0)}"),
-            (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomDecimal(min: 0)}"),
+            (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomDecimal(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}"),
 
             (SyntaxKind.QuotationMarksStringToken, "\"Test\""),
-            (SyntaxKind.QuotationMarksStringToken, $"\"...message: \"\"message here\"\"\""),
+            (SyntaxKind.QuotationMarksStringToken, $"\"...message: \"\"message here\"\" or \"\"message here\"\"\""),
             (SyntaxKind.QuotationMarksStringToken, $"\"{DataGenerator.CreateRandomMultiWordString()}\""),
             (SyntaxKind.SingleQuotationMarksStringToken, "\'Test\'"),
-            (SyntaxKind.SingleQuotationMarksStringToken, $"\'...message: \'\'message here\'\'\'"),
+            (SyntaxKind.SingleQuotationMarksStringToken, $"\'...message: \'\'message here\'\' or \'\'message here\'\'\'"),
             (SyntaxKind.SingleQuotationMarksStringToken, $"\'{DataGenerator.CreateRandomMultiWordString()}\'"),
 
             (SyntaxKind.IdentifierToken, "a"),
