@@ -314,9 +314,10 @@ namespace DbmlNet.IO
                 writer.Write("    ");
                 writer.Write(prefix);
 
-                writer.SetForeground(ConsoleColor.DarkRed);
-                writer.Write(error);
-                writer.ResetColor();
+                if (diagnostic.IsWarning)
+                    writer.WriteWarning(error);
+                else
+                    writer.WriteError(error);
 
                 writer.Write(suffix);
 
