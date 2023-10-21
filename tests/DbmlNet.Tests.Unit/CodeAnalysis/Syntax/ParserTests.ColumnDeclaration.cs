@@ -26,6 +26,31 @@ public partial class ParserTests
         e.AssertToken(columnTypeKind, columnTypeText);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_ColumnDeclaration_With_Name_Keyword(
+        SyntaxKind columnNameKind,
+        string columnNameText,
+        object? columnNameValue)
+    {
+        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        string columnTypeText = DataGenerator.CreateRandomString();
+        string text = $$"""
+        Table {{DataGenerator.CreateRandomString()}}
+        {
+            {{columnNameText}} {{columnTypeText}}
+        }
+        """;
+
+        StatementSyntax statement = ParseColumnDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
+        e.AssertToken(columnNameKind, columnNameText, columnNameValue);
+        e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
+        e.AssertToken(columnTypeKind, columnTypeText);
+    }
+
     [Fact]
     public void Parse_ColumnDeclaration_With_Name_QuotationMarksString()
     {

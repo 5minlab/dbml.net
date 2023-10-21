@@ -61,6 +61,27 @@ public partial class ParserTests
         return backtickExpressionSyntax;
     }
 
+    private static TableDeclarationSyntax ParseTableDeclaration(string text)
+    {
+        MemberSyntax member = ParseMember(text);
+        TableDeclarationSyntax tableDeclaration =
+            Assert.IsAssignableFrom<TableDeclarationSyntax>(member);
+        return tableDeclaration;
+    }
+
+    private static ColumnDeclarationSyntax ParseColumnDeclaration(string text)
+    {
+        TableDeclarationSyntax tableDeclaration = ParseTableDeclaration(text);
+        BlockStatementSyntax tableBody =
+            Assert.IsAssignableFrom<BlockStatementSyntax>(tableDeclaration.Body);
+
+        StatementSyntax statement = Assert.Single(tableBody.Statements);
+        ColumnDeclarationSyntax columnDeclarationStatement =
+            Assert.IsAssignableFrom<ColumnDeclarationSyntax>(statement);
+
+        return columnDeclarationStatement;
+    }
+
     private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(string text)
     {
         StatementSyntax statement = ParseStatement(text);
