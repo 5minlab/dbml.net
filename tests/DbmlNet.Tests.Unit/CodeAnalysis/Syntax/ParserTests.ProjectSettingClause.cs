@@ -26,6 +26,26 @@ public partial class ParserTests
         e.AssertToken(providerKind, providerText, providerValue);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_DatabaseProviderProjectSettingClause_With_Keyword_Value(
+        SyntaxKind providerKind,
+        string providerText,
+        object? providerValue)
+    {
+        string settingText = $"database_type: {providerText}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+
+        ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        e.AssertNode(SyntaxKind.ProjectSettingListClause);
+        e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
+        e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(providerKind, providerText, providerValue);
+    }
+
     [Fact]
     public void Parse_DatabaseProviderProjectSettingClause_With_QuotationMarksString_Value()
     {
