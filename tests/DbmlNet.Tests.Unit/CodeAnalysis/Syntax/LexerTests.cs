@@ -273,6 +273,32 @@ public class LexerTests
     }
 
     [Fact]
+    public void Lexer_Lex_Trivia_UnterminatedMultiLineComment()
+    {
+        string text = $"""
+        /*
+            {DataGenerator.CreateRandomMultiWordString()}
+            {DataGenerator.CreateRandomMultiWordString()}
+            {DataGenerator.CreateRandomMultiWordString()}
+            {DataGenerator.CreateRandomMultiWordString()}
+        /
+        """;
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics, includeEndOfFile: true);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.Equal(new TextSpan(0, 2), diagnostic.Location.Span);
+        Assert.Equal("Unterminated multi-line comment.", diagnostic.Message);
+        SyntaxToken token = Assert.Single(tokens);
+        SyntaxTrivia trivia = Assert.Single(token.LeadingTrivia);
+        Assert.Equal(SyntaxKind.MultiLineCommentTrivia, trivia.Kind);
+        Assert.Equal(text, trivia.Text);
+    }
+
+    [Fact]
     public void Lexer_Covers_AllTokens()
     {
         IEnumerable<SyntaxKind> tokenKinds =
