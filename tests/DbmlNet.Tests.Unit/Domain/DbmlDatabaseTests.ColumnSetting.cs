@@ -152,7 +152,6 @@ public sealed partial class DbmlDatabaseTests
     }
 
     [Theory]
-    [InlineData("someDefaultValue", "someDefaultValue")]
     [InlineData("123", "123")]
     [InlineData("123.456", "123.456")]
     [InlineData("true", "true")]

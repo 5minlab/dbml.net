@@ -43,6 +43,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, Message);
     }
 
+    public void ReportDisallowedColumnSettingDefaultValue(TextLocation location, SyntaxKind expressionKind)
+    {
+        string message = $"Disallowed 'default' column setting value expression '{expressionKind}'.";
+        ReportError(location, message);
+    }
+
     public void ReportUnterminatedMultiLineComment(TextLocation location)
     {
         const string message = "Unterminated multi-line comment.";

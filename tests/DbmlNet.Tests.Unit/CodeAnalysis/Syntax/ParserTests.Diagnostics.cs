@@ -130,7 +130,6 @@ public partial class ParserTests
     [InlineData("notnull", "not null")]
     [InlineData("unique", "unique")]
     [InlineData("increment", "increment")]
-    [InlineData("default", "default: Some_value")]
     [InlineData("default", "default: \"Some value\"")]
     [InlineData("default", "default: \'Some value\'")]
     [InlineData("note", "note: \"Some value\"")]

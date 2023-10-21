@@ -785,6 +785,20 @@ internal sealed class Parser
                 SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
 
                 ExpressionSyntax expressionValue = ParseExpression();
+                switch (expressionValue.Kind)
+                {
+                    case SyntaxKind.LiteralExpression:
+                    case SyntaxKind.BacktickExpression:
+                    case SyntaxKind.NullExpression:
+                    case SyntaxKind.ParenthesizedExpression:
+                    case SyntaxKind.CallExpression:
+                        // Allow expression
+                        break;
+                    default:
+                        // Disallow expression
+                        Diagnostics.ReportDisallowedColumnSettingDefaultValue(expressionValue.Location, expressionValue.Kind);
+                        break;
+                };
 
                 return new DefaultColumnSettingClause(_syntaxTree, defaultKeyword, colonToken, expressionValue);
             }
