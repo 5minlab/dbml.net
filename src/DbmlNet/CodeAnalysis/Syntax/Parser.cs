@@ -83,7 +83,6 @@ internal sealed class Parser
             bool skipToken = token.Kind switch
             {
                 SyntaxKind.BadToken => true,
-                SyntaxKind.WhitespaceTrivia => true,
                 _ => false
             };
 
