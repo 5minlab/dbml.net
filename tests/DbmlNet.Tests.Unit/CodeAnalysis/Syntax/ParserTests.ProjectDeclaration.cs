@@ -25,6 +25,25 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_ProjectDeclaration_With_Name_Keyword(
+        SyntaxKind projectNameKind,
+        string projectNameText,
+        object? projectNameValue)
+    {
+        string text = $"Project {projectNameText} " + "{ }";
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.ProjectDeclarationMember);
+        e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
+        e.AssertToken(projectNameKind, projectNameText, projectNameValue);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
+
     [Fact]
     public void Parse_ProjectDeclaration_With_Name_QuotationMarksString()
     {
