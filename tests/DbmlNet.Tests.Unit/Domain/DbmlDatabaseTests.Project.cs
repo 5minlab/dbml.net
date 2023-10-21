@@ -12,7 +12,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_Empty()
     {
-        string randomProjectName = CreateRandomMultiWordString();
+        string randomProjectName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
         Project "{{randomProjectName}}" {
         }
@@ -32,7 +32,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_With_Name()
     {
-        string randomProjectName = CreateRandomMultiWordString();
+        string randomProjectName = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
         Project "{{randomProjectName}}" {
         }
@@ -50,9 +50,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_With_Note()
     {
-        string randomNoteText = CreateRandomMultiWordString();
+        string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Project "{{CreateRandomMultiWordString()}}" {
+        Project "{{DataGenerator.CreateRandomMultiWordString()}}" {
             note: '{{randomNoteText}}'
         }
         """;
@@ -70,9 +70,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_With_Database_Provider()
     {
-        string randomDatabaseTypeText = CreateRandomMultiWordString();
+        string randomDatabaseTypeText = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Project "{{CreateRandomMultiWordString()}}" {
+        Project "{{DataGenerator.CreateRandomMultiWordString()}}" {
             database_type: '{{randomDatabaseTypeText}}'
         }
         """;
@@ -88,9 +88,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Project_With_All_Settings()
     {
-        string randomProjectText = CreateRandomMultiWordString();
-        string randomDatabaseTypeText = CreateRandomMultiWordString();
-        string randomNoteText = CreateRandomMultiWordString();
+        string randomProjectText = DataGenerator.CreateRandomMultiWordString();
+        string randomDatabaseTypeText = DataGenerator.CreateRandomMultiWordString();
+        string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
         Project "{{randomProjectText}}" {
             database_type: '{{randomDatabaseTypeText}}'

@@ -10,7 +10,7 @@ public partial class ParserTests
     public void Parse_NameExpression_With_Identifier()
     {
         SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
-        string expectedText = CreateRandomString();
+        string expectedText = DataGenerator.CreateRandomString();
         object? expectedValue = null;
 
         ExpressionSyntax expression = ParseExpression(expectedText);

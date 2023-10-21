@@ -1,6 +1,3 @@
-using System.Collections.Immutable;
-
-using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -13,7 +10,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Identifier_Name()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText}";
@@ -31,7 +28,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_QuotationMarksString_Name()
     {
         SyntaxKind indexNameKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string indexNameText = $"\"{randomText}\"";
         object? indexNameValue = randomText;
         string indexText = $"{indexNameText}";
@@ -49,7 +46,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_SingleQuotationMarksString_Name()
     {
         SyntaxKind indexNameKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string indexNameText = $"\'{randomText}\'";
         object? indexNameValue = randomText;
         string indexText = $"{indexNameText}";
@@ -67,7 +64,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_No_Settings()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText}";
@@ -85,7 +82,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Empty_Settings()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText} [ ]";
@@ -106,7 +103,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Unique_Setting()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText} [ unique ]";
@@ -129,7 +126,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Pk_Setting()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText} [ pk ]";
@@ -152,7 +149,7 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_PrimaryKey_Setting()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText} [ primary key ]";
@@ -172,15 +169,15 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
-    [Fact(Skip = "Skip to avoid infinite loop.")]
+    [Fact]
     public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string settingValueText = CreateRandomString();
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string indexText = $"{indexNameText} [ name: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
@@ -204,11 +201,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\"{randomSetting}\"";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ name: {settingValueText} ]";
@@ -233,11 +230,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Name_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\'{randomSetting}\'";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ name: {settingValueText} ]";
@@ -262,11 +259,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string settingValueText = CreateRandomString();
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
@@ -290,11 +287,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\"{randomSetting}\"";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
@@ -319,11 +316,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Type_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\'{randomSetting}\'";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
@@ -348,11 +345,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Note_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string settingValueText = CreateRandomString();
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string indexText = $"{indexNameText} [ note: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
@@ -376,11 +373,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Note_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\"{randomSetting}\"";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ note: {settingValueText} ]";
@@ -405,11 +402,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Note_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\'{randomSetting}\'";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ note: {settingValueText} ]";
@@ -434,11 +431,11 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Unknown_Setting_Name()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string settingNameText = CreateRandomString();
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingName = null;
         string indexText = $"{indexNameText} [ {settingNameText} ]";
         string text = "indexes { " + indexText + " }";
@@ -460,14 +457,14 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Unknown_KeyValue_Setting_Identifier_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string settingNameText = CreateRandomString();
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingName = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string settingValueText = CreateRandomString();
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
@@ -491,14 +488,14 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Unknown_KeyValue_Setting_QuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string settingNameText = CreateRandomString();
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingName = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\"{randomSetting}\"";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";
@@ -523,14 +520,14 @@ public partial class ParserTests
     public void Parse_SingleFieldIndexDeclaration_With_Unknown_KeyValue_Setting_SingleQuotationMarksStringToken_Value()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string settingNameText = CreateRandomString();
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingName = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSetting = CreateRandomString();
+        string randomSetting = DataGenerator.CreateRandomString();
         string settingValueText = $"\'{randomSetting}\'";
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Immutable;
 using System.Globalization;
-using System.Linq;
+using System.Text;
 
 using DbmlNet.CodeAnalysis.Text;
 
@@ -16,6 +16,7 @@ internal sealed class Lexer
     private int _position;
     private SyntaxKind _kind = SyntaxKind.BadToken;
     private object? _value;
+    private readonly ImmutableArray<SyntaxTrivia>.Builder _triviaBuilder = ImmutableArray.CreateBuilder<SyntaxTrivia>();
 
     public Lexer(SyntaxTree syntaxTree)
     {
@@ -39,6 +40,10 @@ internal sealed class Lexer
 
     public SyntaxToken Lex()
     {
+        ReadTrivia(leading: true);
+
+        ImmutableArray<SyntaxTrivia> leadingTrivia = _triviaBuilder.ToImmutable();
+
         int tokenStart = _position;
 
         ReadToken();
@@ -48,7 +53,162 @@ internal sealed class Lexer
         int tokenLength = _position - tokenStart;
         string tokenText = tokenKind.GetKnownText() ?? _text.ToString(tokenStart, tokenLength);
 
-        return new SyntaxToken(_syntaxTree, tokenKind, tokenStart, tokenText, tokenValue);
+        ReadTrivia(leading: false);
+
+        ImmutableArray<SyntaxTrivia> trailingTrivia = _triviaBuilder.ToImmutable();
+
+        return new SyntaxToken(_syntaxTree, tokenKind, tokenStart, tokenText, tokenValue, leadingTrivia, trailingTrivia);
+    }
+
+    private void ReadTrivia(bool leading)
+    {
+        _triviaBuilder.Clear();
+
+        bool done = false;
+
+        while (!done)
+        {
+            _start = _position;
+            _kind = SyntaxKind.BadToken;
+            _value = null;
+
+            switch (Current)
+            {
+                case '\0':
+                    done = true;
+                    break;
+                case '/':
+                    if (Lookahead == '/')
+                        ReadSingleLineComment();
+                    else if (Lookahead == '*')
+                        ReadMultiLineComment();
+                    else
+                        done = true;
+                    break;
+                case '\n':
+                case '\r':
+                    if (!leading)
+                        done = true;
+                    ReadLineBreak();
+                    break;
+                case ' ':
+                case '\t':
+                    ReadWhiteSpace();
+                    break;
+                default:
+                    if (char.IsWhiteSpace(Current))
+                        ReadWhiteSpace();
+                    else
+                        done = true;
+                    break;
+            }
+
+            int length = _position - _start;
+            if (length > 0)
+            {
+                string text = _text.ToString(_start, length);
+                SyntaxTrivia trivia = new SyntaxTrivia(_syntaxTree, _kind, _start, text);
+                _triviaBuilder.Add(trivia);
+            }
+        }
+    }
+
+    private void ReadLineBreak()
+    {
+        if (Current == '\r' && Lookahead == '\n')
+        {
+            _position += 2;
+        }
+        else
+        {
+            _position++;
+        }
+
+        _kind = SyntaxKind.LineBreakTrivia;
+    }
+
+    private void ReadWhiteSpace()
+    {
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    done = true;
+                    break;
+                default:
+                    if (!char.IsWhiteSpace(Current))
+                        done = true;
+                    else
+                        _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.WhitespaceTrivia;
+    }
+
+    private void ReadSingleLineComment()
+    {
+        // Skip the current '//'
+        _position += 2;
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    done = true;
+                    break;
+                default:
+                    _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.SingleLineCommentTrivia;
+    }
+
+    private void ReadMultiLineComment()
+    {
+        int start = _position;
+
+        // Skip the current '/*'
+        _position += 2;
+        bool done = false;
+
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                    TextSpan span = new TextSpan(start, 2);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedMultiLineComment(location);
+                    done = true;
+                    break;
+                case '*':
+                    if (Lookahead == '/')
+                    {
+                        _position++;
+                        done = true;
+                    }
+                    _position++;
+                    break;
+                default:
+                    _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.MultiLineCommentTrivia;
     }
 
 #pragma warning disable CA1502 // Avoid excessive complexity
@@ -62,14 +222,6 @@ internal sealed class Lexer
         {
             case '\0':
                 _kind = SyntaxKind.EndOfFileToken;
-                break;
-            case '\n':
-            case '\r':
-                _kind = SyntaxKind.WhitespaceTrivia;
-                if (Current == '\r' && Lookahead == '\n')
-                    _position += 2;
-                else
-                    _position++;
                 break;
             case '0':
             case '1':
@@ -162,11 +314,7 @@ internal sealed class Lexer
                 ReadSingleQuotationString();
                 break;
             default:
-                if (char.IsWhiteSpace(Current))
-                {
-                    ReadWhitespace();
-                }
-                else if (char.IsLetterOrDigit(Current) || Current == '_')
+                if (char.IsLetterOrDigit(Current) || Current == '_')
                 {
                     ReadIdentifier();
                 }
@@ -184,46 +332,12 @@ internal sealed class Lexer
 
     private void ReadQuotationString()
     {
-        _position++; // skip the current quotation mark
+        int start = _position;
 
-        int stringValueStart = _position;
-        char[] unterminatedStringCharacters = new char[] { '"', '\0', '\r', '\n' };
-        while (!unterminatedStringCharacters.Contains(Current))
-            _position++;
+        // Skip the current quote
+        _position++;
 
-        int stringValueLength = _position - stringValueStart;
-
-#pragma warning disable CA1508 // Avoid dead conditional code
-        if (Current == '"')
-            _position++; // skip the current quotation mark
-#pragma warning restore CA1508 // Avoid dead conditional code
-
-        _kind = SyntaxKind.QuotationMarksStringToken;
-        _value = _text.ToString(stringValueStart, stringValueLength);
-    }
-
-    private void ReadSingleQuotationString()
-    {
-        _position++; // skip the current single quotation mark
-
-        int stringQuoteValueStart = _position;
-        char[] unterminatedQuoteStringCharacters = new char[] { '\'', '\0', '\r', '\n' };
-        while (!unterminatedQuoteStringCharacters.Contains(Current))
-            _position++;
-
-        int stringQuoteValueLength = _position - stringQuoteValueStart;
-
-#pragma warning disable CA1508 // Avoid dead conditional code
-        if (Current == '\'')
-            _position++; // skip the current single quotation mark
-#pragma warning restore CA1508 // Avoid dead conditional code
-
-        _kind = SyntaxKind.SingleQuotationMarksStringToken;
-        _value = _text.ToString(stringQuoteValueStart, stringQuoteValueLength);
-    }
-
-    private void ReadWhitespace()
-    {
+        StringBuilder sb = new StringBuilder();
         bool done = false;
         while (!done)
         {
@@ -232,18 +346,76 @@ internal sealed class Lexer
                 case '\0':
                 case '\r':
                 case '\n':
+                    TextSpan span = new TextSpan(start, 1);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedString(location);
                     done = true;
                     break;
-                default:
-                    if (!char.IsWhiteSpace(Current))
-                        done = true;
+                case '"':
+                    if (Lookahead == '"')
+                    {
+                        sb.Append(Current);
+                        _position += 2;
+                    }
                     else
+                    {
                         _position++;
+                        done = true;
+                    }
+                    break;
+                default:
+                    sb.Append(Current);
+                    _position++;
                     break;
             }
         }
 
-        _kind = SyntaxKind.WhitespaceTrivia;
+        _kind = SyntaxKind.QuotationMarksStringToken;
+        _value = sb.ToString();
+    }
+
+    private void ReadSingleQuotationString()
+    {
+        int start = _position;
+
+        // Skip the current quote
+        _position++;
+
+        StringBuilder sb = new StringBuilder();
+        bool done = false;
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                case '\r':
+                case '\n':
+                    TextSpan span = new TextSpan(start, 1);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedString(location);
+                    done = true;
+                    break;
+                case '\'':
+                    if (Lookahead == '\'')
+                    {
+                        sb.Append(Current);
+                        _position += 2;
+                    }
+                    else
+                    {
+                        _position++;
+                        done = true;
+                    }
+                    break;
+                default:
+                    sb.Append(Current);
+                    _position++;
+                    break;
+            }
+        }
+
+        _kind = SyntaxKind.SingleQuotationMarksStringToken;
+        _value = sb.ToString();
     }
 
     private void ReadNumber()

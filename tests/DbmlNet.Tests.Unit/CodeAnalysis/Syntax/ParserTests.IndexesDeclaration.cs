@@ -24,7 +24,7 @@ public partial class ParserTests
     public void Parse_IndexesDeclaration_With_SingleFieldIndexDeclaration()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string indexNameText = randomText;
         object? indexNameValue = null;
         string indexText = $"{indexNameText}";
@@ -45,7 +45,7 @@ public partial class ParserTests
     public void Parse_IndexesDeclaration_With_CompositeIndexDeclaration()
     {
         SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string indexNameText = CreateRandomString();
+        string indexNameText = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ")";
         string text = "indexes { " + indexText + " }";
 

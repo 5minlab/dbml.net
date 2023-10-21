@@ -1,6 +1,3 @@
-using System.Collections.Immutable;
-
-using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -12,7 +9,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_PrimaryKeyColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ primary key ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ primary key ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -28,7 +25,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_PkColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ pk ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ pk ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -43,7 +40,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_NullColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ null ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ null ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -58,7 +55,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_NotNullColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ not null ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ not null ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -74,7 +71,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_UniqueColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ unique ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ unique ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -89,7 +86,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_IncrementColumnSettingClause()
     {
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ increment ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ increment ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -105,10 +102,10 @@ public partial class ParserTests
     public void Parse_NoteColumnSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\"{randomText}\"";
         object? settingValue = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ note: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ note: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -126,10 +123,10 @@ public partial class ParserTests
     public void Parse_NoteColumnSettingClause_With_SingleQuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\'{randomText}\'";
         object? settingValue = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ note: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ note: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -147,10 +144,10 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_Identifier_Value()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string settingText = randomText;
         object? settingValue = null;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -169,10 +166,10 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_Number_Value()
     {
         SyntaxKind settingKind = SyntaxKind.NumberToken;
-        decimal randomNumber = GetRandomDecimal();
+        decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string settingText = $"{randomNumber}";
         object? settingValue = randomNumber;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -191,9 +188,9 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_DecimalPointNumber_Value()
     {
         SyntaxKind settingKind = SyntaxKind.NumberToken;
-        string settingText = $"{GetRandomNumber()}.{GetRandomNumber()}";
-        object? settingValue = decimal.TryParse(settingText, out decimal dVal) ? dVal : null;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string settingText = $"{DataGenerator.GetRandomNumber(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}";
+        object? settingValue = decimal.Parse(settingText);
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -214,7 +211,7 @@ public partial class ParserTests
         SyntaxKind settingKind = SyntaxKind.FalseKeyword;
         string settingText = $"false";
         object? settingValue = false;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -235,7 +232,7 @@ public partial class ParserTests
         SyntaxKind settingKind = SyntaxKind.TrueKeyword;
         string settingText = $"true";
         object? settingValue = true;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -256,7 +253,7 @@ public partial class ParserTests
         SyntaxKind settingKind = SyntaxKind.NullKeyword;
         string settingText = $"null";
         object? settingValue = null;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -275,10 +272,10 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\"{randomText}\"";
         object? settingValue = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -297,10 +294,10 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_SingleQuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\'{randomText}\'";
         object? settingValue = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -319,10 +316,10 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_NameExpression_Value()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string identifierExpressionText = $"{CreateRandomString()}";
+        string identifierExpressionText = $"{DataGenerator.CreateRandomString()}";
         string settingText = $"{identifierExpressionText}";
         object? settingValue = null;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ default: `{settingText}` ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: `{settingText}` ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -344,10 +341,10 @@ public partial class ParserTests
     public void Parse_UnknownColumnSettingClause_With_Simple_Setting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
         object? settingValue = null;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingNameText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -363,15 +360,15 @@ public partial class ParserTests
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_Identifier_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string randomSettingValue = CreateRandomString();
+        string randomSettingValue = DataGenerator.CreateRandomString();
         string settingValueText = randomSettingValue;
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -389,15 +386,15 @@ public partial class ParserTests
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_QuotationMarksString_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSettingValue = CreateRandomMultiWordString();
+        string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\"{randomSettingValue}\"";
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -415,15 +412,15 @@ public partial class ParserTests
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_SingleQuotationMarksString_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSettingValue = CreateRandomMultiWordString();
+        string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\'{randomSettingValue}\'";
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -446,16 +443,16 @@ public partial class ParserTests
         SyntaxKind relationshipTypeKind,
         string relationshipTypeText)
     {
-        string fromSchemaName = CreateRandomString();
-        string fromTableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
+        string fromSchemaName = DataGenerator.CreateRandomString();
+        string fromTableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
         string fromIdentifierText = $"{fromSchemaName}.{fromTableName}.{fromColumnName}";
-        string toSchemaName = CreateRandomString();
-        string toTableName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string toSchemaName = DataGenerator.CreateRandomString();
+        string toTableName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string toIdentifierText = $"{toSchemaName}.{toTableName}.{toColumnName}";
         string settingText = $"{fromIdentifierText} {relationshipTypeText} {toIdentifierText}";
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ ref: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ ref: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
@@ -491,12 +488,12 @@ public partial class ParserTests
         SyntaxKind relationshipTypeKind,
         string relationshipTypeText)
     {
-        string toSchemaName = CreateRandomString();
-        string toTableName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string toSchemaName = DataGenerator.CreateRandomString();
+        string toTableName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string toIdentifierText = $"{toSchemaName}.{toTableName}.{toColumnName}";
         string settingText = $"{relationshipTypeText} {toIdentifierText}";
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ ref: {settingText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ ref: {settingText} ]";
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 

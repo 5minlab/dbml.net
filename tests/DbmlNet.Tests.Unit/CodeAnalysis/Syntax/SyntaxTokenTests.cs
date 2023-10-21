@@ -1,9 +1,4 @@
-using System;
-using System.Linq;
-
 using DbmlNet.CodeAnalysis.Syntax;
-
-using Tynamix.ObjectFiller;
 
 using Xunit;
 
@@ -14,10 +9,10 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_Constructor_Should_Set_Properties_With_Given_Input()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
-        object? expectedValue = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
+        object? expectedValue = DataGenerator.CreateRandomString();
 
         SyntaxToken token =
             new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
@@ -31,9 +26,9 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_Length_Should_Return_Expected_LengthValue()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
         int expectedEnd = expectedText.Length;
 
         SyntaxToken token =
@@ -45,9 +40,9 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_End_Should_Return_Expected_EndValue()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
         int expectedEnd = expectedStart + expectedText.Length;
 
         SyntaxToken token =
@@ -59,8 +54,8 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_IsMissing_Should_Return_True_For_Null_TokenText()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
         string? expectedText = null;
 
         SyntaxToken token =
@@ -72,9 +67,9 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_IsMissing_Should_Return_False_For_Valid_TokenText()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
 
         SyntaxToken token =
             new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
@@ -85,9 +80,9 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_ToString_Should_Return_TokenText()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
 
         SyntaxToken token =
             new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
@@ -98,31 +93,14 @@ public class SyntaxTokenTests
     [Fact]
     public void SyntaxToken_GetChildren_Should_Always_Return_Empty_List()
     {
-        SyntaxKind expectedKind = GetRandomSyntaxKind();
-        int expectedStart = GetRandomNumber();
-        string expectedText = CreateRandomString();
-        object? expectedValue = CreateRandomString();
+        SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
+        int expectedStart = DataGenerator.GetRandomNumber();
+        string expectedText = DataGenerator.CreateRandomString();
+        object? expectedValue = DataGenerator.CreateRandomString();
 
         SyntaxToken token =
             new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
 
         Assert.Empty(token.GetChildren());
     }
-
-    private static SyntaxKind GetRandomSyntaxKind()
-    {
-        int min = Enum.GetValues<SyntaxKind>().Min(kind => (int)kind);
-        int max = Enum.GetValues<SyntaxKind>().Max(kind => (int)kind);
-        int randomNumber = new IntRange(min, max).GetValue();
-
-        return Enum.TryParse($"{randomNumber}", out SyntaxKind randomKind)
-            ? randomKind
-            : throw new Exception($"ERROR: Cannot generate random SyntaxKind from <{randomNumber}>.");
-    }
-
-    private static int GetRandomNumber() =>
-        new IntRange(min: 0, max: int.MaxValue).GetValue();
-
-    private static string CreateRandomString() =>
-        new MnemonicString().GetValue();
 }

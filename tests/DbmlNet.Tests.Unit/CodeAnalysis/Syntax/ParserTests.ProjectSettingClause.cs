@@ -1,6 +1,3 @@
-using System.Collections.Immutable;
-
-using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -13,11 +10,11 @@ public partial class ParserTests
     public void Parse_DatabaseProviderProjectSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string providerText = $"\"{randomText}\"";
         object? providerValue = randomText;
         string settingText = $"database_type: {providerText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
@@ -33,11 +30,11 @@ public partial class ParserTests
     public void Parse_DatabaseProviderProjectSettingClause_With_SingleQuotationMarksString_Value()
     {
         SyntaxKind providerKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string providerText = $"\'{randomText}\'";
         object? providerValue = randomText;
         string settingText = $"database_type: {providerText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
@@ -53,11 +50,11 @@ public partial class ParserTests
     public void Parse_NoteProjectSettingClause_With_QuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\"{randomText}\"";
         object? noteValue = randomText;
         string settingText = $"note: {noteValueText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
@@ -73,11 +70,11 @@ public partial class ParserTests
     public void Parse_NoteProjectSettingClause_With_SingleQuotationMarksString_Value()
     {
         SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\'{randomText}\'";
         object? noteValue = randomText;
         string settingText = $"note: {noteValueText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
@@ -93,10 +90,10 @@ public partial class ParserTests
     public void Parse_UnknownProjectSettingClause_With_Simple_Setting()
     {
         SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
         object? settingValue = null;
-        string text = $"Project {CreateRandomString()} " + "{" + settingNameText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingNameText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
@@ -110,15 +107,15 @@ public partial class ParserTests
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_Identifier_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string randomSettingValue = CreateRandomString();
+        string randomSettingValue = DataGenerator.CreateRandomString();
         string settingValueText = randomSettingValue;
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
@@ -134,15 +131,15 @@ public partial class ParserTests
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_QuotationMarksString_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
-        string randomSettingValue = CreateRandomMultiWordString();
+        string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\"{randomSettingValue}\"";
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
@@ -158,15 +155,15 @@ public partial class ParserTests
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_SingleQuotationMarksString_Value()
     {
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = CreateRandomString();
+        string randomSettingName = DataGenerator.CreateRandomString();
         string settingNameText = randomSettingName;
         object? settingNameValue = null;
         SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomSettingValue = CreateRandomMultiWordString();
+        string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\'{randomSettingValue}\'";
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
-        string text = $"Project {CreateRandomString()} " + "{" + settingText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 

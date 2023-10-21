@@ -10,7 +10,7 @@ public partial class ParserTests
     public void Parse_ProjectDeclaration_With_Name_Identifier()
     {
         SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string projectNameText = $"{randomText}";
         object? projectNameValue = null;
         string text = $"Project {projectNameText} " + "{ }";
@@ -29,7 +29,7 @@ public partial class ParserTests
     public void Parse_ProjectDeclaration_With_Name_QuotationMarksString()
     {
         SyntaxKind projectNameKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string projectNameText = $"\"{randomText}\"";
         object? projectNameValue = randomText;
         string text = $"Project {projectNameText} " + "{ }";
@@ -48,7 +48,7 @@ public partial class ParserTests
     public void Parse_ProjectDeclaration_With_Name_SingleQuotationMarksString()
     {
         SyntaxKind projectNameKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string projectNameText = $"\'{randomText}\'";
         object? projectNameValue = randomText;
         string text = $"Project {projectNameText} " + "{ }";
@@ -67,7 +67,7 @@ public partial class ParserTests
     public void Parse_ProjectDeclaration_With_Empty_Settings()
     {
         SyntaxKind projectNameKind = SyntaxKind.IdentifierToken;
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string projectNameText = randomText;
         object? projectNameValue = null;
         string text = $"Project {projectNameText} " + "{ }";
@@ -86,10 +86,10 @@ public partial class ParserTests
     public void Parse_ProjectDeclaration_With_UnknownSetting()
     {
         SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string tableNameText = CreateRandomString();
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string settingNameText = CreateRandomString();
+        string settingNameText = DataGenerator.CreateRandomString();
         string settingText = settingNameText;
         string text = $"Project {tableNameText} " + "{ " + settingText + " }";
 

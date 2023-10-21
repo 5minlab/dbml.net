@@ -1,27 +1,32 @@
-Table AlreadyDeclaredTable { }
-Table AlreadyDeclaredTable { }
+// warn: Table 'core.users' already declared.
+Table core.users { id nvarchar(MAX) }
+Table core.users { id nvarchar(MAX) }
 
-Table AlreadyDeclaredColumn
+Table table1
 {
-    AlreadyDeclaredColumn nvarchar(MAX)
-    AlreadyDeclaredColumn nvarchar(MAX)
+    // warn: Column 'column1' already declared.
+    column1 nvarchar(MAX)
+    column1 nvarchar(MAX)
 }
 
-Table DuplicatedColumnSetting
+Table table2
 {
-    ColumnName int [default: 123, default: 123]
+    // warn: Column setting 'default' already declared.
+    column int [default: 123, default: 123]
 }
 
-Table DuplicatedIndexSetting
+Table table3
 {
     indexes {
-        ColumnName [name: "Index1", name: "Index1"]
+        // warn: Index setting 'name' already declared.
+        column [name: "Index1", name: "Index1"]
     }
 }
 
-Table UnknownIndexType
+Table table4
 {
     indexes {
-        ColumnName [type: unknown]
+        // warn: Unknown index setting type 'unknown'. Allowed index types [btree|gin|gist|hash].
+        column [type: unknown]
     }
 }

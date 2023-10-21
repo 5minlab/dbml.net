@@ -395,6 +395,9 @@
             Gets the syntax kind of the default column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.DefaultColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.DefaultColumnSettingClause.DefaultKeyword">
             <summary>
             Gets the default keyword.
@@ -463,6 +466,9 @@
             <summary>
             Gets the syntax kind of the increment column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.IncrementColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause.IncrementKeyword">
             <summary>
@@ -640,6 +646,9 @@
             Gets the syntax kind of the note column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteColumnSettingClause.NoteKeyword">
             <summary>
             Gets the note keyword.
@@ -755,6 +764,9 @@
             Gets the syntax kind of the not null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NotNullColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NotNullColumnSettingClause.NotKeyword">
             <summary>
             Gets the not keyword.
@@ -777,6 +789,9 @@
             <summary>
             Gets the syntax kind of the null column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NullColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NullColumnSettingClause.NullKeyword">
             <summary>
@@ -848,6 +863,9 @@
             Gets the syntax kind of the pk column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkColumnSettingClause.PkKeyword">
             <summary>
             Gets the pk keyword.
@@ -886,6 +904,9 @@
             <summary>
             Gets the syntax kind of the primary key column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyColumnSettingClause.PrimaryKeyword">
             <summary>
@@ -996,6 +1017,9 @@
             <summary>
             Gets the syntax kind of the relationship column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipColumnSettingClause.RefKeyword">
             <summary>
@@ -1172,6 +1196,13 @@
             <param name="kind">The syntax kind to check.</param>
             <returns><see langword="true"/> if the given kind is a keyword; otherwise, <see langword="false"/></returns>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsTrivia(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
+            <summary>
+            A flag indicating whether the given kind is a trivia.
+            </summary>
+            <param name="kind">The syntax kind to check.</param>
+            <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/></returns>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxFacts.IsToken(DbmlNet.CodeAnalysis.Syntax.SyntaxKind)">
             <summary>
             A flag indicating whether the given kind is a token.
@@ -1283,6 +1314,23 @@
             Represents a token.
             </summary>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32)">
+            <summary>
+            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            </summary>
+            <param name="syntaxTree"></param>
+            <param name="kind">The token kind.</param>
+            <param name="start">The token start character position in the source text.</param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            </summary>
+            <param name="syntaxTree"></param>
+            <param name="kind">The token kind.</param>
+            <param name="start">The token start character position in the source text.</param>
+            <param name="text">The token text.</param>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String,System.Object)">
             <summary>
             Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
@@ -1292,6 +1340,18 @@
             <param name="start">The token start character position in the source text.</param>
             <param name="text">The token text.</param>
             <param name="value">The value of the token.</param>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.#ctor(DbmlNet.CodeAnalysis.Syntax.SyntaxTree,DbmlNet.CodeAnalysis.Syntax.SyntaxKind,System.Int32,System.String,System.Object,System.Nullable{System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia}},System.Nullable{System.Collections.Immutable.ImmutableArray{DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia}})">
+            <summary>
+            Initializes a new instance of <see cref="T:DbmlNet.CodeAnalysis.Syntax.SyntaxToken"/>.
+            </summary>
+            <param name="syntaxTree"></param>
+            <param name="kind">The token kind.</param>
+            <param name="start">The token start character position in the source text.</param>
+            <param name="text">The token text.</param>
+            <param name="value">The value of the token.</param>
+            <param name="leadingTrivia">The leading trivia for the token.</param>
+            <param name="trailingTrivia">The trailing trivia for the token.</param>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Kind">
             <summary>
@@ -1321,6 +1381,16 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.Value">
             <summary>
             The value for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.LeadingTrivia">
+            <summary>
+            The leading trivia for this token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.TrailingTrivia">
+            <summary>
+            The trailing trivia for this token.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxToken.IsMissing">
@@ -1416,6 +1486,36 @@
             <param name="diagnostics">The diagnostics produced during the parse operation.</param>
             <param name="includeEndOfFile">A flag indicating whether to include the end of file token.</param>
             <returns>An immutable array of syntax tokens.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia">
+            <summary>
+            Represents a trivia in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.SyntaxTree">
+            <summary>
+            The syntax tree containing the trivia.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Kind">
+            <summary>
+            The kind of the trivia.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Position">
+            <summary>
+            The position of the trivia in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Span">
+            <summary>
+            The span of the trivia.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.SyntaxTrivia.Text">
+            <summary>
+            The text of the trivia.
+            </summary>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker">
             <summary>
@@ -1710,6 +1810,9 @@
             Gets the syntax kind of the unique column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueColumnSettingClause"/>.
             </summary>
         </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.SettingName">
+            <inherits/>
+        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueColumnSettingClause.UniqueKeyword">
             <summary>
             Gets the unique keyword.
@@ -1748,6 +1851,9 @@
             <summary>
             Gets the syntax kind of the unknown column setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownColumnSettingClause"/>.
             </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.SettingName">
+            <inherits/>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownColumnSettingClause.NameToken">
             <summary>

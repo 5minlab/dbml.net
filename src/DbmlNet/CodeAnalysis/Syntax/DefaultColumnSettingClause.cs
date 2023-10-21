@@ -12,17 +12,21 @@ public sealed class DefaultColumnSettingClause : ColumnSettingClause
         SyntaxToken defaultKeyword,
         SyntaxToken colonToken,
         ExpressionSyntax expressionValue)
-        : base(syntaxTree, defaultKeyword.Text)
+        : base(syntaxTree)
     {
         DefaultKeyword = defaultKeyword;
         ColonToken = colonToken;
         ExpressionValue = expressionValue;
+        SettingName = defaultKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the default column setting clause <see cref="SyntaxKind.DefaultColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.DefaultColumnSettingClause;
+
+    /// <inherits/>
+    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the default keyword.

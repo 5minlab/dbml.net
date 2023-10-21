@@ -11,11 +11,11 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_QuotationMarksString_Note()
     {
-        string noteValueText = CreateRandomMultiWordString();
+        string noteValueText = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ note: "{{noteValueText}}" ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ note: "{{noteValueText}}" ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -33,11 +33,11 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_SingleQuotationMarksString_Note()
     {
-        string noteValueText = CreateRandomMultiWordString();
+        string noteValueText = DataGenerator.CreateRandomMultiWordString();
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ note: '{{noteValueText}}' ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ note: '{{noteValueText}}' ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -58,9 +58,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_PrimaryKey_Flag(string primaryKeyText)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ {{primaryKeyText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{primaryKeyText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -77,9 +77,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Unique_Flag()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ unique ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ unique ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -96,9 +96,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Increment_Flag()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ increment ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ increment ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -115,9 +115,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Nullable_Flag()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ null ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ null ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -135,9 +135,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Not_Nullable_Flag()
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ not null ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ not null ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -164,9 +164,9 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Default_Value(string valueText, object? value)
     {
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ default: {{valueText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ default: {{valueText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -191,15 +191,15 @@ public sealed partial class DbmlDatabaseTests
     public void Create_Returns_ColumnSetting_With_Relationship(
         string relationshipText, TableRelationshipType relationshipType)
     {
-        string fromDatabaseName = CreateRandomString();
-        string fromSchemaName = CreateRandomString();
-        string fromTableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
-        string toColumnName = $"{CreateRandomString()}.{CreateRandomString()}.{CreateRandomString()}";
+        string fromDatabaseName = DataGenerator.CreateRandomString();
+        string fromSchemaName = DataGenerator.CreateRandomString();
+        string fromTableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
+        string toColumnName = $"{DataGenerator.CreateRandomString()}.{DataGenerator.CreateRandomString()}.{DataGenerator.CreateRandomString()}";
         string text = $$"""
         Table {{fromDatabaseName}}.{{fromSchemaName}}.{{fromTableName}}
         {
-            {{fromColumnName}} {{CreateRandomString()}} [ ref: {{relationshipText}} {{toColumnName}} ]
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: {{relationshipText}} {{toColumnName}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -217,13 +217,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_OneToMany_Relationship()
     {
-        string tableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string tableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{tableName}}
         {
-            {{fromColumnName}} {{CreateRandomString()}} [ ref: < {{toColumnName}} ]
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: < {{toColumnName}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -241,13 +241,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_ManyToOne_Relationship()
     {
-        string tableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string tableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{tableName}}
         {
-            {{fromColumnName}} {{CreateRandomString()}} [ ref: > {{toColumnName}} ]
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: > {{toColumnName}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -265,13 +265,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_OneToOne_Relationship()
     {
-        string tableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string tableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{tableName}}
         {
-            {{fromColumnName}} {{CreateRandomString()}} [ ref: - {{toColumnName}} ]
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: - {{toColumnName}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -289,13 +289,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_ManyToMany_Relationship()
     {
-        string tableName = CreateRandomString();
-        string fromColumnName = CreateRandomString();
-        string toColumnName = CreateRandomString();
+        string tableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
+        string toColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{tableName}}
         {
-            {{fromColumnName}} {{CreateRandomString()}} [ ref: <> {{toColumnName}} ]
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: <> {{toColumnName}} ]
         }
         """;
         SyntaxTree syntax = ParseNoDiagnostics(text);
@@ -313,13 +313,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_Unknown_Setting()
     {
-        string settingName = CreateRandomString();
+        string settingName = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string settingText = $"{settingName}";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoErrorDiagnostics(text);
@@ -341,13 +341,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_Unknown_Setting_Identifier_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomString();
         string settingText = $"{settingName}: {settingValue}";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoErrorDiagnostics(text);
@@ -369,13 +369,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_Unknown_Setting_QuotationMarksString_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomMultiWordString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"{settingName}: \"{settingValue}\"";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoErrorDiagnostics(text);
@@ -397,13 +397,13 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_ColumnSetting_With_Unknown_Setting_SingleQuotationMarksString_Value()
     {
-        string settingName = CreateRandomString();
-        object? settingValue = CreateRandomMultiWordString();
+        string settingName = DataGenerator.CreateRandomString();
+        object? settingValue = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"{settingName}: '{settingValue}'";
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}} ]
+            {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
         }
         """;
         SyntaxTree syntax = ParseNoErrorDiagnostics(text);

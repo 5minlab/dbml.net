@@ -33,9 +33,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Unknown_Project_Setting()
     {
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
-        string text = $"Project {CreateRandomString()} " + "{" + settingNameText + "}";
+        string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingNameText + "}";
 
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
 
@@ -50,9 +50,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Unknown_Column_Setting()
     {
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string settingNameText = randomText;
-        string text = $"{CreateRandomString()} {CreateRandomString()} [ {settingNameText} ]";
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
 
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
 
@@ -67,7 +67,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Table_Already_Declared()
     {
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string firstTableName = randomText;
         string secondTableName = randomText;
         string text = $$"""
@@ -85,14 +85,14 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Column_Already_Declared()
     {
-        string randomText = CreateRandomString();
+        string randomText = DataGenerator.CreateRandomString();
         string firstColumnName = randomText;
         string secondColumnName = randomText;
         string text = $$"""
-        Table {{CreateRandomString()}}
+        Table {{DataGenerator.CreateRandomString()}}
         {
-            {{firstColumnName}} {{CreateRandomString()}}
-            {{secondColumnName}} {{CreateRandomString()}}
+            {{firstColumnName}} {{DataGenerator.CreateRandomString()}}
+            {{secondColumnName}} {{DataGenerator.CreateRandomString()}}
         }
         """;
 
@@ -119,7 +119,7 @@ public partial class ParserTests
         string settingName, string settingText)
     {
         string text = $$"""
-        {{CreateRandomString()}} {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
+        {{DataGenerator.CreateRandomString()}} {{DataGenerator.CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
         """;
 
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
@@ -154,7 +154,7 @@ public partial class ParserTests
         string text = $$"""
         indexes
         {
-            {{CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
+            {{DataGenerator.CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
         }
         """;
 

@@ -44,7 +44,7 @@ public partial class ParserTests
     public void Parse_LiteralExpression_With_Number()
     {
         SyntaxKind expectedKind = SyntaxKind.NumberToken;
-        decimal randomNumber = GetRandomDecimal();
+        decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string expectedText = $"{randomNumber}";
         object? expectedValue = randomNumber;
 
@@ -62,7 +62,7 @@ public partial class ParserTests
     public void Parse_LiteralExpression_With_QuotationMarksString()
     {
         SyntaxKind expectedKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string expectedText = $"\"{randomText}\"";
         object? expectedValue = randomText;
 
@@ -80,7 +80,7 @@ public partial class ParserTests
     public void Parse_LiteralExpression_With_SingleQuotationMarksString()
     {
         SyntaxKind expectedKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string expectedText = $"\'{randomText}\'";
         object? expectedValue = randomText;
 

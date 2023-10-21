@@ -12,9 +12,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_Name_Identifier()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -30,11 +30,11 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_Name_QuotationMarksString()
     {
         SyntaxKind columnNameKind = SyntaxKind.QuotationMarksStringToken;
-        string randomColumnName = CreateRandomMultiWordString();
+        string randomColumnName = DataGenerator.CreateRandomMultiWordString();
         string columnNameText = $"\"{randomColumnName}\"";
         object? columnNameValue = randomColumnName;
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -50,11 +50,11 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_Name_SingleQuotationMarksString()
     {
         SyntaxKind columnNameKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomColumName = CreateRandomMultiWordString();
+        string randomColumName = DataGenerator.CreateRandomMultiWordString();
         string columnNameText = $"\'{randomColumName}\'";
         object? columnNameValue = randomColumName;
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -70,9 +70,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_ColumnType_Identifier()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -88,9 +88,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_ColumnType_QuotationMarksString()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.QuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\"{randomText}\"";
         object columnTypeValue = randomText;
         string text = $"{columnNameText} {columnTypeText}";
@@ -108,9 +108,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_ColumnType_SingleQuotationMarksString()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.SingleQuotationMarksStringToken;
-        string randomText = CreateRandomMultiWordString();
+        string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\'{randomText}\'";
         object? columnTypeValue = randomText;
         string text = $"{columnNameText} {columnTypeText}";
@@ -132,7 +132,7 @@ public partial class ParserTests
         object? columnTypeValue)
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -155,7 +155,7 @@ public partial class ParserTests
         object? variableLengthIdentifierValue)
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeIdentifierText}({variableLengthIdentifierText})";
 
         StatementSyntax statement = ParseStatement(text);
@@ -217,9 +217,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_No_Settings()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText}";
 
         StatementSyntax statement = ParseStatement(text);
@@ -235,9 +235,9 @@ public partial class ParserTests
     public void Parse_ColumnDeclaration_With_Empty_Settings()
     {
         SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
-        string columnNameText = CreateRandomString();
+        string columnNameText = DataGenerator.CreateRandomString();
         SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
-        string columnTypeText = CreateRandomString();
+        string columnTypeText = DataGenerator.CreateRandomString();
         string text = $"{columnNameText} {columnTypeText} [ ]";
 
         StatementSyntax statement = ParseStatement(text);

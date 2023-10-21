@@ -5,14 +5,13 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 /// </summary>
 public abstract class ColumnSettingClause : SyntaxNode
 {
-    private protected ColumnSettingClause(SyntaxTree syntaxTree, string settingName)
+    private protected ColumnSettingClause(SyntaxTree syntaxTree)
         : base(syntaxTree)
     {
-        SettingName = settingName;
     }
 
     /// <summary>
     /// Gets the setting name.
     /// </summary>
-    public string SettingName { get; }
+    public abstract string SettingName { get; }
 }

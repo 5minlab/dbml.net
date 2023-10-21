@@ -10,7 +10,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_Empty()
     {
-        string randomTableName = CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{randomTableName}}
         {
@@ -36,7 +36,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_With_Name()
     {
-        string randomTableName = CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{randomTableName}}
         {
@@ -55,8 +55,8 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_With_Name_And_Schema()
     {
-        string randomSchemaName = CreateRandomString();
-        string randomTableName = CreateRandomString();
+        string randomSchemaName = DataGenerator.CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{randomSchemaName}}.{{randomTableName}}
         {
@@ -77,9 +77,9 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_With_Name_And_Schema_And_Database()
     {
-        string randomDatabaseName = CreateRandomString();
-        string randomSchemaName = CreateRandomString();
-        string randomTableName = CreateRandomString();
+        string randomDatabaseName = DataGenerator.CreateRandomString();
+        string randomSchemaName = DataGenerator.CreateRandomString();
+        string randomTableName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{randomDatabaseName}}.{{randomSchemaName}}.{{randomTableName}}
         {
