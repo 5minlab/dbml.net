@@ -88,6 +88,8 @@ public sealed class DbmlMarkdownWriter
         }
     }
 
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
     private void WriteTableOfContents(IndentedTextWriter writer)
     {
 #pragma warning disable CA1308 // Normalize strings to uppercase
@@ -153,6 +155,8 @@ public sealed class DbmlMarkdownWriter
         writer.Indent -= 1;
 #pragma warning restore CA1308 // Normalize strings to uppercase
     }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     private void WriteLegend(IndentedTextWriter writer)
     {

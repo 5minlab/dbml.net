@@ -20,10 +20,10 @@ string inputPath = args.FirstOrDefault() ?? string.Empty;
 List<string> arguments = new List<string>(Environment.GetCommandLineArgs())
     .Skip(1).ToList();
 
-bool isForceEnabled = arguments.Any(arg => arg == "--force");
-bool printSyntax = arguments.Any(arg => arg == "--print");
-bool isOutputDirectorySpecified = arguments.Any(arg => new[] { "-o", "--output" }.Contains(arg));
-bool printHelp = arguments.Any(arg => new[] { "-h", "--help" }.Contains(arg));
+bool isForceEnabled = arguments.Exists(arg => arg.Equals("--force", StringComparison.Ordinal));
+bool printSyntax = arguments.Exists(arg => arg.Equals("--print", StringComparison.Ordinal));
+bool isOutputDirectorySpecified = arguments.Exists(arg => new[] { "-o", "--output" }.Contains(arg, StringComparer.InvariantCulture));
+bool printHelp = arguments.Exists(arg => new[] { "-h", "--help" }.Contains(arg, StringComparer.InvariantCulture));
 bool outputToMarkdown = true;
 string? outputPath = null;
 if (isOutputDirectorySpecified)
@@ -97,7 +97,7 @@ writer.WriteInfoMessage($"Found ({files.Length}) '*{ApplicationSettings.DbmlExte
 int warningDiagnostics = 0;
 int errorDiagnostics = 0;
 
-Dictionary<string, SyntaxTree> fileSyntaxTreeList = new();
+Dictionary<string, SyntaxTree> fileSyntaxTreeList = new(StringComparer.InvariantCulture);
 
 foreach (string filePath in files)
 {
