@@ -291,7 +291,11 @@ internal sealed class Parser
     private TableIdentifierClause ParseTableIdentifier()
     {
         // Read syntax: table
-        SyntaxToken tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken tableIdentifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
 
         // Read syntax: schema.table
         SyntaxToken? schemaIdentifier = null;
@@ -300,7 +304,11 @@ internal sealed class Parser
         {
             schemaIdentifier = tableIdentifier;
             secondDotToken = MatchToken(SyntaxKind.DotToken);
-            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+            tableIdentifier = Current.Kind switch
+            {
+                _ when Current.Kind.IsKeyword() => NextToken(),
+                _ => MatchToken(SyntaxKind.IdentifierToken)
+            };
         }
 
         // Read syntax: database.schema.table
@@ -311,7 +319,11 @@ internal sealed class Parser
             databaseIdentifier = schemaIdentifier;
             schemaIdentifier = tableIdentifier;
             firstDotToken = MatchToken(SyntaxKind.DotToken);
-            tableIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+            tableIdentifier = Current.Kind switch
+            {
+                _ when Current.Kind.IsKeyword() => NextToken(),
+                _ => MatchToken(SyntaxKind.IdentifierToken)
+            };
         }
 
         return new TableIdentifierClause(
