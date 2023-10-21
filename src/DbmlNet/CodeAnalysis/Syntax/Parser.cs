@@ -211,6 +211,7 @@ internal sealed class Parser
         SyntaxToken valueToken = Current.Kind switch
         {
             _ when Current.Kind.IsStringToken() => NextToken(),
+            _ when Current.Kind.IsKeyword() => NextToken(),
             _ => MatchToken(SyntaxKind.IdentifierToken),
         };
 
