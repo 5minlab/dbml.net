@@ -60,13 +60,13 @@ public partial class LexerTests
         const string textValue = """
         This is a block of string
         This string can spans over multiple lines.
-        error: \ ...the '''message''' is '''my message'''.
+        error: \ ...the 'message'' is '''my message'''.
         """;
         const string text = """
         '''
             This is a block of string
             This string can spans over multiple lines.
-            error: \\ ...the \'''message\''' is \'''my message\'''.
+            error: \\ ...the 'message'' is \'''my message\'''.
         '''
         """;
 
@@ -82,10 +82,16 @@ public partial class LexerTests
         Assert.False(token.IsMissing, "Token should not be missing.");
     }
 
-    [Fact]
-    public void Lexer_Lex_String_Unterminated_QuotationMarksString()
+    [Theory]
+    [InlineData("")]
+    [InlineData("\r")]
+    [InlineData("\n")]
+    [InlineData("\r\n")]
+    public void Lexer_Lex_String_Unterminated_QuotationMarksString(
+        string endText)
     {
-        const string text = "\"text";
+        string stringText = $"\"{DataGenerator.CreateRandomString()}";
+        string text = stringText + endText;
 
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
@@ -97,13 +103,19 @@ public partial class LexerTests
         Assert.Equal("Unterminated string literal.", diagnostic.Message);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.QuotationMarksStringToken, token.Kind);
-        Assert.Equal(text, token.Text);
+        Assert.Equal(stringText, token.Text);
     }
 
-    [Fact]
-    public void Lexer_Lex_String_Unterminated_SingleQuotationMarksString()
+    [Theory]
+    [InlineData("")]
+    [InlineData("\r")]
+    [InlineData("\n")]
+    [InlineData("\r\n")]
+    public void Lexer_Lex_String_Unterminated_SingleQuotationMarksString(
+        string endText)
     {
-        const string text = "\'text";
+        string stringText = $"\'{DataGenerator.CreateRandomString()}";
+        string text = stringText + endText;
 
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
@@ -115,13 +127,13 @@ public partial class LexerTests
         Assert.Equal("Unterminated string literal.", diagnostic.Message);
         SyntaxToken token = Assert.Single(tokens);
         Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
-        Assert.Equal(text, token.Text);
+        Assert.Equal(stringText, token.Text);
     }
 
     [Fact]
     public void Lexer_Lex_String_Unterminated_MultiLineString()
     {
-        const string text = """'''text""";
+        string text = $"""'''{DataGenerator.CreateRandomString()}""";
 
         ImmutableArray<SyntaxToken> tokens =
             SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
@@ -140,13 +152,13 @@ public partial class LexerTests
     [InlineData("""\\\""", 5, 6)]
     [InlineData("""\n""", 3, 4)]
     public void Lexer_Lex_String_Unrecognized_Escape_Sequence_In_MultiLineString(
-        string unrecognizedText, int start, int end)
+        string unrecognizedEscapeSequenceText, int start, int end)
     {
-        Assert.True(start >= 3, "Invalid test input: start >= 3, from length(```).");
-        Assert.True(end >= 3, "Invalid test input: start >= 3, from length(```).");
+        Assert.True(start >= 3, "Invalid test input: start >= 3 since ```.length == 3.");
+        Assert.True(end >= 3, "Invalid test input: start >= 3 since ```.length == 3.");
 
         string text = $"""
-        '''{unrecognizedText} unrecognized escape sequence.'''
+        '''{unrecognizedEscapeSequenceText} {DataGenerator.CreateRandomString()}.'''
         """;
 
         ImmutableArray<SyntaxToken> tokens =
