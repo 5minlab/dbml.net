@@ -117,4 +117,22 @@ public partial class LexerTests
         Assert.Equal(SyntaxKind.SingleQuotationMarksStringToken, token.Kind);
         Assert.Equal(text, token.Text);
     }
+
+    [Fact]
+    public void Lexer_Lex_String_Unterminated_MultiLineString()
+    {
+        const string text = """'''text""";
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.Equal(new TextSpan(0, 3), diagnostic.Location.Span);
+        Assert.Equal("Unterminated multi-line string literal.", diagnostic.Message);
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.MultiLineStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+    }
 }
