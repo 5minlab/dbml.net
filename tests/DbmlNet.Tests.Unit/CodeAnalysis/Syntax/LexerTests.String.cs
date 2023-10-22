@@ -135,4 +135,30 @@ public partial class LexerTests
         Assert.Equal(SyntaxKind.MultiLineStringToken, token.Kind);
         Assert.Equal(text, token.Text);
     }
+
+    [Theory]
+    [InlineData("""\\\""", 5, 6)]
+    [InlineData("""\n""", 3, 4)]
+    public void Lexer_Lex_String_Unrecognized_Escape_Sequence_In_MultiLineString(
+        string unrecognizedText, int start, int end)
+    {
+        Assert.True(start >= 3, "Invalid test input: start >= 3, from length(```).");
+        Assert.True(end >= 3, "Invalid test input: start >= 3, from length(```).");
+
+        string text = $"""
+        '''{unrecognizedText} unrecognized escape sequence.'''
+        """;
+
+        ImmutableArray<SyntaxToken> tokens =
+            SyntaxTree.ParseTokens(text, out ImmutableArray<Diagnostic> diagnostics);
+
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.True(diagnostic.IsError, "Diagnostic show be error.");
+        Assert.False(diagnostic.IsWarning, "Diagnostic show not be warning.");
+        Assert.Equal(TextSpan.FromBounds(start, end), diagnostic.Location.Span);
+        Assert.Equal("Unrecognized escape sequence.", diagnostic.Message);
+        SyntaxToken token = Assert.Single(tokens);
+        Assert.Equal(SyntaxKind.MultiLineStringToken, token.Kind);
+        Assert.Equal(text, token.Text);
+    }
 }
