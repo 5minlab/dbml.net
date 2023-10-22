@@ -478,8 +478,7 @@ internal sealed class Lexer
                         TextSpan span = new TextSpan(_position, 1);
                         TextLocation location = new TextLocation(_text, span);
                         Diagnostics.ReportUnrecognizedEscapeSequence(location);
-                        done = true;
-                        break;
+                        _position++;
                     }
 
                     break;
