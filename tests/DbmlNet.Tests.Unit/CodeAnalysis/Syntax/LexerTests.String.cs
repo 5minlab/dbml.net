@@ -11,7 +11,7 @@ namespace DbmlNet.Tests.Unit.CodeAnalysis.Syntax;
 public partial class LexerTests
 {
     [Fact]
-    public void Lexer_Lex_String_QuotationMarks()
+    public void Lexer_Lex_String_QuotationMarksString()
     {
         const string textValue = """
         error: ...the "message" is "my message".
@@ -33,7 +33,7 @@ public partial class LexerTests
     }
 
     [Fact]
-    public void Lexer_Lex_String_SingleQuotationMarks()
+    public void Lexer_Lex_String_SingleQuotationMarksString()
     {
         const string textValue = """
         error: ...the 'message' is 'my message'.
@@ -55,7 +55,7 @@ public partial class LexerTests
     }
 
     [Fact]
-    public void Lexer_Lex_String_MultiLine()
+    public void Lexer_Lex_String_MultiLineString()
     {
         const string textValue = """
         This is a block of string
@@ -83,7 +83,7 @@ public partial class LexerTests
     }
 
     [Fact]
-    public void Lexer_Lex_String_Unterminated_QuotationMarks()
+    public void Lexer_Lex_String_Unterminated_QuotationMarksString()
     {
         const string text = "\"text";
 
@@ -101,7 +101,7 @@ public partial class LexerTests
     }
 
     [Fact]
-    public void Lexer_Lex_String_Unterminated_SingleQuotationMarks()
+    public void Lexer_Lex_String_Unterminated_SingleQuotationMarksString()
     {
         const string text = "\'text";
 
