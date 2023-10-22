@@ -31,6 +31,18 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, Message);
     }
 
+    public void ReportUnterminatedMultiLineString(TextLocation location)
+    {
+        const string message = "Unterminated multi-line string literal.";
+        ReportError(location, message);
+    }
+
+    public void ReportUnrecognizedEscapeSequence(TextLocation location)
+    {
+        const string message = "Unrecognized escape sequence.";
+        ReportError(location, message);
+    }
+
     public void ReportDisallowedColumnSettingDefaultValue(TextLocation location, SyntaxKind expressionKind)
     {
         string message = $"Disallowed 'default' column setting value expression '{expressionKind}'.";

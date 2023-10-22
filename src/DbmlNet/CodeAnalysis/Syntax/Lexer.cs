@@ -316,7 +316,11 @@ internal sealed class Lexer
                 ReadQuotationString();
                 break;
             case '\'':
-                ReadSingleQuotationString();
+                if (Peek(1) == '\'' && Peek(2) == '\'')
+                    ReadMultiLineString();
+                else
+                    ReadSingleQuotationString();
+
                 break;
             default:
                 if (char.IsLetterOrDigit(Current) || Current == '_')
@@ -427,6 +431,89 @@ internal sealed class Lexer
         _kind = SyntaxKind.SingleQuotationMarksStringToken;
         _value = sb.ToString();
     }
+
+#pragma warning disable MA0051 // Method is too long (maximum allowed: 60)
+
+    private void ReadMultiLineString()
+    {
+        int start = _position;
+
+        // Skip the current quotes '''
+        _position += 3;
+
+        StringBuilder sb = new StringBuilder();
+        bool done = false;
+        while (!done)
+        {
+            switch (Current)
+            {
+                case '\0':
+                {
+                    TextSpan span = new TextSpan(start, 3);
+                    TextLocation location = new TextLocation(_text, span);
+                    Diagnostics.ReportUnterminatedMultiLineString(location);
+                    done = true;
+                    break;
+                }
+
+                case '\\':
+                {
+                    if (Peek(1) == '\\')
+                    {
+                        sb.Append(Current);
+                        _position += 2;
+                    }
+                    else if (Peek(1) == '\'' && Peek(2) == '\'' && Peek(3) == '\'')
+                    {
+                        _position++; // Skip backslash
+                        sb.Append(Current); // Append single quote
+                        _position++;
+                        sb.Append(Current); // Append single quote
+                        _position++;
+                        sb.Append(Current); // Append single quote
+                        _position++;
+                    }
+                    else
+                    {
+                        TextSpan span = new TextSpan(_position, 1);
+                        TextLocation location = new TextLocation(_text, span);
+                        Diagnostics.ReportUnrecognizedEscapeSequence(location);
+                        _position++;
+                    }
+
+                    break;
+                }
+
+                case '\'':
+                {
+                    if (Peek(1) == '\'' && Peek(2) == '\'')
+                    {
+                        _position += 3;
+                        done = true;
+                    }
+                    else
+                    {
+                        sb.Append(Current);
+                        _position++;
+                    }
+
+                    break;
+                }
+
+                default:
+                {
+                    sb.Append(Current);
+                    _position++;
+                    break;
+                }
+            }
+        }
+
+        _kind = SyntaxKind.MultiLineStringToken;
+        _value = TextUnindenter.Unindent(sb.ToString());
+    }
+
+#pragma warning restore MA0051 // Method is too long (maximum allowed: 60)
 
     private void ReadNumber()
     {

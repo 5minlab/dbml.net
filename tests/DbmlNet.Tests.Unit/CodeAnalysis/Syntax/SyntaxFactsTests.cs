@@ -41,12 +41,11 @@ public class SyntaxFactsTests
         if (kind.IsSyntaxExpression()) return skip;
 
         if (kind.IsTrivia()) return skip;
+        if (kind.IsStringToken()) return skip;
         if (kind == SyntaxKind.BadToken) return skip;
         if (kind == SyntaxKind.WhitespaceTrivia) return skip;
         if (kind == SyntaxKind.EndOfFileToken) return skip;
         if (kind == SyntaxKind.NumberToken) return skip;
-        if (kind == SyntaxKind.QuotationMarksStringToken) return skip;
-        if (kind == SyntaxKind.SingleQuotationMarksStringToken) return skip;
         if (kind == SyntaxKind.IdentifierToken) return skip;
 
         return !skip;
