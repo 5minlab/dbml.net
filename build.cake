@@ -346,7 +346,10 @@ Task("upload-test-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
-            Information("TODO: Add support to publish test reports to GitHub.");
+            BuildSystem.GitHubActions.Commands.UploadArtifact(
+                path: testsArtifactsDirectory,
+                artifactName: $"{ApplicationName} Test Reports"
+            );
         }
     });
 
