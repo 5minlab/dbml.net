@@ -11,6 +11,9 @@
 const string ApplicationName = "dbml.NET";
 readonly DirectoryPath artifactsDirectory = Directory("./artifacts");
 readonly DirectoryPath testsArtifactsDirectory = Directory($"{artifactsDirectory}/tests");
+readonly DirectoryPath unitTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/unit-tests");
+readonly DirectoryPath integrationTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/integration-tests");
+readonly DirectoryPath acceptanceTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/acceptance-tests");
 readonly DirectoryPath coverageArtifactsDirectory = Directory($"{artifactsDirectory}/coverage");
 readonly DirectoryPath publishArtifactsDirectory = Directory($"{artifactsDirectory}/publish");
 
@@ -130,7 +133,7 @@ Task("unit-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = unitTestsArtifactsDirectory
             }
         );
     })
@@ -156,7 +159,7 @@ Task("integration-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = integrationTestsArtifactsDirectory
             }
         );
     })
@@ -182,7 +185,7 @@ Task("acceptance-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = acceptanceTestsArtifactsDirectory
             }
         );
     })
