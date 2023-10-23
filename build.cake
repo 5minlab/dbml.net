@@ -28,6 +28,7 @@ readonly DirectoryPath publishArtifactsDirectory = Directory($"{artifactsDirecto
 readonly bool OPEN_RESULTS = HasArgument("open-results");
 
 readonly bool OPEN_COVERAGE_RESULTS = OPEN_RESULTS;
+readonly bool OPEN_TEST_RESULTS = OPEN_RESULTS;
 
 // Configuration can have a value of "Release" or "Debug".
 // Default configuration `Release`.
@@ -235,6 +236,32 @@ Task("test-reports")
 
         // Generate human readable test reports
         DotNetTool(cmdCommand);
+
+        Information($"Generated test reports under '{testReportOutputFilePath}'.");
+
+        bool canShowResults = IsRunningOnWindows() && BuildSystem.IsLocalBuild;
+        bool shouldShowResults = canShowResults && OPEN_TEST_RESULTS;
+        if (shouldShowResults)
+        {
+            string testReportFilePath = testReportOutputFilePath;
+            if (!FileExists(testReportFilePath))
+            {
+                Warning($"Cannot find '{testReportFilePath}'.");
+            }
+            else
+            {
+                Warning($"Opening file '{testReportFilePath}'...");
+
+                StartProcess("cmd", new ProcessSettings
+                {
+                    Arguments = $"/C start \"\" {testReportFilePath}"
+                });
+            }
+        }
+        else if (canShowResults)
+        {
+            Information("Using '--open-results' option the test reports will open automatically in your default browser or editor.");
+        }
     })
     .DeferOnError();
 
