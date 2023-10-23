@@ -265,7 +265,7 @@ Task("test-reports")
     })
     .DeferOnError();
 
-Task("code-coverage")
+Task("code-coverage-reports")
     .Description($"Generate code coverage reports.")
     .Does(() =>
     {
@@ -331,6 +331,8 @@ Task("code-coverage")
             }
             else
             {
+                Warning($"Opening file '{coverageIndexFilePath}'...");
+
                 StartProcess("cmd", new ProcessSettings
                 {
                     Arguments = $"/C start \"\" {coverageIndexFilePath}"
@@ -339,7 +341,7 @@ Task("code-coverage")
         }
         else if (canShowResults)
         {
-            Information("Using '--open-coverage-results' option the code coverage will open automatically in your default browser.");
+            Information("Using '--open-results' option the code coverage reports will open automatically in your default browser.");
         }
     })
     .DeferOnError();
@@ -422,7 +424,7 @@ Task("test")
     .IsDependentOn("integration-tests")
     .IsDependentOn("acceptance-tests")
     .IsDependentOn("test-reports")
-    .IsDependentOn("code-coverage");
+    .IsDependentOn("code-coverage-reports");
 
 Task("default")
     .IsDependentOn("clean")
@@ -431,7 +433,7 @@ Task("default")
     .IsDependentOn("acceptance-tests")
     .IsDependentOn("test-reports")
     .IsDependentOn("upload-test-reports")
-    .IsDependentOn("code-coverage")
+    .IsDependentOn("code-coverage-reports")
     .IsDependentOn("upload-code-coverage-reports");
 
 // ========================================

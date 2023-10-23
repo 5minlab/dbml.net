@@ -51,7 +51,7 @@ jobs:
         run: dotnet cake --task=upload-test-reports --exclusive
 
       - name: Generate code coverage
-        run: dotnet cake --task=code-coverage --exclusive
+        run: dotnet cake --task=code-coverage-reports --exclusive
 
       - name: Upload code coverage reports
         run: dotnet cake --task=upload-code-coverage-reports --exclusive
