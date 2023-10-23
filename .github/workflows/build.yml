@@ -74,3 +74,12 @@ jobs:
           hide_classify: "OUTDATED"
           number: ${{ steps.findPr.outputs.pr }}
           path: ./artifacts/tests/dbml.NET.test_report.md
+
+      - name: Add code coverage reports PR Comment on Github
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: codeCoverageReports
+          hide_and_recreate: true
+          hide_classify: "OUTDATED"
+          number: ${{ steps.findPr.outputs.pr }}
+          path: ./artifacts/coverage/SummaryGithub.md
