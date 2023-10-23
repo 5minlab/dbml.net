@@ -87,6 +87,8 @@ Task("clean")
     .Description("Cleans existing artifacts.")
     .Does(() =>
     {
+        Information($"Starting cleaning artifacts...");
+
         DeleteDirectory(testsArtifactsDirectory);
 
         if (REMOVE_COVERAGE_ARTIFACTS)
@@ -100,6 +102,8 @@ Task("restore")
     .Description("Restores NuGet packages.")
     .Does(() =>
     {
+        Information($"Starting restoring NuGet packages...");
+
         DotNetRestore();
     });
 
@@ -108,6 +112,8 @@ Task("build")
     .IsDependentOn("restore")
     .Does(() =>
     {
+        Information($"Starting building the solution...");
+
         DotNetBuild(
             project: ".",
             settings: new DotNetBuildSettings
@@ -124,6 +130,8 @@ Task("unit-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Unit.csproj"), project =>
     {
+        Information($"Starting running unit tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -147,6 +155,8 @@ Task("integration-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Integration.csproj"), project =>
     {
+        Information($"Starting running integration tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -173,6 +183,8 @@ Task("acceptance-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Acceptance.csproj"), project =>
     {
+        Information($"Starting running acceptance tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -198,6 +210,8 @@ Task("test-reports")
     .Description($"Generate test reports.")
     .Does(() =>
     {
+        Information($"Starting generating test reports...");
+
         List<string> inputFiles = new();
 
         // Unit tests
@@ -250,7 +264,7 @@ Task("test-reports")
             }
             else
             {
-                Warning($"Opening file '{testReportFilePath}'...");
+                Information($"Opening file '{testReportFilePath}'...");
 
                 StartProcess("cmd", new ProcessSettings
                 {
@@ -269,6 +283,8 @@ Task("code-coverage-reports")
     .Description($"Generate code coverage reports.")
     .Does(() =>
     {
+        Information($"Starting generating code coverage reports...");
+
         string[] reportTypes = new string[]
         {
             "Badges",
@@ -331,7 +347,7 @@ Task("code-coverage-reports")
             }
             else
             {
-                Warning($"Opening file '{coverageIndexFilePath}'...");
+                Information($"Opening file '{coverageIndexFilePath}'...");
 
                 StartProcess("cmd", new ProcessSettings
                 {
@@ -365,6 +381,8 @@ Task("upload-test-reports")
 
         if (BuildSystem.AzurePipelines.IsRunningOnAzurePipelines)
         {
+            Information($"Starting uploading test reports to Azure...");
+
             BuildSystem.AzurePipelines.Commands.PublishTestResults(
                 new AzurePipelinesPublishTestResultsData
                 {
@@ -377,6 +395,8 @@ Task("upload-test-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
+            Information($"Starting uploading test reports to Github...");
+
             BuildSystem.GitHubActions.Commands.UploadArtifact(
                 path: testsArtifactsDirectory,
                 artifactName: $"{ApplicationName} Test Reports"
@@ -400,6 +420,8 @@ Task("upload-code-coverage-reports")
 
         if (BuildSystem.AzurePipelines.IsRunningOnAzurePipelines)
         {
+            Information($"Starting uploading code coverage reports to Azure...");
+
             BuildSystem.AzurePipelines.Commands.PublishCodeCoverage(
                 new AzurePipelinesPublishCodeCoverageData
                 {
@@ -411,6 +433,8 @@ Task("upload-code-coverage-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
+            Information($"Starting uploading code coverage reports to Github...");
+
             BuildSystem.GitHubActions.Commands.UploadArtifact(
                 path: coverageArtifactsDirectory,
                 artifactName: $"{ApplicationName} Code Coverage Reports"
