@@ -409,7 +409,10 @@ Task("upload-code-coverage-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
-            Information("TODO: Add support to upload code coverage reports to GitHub.");
+            BuildSystem.GitHubActions.Commands.UploadArtifact(
+                path: coverageArtifactsDirectory,
+                artifactName: $"{ApplicationName} Code Coverage Reports"
+            );
         }
     });
 
