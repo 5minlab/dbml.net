@@ -8,6 +8,9 @@ on:
 env:
   buildConfiguration: Release
 
+permissions:
+  pull-requests: write  # required by sticky-pull-request-comment@v2
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,3 +61,16 @@ jobs:
 
       - name: Upload code coverage reports
         run: dotnet cake --task=upload-code-coverage-reports --exclusive
+
+      - name: Find the PR associated with this push
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+
+      - name: Add test reports PR Comment on Github
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: testReports
+          hide: true
+          hide_classify: "OUTDATED"
+          number: ${{ steps.findPr.outputs.pr }}
+          path: ./artifacts/tests/dbml.NET.test_report.md
