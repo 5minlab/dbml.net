@@ -47,6 +47,9 @@ jobs:
       - name: Run acceptance tests - ${{ env.buildConfiguration }}
         run: dotnet cake --task=acceptance-tests --configuration=${{ env.buildConfiguration }} --exclusive
 
+      - name: Generate test reports
+        run: dotnet cake --task=test-reports --exclusive
+
       - name: Upload test reports
         run: dotnet cake --task=upload-test-reports --exclusive
 
