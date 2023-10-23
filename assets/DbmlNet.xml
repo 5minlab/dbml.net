@@ -1201,6 +1201,47 @@
             </summary>
             <returns>The children of the relationship constraint.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipDeclarationSyntax">
+            <summary>
+            Represents a relationship declaration statement in the syntax tree.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax">
+            <summary>
+            Represents a short form relationship declaration statement in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the relationship declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipShortFormDeclarationMember"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.RefKeyword">
+            <summary>
+            Gets the ref keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.IdentifierToken">
+            <summary>
+            Gets the relationship identifier token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.Relationship">
+            <summary>
+            Gets the relationship constraint.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax.GetChildren">
+            <summary>
+            Gets the children of the short form relationship declaration.
+            </summary>
+            <returns>The children of the short form relationship declaration.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.SeparatedSyntaxList">
             <summary>
             Represents a list of expressions in the syntax tree.
@@ -1700,6 +1741,13 @@
             Walks a table declaration syntax.
             </summary>
             <param name="syntax">The table declaration syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkRelationshipShortFormDeclaration(DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax)">
+            <summary>
+            Walks a short form relationship declaration syntax.
+            </summary>
+            <param name="syntax">The short form relationship declaration syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkGlobalStatement(DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax)">
