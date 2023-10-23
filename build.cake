@@ -11,6 +11,9 @@
 const string ApplicationName = "dbml.NET";
 readonly DirectoryPath artifactsDirectory = Directory("./artifacts");
 readonly DirectoryPath testsArtifactsDirectory = Directory($"{artifactsDirectory}/tests");
+readonly DirectoryPath unitTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/unit-tests");
+readonly DirectoryPath integrationTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/integration-tests");
+readonly DirectoryPath acceptanceTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/acceptance-tests");
 readonly DirectoryPath coverageArtifactsDirectory = Directory($"{artifactsDirectory}/coverage");
 readonly DirectoryPath publishArtifactsDirectory = Directory($"{artifactsDirectory}/publish");
 
@@ -20,9 +23,12 @@ readonly DirectoryPath publishArtifactsDirectory = Directory($"{artifactsDirecto
 
 #nullable enable // Enable C# nullability
 
-// Flag indicating if the test coverage results should be opened automatically.
+// Flag indicating if the test and code coverage reports should be opened automatically.
 // Default value `false`.
-readonly bool OPEN_COVERAGE_RESULTS = HasArgument("open-coverage-results");
+readonly bool OPEN_REPORTS = HasArgument("open-reports");
+
+readonly bool OPEN_COVERAGE_REPORTS = OPEN_REPORTS;
+readonly bool OPEN_TEST_REPORTS = OPEN_REPORTS;
 
 // Configuration can have a value of "Release" or "Debug".
 // Default configuration `Release`.
@@ -32,7 +38,7 @@ readonly string CONFIGURATION = Argument<string>("configuration", "Release");
 // Default environment `(string)null`.
 readonly string? ENVIRONMENT = Argument<string?>("environment", null);
 
-// Flag indicating if the test coverage results should be removed or not.
+// Flag indicating if the code coverage artifacts should be removed or not.
 // Default value `false`.
 readonly bool REMOVE_COVERAGE_ARTIFACTS = HasArgument("remove-coverage-artifacts");
 
@@ -81,6 +87,8 @@ Task("clean")
     .Description("Cleans existing artifacts.")
     .Does(() =>
     {
+        Information($"Starting cleaning artifacts...");
+
         DeleteDirectory(testsArtifactsDirectory);
 
         if (REMOVE_COVERAGE_ARTIFACTS)
@@ -94,6 +102,8 @@ Task("restore")
     .Description("Restores NuGet packages.")
     .Does(() =>
     {
+        Information($"Starting restoring NuGet packages...");
+
         DotNetRestore();
     });
 
@@ -102,6 +112,8 @@ Task("build")
     .IsDependentOn("restore")
     .Does(() =>
     {
+        Information($"Starting building the solution...");
+
         DotNetBuild(
             project: ".",
             settings: new DotNetBuildSettings
@@ -118,6 +130,8 @@ Task("unit-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Unit.csproj"), project =>
     {
+        Information($"Starting running unit tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -130,7 +144,7 @@ Task("unit-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = unitTestsArtifactsDirectory
             }
         );
     })
@@ -141,6 +155,8 @@ Task("integration-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Integration.csproj"), project =>
     {
+        Information($"Starting running integration tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -156,7 +172,7 @@ Task("integration-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = integrationTestsArtifactsDirectory
             }
         );
     })
@@ -167,6 +183,8 @@ Task("acceptance-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Acceptance.csproj"), project =>
     {
+        Information($"Starting running acceptance tests '{project}'...");
+
         DotNetTest(
             project: project.ToString(),
             settings: new DotNetTestSettings
@@ -182,16 +200,91 @@ Task("acceptance-tests")
                 Blame = true,
                 Loggers = new string[] { "trx" },
                 Collectors = new string[] { "XPlat Code Coverage" },
-                ResultsDirectory = testsArtifactsDirectory
+                ResultsDirectory = acceptanceTestsArtifactsDirectory
             }
         );
     })
     .DeferOnError();
 
-Task("code-coverage")
+Task("test-reports")
+    .Description($"Generate test reports.")
+    .Does(() =>
+    {
+        Information($"Starting generating test reports...");
+
+        List<string> inputFiles = new();
+
+        // Unit tests
+        inputFiles.AddRange(
+            GetFiles($"{unitTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Unit Tests\"")
+                .ToArray()
+        );
+
+        // Integration tests
+        inputFiles.AddRange(
+            GetFiles($"{integrationTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Integration Tests\"")
+                .ToArray()
+        );
+
+        // Acceptance tests
+        inputFiles.AddRange(
+            GetFiles($"{acceptanceTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Acceptance Tests\"")
+                .ToArray()
+        );
+
+        if (!inputFiles.Any())
+        {
+            Warning($"No *.trx test results found. Test reports cannot be generated.");
+            return;
+        }
+
+        string testReportOutputFilePath = $"{testsArtifactsDirectory}/{ApplicationName}.test_report.md";
+
+        string cmdCommand =
+            $"liquid" +
+            $" --inputs {string.Join(' ', inputFiles)}" +
+            $" --output-file \"{testReportOutputFilePath}\"";
+
+        // Generate human readable test reports
+        DotNetTool(cmdCommand);
+
+        Information($"Generated test reports under '{testReportOutputFilePath}'.");
+
+        bool canShowReports = IsRunningOnWindows() && BuildSystem.IsLocalBuild;
+        bool shouldShowReports = canShowReports && OPEN_TEST_REPORTS;
+        if (shouldShowReports)
+        {
+            string testReportFilePath = testReportOutputFilePath;
+            if (!FileExists(testReportFilePath))
+            {
+                Warning($"Cannot find '{testReportFilePath}'.");
+            }
+            else
+            {
+                Information($"Opening file '{testReportFilePath}'...");
+
+                StartProcess("cmd", new ProcessSettings
+                {
+                    Arguments = $"/C start \"\" {testReportFilePath}"
+                });
+            }
+        }
+        else if (canShowReports)
+        {
+            Information("Using '--open-reports' option the test reports will open automatically in your default browser or editor.");
+        }
+    })
+    .DeferOnError();
+
+Task("code-coverage-reports")
     .Description($"Generate code coverage reports.")
     .Does(() =>
     {
+        Information($"Starting generating code coverage reports...");
+
         string[] reportTypes = new string[]
         {
             "Badges",
@@ -241,11 +334,11 @@ Task("code-coverage")
         // Generate nice human readable coverage report
         DotNetTool(cmdCommand);
 
-        Information($"Generated coverage results under '{coverageArtifactsDirectory}'.");
+        Information($"Generated code coverage reports under '{coverageArtifactsDirectory}'.");
 
-        bool canShowResults = IsRunningOnWindows() && BuildSystem.IsLocalBuild;
-        bool shouldShowResults = canShowResults && OPEN_COVERAGE_RESULTS;
-        if (shouldShowResults)
+        bool canShowReports = IsRunningOnWindows() && BuildSystem.IsLocalBuild;
+        bool shouldShowReports = canShowReports && OPEN_COVERAGE_REPORTS;
+        if (shouldShowReports)
         {
             string coverageIndexFilePath = $"{coverageArtifactsDirectory}/index.htm";
             if (!FileExists(coverageIndexFilePath))
@@ -254,15 +347,17 @@ Task("code-coverage")
             }
             else
             {
+                Information($"Opening file '{coverageIndexFilePath}'...");
+
                 StartProcess("cmd", new ProcessSettings
                 {
                     Arguments = $"/C start \"\" {coverageIndexFilePath}"
                 });
             }
         }
-        else if (canShowResults)
+        else if (canShowReports)
         {
-            Information("Using '--open-coverage-results' option the code coverage will open automatically in your default browser.");
+            Information("Using '--open-reports' option the code coverage reports will open automatically in your default browser.");
         }
     })
     .DeferOnError();
@@ -280,12 +375,14 @@ Task("upload-test-reports")
 
         if (!testResultsFiles.Any())
         {
-            Warning($"No test results was found, no local report is generated.");
+            Warning($"No test reports was found, skipping upload to CI.");
             return;
         }
 
         if (BuildSystem.AzurePipelines.IsRunningOnAzurePipelines)
         {
+            Information($"Starting uploading test reports to Azure...");
+
             BuildSystem.AzurePipelines.Commands.PublishTestResults(
                 new AzurePipelinesPublishTestResultsData
                 {
@@ -298,7 +395,12 @@ Task("upload-test-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
-            Information("TODO: Add support to publish test reports to GitHub.");
+            Information($"Starting uploading test reports to Github...");
+
+            BuildSystem.GitHubActions.Commands.UploadArtifact(
+                path: testsArtifactsDirectory,
+                artifactName: $"{ApplicationName} Test Reports"
+            );
         }
     });
 
@@ -312,12 +414,14 @@ Task("upload-code-coverage-reports")
     {
         if (!FileExists($"{coverageArtifactsDirectory}/Cobertura.xml"))
         {
-            Warning($"No coverage results was found, no local report is generated.");
+            Warning($"No code coverage reports was found, skipping upload to CI.");
             return;
         }
 
         if (BuildSystem.AzurePipelines.IsRunningOnAzurePipelines)
         {
+            Information($"Starting uploading code coverage reports to Azure...");
+
             BuildSystem.AzurePipelines.Commands.PublishCodeCoverage(
                 new AzurePipelinesPublishCodeCoverageData
                 {
@@ -329,7 +433,12 @@ Task("upload-code-coverage-reports")
         }
         else if (BuildSystem.GitHubActions.IsRunningOnGitHubActions)
         {
-            Information("TODO: Add support to upload code coverage reports to GitHub.");
+            Information($"Starting uploading code coverage reports to Github...");
+
+            BuildSystem.GitHubActions.Commands.UploadArtifact(
+                path: coverageArtifactsDirectory,
+                artifactName: $"{ApplicationName} Code Coverage Reports"
+            );
         }
     });
 
@@ -338,15 +447,17 @@ Task("test")
     .IsDependentOn("unit-tests")
     .IsDependentOn("integration-tests")
     .IsDependentOn("acceptance-tests")
-    .IsDependentOn("code-coverage");
+    .IsDependentOn("test-reports")
+    .IsDependentOn("code-coverage-reports");
 
 Task("default")
     .IsDependentOn("clean")
     .IsDependentOn("unit-tests")
     .IsDependentOn("integration-tests")
     .IsDependentOn("acceptance-tests")
+    .IsDependentOn("test-reports")
     .IsDependentOn("upload-test-reports")
-    .IsDependentOn("code-coverage")
+    .IsDependentOn("code-coverage-reports")
     .IsDependentOn("upload-code-coverage-reports");
 
 // ========================================

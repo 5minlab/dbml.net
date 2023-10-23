@@ -156,18 +156,18 @@ A new sample database for SQL Server 2016 and Azure SQL Database, illustrating c
 
 ## Code Coverage
 
-1. [Check coverage reports on CI][CI-link] **--or--**
+1. [Check code coverage reports on CI][CI-link] **--or--**
 
 2. On the root folder, run:
 
    ```shell
-   dotnet cake --task=code-coverage
+   dotnet cake --task=code-coverage-reports
    ```
 
-   - Automatically open coverage results with `-open-coverage-results`:
+   - Automatically open code coverage reports with `--open-reports`:
 
    ```shell
-   dotnet cake --task=code-coverage --open-coverage-results
+   dotnet cake --task=code-coverage-reports --open-reports
    ```
 
 ## Additional Commands

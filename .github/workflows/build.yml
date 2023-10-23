@@ -8,20 +8,24 @@ on:
 env:
   buildConfiguration: Release
 
+permissions:
+  pull-requests: write  # required by sticky-pull-request-comment@v2
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: CI Build
 
     steps:
-      - name: Checking out code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up .NET Core
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.x.x
 
-      - name: Set up dependency caching for faster builds
+      - name: Setup dependency caching for faster builds
         uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
@@ -47,11 +51,36 @@ jobs:
       - name: Run acceptance tests - ${{ env.buildConfiguration }}
         run: dotnet cake --task=acceptance-tests --configuration=${{ env.buildConfiguration }} --exclusive
 
+      - name: Generate test reports
+        run: dotnet cake --task=test-reports --exclusive
+
       - name: Upload test reports
         run: dotnet cake --task=upload-test-reports --exclusive
 
-      - name: Generate code coverage
-        run: dotnet cake --task=code-coverage --exclusive
+      - name: Generate code coverage reports
+        run: dotnet cake --task=code-coverage-reports --exclusive
 
       - name: Upload code coverage reports
         run: dotnet cake --task=upload-code-coverage-reports --exclusive
+
+      - name: Find the PR associated with this push
+        uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+
+      - name: Add test reports PR Comment on Github
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: testReports
+          hide: true
+          hide_classify: "OUTDATED"
+          number: ${{ steps.findPr.outputs.pr }}
+          path: ./artifacts/tests/dbml.NET.test_report.md
+
+      - name: Add code coverage reports PR Comment on Github
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: codeCoverageReports
+          hide_and_recreate: true
+          hide_classify: "OUTDATED"
+          number: ${{ steps.findPr.outputs.pr }}
+          path: ./artifacts/coverage/SummaryGithub.md
