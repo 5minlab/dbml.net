@@ -191,6 +191,51 @@ Task("acceptance-tests")
     })
     .DeferOnError();
 
+Task("test-reports")
+    .Description($"Generate test reports.")
+    .Does(() =>
+    {
+        List<string> inputFiles = new();
+
+        // Unit tests
+        inputFiles.AddRange(
+            GetFiles($"{unitTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Unit Tests\"")
+                .ToArray()
+        );
+
+        // Integration tests
+        inputFiles.AddRange(
+            GetFiles($"{integrationTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Integration Tests\"")
+                .ToArray()
+        );
+
+        // Acceptance tests
+        inputFiles.AddRange(
+            GetFiles($"{acceptanceTestsArtifactsDirectory}/**/*.trx")
+                .Select(path => $"\"File={path};Format=Trx;GroupTitle=Acceptance Tests\"")
+                .ToArray()
+        );
+
+        if (!inputFiles.Any())
+        {
+            Warning($"No *.trx test results found. Test reports cannot be generated.");
+            return;
+        }
+
+        string testReportOutputFilePath = $"{testsArtifactsDirectory}/{ApplicationName}.test_report.md";
+
+        string cmdCommand =
+            $"liquid" +
+            $" --inputs {string.Join(' ', inputFiles)}" +
+            $" --output-file \"{testReportOutputFilePath}\"";
+
+        // Generate human readable test reports
+        DotNetTool(cmdCommand);
+    })
+    .DeferOnError();
+
 Task("code-coverage")
     .Description($"Generate code coverage reports.")
     .Does(() =>
@@ -341,6 +386,7 @@ Task("test")
     .IsDependentOn("unit-tests")
     .IsDependentOn("integration-tests")
     .IsDependentOn("acceptance-tests")
+    .IsDependentOn("test-reports")
     .IsDependentOn("code-coverage");
 
 Task("default")
@@ -348,6 +394,7 @@ Task("default")
     .IsDependentOn("unit-tests")
     .IsDependentOn("integration-tests")
     .IsDependentOn("acceptance-tests")
+    .IsDependentOn("test-reports")
     .IsDependentOn("upload-test-reports")
     .IsDependentOn("code-coverage")
     .IsDependentOn("upload-code-coverage-reports");
