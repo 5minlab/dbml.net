@@ -53,7 +53,7 @@ jobs:
       - name: Upload test reports
         run: dotnet cake --task=upload-test-reports --exclusive
 
-      - name: Generate code coverage
+      - name: Generate code coverage reports
         run: dotnet cake --task=code-coverage-reports --exclusive
 
       - name: Upload code coverage reports
