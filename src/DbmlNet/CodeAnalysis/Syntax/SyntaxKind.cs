@@ -64,6 +64,7 @@ public enum SyntaxKind
     CompilationUnitMember,
     ProjectDeclarationMember,
     TableDeclarationMember,
+    RelationshipShortFormDeclarationMember,
     GlobalStatementMember,
 
     // Project nodes
