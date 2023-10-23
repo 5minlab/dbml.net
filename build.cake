@@ -23,9 +23,11 @@ readonly DirectoryPath publishArtifactsDirectory = Directory($"{artifactsDirecto
 
 #nullable enable // Enable C# nullability
 
-// Flag indicating if the test coverage results should be opened automatically.
+// Flag indicating if the test and code coverage results should be opened automatically.
 // Default value `false`.
-readonly bool OPEN_COVERAGE_RESULTS = HasArgument("open-coverage-results");
+readonly bool OPEN_RESULTS = HasArgument("open-results");
+
+readonly bool OPEN_COVERAGE_RESULTS = OPEN_RESULTS;
 
 // Configuration can have a value of "Release" or "Debug".
 // Default configuration `Release`.
