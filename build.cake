@@ -88,7 +88,7 @@ Task("clean")
     .Description("Cleans existing artifacts.")
     .Does(() =>
     {
-        Information($"Starting cleaning artifacts...");
+        Information($"Clean existing artifacts...");
 
         DeleteDirectory(testsArtifactsDirectory);
 
@@ -103,7 +103,7 @@ Task("restore")
     .Description("Restores NuGet packages.")
     .Does(() =>
     {
-        Information($"Starting restoring NuGet packages...");
+        Information($"Restore solution packages...");
 
         DotNetRestore();
     });
@@ -113,7 +113,7 @@ Task("build")
     .IsDependentOn("restore")
     .Does(() =>
     {
-        Information($"Starting building the solution...");
+        Information($"Building solution...");
 
         DotNetBuild(
             project: ".",
@@ -155,7 +155,7 @@ Task("unit-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Unit.csproj"), project =>
     {
-        Information($"Starting running unit tests '{project}'...");
+        Information($"Testing project '{project}'...");
 
         DotNetTest(
             project: project.ToString(),
@@ -180,7 +180,7 @@ Task("integration-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Integration.csproj"), project =>
     {
-        Information($"Starting running integration tests '{project}'...");
+        Information($"Testing project '{project}'...");
 
         DotNetTest(
             project: project.ToString(),
@@ -208,7 +208,7 @@ Task("acceptance-tests")
     .IsDependentOn("build")
     .DoesForEach(GetFiles("./tests/**/*.Tests.Acceptance.csproj"), project =>
     {
-        Information($"Starting running acceptance tests '{project}'...");
+        Information($"Testing project '{project}'...");
 
         DotNetTest(
             project: project.ToString(),
@@ -308,7 +308,7 @@ Task("code-coverage-reports")
     .Description($"Generate code coverage reports.")
     .Does(() =>
     {
-        Information($"Starting generating code coverage reports...");
+        Information($"Generate code coverage reports...");
 
         string[] reportTypes = new string[]
         {
@@ -395,6 +395,8 @@ Task("upload-test-reports")
     .Description("Upload test reports to CI.")
     .Does(() =>
     {
+        Information($"Upload test reports to CI...");
+
         FilePath[] testResultsFiles =
             GetFiles($"{testsArtifactsDirectory}/**/*.trx").ToArray();
 
@@ -437,6 +439,8 @@ Task("upload-code-coverage-reports")
     .Description("Upload code coverage reports to CI.")
     .Does(() =>
     {
+        Information($"Upload code coverage reports to CI...");
+
         if (!FileExists($"{coverageArtifactsDirectory}/Cobertura.xml"))
         {
             Warning($"No code coverage reports was found, skipping upload to CI.");
