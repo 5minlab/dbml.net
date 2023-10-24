@@ -9,6 +9,7 @@
 // ========================================
 
 const string ApplicationName = "dbml.NET";
+readonly DirectoryPath assetsDirectory = Directory("./assets");
 readonly DirectoryPath artifactsDirectory = Directory("./artifacts");
 readonly DirectoryPath packageArtifactsDirectory = Directory($"{artifactsDirectory}/package");
 readonly DirectoryPath testsArtifactsDirectory = Directory($"{artifactsDirectory}/tests");
@@ -271,6 +272,8 @@ Task("test-reports")
         string cmdCommand =
             $"liquid" +
             $" --inputs {string.Join(' ', inputFiles)}" +
+            $" --template {assetsDirectory}/test-report-template.md" +
+            $" --title \"{ApplicationName} test report - {DateTime.Now:yyyy-MM-dd}\"" +
             $" --output-file \"{testReportOutputFilePath}\"";
 
         // Generate human readable test reports
