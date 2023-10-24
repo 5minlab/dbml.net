@@ -10,6 +10,7 @@
 
 const string ApplicationName = "dbml.NET";
 readonly DirectoryPath artifactsDirectory = Directory("./artifacts");
+readonly DirectoryPath packageArtifactsDirectory = Directory($"{artifactsDirectory}/package");
 readonly DirectoryPath testsArtifactsDirectory = Directory($"{artifactsDirectory}/tests");
 readonly DirectoryPath unitTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/unit-tests");
 readonly DirectoryPath integrationTestsArtifactsDirectory = Directory($"{testsArtifactsDirectory}/integration-tests");
@@ -124,6 +125,30 @@ Task("build")
             }
         );
     });
+
+Task("package")
+    .Description($"Package the solution.")
+    .Does(() =>
+    {
+        DeleteDirectory(packageArtifactsDirectory);
+    })
+    .DoesForEach(GetFiles("./src/**/*.csproj"), project =>
+    {
+        Information($"Packaging project '{project}'...");
+
+        DotNetPack(
+            project: project.ToString(),
+            settings: new DotNetPackSettings
+            {
+                Configuration = CONFIGURATION,
+                NoLogo = true,
+                NoRestore = false, // perform restore
+                NoBuild = false,   // perform build
+                OutputDirectory = packageArtifactsDirectory
+            }
+        );
+    })
+    .DeferOnError();
 
 Task("unit-tests")
     .Description($"Runs unit tests.")
@@ -449,6 +474,9 @@ Task("test")
     .IsDependentOn("acceptance-tests")
     .IsDependentOn("test-reports")
     .IsDependentOn("code-coverage-reports");
+
+Task("app-release")
+    .IsDependentOn("package");
 
 Task("default")
     .IsDependentOn("clean")
