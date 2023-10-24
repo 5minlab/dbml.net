@@ -166,4 +166,36 @@ public partial class ParserTests
         e.AssertToken(noteValueKind, noteValueText, noteValue);
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Fact]
+    public void Parse_EnumDeclaration_With_Note_SingleQuotationMarksString()
+    {
+        const SyntaxKind enumNameKind = SyntaxKind.IdentifierToken;
+        string enumNameText = DataGenerator.CreateRandomString();
+        object? enumNameValue = null;
+        const SyntaxKind noteValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        string randomNoteText = DataGenerator.CreateRandomMultiWordString();
+        string noteValueText = $"\'{randomNoteText}\'";
+        object? noteValue = randomNoteText;
+        string text = $$"""
+        enum {{enumNameText}} {
+            note: {{noteValueText}}
+        }
+        """;
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.EnumDeclarationMember);
+        e.AssertToken(SyntaxKind.EnumKeyword, "enum");
+        e.AssertNode(SyntaxKind.EnumIdentifierClause);
+        e.AssertToken(enumNameKind, enumNameText, enumNameValue);
+        e.AssertNode(SyntaxKind.BlockStatement);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertNode(SyntaxKind.NoteDeclarationStatement);
+        e.AssertToken(SyntaxKind.NoteKeyword, "note");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(noteValueKind, noteValueText, noteValue);
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
