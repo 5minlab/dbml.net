@@ -19,6 +19,7 @@ public static class SyntaxFacts
             // Keywords
             "database_type" => SyntaxKind.DatabaseTypeKeyword,
             "default" => SyntaxKind.DefaultKeyword,
+            "enum" => SyntaxKind.EnumKeyword,
             "false" => SyntaxKind.FalseKeyword,
             "increment" => SyntaxKind.IncrementKeyword,
             "indexes" => SyntaxKind.IndexesKeyword,
@@ -165,6 +166,7 @@ public static class SyntaxFacts
             // Keywords
             SyntaxKind.DatabaseTypeKeyword => "database_type",
             SyntaxKind.DefaultKeyword => "default",
+            SyntaxKind.EnumKeyword => "enum",
             SyntaxKind.FalseKeyword => "false",
             SyntaxKind.IncrementKeyword => "increment",
             SyntaxKind.IndexesKeyword => "indexes",
