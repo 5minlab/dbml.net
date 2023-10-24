@@ -456,6 +456,68 @@
             </summary>
             <returns>The children of the default column setting.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax">
+            <summary>
+            Represents a enum declaration in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the enum declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumDeclarationMember"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.EnumKeyword">
+            <summary>
+            Gets the enum keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Identifier">
+            <summary>
+            Gets the full enum identifier (e.g: schema.enum).
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Body">
+            <summary>
+            Gets the body.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.GetChildren">
+            <summary>
+            Gets the children of the enum declaration.
+            </summary>
+            <returns>The children of the enum declaration.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause">
+            <summary>
+            Represents a enum identifier clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.Kind">
+            <summary>
+            Gets the syntax kind of the enum identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumIdentifierClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.SchemaIdentifier">
+            <summary>
+            Gets the schema identifier.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.DotToken">
+            <summary>
+            Gets the dot token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.EnumIdentifier">
+            <summary>
+            Gets the enum identifier.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.GetChildren">
+            <summary>
+            Gets the children of the enum identifier.
+            </summary>
+            <returns>The children of the enum identifier.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax">
             <summary>
             Represents an expression statement in the syntax tree.

@@ -152,6 +152,7 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.ProjectKeyword => ParseProjectDeclaration(),
+            SyntaxKind.EnumKeyword => ParseEnumDeclaration(),
             SyntaxKind.TableKeyword => ParseTableDeclaration(),
             SyntaxKind.RefKeyword => ParseRelationshipDeclaration(),
             _ => ParseGlobalStatement()
@@ -266,6 +267,41 @@ internal sealed class Parser
 
         ReportUnknownProjectSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
         return new UnknownProjectSettingClause(_syntaxTree, identifierToken);
+    }
+
+    private MemberSyntax ParseEnumDeclaration()
+    {
+        SyntaxToken enumKeyword = MatchToken(SyntaxKind.EnumKeyword);
+        EnumIdentifierClause identifier = ParseEnumIdentifier();
+        StatementSyntax body = ParseBlockStatement();
+        return new EnumDeclarationSyntax(_syntaxTree, enumKeyword, identifier, body);
+    }
+
+    private EnumIdentifierClause ParseEnumIdentifier()
+    {
+        // Read syntax: enum
+        SyntaxToken enumIdentifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
+
+        // Read syntax: schema.enum
+        SyntaxToken? schemaIdentifier = null;
+        SyntaxToken? dotToken = null;
+        if (Current.Kind == SyntaxKind.DotToken)
+        {
+            schemaIdentifier = enumIdentifier;
+            dotToken = MatchToken(SyntaxKind.DotToken);
+            enumIdentifier = Current.Kind switch
+            {
+                _ when Current.Kind.IsKeyword() => NextToken(),
+                _ => MatchToken(SyntaxKind.IdentifierToken)
+            };
+        }
+
+        return new EnumIdentifierClause(
+            _syntaxTree, schemaIdentifier, dotToken, enumIdentifier);
     }
 
     private MemberSyntax ParseTableDeclaration()
