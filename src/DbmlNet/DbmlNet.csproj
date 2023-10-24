@@ -7,6 +7,33 @@
 
     <IsPackable>true</IsPackable>
     <DocumentationFile>../../assets/$(AssemblyName).xml</DocumentationFile>
+
+    <Title>AcronymCoder.DbNet.DbmlNet</Title>
+    <Product>AcronymCoder.DbNet.DbmlNet</Product>
+    <Description>A .NET parser library for parsing *.dbml files.</Description>
+    <PackageId>AcronymCoder.DbNet.DbmlNet</PackageId>
+    <PackageReleaseNotes>This alpha release covers 80% of valid dbml syntax. See README for supported dbml syntaxes.</PackageReleaseNotes>
+    <Version>0.1.0-beta.1</Version>
+    <PackageTags>Dbml; .NET; DbNet; AcronymCode</PackageTags>
+    <PackageIcon>dbnet-dbml.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="dbnet-dbml.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

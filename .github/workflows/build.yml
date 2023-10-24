@@ -71,7 +71,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: testReports
-          hide: true
+          recreate: true
           hide_classify: "OUTDATED"
           number: ${{ steps.findPr.outputs.pr }}
           path: ./artifacts/tests/dbml.NET.test_report.md
@@ -80,7 +80,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: codeCoverageReports
-          hide_and_recreate: true
+          recreate: true
           hide_classify: "OUTDATED"
           number: ${{ steps.findPr.outputs.pr }}
           path: ./artifacts/coverage/SummaryGithub.md
