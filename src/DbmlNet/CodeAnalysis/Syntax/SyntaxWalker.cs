@@ -52,6 +52,9 @@ public abstract class SyntaxWalker
             case SyntaxKind.RelationshipShortFormDeclarationMember:
                 WalkRelationshipShortFormDeclaration((RelationshipShortFormDeclarationSyntax)syntax);
                 break;
+            case SyntaxKind.RelationshipLongFormDeclarationMember:
+                WalkRelationshipLongFormDeclaration((RelationshipLongFormDeclarationSyntax)syntax);
+                break;
             case SyntaxKind.GlobalStatementMember:
                 WalkGlobalStatement((GlobalStatementSyntax)syntax);
                 break;
@@ -87,6 +90,16 @@ public abstract class SyntaxWalker
     /// <param name="syntax">The short form relationship declaration syntax.</param>
     /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
     protected virtual void WalkRelationshipShortFormDeclaration(RelationshipShortFormDeclarationSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
+    }
+
+    /// <summary>
+    /// Walks a long form relationship declaration syntax.
+    /// </summary>
+    /// <param name="syntax">The long form relationship declaration syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    protected virtual void WalkRelationshipLongFormDeclaration(RelationshipLongFormDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
     }

@@ -1206,6 +1206,47 @@
             Represents a relationship declaration statement in the syntax tree.
             </summary>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax">
+            <summary>
+            Represents a long form relationship declaration statement in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the relationship declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.RelationshipLongFormDeclarationMember"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.RefKeyword">
+            <summary>
+            Gets the ref keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.IdentifierToken">
+            <summary>
+            Gets the relationship identifier token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.OpenBraceToken">
+            <summary>
+            Gets the open brace token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.Relationships">
+            <summary>
+            Gets the relationship constraints.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.CloseBraceToken">
+            <summary>
+            Gets the close brace token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax.GetChildren">
+            <summary>
+            Gets the children of the long form relationship declaration.
+            </summary>
+            <returns>The children of the long form relationship declaration.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.RelationshipShortFormDeclarationSyntax">
             <summary>
             Represents a short form relationship declaration statement in the syntax tree.
@@ -1748,6 +1789,13 @@
             Walks a short form relationship declaration syntax.
             </summary>
             <param name="syntax">The short form relationship declaration syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkRelationshipLongFormDeclaration(DbmlNet.CodeAnalysis.Syntax.RelationshipLongFormDeclarationSyntax)">
+            <summary>
+            Walks a long form relationship declaration syntax.
+            </summary>
+            <param name="syntax">The long form relationship declaration syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkGlobalStatement(DbmlNet.CodeAnalysis.Syntax.GlobalStatementSyntax)">

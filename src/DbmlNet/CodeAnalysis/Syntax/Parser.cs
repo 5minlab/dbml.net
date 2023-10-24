@@ -400,6 +400,28 @@ internal sealed class Parser
             _ => null
         };
 
+        // Read long form relationship declaration
+        if (Current.Kind == SyntaxKind.OpenBraceToken)
+        {
+            SyntaxToken openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
+
+            ImmutableArray<RelationshipConstraintClause>.Builder builder =
+                ImmutableArray.CreateBuilder<RelationshipConstraintClause>();
+
+            while (Current.Kind is SyntaxKind.IdentifierToken and not SyntaxKind.CloseBraceToken)
+            {
+                RelationshipConstraintClause relationshipConstraint = ParseRelationshipConstraint();
+                builder.Add(relationshipConstraint);
+            }
+
+            ImmutableArray<RelationshipConstraintClause> relationships =
+                builder.ToImmutable();
+
+            SyntaxToken closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
+            return new RelationshipLongFormDeclarationSyntax(
+                _syntaxTree, refKeyword, identifier, openBraceToken, relationships, closeBraceToken);
+        }
+
         // Read short form relationship declaration
         SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
         RelationshipConstraintClause relationship = ParseRelationshipConstraint();
