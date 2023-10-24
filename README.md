@@ -39,15 +39,20 @@
 - [X] [Public Schema](https://dbml.dbdiagram.io/docs/#public-schema)
 - [ ] [Table Definition](https://dbml.dbdiagram.io/docs/#table-definition)
   - [ ] [Table Alias](https://dbml.dbdiagram.io/docs/#table-alias)
-    - [ ] Alias tables for reference.
   - [X] [Table Notes](https://dbml.dbdiagram.io/docs/#table-notes)
   - [X] [Table Settings](https://dbml.dbdiagram.io/docs/#table-settings)
 - [X] [Column Definition](https://dbml.dbdiagram.io/docs/#column-definition)
   - [X] [Column Settings](https://dbml.dbdiagram.io/docs/#column-settings)
   - [X] [Default Value](https://dbml.dbdiagram.io/docs/#default-value)
 - [X] [Index Definition](https://dbml.dbdiagram.io/docs/#index-definition)
+  - [X] Index with single field
+  - [ ] Index with multiple fields
+  - [ ] Index with an expression
+  - [ ] Composite index with expression
   - [X] [Index Settings](https://dbml.dbdiagram.io/docs/#index-settings)
 - [X] [Relationships & Foreign Key Definitions](https://dbml.dbdiagram.io/docs/#relationships-foreign-key-definitions)
+  - [ ] Composite foreign keys
+  - [X] Cross-schema relationship
   - [ ] [Relationship Settings](https://dbml.dbdiagram.io/docs/#relationship-settings)
   - [X] [Many-to-Many Relationship](https://dbml.dbdiagram.io/docs/#many-to-many-relationship)
 - [X] [Comments](https://dbml.dbdiagram.io/docs/#comments)
