@@ -79,6 +79,9 @@ public enum SyntaxKind
     // Enum nodes
     EnumIdentifierClause,
 
+    // Enum entry nodes
+    EnumEntrySettingListClause,
+
     // Table nodes
     TableIdentifierClause,
     TableSettingListClause,
@@ -114,6 +117,7 @@ public enum SyntaxKind
     // Statements
     BlockStatement,
     NoteDeclarationStatement,
+    EnumEntryDeclarationStatement,
     ColumnDeclarationStatement,
     IndexesDeclarationStatement,
     SingleFieldIndexDeclarationStatement,

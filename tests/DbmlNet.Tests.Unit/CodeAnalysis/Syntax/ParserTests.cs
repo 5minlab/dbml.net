@@ -164,6 +164,27 @@ public partial class ParserTests
         return columnDeclarationStatement.SettingList;
     }
 
+    private static EnumDeclarationSyntax ParseEnumDeclaration(
+           string text, string[]? diagnosticMessages = null)
+    {
+        MemberSyntax member = ParseMember(text, diagnosticMessages);
+
+        return Assert.IsAssignableFrom<EnumDeclarationSyntax>(member);
+    }
+
+    private static EnumEntryDeclarationSyntax ParseEnumEntryDeclaration(
+        string text, string[]? diagnosticMessages = null)
+    {
+        EnumDeclarationSyntax enumDeclaration = ParseEnumDeclaration(text, diagnosticMessages);
+
+        BlockStatementSyntax enumBody =
+            Assert.IsAssignableFrom<BlockStatementSyntax>(enumDeclaration.Body);
+
+        StatementSyntax statement = Assert.Single(enumBody.Statements);
+
+        return Assert.IsAssignableFrom<EnumEntryDeclarationSyntax>(statement);
+    }
+
     private static readonly string[] SqlServerDataTypes = new string[]
     {
         // Exact numerics: These are data types that store integer or decimal numbers with exact precision and scale.
