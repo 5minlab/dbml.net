@@ -2271,6 +2271,42 @@
             </summary>
             <returns>The children of the unknown column setting.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause">
+            <summary>
+            Represents a enum entry setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unknown enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownEnumEntrySettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.NameToken">
+            <summary>
+            Gets the name token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.GetChildren">
+            <summary>
+            Gets the children of the unknown enum entry setting.
+            </summary>
+            <returns>The children of the unknown enum entry setting.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause">
             <summary>
             Represents an unknown index setting clause in the syntax tree.

@@ -67,6 +67,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, message);
     }
 
+    public void ReportUnknownEnumEntrySetting(TextLocation location, string settingName)
+    {
+        string message = $"Unknown enum entry setting '{settingName}'.";
+        ReportWarning(location, message);
+    }
+
     public void ReportUnknownColumnSetting(TextLocation location, string settingName)
     {
         string message = $"Unknown column setting '{settingName}'.";

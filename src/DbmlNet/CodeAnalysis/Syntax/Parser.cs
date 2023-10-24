@@ -508,6 +508,7 @@ internal sealed class Parser
             SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken
                 => ParseNoteDeclaration(),
             _ when CanReadColumnDeclaration() => ParseColumnDeclaration(),
+            _ when CanReadEnumEntryDeclaration() => ParseEnumEntryDeclaration(),
             _ => ParseExpressionStatement(),
         };
     }
@@ -529,6 +530,29 @@ internal sealed class Parser
         }
 
         return CanReadColumnName(Current.Kind) && CanReadColumnType(Lookahead.Kind);
+    }
+
+    private bool CanReadEnumEntryDeclaration()
+    {
+        bool isAllowedEnumIdentifier = Current.Kind switch
+        {
+            SyntaxKind.IdentifierToken
+                when Peek(1).Kind == SyntaxKind.DotToken
+                  && Peek(2).Kind == SyntaxKind.IdentifierToken => true,
+            SyntaxKind.IdentifierToken
+                when Peek(1).Kind == SyntaxKind.DotToken => true,
+            SyntaxKind.IdentifierToken => true,
+            SyntaxKind.QuotationMarksStringToken => true,
+            SyntaxKind.SingleQuotationMarksStringToken => true,
+            _ => false
+        };
+
+        bool identifierIsOnSingleLine =
+            Current.TrailingTrivia.LastOrDefault()?.Kind == SyntaxKind.LineBreakTrivia;
+
+        bool canReadSettings = Current.Kind == SyntaxKind.OpenBracketToken;
+
+        return isAllowedEnumIdentifier && (identifierIsOnSingleLine || canReadSettings);
     }
 
     private BlockStatementSyntax ParseBlockStatement()
@@ -770,6 +794,81 @@ internal sealed class Parser
 
         ReportUnknownIndexSetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
         return new UnknownIndexSettingClause(_syntaxTree, identifierToken);
+    }
+
+    private StatementSyntax ParseEnumEntryDeclaration()
+    {
+        SyntaxToken identifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ when Current.Kind.IsStringToken() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
+
+        EnumEntrySettingListSyntax? settingList = ParseOptionalEnumEntrySettingList();
+        SeparatedSyntaxList<EnumEntrySettingClause> settings =
+            settingList?.Settings ?? SeparatedSyntaxList<EnumEntrySettingClause>.Empty;
+
+        return new EnumEntryDeclarationSyntax(_syntaxTree, identifier, settingList);
+    }
+
+    private EnumEntrySettingListSyntax? ParseOptionalEnumEntrySettingList()
+    {
+        return Current.Kind == SyntaxKind.OpenBracketToken
+            ? ParseEnumEntrySettingList()
+            : null;
+    }
+
+    private EnumEntrySettingListSyntax ParseEnumEntrySettingList()
+    {
+        SyntaxToken openBracketToken = MatchToken(SyntaxKind.OpenBracketToken);
+
+        SeparatedSyntaxList<EnumEntrySettingClause> settings =
+            ParseSeparatedList(
+                closeTokenKind: SyntaxKind.CloseBracketToken,
+                separatorKind: SyntaxKind.CommaToken,
+                parseExpression: ParseEnumEntrySettingClause);
+
+        SyntaxToken closeBracketToken = MatchToken(SyntaxKind.CloseBracketToken);
+
+        return new EnumEntrySettingListSyntax(_syntaxTree, openBracketToken, settings, closeBracketToken);
+    }
+
+    private EnumEntrySettingClause ParseEnumEntrySettingClause()
+    {
+        switch (Current.Kind)
+        {
+            default:
+            {
+                SyntaxToken identifierToken = Current.Kind.IsKeyword()
+                        ? NextToken()
+                        : MatchToken(SyntaxKind.IdentifierToken);
+
+                if (Current.Kind == SyntaxKind.ColonToken)
+                {
+                    SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+                    SyntaxToken valueToken = Current.Kind switch
+                    {
+                        _ when Current.Kind.IsStringToken() => NextToken(),
+                        _ => MatchToken(SyntaxKind.IdentifierToken),
+                    };
+
+                    ReportUnknownEnumEntrySetting(identifierToken.Text, identifierToken.Start, valueToken.End);
+                    return new UnknownEnumEntrySettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+                }
+
+                ReportUnknownEnumEntrySetting(identifierToken.Text, identifierToken.Start, identifierToken.End);
+                return new UnknownEnumEntrySettingClause(_syntaxTree, identifierToken);
+            }
+        }
+
+        void ReportUnknownEnumEntrySetting(string settingName, int spanStart, int spanEnd)
+        {
+            SourceText text = _syntaxTree.Text;
+            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new TextLocation(text, span);
+            Diagnostics.ReportUnknownEnumEntrySetting(location, settingName);
+        }
     }
 
     private StatementSyntax ParseColumnDeclaration()
