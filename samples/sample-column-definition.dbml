@@ -1,0 +1,64 @@
+// # Column definition
+
+// ## Column Settings
+
+// Each column can take have optional settings, defined in square brackets like:
+
+// ```dbml
+Table buildings {
+    // ...
+    address varchar(255) [unique, not null, note: 'to include unit number']
+    id integer [ pk, unique, default: 123, note: 'Number' ]
+}
+// ```
+
+// The list of column settings you can use:
+
+// - note: 'string to add notes': add a metadata note to this column
+// - primary key or pk: mark a column as primary key. For composite primary key, refer to the 'Indexes' section
+// - null or not null: mark a column null or not null
+// - unique: mark the column unique
+// - default: some_value: set a default value of the column, please refer to the 'Default Value' section below
+// - increment: mark the column as auto-increment
+// - Note: You can use a workaround for un-supported settings by adding the setting name into the column type name, such as id “bigint unsigned” [pk]
+
+// ## Default Value
+
+// You can set default value as:
+
+// - number value starts blank: default: 123 or default: 123.456
+// - string value starts with single quotes: default: 'some string value'
+// - expression value is wrapped with parenthesis: default: `now() - interval '5 days'`
+// - boolean (true/false/null): default: false or default: null
+// Example,
+
+// ```dbml
+Table users {
+    id integer [primary key]
+    username varchar(255) [not null, unique]
+    full_name varchar(255) [not null]
+    gender varchar(1) [not null]
+    source varchar(255) [default: 'direct']
+    created_at timestamp [default: `now()`]
+    rating integer [default: 10]
+}
+// ```
+
+// ## Column Notes
+
+// You can add notes to your columns, so you can easily refer to it when hovering over the column in the diagram canvas.
+
+// column_name column_type [note: 'replace text here']
+// Example,
+
+// ```dbml
+Table orders {
+    status varchar [
+    note: '''
+    💸 1 = processing
+    ✔️ 2 = shipped
+    ❌ 3 = cancelled
+    😔 4 = refunded
+    ''']
+}
+// ```
