@@ -1014,9 +1014,12 @@ internal sealed class Parser
     {
         noteKeyword = MatchToken(SyntaxKind.NoteKeyword);
         colonToken = MatchToken(SyntaxKind.ColonToken);
-        noteToken = Current.Kind == SyntaxKind.QuotationMarksStringToken
-            ? MatchToken(SyntaxKind.QuotationMarksStringToken)
-            : MatchToken(SyntaxKind.SingleQuotationMarksStringToken);
+        noteToken = Current.Kind switch
+        {
+            SyntaxKind.MultiLineStringToken => MatchToken(SyntaxKind.MultiLineStringToken),
+            SyntaxKind.QuotationMarksStringToken => MatchToken(SyntaxKind.QuotationMarksStringToken),
+            _ => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
+        };
     }
 
     private StatementSyntax ParseExpressionStatement()
