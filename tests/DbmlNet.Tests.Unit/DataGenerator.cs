@@ -51,8 +51,8 @@ internal static class DataGenerator
     /// <param name="maxLineCount">The maximum number of lines.</param>
     /// <returns>A random multi-line text.</returns>
     public static string CreateRandomMultiLineText(
-        int minLineCount = int.MinValue,
-        int maxLineCount = int.MaxValue)
+        int minLineCount = 0,
+        int maxLineCount = 10)
     {
         StringBuilder sb = new StringBuilder();
         for (int i = minLineCount; i < maxLineCount; i++)

@@ -111,8 +111,12 @@ public partial class ParserTests
         string settingNameText = DataGenerator.CreateRandomString();
         string settingText = settingNameText;
         string text = $"Project {tableNameText} " + "{ " + settingText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        MemberSyntax member = ParseMember(text);
+        MemberSyntax member = ParseMember(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);

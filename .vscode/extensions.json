@@ -16,6 +16,7 @@
         "nicolas-liger.dbml-viewer",
         "bierner.markdown-mermaid",
         "deerawan.vscode-faker",
-        "bierner.markdown-preview-github-styles"
+        "bierner.markdown-preview-github-styles",
+        "eamodio.gitlens"
     ]
 }

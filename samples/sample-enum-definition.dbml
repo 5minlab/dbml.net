@@ -1,0 +1,37 @@
+// # Enum Definition
+
+// Enum allows users to define different values of a particular column. When hovering over the column in the canvas, the enum values will be displayed.
+
+// ```dbml
+// enum belonged to default "public" schema
+// TODO: enum job_status {
+// TODO:     created [note: 'Waiting to be processed']
+// TODO:     running
+// TODO:     done
+// TODO:     failure
+// TODO: }
+
+// enum belonged to a schema
+// TODO: enum v2.job_status {
+// TODO:     ...
+// TODO: }
+
+Table jobs {
+    id integer
+    status job_status
+    // TODO: status_v2 v2.job_status
+} 
+// ```
+
+// Note: if schema_name prefix is omitted, it'll default to public schema
+
+// If your enum values contain spaces or other special characters you can use double quotes.
+
+// ```dbml
+// TODO: enum grade {
+// TODO:     "A+"
+// TODO:     "A"
+// TODO:     "A-"
+// TODO:     "Not Yet Set"
+// TODO: }
+// ```

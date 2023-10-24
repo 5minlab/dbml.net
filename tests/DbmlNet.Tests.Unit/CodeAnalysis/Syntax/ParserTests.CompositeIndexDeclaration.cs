@@ -75,9 +75,13 @@ public partial class ParserTests
         string settingName = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ") [ " + settingName + " ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingName}'.",
+        };
 
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
-            ParseCompositeIndexDeclaration(text);
+            ParseCompositeIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
@@ -178,9 +182,13 @@ public partial class ParserTests
         string settingNameText = DataGenerator.CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText}) [ " + settingNameText + " ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
 
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
-            ParseCompositeIndexDeclaration(text);
+            ParseCompositeIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);

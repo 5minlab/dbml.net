@@ -1,0 +1,27 @@
+// # Project Definition
+
+// You can give overall description of the project.
+
+// ```dbml
+Project project_name {
+  database_type: 'PostgreSQL'
+  Note: 'Description of the project'
+}
+// ```
+
+// ## Project Notes
+
+// ```dbml
+Project DBML {
+  Note: '''
+    # DBML - Database Markup Language
+    DBML (database markup language) is a simple, readable DSL language designed to define database structures.
+
+    ## Benefits
+    
+    * It is simple, flexible and highly human-readable
+    * It is database agnostic, focusing on the essential database structure definition without worrying about the detailed syntaxes of each database
+    * Comes with a free, simple database visualizer at [dbdiagram.io](http://dbdiagram.io)
+  '''
+}
+// ```

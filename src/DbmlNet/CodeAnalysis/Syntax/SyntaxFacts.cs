@@ -33,6 +33,7 @@ public static class SyntaxFacts
             "key" => SyntaxKind.KeyKeyword,
             "Project" => SyntaxKind.ProjectKeyword,
             "ref" => SyntaxKind.RefKeyword,
+            "Ref" => SyntaxKind.RefKeyword,
             "Table" => SyntaxKind.TableKeyword,
             "true" => SyntaxKind.TrueKeyword,
             "type" => SyntaxKind.TypeKeyword,

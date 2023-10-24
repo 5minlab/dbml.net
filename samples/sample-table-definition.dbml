@@ -1,0 +1,74 @@
+// # Table Definition
+
+// table belonged to default "public" schema
+Table table_name {
+    column_name column_type [column_settings]
+}
+
+// table belonged to a schema
+Table schema_name.table_name {
+    column_name column_type [column_settings]
+}
+
+// - (Optional) title of database schema is listed as schema_name. If omitted, schema_name will default to public
+// - title of database table is listed as table_name
+// - name of the column is listed as column_name
+// - type of the data in the column listed as column_type
+//   - supports all data types, as long as it is a single word (remove all spaces in the data type). Example, JSON, JSONB, decimal(1,2), etc.
+// - list is wrapped in curly brackets {}, for indexes, constraints and table definitions.
+// - settings are wrapped in square brackets []
+// - string value is be wrapped in a single quote as 'string'
+//   - column_name can be stated in just plain text, or wrapped in a double quote as "column name"
+
+// ## Table Alias
+
+// You can alias the table, and use them in the references later on.
+
+// ```dbml
+// TODO: Table very_long_user_table as U {
+// TODO:   // ...
+// TODO: }
+
+Ref: U.id < posts.user_id
+// ```
+
+// ## Table Notes
+
+// You can add notes to the table, and refer to them in the visual plane.
+
+// ```dbml
+Table users {
+    id integer
+    status varchar [note: 'status']
+
+    Note: 'Stores user data'
+}
+// ```
+
+// ## Table Settings
+
+// Settings are all defined within square brackets: [setting1: value1, setting2: value2, setting3, setting4]
+
+// Each setting item can take in 2 forms: Key: Value or keyword, similar to that of Python function parameters.
+
+// - headercolor: <color_code>: change the table header color.
+
+// Example,
+
+// ```dbml
+// TODO: Table TableWithSettings [headercolor: #3498DB] {
+// TODO:     id integer [primary key]
+// TODO:     username varchar(255) [not null, unique]
+// TODO: }
+// ```
+
+// ## Table Notes
+
+// ```dbml
+Table TableWithNote {
+  id int [pk]
+  name varchar
+
+  Note: 'Stores user data'
+}
+// ```

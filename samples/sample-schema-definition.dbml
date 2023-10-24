@@ -1,0 +1,15 @@
+// # Schema Definition
+
+// A new schema will be defined as long as it contains any table or enum.
+
+// For example, the following code will define a new schema core along with a table user placed inside it
+
+// ```dbml
+Table core.user {
+  // ...
+}
+// ```
+
+// ## Public Schema
+
+// By default, any table, relationship, or enum definition that omits schema_name will be considered to belong to the public schema.

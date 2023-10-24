@@ -1,0 +1,21 @@
+// # Strings
+
+// ## Multi-line string
+
+// Multiline string will be defined between triple single quote '''
+
+// ```dbml
+Note: '''
+  This is a block string
+  This string can spans over multiple lines.
+'''
+// ```
+
+// - Line breaks: <enter> key
+// - Line continuation: \ backslash
+// - Escaping characters:
+//   - \: using double backslash \\
+//   - ''': using \'''
+// - The number of spaces you use to indent a block string will be the minimum number of leading spaces among all lines. The parser will automatically remove the number of indentation spaces in the final output. The result of the above example will be:
+//   - This is a block string
+//   - This string can spans over multiple lines.

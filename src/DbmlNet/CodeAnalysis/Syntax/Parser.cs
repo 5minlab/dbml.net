@@ -153,6 +153,7 @@ internal sealed class Parser
         {
             SyntaxKind.ProjectKeyword => ParseProjectDeclaration(),
             SyntaxKind.TableKeyword => ParseTableDeclaration(),
+            SyntaxKind.RefKeyword => ParseRelationshipDeclaration(),
             _ => ParseGlobalStatement()
         };
     }
@@ -388,6 +389,71 @@ internal sealed class Parser
 #pragma warning restore CA1508 // Avoid dead conditional code
 
         return new UnknownTableSettingClause(_syntaxTree, identifierToken, colonToken, valueToken);
+    }
+
+    private RelationshipDeclarationSyntax ParseRelationshipDeclaration()
+    {
+        SyntaxToken refKeyword = MatchToken(SyntaxKind.RefKeyword);
+        SyntaxToken? identifier = Current.Kind switch
+        {
+            SyntaxKind.IdentifierToken => MatchToken(SyntaxKind.IdentifierToken),
+            _ => null
+        };
+
+        // Read long form relationship declaration
+        if (Current.Kind == SyntaxKind.OpenBraceToken)
+        {
+            SyntaxToken openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
+
+            ImmutableArray<RelationshipConstraintClause>.Builder builder =
+                ImmutableArray.CreateBuilder<RelationshipConstraintClause>();
+
+            while (Current.Kind is SyntaxKind.IdentifierToken and not SyntaxKind.CloseBraceToken)
+            {
+                RelationshipConstraintClause relationshipConstraint = ParseRelationshipConstraint();
+                builder.Add(relationshipConstraint);
+            }
+
+            ImmutableArray<RelationshipConstraintClause> relationships =
+                builder.ToImmutable();
+
+            SyntaxToken closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
+            return new RelationshipLongFormDeclarationSyntax(
+                _syntaxTree, refKeyword, identifier, openBraceToken, relationships, closeBraceToken);
+        }
+
+        // Read short form relationship declaration
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+        RelationshipConstraintClause relationship = ParseRelationshipConstraint();
+        return new RelationshipShortFormDeclarationSyntax(
+            _syntaxTree, refKeyword, identifier, colonToken, relationship);
+    }
+
+    private RelationshipConstraintClause ParseRelationshipConstraint(bool optionalFrom = false)
+    {
+        RelationshipConstraintClause constraintClause;
+        ColumnIdentifierClause? fromIdentifier =
+            optionalFrom
+                ? ParseOptionalColumnIdentifier()
+                : ParseColumnIdentifier();
+
+        SyntaxToken relationshipTypeToken = Current.Kind switch
+        {
+            // Read one-to-many:  ref: < schema.ToTable.Id
+            SyntaxKind.LessToken => MatchToken(SyntaxKind.LessToken),
+            // Read many-to-one:  ref: > schema.ToTable.Id
+            SyntaxKind.GraterToken => MatchToken(SyntaxKind.GraterToken),
+            // Read many-to-many: ref: <> schema.ToTable.Id
+            SyntaxKind.LessGraterToken => MatchToken(SyntaxKind.LessGraterToken),
+            // Read one-to-one:   ref: - schema.ToTable.Id
+            _ => MatchToken(SyntaxKind.MinusToken)
+        };
+
+        ColumnIdentifierClause toIdentifier = ParseColumnIdentifier();
+        constraintClause =
+            new RelationshipConstraintClause(
+                _syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
+        return constraintClause;
     }
 
     private MemberSyntax ParseGlobalStatement()
@@ -900,25 +966,7 @@ internal sealed class Parser
     {
         refKeyword = MatchToken(SyntaxKind.RefKeyword);
         colonToken = MatchToken(SyntaxKind.ColonToken);
-
-        ColumnIdentifierClause? fromIdentifier = ParseOptionalColumnIdentifier();
-
-        SyntaxToken relationshipTypeToken = Current.Kind switch
-        {
-            // Read one-to-many:  ref: < schema.ToTable.Id
-            SyntaxKind.LessToken => MatchToken(SyntaxKind.LessToken),
-            // Read many-to-one:  ref: > schema.ToTable.Id
-            SyntaxKind.GraterToken => MatchToken(SyntaxKind.GraterToken),
-            // Read many-to-many: ref: <> schema.ToTable.Id
-            SyntaxKind.LessGraterToken => MatchToken(SyntaxKind.LessGraterToken),
-            // Read one-to-one:   ref: - schema.ToTable.Id
-            _ => MatchToken(SyntaxKind.MinusToken)
-        };
-
-        ColumnIdentifierClause toIdentifier = ParseColumnIdentifier();
-        constraintClause =
-            new RelationshipConstraintClause(
-                _syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
+        constraintClause = ParseRelationshipConstraint(optionalFrom: true);
     }
 
     private ColumnIdentifierClause? ParseOptionalColumnIdentifier()
@@ -966,9 +1014,12 @@ internal sealed class Parser
     {
         noteKeyword = MatchToken(SyntaxKind.NoteKeyword);
         colonToken = MatchToken(SyntaxKind.ColonToken);
-        noteToken = Current.Kind == SyntaxKind.QuotationMarksStringToken
-            ? MatchToken(SyntaxKind.QuotationMarksStringToken)
-            : MatchToken(SyntaxKind.SingleQuotationMarksStringToken);
+        noteToken = Current.Kind switch
+        {
+            SyntaxKind.MultiLineStringToken => MatchToken(SyntaxKind.MultiLineStringToken),
+            SyntaxKind.QuotationMarksStringToken => MatchToken(SyntaxKind.QuotationMarksStringToken),
+            _ => MatchToken(SyntaxKind.SingleQuotationMarksStringToken),
+        };
     }
 
     private StatementSyntax ParseExpressionStatement()

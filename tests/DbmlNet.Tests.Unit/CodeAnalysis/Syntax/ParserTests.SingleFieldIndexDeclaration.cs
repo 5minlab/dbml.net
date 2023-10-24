@@ -267,9 +267,13 @@ public partial class ParserTests
         object? settingValue = null;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting type '{settingValueText}'. Allowed index types [btree|gin|gist|hash].",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -296,9 +300,13 @@ public partial class ParserTests
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting type '{settingValue}'. Allowed index types [btree|gin|gist|hash].",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -325,9 +333,13 @@ public partial class ParserTests
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ type: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting type '{settingValue}'. Allowed index types [btree|gin|gist|hash].",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -439,9 +451,13 @@ public partial class ParserTests
         object? settingName = null;
         string indexText = $"{indexNameText} [ {settingNameText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -468,9 +484,13 @@ public partial class ParserTests
         object? settingValue = null;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -500,9 +520,13 @@ public partial class ParserTests
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
@@ -532,9 +556,13 @@ public partial class ParserTests
         object? settingValue = randomSetting;
         string indexText = $"{indexNameText} [ {settingNameText}: {settingValueText} ]";
         string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
 
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            ParseSingleFieldIndexDeclaration(text);
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);

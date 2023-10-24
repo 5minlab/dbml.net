@@ -1,0 +1,25 @@
+// # Comments
+
+// ## Single-line Comments
+
+// You can comment in your code using //, so it is easier for you to review the code later.
+
+// Example,
+
+// ```dbml
+   // order_items refer to items from that order
+// ```
+
+// ## Multi-line Comments
+
+// You can also put comment spanning multiple lines in your code by putting inside /* and */.
+
+// Example,
+
+// ```dbml
+/*
+    This is a
+    Multi-lines
+    comment
+*/
+// ```

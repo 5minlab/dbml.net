@@ -1,0 +1,81 @@
+// # Relationships & Foreign Key Definitions
+
+// Relationships are used to define foreign key constraints between tables across schemas.
+
+// ```dbml
+Table posts {
+    id integer [primary key]
+    user_id integer [ref: > users.id] // many-to-one
+}
+
+// or this
+Table users {
+    id integer [ref: < posts.user_id, ref: < reviews.user_id] // one to many
+}
+// ```
+
+// The space after '<' is optional
+
+// There are 4 types of relationships: one-to-one, one-to-many, many-to-one and many-to-many
+
+// <: one-to-many. E.g: users.id < posts.user_id
+// >: many-to-one. E.g: posts.user_id > users.id
+// -: one-to-one. E.g: users.id - user_infos.user_id
+// <>: many-to-many. E.g: authors.id <> books.id
+
+// In DBML, there are 3 syntaxes to define relationships:
+
+// ```dbml
+//Long form
+Ref name_optional {
+  schema1.table1.column1 < schema2.table2.column2
+}
+
+//Short form:
+Ref name_optional: schema1.table1.column1 < schema2.table2.column2
+
+//Inline form:
+Table schema2.table2 {
+    id integer
+    column2 integer [ref: > schema1.table1.column1]
+}
+// ```
+
+// Note: if schema_name prefix is omitted, it'll default to public schema
+
+// ## Composite foreign keys
+
+// TODO: Ref: merchant_periods.(merchant_id, country_code) > merchants.(id, country_code)
+
+// ## Cross-schema relationship
+
+// ```dbml
+Table core.users {
+    id integer [pk]
+}
+
+Table blogging.posts {
+    id integer [pk]
+    user_id integer [ref: > core.users.id]
+}
+
+// or this
+Ref: blogging.posts.user_id > core.users.id
+// ```
+
+// ## Relationship settings
+
+// ```dbml
+// TODO: Ref: products.merchant_id > merchants.id [delete: cascade, update: no action]
+// ```
+
+// - delete / update: cascade | restrict | set null | set default | no action
+// - Define referential actions. Similar to ON DELETE/UPDATE CASCADE/... in SQL.
+// ⚠️ Relationship settings are not supported for inline form ref.
+
+// ## Many-to-many relationship
+
+// There're two ways to represent many-to-many relationship:
+//   - Using a single many-to-many relationship (<>).
+//   - Using 2 many-to-one relationships (> and <). For more information, please refer to https://www.holistics.io/blog/dbdiagram-io-many-to-many-relationship-diagram-generator-script.
+//   - Beside presentation aspect, the main difference between these two approaches is how the relationship will be mapped into physical design when exporting to SQL.
