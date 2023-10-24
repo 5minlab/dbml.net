@@ -28,7 +28,7 @@
 - [Unit Tests](#unit-tests)
 - [Integration Tests](#integration-tests)
 - [Code Coverage](#code-coverage)
-- [Additional Commands](#additional-commands)
+- [Any problem?](#any-problem)
 
 ## DbmlNet Parser Features
 
@@ -175,26 +175,9 @@ A new sample database for SQL Server 2016 and Azure SQL Database, illustrating c
    dotnet cake --task=code-coverage-reports --open-reports
    ```
 
-## Additional Commands
+## Any problem?
 
-- Push commits one by one automatically:
-
-  - Windows (PowerShell):
-
-    ```powershell
-    foreach ($rev in $(git rev-list --reverse origin/branch-name..branch-name))
-    {
-        git push origin ($rev + ":branch-name") -f
-    }
-    ```
-
-  - Linux (Shell):
-
-    ```shell
-    for rev in $(git rev-list --reverse origin/branch-name..branch-name); do
-        git push origin $rev:branch-name -f;
-    done
-    ```
+Feel free to report issues. 😃
 
 <!-- Links: -->
 [CI-link]: https://github.com/Catalin-Andronie/dbml.NET/actions/workflows/build.yml
