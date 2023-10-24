@@ -103,4 +103,26 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Fact]
+    public void Parse_RelationshipLongFormDeclaration_With_Name_Identifier()
+    {
+        SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
+        string identifierText = DataGenerator.CreateRandomString();
+        object? identifierValue = null;
+        string text = $$"""
+        Ref {{identifierText}}
+        {
+        }
+        """;
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
+        e.AssertToken(SyntaxKind.RefKeyword, "ref");
+        e.AssertToken(identifierKind, identifierText, identifierValue);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
