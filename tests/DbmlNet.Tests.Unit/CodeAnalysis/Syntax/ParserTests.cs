@@ -21,9 +21,19 @@ public partial class ParserTests
         return syntaxTree.Diagnostics;
     }
 
-    private static MemberSyntax ParseMember(string text)
+    private static MemberSyntax ParseMember(
+        string text, string[]? diagnosticMessages = null)
+    {
+        MemberSyntax member = ParseMember(text, out ImmutableArray<Diagnostic> diagnostics);
+        AssertDiagnostics(diagnosticMessages, diagnostics);
+        return member;
+    }
+
+    private static MemberSyntax ParseMember(string text, out ImmutableArray<Diagnostic> diagnostics)
     {
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
+        diagnostics = syntaxTree.Diagnostics;
+
         Assert.Equal(SyntaxKind.CompilationUnitMember, syntaxTree.Root.Kind);
         Assert.True(syntaxTree.Root.Members.Any(), "Expected at least one syntax member, currently zero.");
         MemberSyntax member = Assert.Single(syntaxTree.Root.Members);
@@ -31,9 +41,17 @@ public partial class ParserTests
         return member;
     }
 
-    private static StatementSyntax ParseStatement(string text)
+    private static StatementSyntax ParseStatement(
+        string text, string[]? diagnosticMessages = null)
     {
-        MemberSyntax member = ParseMember(text);
+        StatementSyntax statement = ParseStatement(text, out ImmutableArray<Diagnostic> diagnostics);
+        AssertDiagnostics(diagnosticMessages, diagnostics);
+        return statement;
+    }
+
+    private static StatementSyntax ParseStatement(string text, out ImmutableArray<Diagnostic> diagnostics)
+    {
+        MemberSyntax member = ParseMember(text, out diagnostics);
         Assert.Equal(SyntaxKind.GlobalStatementMember, member.Kind);
         Assert.Single(member.GetChildren());
         StatementSyntax statement =
@@ -41,17 +59,41 @@ public partial class ParserTests
         return statement;
     }
 
-    private static ExpressionSyntax ParseExpression(string text)
+    private static ExpressionSyntax ParseExpression(
+        string text, string[]? diagnosticMessages = null)
     {
-        StatementSyntax statement = ParseStatement(text);
+        ExpressionSyntax expression = ParseExpression(text, out ImmutableArray<Diagnostic> diagnostics);
+        AssertDiagnostics(diagnosticMessages, diagnostics);
+        return expression;
+    }
+
+    private static ExpressionSyntax ParseExpression(string text, out ImmutableArray<Diagnostic> diagnostics)
+    {
+        StatementSyntax statement = ParseStatement(text, out diagnostics);
         ExpressionSyntax expression =
             Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement).Expression;
         return expression;
     }
 
-    private static BacktickExpressionSyntax ParseBacktickExpression(string text)
+    private static void AssertDiagnostics(string[]? expectedMessages, ImmutableArray<Diagnostic> diagnostics)
     {
-        StatementSyntax statement = ParseStatement(text);
+        Assert.True(
+            (expectedMessages?.Length ?? 0) == diagnostics.Length,
+            $"Expected {expectedMessages?.Length ?? 0} diagnostics, but got {diagnostics.Length}: \'{string.Join('\n', diagnostics.Select(d => $"\'{d}\'"))}\'.");
+
+        for (int i = 0; i < diagnostics.Length; i++)
+        {
+            Diagnostic diagnostic = diagnostics[i];
+            Assert.NotNull(expectedMessages);
+            string diagnosticMessage = expectedMessages[i];
+            Assert.Equal(diagnosticMessage, diagnostic.Message);
+        }
+    }
+
+    private static BacktickExpressionSyntax ParseBacktickExpression(
+        string text, string[]? diagnosticMessages = null)
+    {
+        StatementSyntax statement = ParseStatement(text, diagnosticMessages);
 
         ExpressionStatementSyntax expressionStatementSyntax =
             Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement);
@@ -63,30 +105,37 @@ public partial class ParserTests
         return backtickExpressionSyntax;
     }
 
-    private static TableDeclarationSyntax ParseTableDeclaration(string text)
+    private static TableDeclarationSyntax ParseTableDeclaration(
+        string text, string[]? diagnosticMessages = null)
     {
-        MemberSyntax member = ParseMember(text);
+        MemberSyntax member = ParseMember(text, diagnosticMessages);
+
         TableDeclarationSyntax tableDeclaration =
             Assert.IsAssignableFrom<TableDeclarationSyntax>(member);
+
         return tableDeclaration;
     }
 
-    private static ColumnDeclarationSyntax ParseColumnDeclaration(string text)
+    private static ColumnDeclarationSyntax ParseColumnDeclaration(
+        string text, string[]? diagnosticMessages = null)
     {
-        TableDeclarationSyntax tableDeclaration = ParseTableDeclaration(text);
+        TableDeclarationSyntax tableDeclaration = ParseTableDeclaration(text, diagnosticMessages);
+
         BlockStatementSyntax tableBody =
             Assert.IsAssignableFrom<BlockStatementSyntax>(tableDeclaration.Body);
 
         StatementSyntax statement = Assert.Single(tableBody.Statements);
+
         ColumnDeclarationSyntax columnDeclarationStatement =
             Assert.IsAssignableFrom<ColumnDeclarationSyntax>(statement);
 
         return columnDeclarationStatement;
     }
 
-    private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(string text)
+    private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(
+        string text, string[]? diagnosticMessages = null)
     {
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseStatement(text, diagnosticMessages);
 
         IndexesDeclarationSyntax indexesDeclarationSyntax =
             Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
@@ -98,9 +147,10 @@ public partial class ParserTests
         return singleFieldIndexDeclarationSyntax;
     }
 
-    private static CompositeIndexDeclarationSyntax ParseCompositeIndexDeclaration(string text)
+    private static CompositeIndexDeclarationSyntax ParseCompositeIndexDeclaration(
+        string text, string[]? diagnosticMessages = null)
     {
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseStatement(text, diagnosticMessages);
 
         IndexesDeclarationSyntax indexesDeclarationSyntax =
             Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
@@ -112,17 +162,21 @@ public partial class ParserTests
         return compositeIndexDeclarationSyntax;
     }
 
-    private static ProjectSettingListSyntax ParseProjectSettingListClause(string text)
+    private static ProjectSettingListSyntax ParseProjectSettingListClause(
+        string text, string[]? diagnosticMessages = null)
     {
-        MemberSyntax member = ParseMember(text);
+        MemberSyntax member = ParseMember(text, diagnosticMessages);
+
         ProjectDeclarationSyntax projectDeclarationMember =
             Assert.IsAssignableFrom<ProjectDeclarationSyntax>(member);
+
         return projectDeclarationMember.Settings;
     }
 
-    private static ColumnSettingListSyntax ParseColumnSettingListClause(string text)
+    private static ColumnSettingListSyntax ParseColumnSettingListClause(
+        string text, string[]? diagnosticMessages = null)
     {
-        StatementSyntax statement = ParseStatement(text);
+        StatementSyntax statement = ParseStatement(text, diagnosticMessages);
         ColumnDeclarationSyntax columnDeclarationStatement =
             Assert.IsAssignableFrom<ColumnDeclarationSyntax>(statement);
         Assert.NotNull(columnDeclarationStatement.SettingList);

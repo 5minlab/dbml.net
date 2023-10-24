@@ -182,8 +182,13 @@ public partial class ParserTests
         string settingNameText = randomText;
         object? settingValue = null;
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingNameText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
@@ -195,9 +200,12 @@ public partial class ParserTests
     {
         foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
         {
-            bool skip =
-                itemKind == SyntaxKind.NoteKeyword
-                || itemKind == SyntaxKind.DatabaseTypeKeyword;
+            bool skip = itemKind switch
+            {
+                SyntaxKind.NoteKeyword => true,
+                SyntaxKind.DatabaseTypeKeyword => true,
+                _ => false
+            };
 
             if (!skip)
             {
@@ -218,8 +226,13 @@ public partial class ParserTests
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
@@ -242,8 +255,13 @@ public partial class ParserTests
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
@@ -265,8 +283,13 @@ public partial class ParserTests
         object? settingNameValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
@@ -289,8 +312,13 @@ public partial class ParserTests
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
@@ -313,8 +341,13 @@ public partial class ParserTests
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown project setting '{settingNameText}'.",
+        };
 
-        ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
+        ProjectSettingListSyntax columnSettingListClause =
+            ParseProjectSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);

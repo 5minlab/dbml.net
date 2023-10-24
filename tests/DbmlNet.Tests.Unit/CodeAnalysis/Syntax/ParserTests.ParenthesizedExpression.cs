@@ -13,8 +13,12 @@ public partial class ParserTests
         string expectedText = string.Empty;
         string text = "()";
         object? expectedValue = null;
+        string[] diagnosticMessages = new[]
+        {
+            "Unexpected token <CloseParenthesisToken>, expected <IdentifierToken>.",
+        };
 
-        ExpressionSyntax expression = ParseExpression(text);
+        ExpressionSyntax expression = ParseExpression(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(expression);
         e.AssertNode(SyntaxKind.ParenthesizedExpression);

@@ -150,8 +150,13 @@ public partial class ParserTests
         string settingText = randomText;
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            "Disallowed 'default' column setting value expression 'NameExpression'.",
+        };
 
-        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
@@ -347,8 +352,13 @@ public partial class ParserTests
         string settingNameText = randomText;
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown column setting '{settingNameText}'.",
+        };
 
-        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
@@ -371,8 +381,13 @@ public partial class ParserTests
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown column setting '{settingNameText}'.",
+        };
 
-        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
@@ -397,8 +412,13 @@ public partial class ParserTests
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown column setting '{settingNameText}'.",
+        };
 
-        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
@@ -423,8 +443,13 @@ public partial class ParserTests
         object? settingValue = randomSettingValue;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown column setting '{settingNameText}'.",
+        };
 
-        ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
 
         using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
