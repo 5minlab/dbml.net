@@ -125,4 +125,23 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Fact]
+    public void Parse_RelationshipLongFormDeclaration_Without_Relationships()
+    {
+        const string text = """
+        Ref
+        {
+            // no relationships
+        }
+        """;
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
+        e.AssertToken(SyntaxKind.RefKeyword, "ref");
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
