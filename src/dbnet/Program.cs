@@ -104,12 +104,11 @@ foreach (string filePath in files)
 {
     writer.WriteInfoMessage($"Start parsing file '{filePath}'.");
 
-    string inputText = File.ReadAllText(filePath);
-    SyntaxTree syntaxTree = SyntaxTree.Parse(inputText);
+    SyntaxTree syntaxTree = SyntaxTree.Load(filePath);
 
     if (printSyntax)
     {
-        PrintSyntax(writer, filePath, syntaxTree);
+        PrintSyntax(writer, syntaxTree);
     }
 
     errorDiagnostics += syntaxTree.Diagnostics.Count(s => s.IsError);
@@ -198,9 +197,9 @@ void PrintHelp()
     writer.Write(helpMessage);
 }
 
-static void PrintSyntax(TextWriter writer, string filePath, SyntaxTree syntaxTree)
+static void PrintSyntax(TextWriter writer, SyntaxTree syntaxTree)
 {
-    string dbmlFileName = Path.GetFileName(filePath);
+    string dbmlFileName = syntaxTree.Text.FileName;
     writer.WriteLine();
     writer.WriteLine($"'{dbmlFileName}' syntax tree:");
     syntaxTree.Root.WriteTo(writer);
