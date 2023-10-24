@@ -83,4 +83,31 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_EnumDeclaration_With_Name_And_Schema_Keyword(
+        SyntaxKind keywordKind,
+        string keywordText,
+        object? keywordValue)
+    {
+        string text = $$"""
+        enum {{keywordText}}.{{keywordText}} {
+            // no values
+        }
+        """;
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(member);
+        e.AssertNode(SyntaxKind.EnumDeclarationMember);
+        e.AssertToken(SyntaxKind.EnumKeyword, "enum");
+        e.AssertNode(SyntaxKind.EnumIdentifierClause);
+        e.AssertToken(keywordKind, keywordText, keywordValue);
+        e.AssertToken(SyntaxKind.DotToken, ".");
+        e.AssertToken(keywordKind, keywordText, keywordValue);
+        e.AssertNode(SyntaxKind.BlockStatement);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }
