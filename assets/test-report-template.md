@@ -80,20 +80,14 @@
 </tr>
 </thead>
 <tbody>
-{%- for result in groups.Passed -%}
+
 <tr>
 <td>
-<details>
-<summary>
-✔️ {{ result.test_case.display_name }}
-</summary>
-Source:
-<blockquote>{{- result.test_case.fully_qualified_name -}}</blockquote>
-</details>
+⚠️ Skipped for performance reasons!
 </td>
-<td>{{ result.duration | format_duration }}</td>
+<td>{{ set.duration | format_duration }}</td>
 </tr>
-{%- endfor -%}
+
 </tbody>
 </table>
 </details>
