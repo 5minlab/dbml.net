@@ -56,7 +56,7 @@ public class SyntaxTokenTests
     {
         SyntaxKind expectedKind = DataGenerator.GetRandomSyntaxKind();
         int expectedStart = DataGenerator.GetRandomNumber();
-        string? expectedText = null;
+        const string? expectedText = null;
 
         SyntaxToken token =
             new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);

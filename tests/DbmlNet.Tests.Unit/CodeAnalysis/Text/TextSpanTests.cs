@@ -23,13 +23,13 @@ public sealed class TextSpanTests
     [Fact]
     public void TextSpan_FromBounds_Create_TextSpan_With_Start_And_Length()
     {
-        int start = 0;
+        const int start = 0;
         int length = DataGenerator.GetRandomNumber();
 
         TextSpan span = TextSpan.FromBounds(start, length);
 
-        Assert.True(start == span.Start, $"Expect span.Start == start, but got {span.Start} == {start}");
-        Assert.True(length == span.Length, $"Expect span.Length == length, but got {span.Length} == {length}");
+        Assert.True(span.Start == start, $"Expect span.Start == start, but got {span.Start} == {start}");
+        Assert.True(span.Length == length, $"Expect span.Length == length, but got {span.Length} == {length}");
         Assert.True(span.End == start + length, $"Expect span.End == start + length, but got {span.End} == {start} + {length}");
         Assert.Equal($"{start}..{start + length}", span.ToString());
     }

@@ -9,7 +9,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_BlockStatement_With_Empty_Block()
     {
-        string expectedText = "{}";
+        const string expectedText = "{}";
 
         StatementSyntax statement = ParseStatement(expectedText);
 

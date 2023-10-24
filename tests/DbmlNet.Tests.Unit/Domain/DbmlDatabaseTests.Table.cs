@@ -100,7 +100,7 @@ public sealed partial class DbmlDatabaseTests
     [Fact]
     public void Create_Returns_Table_With_Note()
     {
-        string text = """
+        const string text = """
         Table Users
         {
             note: 'This is a note.'

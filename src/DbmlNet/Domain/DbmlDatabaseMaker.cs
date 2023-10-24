@@ -231,24 +231,21 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case SyntaxKind.TypeIndexSettingClause:
                     {
                         TypeIndexSettingClause typeSetting = (TypeIndexSettingClause)setting;
-                        string typeValue = $"{typeSetting.ValueToken.Value ?? typeSetting.ValueToken.Text}";
-                        _currentTableIndex.Type = typeValue;
+                        _currentTableIndex.Type = $"{typeSetting.ValueToken.Value ?? typeSetting.ValueToken.Text}";
                         break;
                     }
 
                     case SyntaxKind.NameIndexSettingClause:
                     {
                         NameIndexSettingClause nameSetting = (NameIndexSettingClause)setting;
-                        string nameValue = $"{nameSetting.ValueToken.Value}";
-                        _currentTableIndex.Name = nameValue;
+                        _currentTableIndex.Name = $"{nameSetting.ValueToken.Value}";
                         break;
                     }
 
                     case SyntaxKind.NoteIndexSettingClause:
                     {
                         NoteIndexSettingClause noteSetting = (NoteIndexSettingClause)setting;
-                        string noteValue = $"{noteSetting.ValueToken.Value}";
-                        _currentTableIndex.Note = noteValue;
+                        _currentTableIndex.Note = $"{noteSetting.ValueToken.Value}";
                         break;
                     }
 

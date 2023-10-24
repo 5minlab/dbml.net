@@ -9,8 +9,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_LiteralExpression_With_Bool_True()
     {
-        SyntaxKind expectedKind = SyntaxKind.TrueKeyword;
-        string expectedText = "true";
+        const SyntaxKind expectedKind = SyntaxKind.TrueKeyword;
+        const string expectedText = "true";
         object? expectedValue = true;
 
         ExpressionSyntax expression = ParseExpression(expectedText);
@@ -26,8 +26,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_LiteralExpression_With_Bool_False()
     {
-        SyntaxKind expectedKind = SyntaxKind.FalseKeyword;
-        string expectedText = "false";
+        const SyntaxKind expectedKind = SyntaxKind.FalseKeyword;
+        const string expectedText = "false";
         object? expectedValue = false;
 
         ExpressionSyntax expression = ParseExpression(expectedText);
@@ -43,7 +43,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_LiteralExpression_With_Number()
     {
-        SyntaxKind expectedKind = SyntaxKind.NumberToken;
+        const SyntaxKind expectedKind = SyntaxKind.NumberToken;
         decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string expectedText = $"{randomNumber}";
         object? expectedValue = randomNumber;
@@ -61,7 +61,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_LiteralExpression_With_QuotationMarksString()
     {
-        SyntaxKind expectedKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind expectedKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string expectedText = $"\"{randomText}\"";
         object? expectedValue = randomText;
@@ -79,7 +79,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_LiteralExpression_With_SingleQuotationMarksString()
     {
-        SyntaxKind expectedKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind expectedKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string expectedText = $"\'{randomText}\'";
         object? expectedValue = randomText;

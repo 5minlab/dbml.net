@@ -103,7 +103,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_NoteColumnSettingClause_With_QuotationMarksString_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\"{randomText}\"";
         object? settingValue = randomText;
@@ -124,7 +124,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_NoteColumnSettingClause_With_SingleQuotationMarksString_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\'{randomText}\'";
         object? settingValue = randomText;
@@ -145,9 +145,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_Identifier_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string settingText = randomText;
+        const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        string settingText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
         string[] diagnosticMessages = new[]
@@ -172,7 +171,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_Number_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.NumberToken;
+        const SyntaxKind settingKind = SyntaxKind.NumberToken;
         decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string settingText = $"{randomNumber}";
         object? settingValue = randomNumber;
@@ -194,7 +193,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_DecimalPointNumber_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.NumberToken;
+        const SyntaxKind settingKind = SyntaxKind.NumberToken;
         string settingText = $"{DataGenerator.GetRandomNumber(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}";
         object? settingValue = decimal.Parse(settingText, CultureInfo.InvariantCulture);
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
@@ -215,7 +214,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_Bool_False_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.FalseKeyword;
+        const SyntaxKind settingKind = SyntaxKind.FalseKeyword;
         string settingText = $"false";
         object? settingValue = false;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
@@ -236,7 +235,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_Bool_True_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.TrueKeyword;
+        const SyntaxKind settingKind = SyntaxKind.TrueKeyword;
         string settingText = $"true";
         object? settingValue = true;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
@@ -257,7 +256,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_Null_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.NullKeyword;
+        const SyntaxKind settingKind = SyntaxKind.NullKeyword;
         string settingText = $"null";
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
@@ -278,7 +277,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_QuotationMarksString_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\"{randomText}\"";
         object? settingValue = randomText;
@@ -300,7 +299,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_SingleQuotationMarksString_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string settingText = $"\'{randomText}\'";
         object? settingValue = randomText;
@@ -322,7 +321,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DefaultColumnSettingClause_With_NameExpression_Value()
     {
-        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
         string identifierExpressionText = $"{DataGenerator.CreateRandomString()}";
         string settingText = $"{identifierExpressionText}";
         object? settingValue = null;
@@ -347,9 +346,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownColumnSettingClause_With_Simple_Setting()
     {
-        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string settingNameText = randomText;
+        const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
         string[] diagnosticMessages = new[]
@@ -371,13 +369,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_Identifier_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string randomSettingValue = DataGenerator.CreateRandomString();
-        string settingValueText = randomSettingValue;
+        const SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingText} ]";
@@ -402,11 +398,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_QuotationMarksString_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\"{randomSettingValue}\"";
         object? settingValue = randomSettingValue;
@@ -433,11 +428,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownColumnSettingClause_With_Composed_Setting_SingleQuotationMarksString_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\'{randomSettingValue}\'";
         object? settingValue = randomSettingValue;

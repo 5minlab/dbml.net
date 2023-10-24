@@ -9,9 +9,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Name_Identifier()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         string text = $"Table {tableNameText} " + "{ }";
 
@@ -51,13 +50,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Name_And_Schema_Identifier()
     {
-        SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
-        string randomSchemaName = DataGenerator.CreateRandomString();
-        string schemaNameText = randomSchemaName;
+        const SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
+        string schemaNameText = DataGenerator.CreateRandomString();
         object? schemaNameValue = null;
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomTableName = DataGenerator.CreateRandomString();
-        string tableNameText = randomTableName;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         string text = $"Table {schemaNameText}.{tableNameText} " + "{ }";
 
@@ -101,17 +98,14 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Name_And_Schema_And_Database_Identifier()
     {
-        SyntaxKind databaseNameKind = SyntaxKind.IdentifierToken;
-        string randomDatabaseName = DataGenerator.CreateRandomString();
-        string databaseNameText = randomDatabaseName;
+        const SyntaxKind databaseNameKind = SyntaxKind.IdentifierToken;
+        string databaseNameText = DataGenerator.CreateRandomString();
         object? databaseNameValue = null;
-        SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
-        string randomSchemaName = DataGenerator.CreateRandomString();
-        string schemaNameText = randomSchemaName;
+        const SyntaxKind schemaNameKind = SyntaxKind.IdentifierToken;
+        string schemaNameText = DataGenerator.CreateRandomString();
         object? schemaNameValue = null;
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomTableName = DataGenerator.CreateRandomString();
-        string tableNameText = randomTableName;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         string text = $"Table {databaseNameText}.{schemaNameText}.{tableNameText} " + "{ }";
 
@@ -159,9 +153,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Empty_Body()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         string text = $"Table {tableNameText} " + "{ }";
 
@@ -180,11 +173,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Note_QuotationMarksString()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind noteValueKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind noteValueKind = SyntaxKind.QuotationMarksStringToken;
         string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\"{randomNoteText}\"";
         object? noteValue = randomNoteText;
@@ -209,11 +201,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_TableDeclaration_With_Note_SingleQuotationMarksString()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind noteValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind noteValueKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomNoteText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\'{randomNoteText}\'";
         object? noteValue = randomNoteText;

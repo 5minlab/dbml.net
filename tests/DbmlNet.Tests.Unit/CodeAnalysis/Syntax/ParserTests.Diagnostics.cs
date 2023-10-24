@@ -53,8 +53,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Unknown_ProjectSetting()
     {
-        string randomText = DataGenerator.CreateRandomString();
-        string settingNameText = randomText;
+        string settingNameText = DataGenerator.CreateRandomString();
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingNameText + "}";
 
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
@@ -70,8 +69,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_Warning_Unknown_ColumnSetting()
     {
-        string randomText = DataGenerator.CreateRandomString();
-        string settingNameText = randomText;
+        string settingNameText = DataGenerator.CreateRandomString();
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
 
         ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);

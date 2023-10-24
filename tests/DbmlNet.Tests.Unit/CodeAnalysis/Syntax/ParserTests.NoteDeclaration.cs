@@ -11,7 +11,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteDeclaration_With_QuotationMarksString(string noteKeywordText)
     {
-        SyntaxKind noteKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind noteKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteText = $"\"{randomText}\"";
         string text = $"{noteKeywordText}: {noteText}";
@@ -31,7 +31,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteDeclaration_With_SingleQuotationMarksString(string noteKeywordText)
     {
-        SyntaxKind noteKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind noteKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteText = $"\'{randomText}\'";
         object noteValue = randomText;
@@ -51,7 +51,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteDeclaration_With_MultiLineString(string noteKeywordText)
     {
-        SyntaxKind noteKind = SyntaxKind.MultiLineStringToken;
+        const SyntaxKind noteKind = SyntaxKind.MultiLineStringToken;
         string randomText = DataGenerator.CreateRandomMultiLineText();
         string noteText = $"'''{randomText}'''";
         object noteValue = randomText.TrimEnd();
@@ -71,8 +71,8 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteDeclaration_With_MultiLineString_Sample(string noteKeywordText)
     {
-        SyntaxKind noteKind = SyntaxKind.MultiLineStringToken;
-        string noteText = """
+        const SyntaxKind noteKind = SyntaxKind.MultiLineStringToken;
+        const string noteText = """
         '''
         💸 1 = processing
         ✔️ 2 = shipped

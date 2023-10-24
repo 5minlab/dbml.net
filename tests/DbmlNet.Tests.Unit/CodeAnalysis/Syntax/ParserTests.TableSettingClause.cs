@@ -9,13 +9,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownTableSettingClause_With_Identifier_Name()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
         string settingText = $"{settingNameText}";
         string text = $"Table {tableNameText} [ {settingText} ]" + "{ }";
@@ -40,9 +38,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownTableSettingClause_With_Keyword_Name()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
         GetRandomKeyword(
             out SyntaxKind settingNameKind,
@@ -71,15 +68,13 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_Identifier_Value()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
         string randomSettingValue = DataGenerator.CreateRandomString();
         string settingValueText = $"{randomSettingValue}";
         object? settingValue = null;
@@ -108,15 +103,13 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_QuotationMarksString_Value()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomString();
         string settingValueText = $"\"{randomSettingValue}\"";
         object? settingValue = randomSettingValue;
@@ -145,15 +138,13 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownTableSettingClause_With_Identifier_Name_And_SingleQuotationMarksString_Value()
     {
-        SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string tableNameText = randomText;
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomString();
         string settingValueText = $"\'{randomSettingValue}\'";
         object? settingValue = randomSettingValue;

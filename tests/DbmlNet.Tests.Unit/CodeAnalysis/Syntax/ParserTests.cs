@@ -54,9 +54,7 @@ public partial class ParserTests
         MemberSyntax member = ParseMember(text, out diagnostics);
         Assert.Equal(SyntaxKind.GlobalStatementMember, member.Kind);
         Assert.Single(member.GetChildren());
-        StatementSyntax statement =
-            Assert.IsAssignableFrom<GlobalStatementSyntax>(member).Statement;
-        return statement;
+        return Assert.IsAssignableFrom<GlobalStatementSyntax>(member).Statement;
     }
 
     private static ExpressionSyntax ParseExpression(
@@ -70,9 +68,7 @@ public partial class ParserTests
     private static ExpressionSyntax ParseExpression(string text, out ImmutableArray<Diagnostic> diagnostics)
     {
         StatementSyntax statement = ParseStatement(text, out diagnostics);
-        ExpressionSyntax expression =
-            Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement).Expression;
-        return expression;
+        return Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement).Expression;
     }
 
     private static void AssertDiagnostics(string[]? expectedMessages, ImmutableArray<Diagnostic> diagnostics)
@@ -98,11 +94,8 @@ public partial class ParserTests
         ExpressionStatementSyntax expressionStatementSyntax =
             Assert.IsAssignableFrom<ExpressionStatementSyntax>(statement);
 
-        BacktickExpressionSyntax backtickExpressionSyntax =
-            Assert.IsAssignableFrom<BacktickExpressionSyntax>(
+        return Assert.IsAssignableFrom<BacktickExpressionSyntax>(
                 expressionStatementSyntax.Expression);
-
-        return backtickExpressionSyntax;
     }
 
     private static TableDeclarationSyntax ParseTableDeclaration(
@@ -110,10 +103,7 @@ public partial class ParserTests
     {
         MemberSyntax member = ParseMember(text, diagnosticMessages);
 
-        TableDeclarationSyntax tableDeclaration =
-            Assert.IsAssignableFrom<TableDeclarationSyntax>(member);
-
-        return tableDeclaration;
+        return Assert.IsAssignableFrom<TableDeclarationSyntax>(member);
     }
 
     private static ColumnDeclarationSyntax ParseColumnDeclaration(
@@ -126,10 +116,7 @@ public partial class ParserTests
 
         StatementSyntax statement = Assert.Single(tableBody.Statements);
 
-        ColumnDeclarationSyntax columnDeclarationStatement =
-            Assert.IsAssignableFrom<ColumnDeclarationSyntax>(statement);
-
-        return columnDeclarationStatement;
+        return Assert.IsAssignableFrom<ColumnDeclarationSyntax>(statement);
     }
 
     private static SingleFieldIndexDeclarationSyntax ParseSingleFieldIndexDeclaration(
@@ -140,11 +127,8 @@ public partial class ParserTests
         IndexesDeclarationSyntax indexesDeclarationSyntax =
             Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
 
-        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
-            Assert.IsAssignableFrom<SingleFieldIndexDeclarationSyntax>(
+        return Assert.IsAssignableFrom<SingleFieldIndexDeclarationSyntax>(
                 Assert.Single(indexesDeclarationSyntax.Indexes));
-
-        return singleFieldIndexDeclarationSyntax;
     }
 
     private static CompositeIndexDeclarationSyntax ParseCompositeIndexDeclaration(
@@ -155,11 +139,8 @@ public partial class ParserTests
         IndexesDeclarationSyntax indexesDeclarationSyntax =
             Assert.IsAssignableFrom<IndexesDeclarationSyntax>(statement);
 
-        CompositeIndexDeclarationSyntax compositeIndexDeclarationSyntax =
-            Assert.IsAssignableFrom<CompositeIndexDeclarationSyntax>(
+        return Assert.IsAssignableFrom<CompositeIndexDeclarationSyntax>(
                 Assert.Single(indexesDeclarationSyntax.Indexes));
-
-        return compositeIndexDeclarationSyntax;
     }
 
     private static ProjectSettingListSyntax ParseProjectSettingListClause(

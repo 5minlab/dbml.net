@@ -13,9 +13,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_Name_Identifier()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -40,7 +40,7 @@ public partial class ParserTests
         string columnNameText,
         object? columnNameValue)
     {
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -61,11 +61,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_Name_QuotationMarksString()
     {
-        SyntaxKind columnNameKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind columnNameKind = SyntaxKind.QuotationMarksStringToken;
         string randomColumnName = DataGenerator.CreateRandomMultiWordString();
         string columnNameText = $"\"{randomColumnName}\"";
         object? columnNameValue = randomColumnName;
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -86,11 +86,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_Name_SingleQuotationMarksString()
     {
-        SyntaxKind columnNameKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind columnNameKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomColumName = DataGenerator.CreateRandomMultiWordString();
         string columnNameText = $"\'{randomColumName}\'";
         object? columnNameValue = randomColumName;
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -111,9 +111,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_ColumnType_Identifier()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -138,7 +138,7 @@ public partial class ParserTests
         string columnTypeText,
         object? columnTypeValue)
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -159,9 +159,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_ColumnType_QuotationMarksString()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\"{randomText}\"";
         object columnTypeValue = randomText;
@@ -184,9 +184,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_ColumnType_SingleQuotationMarksString()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string columnTypeText = $"\'{randomText}\'";
         object? columnTypeValue = randomText;
@@ -213,7 +213,7 @@ public partial class ParserTests
         string columnTypeText,
         object? columnTypeValue)
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -253,7 +253,7 @@ public partial class ParserTests
         string variableLengthIdentifierText,
         object? variableLengthIdentifierValue)
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -284,7 +284,7 @@ public partial class ParserTests
 
             int indefOfOpenParenthesis = text.IndexOf('(', StringComparison.Ordinal);
             int indefOfCloseParenthesis = text.IndexOf(')', StringComparison.Ordinal);
-            SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
+            const SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
             string columnTypeIdentifierText = text[..indefOfOpenParenthesis];
             object? columnTypeIdentifierValue = null;
 
@@ -308,9 +308,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_No_Settings()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}
@@ -331,9 +331,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ColumnDeclaration_With_Empty_Settings()
     {
-        SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnNameKind = SyntaxKind.IdentifierToken;
         string columnNameText = DataGenerator.CreateRandomString();
-        SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind columnTypeKind = SyntaxKind.IdentifierToken;
         string columnTypeText = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{DataGenerator.CreateRandomString()}}

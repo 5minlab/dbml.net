@@ -41,7 +41,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_BacktickExpression_With_NameExpression()
     {
-        SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
         string randomIdentifierName = DataGenerator.CreateRandomString();
         string identifierText = $"{randomIdentifierName}";
         object? identifierValue = null;
@@ -57,7 +57,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_BacktickExpression_With_CallExpression()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string randomFunctionName = DataGenerator.CreateRandomString();
         string functionNameText = $"{randomFunctionName}";
         object? functionNameValue = null;

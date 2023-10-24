@@ -12,7 +12,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
         string functionCallText = $"{functionNameText}()";
         string text = $"{functionCallText}";
@@ -29,9 +29,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Single_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind argKind = SyntaxKind.IdentifierToken;
         string argRandomValue = DataGenerator.CreateRandomString();
         string argText = $"{argRandomValue}";
         object? argValue = null;
@@ -51,13 +51,13 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Multiple_Arguments()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
         List<(SyntaxKind Kind, string Text, object? Value)> arguments = new();
         int randomNumberOfArguments = DataGenerator.GetRandomNumber(min: 0, max: 10);
         for (int i = 0; i < randomNumberOfArguments; i++)
         {
-            SyntaxKind argKind = SyntaxKind.IdentifierToken;
+            const SyntaxKind argKind = SyntaxKind.IdentifierToken;
             string argRandomValue = DataGenerator.CreateRandomString();
             string argText = $"{argRandomValue}";
             object? argValue = null;
@@ -85,9 +85,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Identifier_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind argKind = SyntaxKind.IdentifierToken;
         string argRandomValue = DataGenerator.CreateRandomString();
         string argText = $"{argRandomValue}";
         object? argValue = null;
@@ -107,10 +107,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Boolean_False_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.FalseKeyword;
-        string argText = "false";
+        const SyntaxKind argKind = SyntaxKind.FalseKeyword;
+        const string argText = "false";
         object? argValue = false;
         string text = $"{functionNameText} ( {argText} ) ";
 
@@ -128,10 +128,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Boolean_True_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.TrueKeyword;
-        string argText = "true";
+        const SyntaxKind argKind = SyntaxKind.TrueKeyword;
+        const string argText = "true";
         object? argValue = true;
         string text = $"{functionNameText} ( {argText} ) ";
 
@@ -149,9 +149,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_Number_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.NumberToken;
+        const SyntaxKind argKind = SyntaxKind.NumberToken;
         decimal argRandomNumber = DataGenerator.GetRandomNumber(min: 0, max: 10);
         string argText = $"{argRandomNumber}";
         object? argValue = argRandomNumber;
@@ -171,9 +171,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_QuotationMarksString_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind argKind = SyntaxKind.QuotationMarksStringToken;
         string argRandomValue = DataGenerator.CreateRandomMultiWordString();
         string argText = $"\"{argRandomValue}\"";
         object? argValue = argRandomValue;
@@ -193,9 +193,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CallExpression_With_SingleQuotationMarksString_Argument()
     {
-        SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind functionNameKind = SyntaxKind.IdentifierToken;
         string functionNameText = DataGenerator.CreateRandomString();
-        SyntaxKind argKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind argKind = SyntaxKind.SingleQuotationMarksStringToken;
         string argRandomValue = DataGenerator.CreateRandomMultiWordString();
         string argText = $"\'{argRandomValue}\'";
         object? argValue = argRandomValue;

@@ -9,7 +9,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_IndexesDeclaration_With_Empty_Body()
     {
-        string text = "indexes { }";
+        const string text = "indexes { }";
 
         StatementSyntax statement = ParseStatement(text);
 
@@ -23,9 +23,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_IndexesDeclaration_With_SingleFieldIndexDeclaration()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string indexNameText = randomText;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string indexNameText = DataGenerator.CreateRandomString();
         object? indexNameValue = null;
         string indexText = $"{indexNameText}";
         string text = "indexes { " + indexText + " }";
@@ -44,7 +43,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_IndexesDeclaration_With_CompositeIndexDeclaration()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ")";
         string text = "indexes { " + indexText + " }";

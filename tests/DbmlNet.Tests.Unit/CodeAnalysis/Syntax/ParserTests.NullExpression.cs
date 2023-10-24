@@ -9,8 +9,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_NullExpression()
     {
-        SyntaxKind expectedKind = SyntaxKind.NullKeyword;
-        string expectedText = "null";
+        const SyntaxKind expectedKind = SyntaxKind.NullKeyword;
+        const string expectedText = "null";
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 

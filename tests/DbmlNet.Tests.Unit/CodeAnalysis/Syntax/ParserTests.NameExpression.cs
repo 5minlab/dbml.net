@@ -9,7 +9,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_NameExpression_With_Identifier()
     {
-        SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
         string expectedText = DataGenerator.CreateRandomString();
         object? expectedValue = null;
 

@@ -9,7 +9,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_One_Index_Identifier_Name()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ")";
         string text = "indexes { " + indexText + " }";
@@ -28,7 +28,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_One_Index_No_Settings()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ")";
         string text = "indexes { " + indexText + " }";
@@ -47,7 +47,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_One_Index_Empty_Settings()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ") [ ]";
         string text = "indexes { " + indexText + " }";
@@ -69,9 +69,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_One_Index_Unknown_Setting()
     {
-        SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
         string settingName = DataGenerator.CreateRandomString();
         string indexText = "(" + indexNameText + ") [ " + settingName + " ]";
         string text = "indexes { " + indexText + " }";
@@ -99,9 +99,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Identifier_Name()
     {
-        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
         string secondIndexNameText = DataGenerator.CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText})";
         string text = "indexes { " + indexText + " }";
@@ -123,9 +123,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_Two_Indexes_No_Settings()
     {
-        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
         string secondIndexNameText = DataGenerator.CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText})";
         string text = "indexes { " + indexText + " }";
@@ -147,9 +147,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Empty_Settings()
     {
-        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
         string secondIndexNameText = DataGenerator.CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText}) [ ]";
         string text = "indexes { " + indexText + " }";
@@ -174,11 +174,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_CompositeIndexDeclaration_With_Two_Indexes_Unknown_Setting()
     {
-        SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind firstIndexNameKind = SyntaxKind.IdentifierToken;
         string firstIndexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind secondIndexNameKind = SyntaxKind.IdentifierToken;
         string secondIndexNameText = DataGenerator.CreateRandomString();
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
         string settingNameText = DataGenerator.CreateRandomString();
         string indexText = $"( {firstIndexNameText}, {secondIndexNameText}) [ " + settingNameText + " ]";
         string text = "indexes { " + indexText + " }";

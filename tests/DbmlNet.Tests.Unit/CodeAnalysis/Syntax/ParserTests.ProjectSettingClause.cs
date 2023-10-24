@@ -11,7 +11,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DatabaseProviderProjectSettingClause_With_Identifier_Value()
     {
-        SyntaxKind providerKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind providerKind = SyntaxKind.IdentifierToken;
         string randomText = DataGenerator.CreateRandomString();
         string providerText = $"{randomText}";
         object? providerValue = null;
@@ -51,7 +51,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DatabaseProviderProjectSettingClause_With_QuotationMarksString_Value()
     {
-        SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind providerKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string providerText = $"\"{randomText}\"";
         object? providerValue = randomText;
@@ -71,7 +71,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_DatabaseProviderProjectSettingClause_With_SingleQuotationMarksString_Value()
     {
-        SyntaxKind providerKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind providerKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string providerText = $"\'{randomText}\'";
         object? providerValue = randomText;
@@ -93,7 +93,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteProjectSettingClause_With_Identifier_Value(string noteKeywordText)
     {
-        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
         string randomText = DataGenerator.CreateRandomString();
         string noteValueText = $"{randomText}";
         object? noteValue = null;
@@ -135,7 +135,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteProjectSettingClause_With_QuotationMarksString_Value(string noteKeywordText)
     {
-        SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.QuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\"{randomText}\"";
         object? noteValue = randomText;
@@ -157,7 +157,7 @@ public partial class ParserTests
     [InlineData("note")]
     public void Parse_NoteProjectSettingClause_With_SingleQuotationMarksString_Value(string noteKeywordText)
     {
-        SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomText = DataGenerator.CreateRandomMultiWordString();
         string noteValueText = $"\'{randomText}\'";
         object? noteValue = randomText;
@@ -177,9 +177,8 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownProjectSettingClause_With_SimpleSetting()
     {
-        SyntaxKind settingKind = SyntaxKind.IdentifierToken;
-        string randomText = DataGenerator.CreateRandomString();
-        string settingNameText = randomText;
+        const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingNameText + "}";
         string[] diagnosticMessages = new[]
@@ -221,7 +220,7 @@ public partial class ParserTests
         string settingNameText,
         object? settingNameValue)
     {
-        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
         string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
@@ -245,13 +244,11 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownProjectSettingClause_With_ComposedSetting_Identifier_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
-        string randomSettingValue = DataGenerator.CreateRandomString();
-        string settingValueText = randomSettingValue;
+        const SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = DataGenerator.CreateRandomString();
         object? settingValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
         string text = $"Project {DataGenerator.CreateRandomString()} " + "{" + settingText + "}";
@@ -278,7 +275,7 @@ public partial class ParserTests
         string settingValueText,
         object? settingValue)
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
         string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
         string settingText = $"{settingNameText}: {settingValueText}";
@@ -302,11 +299,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_QuotationMarksString_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.QuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\"{randomSettingValue}\"";
         object? settingValue = randomSettingValue;
@@ -331,11 +327,10 @@ public partial class ParserTests
     [Fact]
     public void Parse_UnknownProjectSettingClause_With_Composed_Setting_SingleQuotationMarksString_Value()
     {
-        SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
-        string randomSettingName = DataGenerator.CreateRandomString();
-        string settingNameText = randomSettingName;
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
         object? settingNameValue = null;
-        SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
+        const SyntaxKind settingValueKind = SyntaxKind.SingleQuotationMarksStringToken;
         string randomSettingValue = DataGenerator.CreateRandomMultiWordString();
         string settingValueText = $"\'{randomSettingValue}\'";
         object? settingValue = randomSettingValue;

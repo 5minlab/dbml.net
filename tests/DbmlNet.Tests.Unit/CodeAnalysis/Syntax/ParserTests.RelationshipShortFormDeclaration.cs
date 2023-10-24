@@ -107,7 +107,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_RelationshipLongFormDeclaration_With_Name_Identifier()
     {
-        SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind identifierKind = SyntaxKind.IdentifierToken;
         string identifierText = DataGenerator.CreateRandomString();
         object? identifierValue = null;
         string text = $$"""

@@ -9,9 +9,9 @@ public partial class ParserTests
     [Fact]
     public void Parse_ParenthesizedExpression_With_No_Expression()
     {
-        SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
+        const SyntaxKind expectedKind = SyntaxKind.IdentifierToken;
         string expectedText = string.Empty;
-        string text = "()";
+        const string text = "()";
         object? expectedValue = null;
         string[] diagnosticMessages = new[]
         {
@@ -31,7 +31,7 @@ public partial class ParserTests
     [Fact]
     public void Parse_ParenthesizedExpression_With_Expression()
     {
-        SyntaxKind expectedKind = SyntaxKind.NumberToken;
+        const SyntaxKind expectedKind = SyntaxKind.NumberToken;
         decimal randomNumber = DataGenerator.GetRandomDecimal(min: 0);
         string expectedText = $"{randomNumber}";
         object? expectedValue = randomNumber;

@@ -314,7 +314,7 @@ public sealed class DbmlMarkdownWriter
         string primaryKeyColumn = index.IsPrimaryKey ? "✔️ yes" : "❌ no";
         string uniqueColumn = index.IsUnique ? "✔️ yes" : "❌ no";
         string indexNote = index.Note ?? UnknownValue;
-        string indexSettings = UnknownValue;
+        const string indexSettings = UnknownValue;
 
         writer.WriteLine($"| {indexName} | {indexTable} | {indexColumn} | {primaryKeyColumn} | {uniqueColumn} | {indexNote} | {indexSettings} |");
     }
