@@ -17,6 +17,7 @@ public partial class ParserTests
     private static ImmutableArray<Diagnostic> ParseDiagnostics(string text)
     {
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
+        Assert.NotEmpty(syntaxTree.Diagnostics);
         return syntaxTree.Diagnostics;
     }
 
