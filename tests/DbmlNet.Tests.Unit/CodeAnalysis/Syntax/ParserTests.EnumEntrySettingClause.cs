@@ -78,4 +78,35 @@ public partial class ParserTests
         e.AssertToken(settingKind, settingNameText, settingValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
+
+    [Fact]
+    public void Parse_UnknownEnumEntrySettingClause_With_Composed_Setting_Identifier_Value()
+    {
+        const SyntaxKind settingNameKind = SyntaxKind.IdentifierToken;
+        string settingNameText = DataGenerator.CreateRandomString();
+        object? settingNameValue = null;
+        const SyntaxKind settingValueKind = SyntaxKind.IdentifierToken;
+        string settingValueText = DataGenerator.CreateRandomString();
+        object? settingValue = null;
+        string settingText = $"{settingNameText}: {settingValueText}";
+        string text = $$"""
+        {{DataGenerator.CreateRandomString()}} [ {{settingText}} ]
+        """;
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown enum entry setting '{settingNameText}'.",
+        };
+
+        EnumEntrySettingListSyntax enumEntrySettingListClause =
+            ParseEnumEntrySettingListClause(text, diagnosticMessages);
+
+        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
 }
