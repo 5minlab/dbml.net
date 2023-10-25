@@ -216,7 +216,7 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_Bool_False_Value()
     {
         const SyntaxKind settingKind = SyntaxKind.FalseKeyword;
-        string settingText = $"false";
+        string settingText = "false";
         object? settingValue = false;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
@@ -237,7 +237,7 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_Bool_True_Value()
     {
         const SyntaxKind settingKind = SyntaxKind.TrueKeyword;
-        string settingText = $"true";
+        string settingText = "true";
         object? settingValue = true;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 
@@ -258,7 +258,7 @@ public partial class ParserTests
     public void Parse_DefaultColumnSettingClause_With_Null_Value()
     {
         const SyntaxKind settingKind = SyntaxKind.NullKeyword;
-        string settingText = $"null";
+        string settingText = "null";
         object? settingValue = null;
         string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ default: {settingText} ]";
 

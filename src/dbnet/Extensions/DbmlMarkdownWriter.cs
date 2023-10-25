@@ -118,9 +118,9 @@ public sealed class DbmlMarkdownWriter
         if (shouldRenderProjectInfo)
             writer.WriteLine($"- [Project {database.Project}](#project-{projectNameLink})");
 
-        writer.WriteLine($"- [Table of contents](#table-of-contents)");
-        writer.WriteLine($"- [Legend](#legend)");
-        writer.WriteLine($"- [Tables](#tables)");
+        writer.WriteLine("- [Table of contents](#table-of-contents)");
+        writer.WriteLine("- [Legend](#legend)");
+        writer.WriteLine("- [Tables](#tables)");
         foreach (DbmlTable table in database.Tables)
         {
             writer.Indent++;
@@ -247,8 +247,8 @@ public sealed class DbmlMarkdownWriter
             WriteGoToLinks(writer);
 
             writer.WriteLine();
-            writer.WriteLine($"| Name | Table | Column | Primary Key | Unique | Note | Settings |");
-            writer.WriteLine($"| :--- | :---- | :----- | :---------- | :----- | :--- | :------- |");
+            writer.WriteLine("| Name | Table | Column | Primary Key | Unique | Note | Settings |");
+            writer.WriteLine("| :--- | :---- | :----- | :---------- | :----- | :--- | :------- |");
 
             foreach (DbmlTableIndex index in table.Indexes)
                 WriteIndexDeclaration(writer, index);
@@ -273,7 +273,7 @@ public sealed class DbmlMarkdownWriter
 
     private static void WriteGoToLinks(IndentedTextWriter writer)
     {
-        writer.WriteLine($"[☝️ To table of contents](#table-of-contents)");
+        writer.WriteLine("[☝️ To table of contents](#table-of-contents)");
     }
 
     private static void WriteColumnDeclaration(IndentedTextWriter writer, DbmlTableColumn column)

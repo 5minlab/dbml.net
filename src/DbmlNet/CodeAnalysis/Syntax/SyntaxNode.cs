@@ -208,7 +208,7 @@ public abstract class SyntaxNode
 
         writer.WriteLine();
 
-        indent += isLast ? $"   " : "│  ";
+        indent += isLast ? "   " : "│  ";
 
         SyntaxNode? lastChild = node.GetChildren().LastOrDefault();
 

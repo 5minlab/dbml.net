@@ -102,10 +102,10 @@ public partial class LexerTests
             (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomDecimal(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}"),
 
             (SyntaxKind.QuotationMarksStringToken, "\"Test\""),
-            (SyntaxKind.QuotationMarksStringToken, $"\"...message: \"\"message here\"\" or \"\"message here\"\"\""),
+            (SyntaxKind.QuotationMarksStringToken, "\"...message: \"\"message here\"\" or \"\"message here\"\"\""),
             (SyntaxKind.QuotationMarksStringToken, $"\"{DataGenerator.CreateRandomMultiWordString()}\""),
             (SyntaxKind.SingleQuotationMarksStringToken, "\'Test\'"),
-            (SyntaxKind.SingleQuotationMarksStringToken, $"\'...message: \'\'message here\'\' or \'\'message here\'\'\'"),
+            (SyntaxKind.SingleQuotationMarksStringToken, "\'...message: \'\'message here\'\' or \'\'message here\'\'\'"),
             (SyntaxKind.SingleQuotationMarksStringToken, $"\'{DataGenerator.CreateRandomMultiWordString()}\'"),
             (SyntaxKind.MultiLineStringToken, "'''Test'''"),
             (SyntaxKind.MultiLineStringToken, """'''...message: \\ \'''message here\''' or \'''message here\''''''"""),
