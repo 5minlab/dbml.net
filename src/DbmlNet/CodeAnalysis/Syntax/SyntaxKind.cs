@@ -35,6 +35,7 @@ public enum SyntaxKind
     OpenBracketToken,
     CloseBracketToken,
     BacktickToken,
+    HexTripletToken,
     QuotationMarksStringToken,
     SingleQuotationMarksStringToken,
     MultiLineStringToken,

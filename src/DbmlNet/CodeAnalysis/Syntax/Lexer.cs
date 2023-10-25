@@ -312,6 +312,9 @@ internal sealed class Lexer
                 _kind = SyntaxKind.BacktickToken;
                 _position++;
                 break;
+            case '#':
+                ReadHexTriplet();
+                break;
             case '"':
                 ReadQuotationString();
                 break;
@@ -337,6 +340,28 @@ internal sealed class Lexer
 
                 break;
         }
+    }
+
+    private void ReadHexTriplet()
+    {
+        _position++; // Skip the current pound sign
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (char.IsLetterOrDigit(Current))
+            {
+                _position++;
+                continue;
+            }
+
+            TextSpan span = new(_position, 1);
+            TextLocation location = new(_text, span);
+            Diagnostics.ReportBadCharacter(location, Current);
+            _position++; // skip bad token
+            break;
+        }
+
+        _kind = SyntaxKind.HexTripletToken;
     }
 
 #pragma warning restore CA1502 // Avoid excessive complexity
