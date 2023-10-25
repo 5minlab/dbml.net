@@ -178,7 +178,7 @@ public sealed class SyntaxTree
     {
         Dictionary<SyntaxNode, SyntaxNode?> result = new()
         {
-            { root, null }
+            { root, null },
         };
 
         CreateParentsDictionary(result, root);
