@@ -49,6 +49,7 @@ public class SyntaxFactsTests
         if (kind == SyntaxKind.WhitespaceTrivia) return skip;
         if (kind == SyntaxKind.EndOfFileToken) return skip;
         if (kind == SyntaxKind.NumberToken) return skip;
+        if (kind == SyntaxKind.HexTripletToken) return skip;
         if (kind == SyntaxKind.IdentifierToken) return skip;
 
         return !skip;

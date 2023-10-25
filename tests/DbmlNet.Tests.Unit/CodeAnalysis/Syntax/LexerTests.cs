@@ -100,6 +100,14 @@ public partial class LexerTests
             (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomNumber(min: 0)}"),
             (SyntaxKind.NumberToken, $"{DataGenerator.GetRandomDecimal(min: 0)}.{DataGenerator.GetRandomNumber(min: 0)}"),
 
+            (SyntaxKind.HexTripletToken, "#000000"),
+            (SyntaxKind.HexTripletToken, "#FF0000"),
+            (SyntaxKind.HexTripletToken, "#00FF00"),
+            (SyntaxKind.HexTripletToken, "#0000FF"),
+            (SyntaxKind.HexTripletToken, "#FFFFFF"),
+            (SyntaxKind.HexTripletToken, "#3498db"),
+            (SyntaxKind.HexTripletToken, "#3498DB"),
+
             (SyntaxKind.QuotationMarksStringToken, "\"Test\""),
             (SyntaxKind.QuotationMarksStringToken, "\"...message: \"\"message here\"\" or \"\"message here\"\"\""),
             (SyntaxKind.QuotationMarksStringToken, $"\"{DataGenerator.CreateRandomMultiWordString()}\""),
