@@ -85,4 +85,26 @@ public partial class ParserTests
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText);
     }
+
+    [Fact]
+    public void Parse_EnumEntryDeclaration_With_Empty_Settings()
+    {
+        const SyntaxKind enumEntryNameKind = SyntaxKind.IdentifierToken;
+        string enumEntryNameText = DataGenerator.CreateRandomString();
+        string text = $$"""
+        enum {{DataGenerator.CreateRandomString()}}
+        {
+            {{enumEntryNameText}} [ ]
+        }
+        """;
+
+        StatementSyntax statement = ParseEnumEntryDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
+        e.AssertToken(enumEntryNameKind, enumEntryNameText);
+        e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
 }
