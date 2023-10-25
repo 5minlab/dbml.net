@@ -57,7 +57,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
             else
             {
-                Debug.Assert(false, $"Unknown project setting kind '{setting.Kind}'.");
+                Debug.Assert(condition: false, $"Unknown project setting kind '{setting.Kind}'.");
             }
         }
 
@@ -184,7 +184,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
                     default:
                     {
-                        Debug.Assert(false, $"Unknown column setting kind '{setting.Kind}'.");
+                        Debug.Assert(condition: false, $"Unknown column setting kind '{setting.Kind}'.");
                         break;
                     }
                 }
@@ -261,7 +261,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
                     default:
                     {
-                        Debug.Assert(false, $"Unknown index setting kind '{setting.Kind}'.");
+                        Debug.Assert(condition: false, $"Unknown index setting kind '{setting.Kind}'.");
                         break;
                     }
                 }
@@ -397,7 +397,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
             }
 
             default:
-                Debug.Assert(false, $"ERROR: Unknown syntax kind <{syntax.Kind}>.");
+                Debug.Assert(condition: false, $"ERROR: Unknown syntax kind <{syntax.Kind}>.");
                 break;
         }
     }

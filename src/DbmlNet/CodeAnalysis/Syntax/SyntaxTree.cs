@@ -168,7 +168,7 @@ public sealed class SyntaxTree
         if (_parents == null)
         {
             Dictionary<SyntaxNode, SyntaxNode?> parents = CreateParentsDictionary(Root);
-            Interlocked.CompareExchange(ref _parents, parents, null);
+            Interlocked.CompareExchange(ref _parents, parents, comparand: null);
         }
 
         return _parents[syntaxNode];
