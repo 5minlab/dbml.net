@@ -274,6 +274,23 @@ internal sealed class Parser
         SyntaxToken enumKeyword = MatchToken(SyntaxKind.EnumKeyword);
         EnumIdentifierClause identifier = ParseEnumIdentifier();
         StatementSyntax body = ParseBlockStatement();
+
+        EnumEntryDeclarationSyntax[] enumEntryDeclarations =
+            body.GetChildren().OfType<EnumEntryDeclarationSyntax>().ToArray();
+
+        HashSet<string> seenEnumEntryNames = new HashSet<string>(StringComparer.InvariantCulture);
+        for (int i = 0; i < enumEntryDeclarations.Length; i++)
+        {
+            EnumEntryDeclarationSyntax enumEntryDeclaration = enumEntryDeclarations[i];
+            string enumEntryNameText = enumEntryDeclaration.IdentifierToken.Text;
+            if (!seenEnumEntryNames.Add(enumEntryNameText))
+            {
+                TextSpan enumEntryNameSpan = enumEntryDeclaration.IdentifierToken.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, enumEntryNameSpan);
+                Diagnostics.ReportDuplicateEnumEntryName(location, enumEntryNameText);
+            }
+        }
+
         return new EnumDeclarationSyntax(_syntaxTree, enumKeyword, identifier, body);
     }
 
@@ -507,8 +524,8 @@ internal sealed class Parser
                 => ParseIndexesDeclaration(),
             SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken
                 => ParseNoteDeclaration(),
-            _ when CanReadColumnDeclaration() => ParseColumnDeclaration(),
             _ when CanReadEnumEntryDeclaration() => ParseEnumEntryDeclaration(),
+            _ when CanReadColumnDeclaration() => ParseColumnDeclaration(),
             _ => ParseExpressionStatement(),
         };
     }

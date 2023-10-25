@@ -97,6 +97,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportWarning(location, message);
     }
 
+    public void ReportDuplicateEnumEntryName(TextLocation location, string enumEntryName)
+    {
+        string message = $"Enum entry '{enumEntryName}' already declared.";
+        ReportWarning(location, message);
+    }
+
     public void ReportDuplicateEnumEntrySettingName(TextLocation location, string settingName)
     {
         string message = $"Enum entry setting '{settingName}' already declared.";
