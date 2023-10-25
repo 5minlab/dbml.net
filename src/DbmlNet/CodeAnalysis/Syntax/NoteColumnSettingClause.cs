@@ -12,23 +12,17 @@ public sealed class NoteColumnSettingClause : ColumnSettingClause
         SyntaxToken noteKeyword,
         SyntaxToken colonToken,
         SyntaxToken valueToken)
-        : base(syntaxTree)
+        : base(syntaxTree, noteKeyword.Text)
     {
         NoteKeyword = noteKeyword;
         ColonToken = colonToken;
         ValueToken = valueToken;
-        SettingName = noteKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the note column setting clause <see cref="SyntaxKind.NoteColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NoteColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the note keyword.

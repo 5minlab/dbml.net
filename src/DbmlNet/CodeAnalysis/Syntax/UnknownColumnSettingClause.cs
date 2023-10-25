@@ -12,23 +12,17 @@ public sealed class UnknownColumnSettingClause : ColumnSettingClause
         SyntaxToken settingNameToken,
         SyntaxToken? colonToken = null,
         SyntaxToken? settingValueToken = null)
-        : base(syntaxTree)
+        : base(syntaxTree, settingNameToken.Text)
     {
         NameToken = settingNameToken;
         ColonToken = colonToken;
         ValueToken = settingValueToken;
-        SettingName = settingNameToken.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unknown column setting clause <see cref="SyntaxKind.UnknownColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the name token.

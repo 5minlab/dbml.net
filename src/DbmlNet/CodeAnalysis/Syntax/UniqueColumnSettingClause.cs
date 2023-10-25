@@ -10,21 +10,15 @@ public sealed class UniqueColumnSettingClause : ColumnSettingClause
     internal UniqueColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken uniqueKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, uniqueKeyword.Text)
     {
         UniqueKeyword = uniqueKeyword;
-        SettingName = uniqueKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unique column setting clause <see cref="SyntaxKind.UniqueColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the unique keyword.

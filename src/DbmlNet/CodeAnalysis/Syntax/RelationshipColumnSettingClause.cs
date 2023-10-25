@@ -12,23 +12,17 @@ public sealed class RelationshipColumnSettingClause : ColumnSettingClause
         SyntaxToken refKeyword,
         SyntaxToken colonToken,
         RelationshipConstraintClause constraintClause)
-        : base(syntaxTree)
+        : base(syntaxTree, refKeyword.Text)
     {
         RefKeyword = refKeyword;
         ColonToken = colonToken;
         ConstraintClause = constraintClause;
-        SettingName = refKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the relationship column setting clause <see cref="SyntaxKind.RelationshipColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.RelationshipColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the ref keyword.

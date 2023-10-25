@@ -11,22 +11,16 @@ public sealed class NotNullColumnSettingClause : ColumnSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken notKeyword,
         SyntaxToken nullKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, notKeyword.Text + nullKeyword.Text)
     {
         NotKeyword = notKeyword;
         NullKeyword = nullKeyword;
-        SettingName = notKeyword.Text + nullKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the not null column setting clause <see cref="SyntaxKind.NotNullColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NotNullColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the not keyword.

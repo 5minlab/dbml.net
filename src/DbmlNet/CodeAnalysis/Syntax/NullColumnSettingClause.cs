@@ -10,21 +10,15 @@ public sealed class NullColumnSettingClause : ColumnSettingClause
     internal NullColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken nullKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, nullKeyword.Text)
     {
         NullKeyword = nullKeyword;
-        SettingName = nullKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the null column setting clause <see cref="SyntaxKind.NullColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.NullColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the null keyword.

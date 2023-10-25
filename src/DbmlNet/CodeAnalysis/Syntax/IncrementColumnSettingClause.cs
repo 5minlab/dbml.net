@@ -10,21 +10,15 @@ public sealed class IncrementColumnSettingClause : ColumnSettingClause
     internal IncrementColumnSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken incrementKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, incrementKeyword.Text)
     {
         IncrementKeyword = incrementKeyword;
-        SettingName = incrementKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the increment column setting clause <see cref="SyntaxKind.IncrementColumnSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.IncrementColumnSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the increment keyword.
