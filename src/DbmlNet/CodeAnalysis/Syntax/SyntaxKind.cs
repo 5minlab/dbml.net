@@ -43,6 +43,7 @@ public enum SyntaxKind
     // Keywords
     DatabaseTypeKeyword,
     DefaultKeyword,
+    EnumKeyword,
     FalseKeyword,
     IncrementKeyword,
     IndexesKeyword,
@@ -63,6 +64,7 @@ public enum SyntaxKind
     // Nodes
     CompilationUnitMember,
     ProjectDeclarationMember,
+    EnumDeclarationMember,
     TableDeclarationMember,
     RelationshipShortFormDeclarationMember,
     RelationshipLongFormDeclarationMember,
@@ -73,6 +75,14 @@ public enum SyntaxKind
     DatabaseProviderProjectSettingClause,
     NoteProjectSettingClause,
     UnknownProjectSettingClause,
+
+    // Enum nodes
+    EnumIdentifierClause,
+
+    // Enum entry nodes
+    EnumEntrySettingListClause,
+    NoteEnumEntrySettingClause,
+    UnknownEnumEntrySettingClause,
 
     // Table nodes
     TableIdentifierClause,
@@ -109,6 +119,7 @@ public enum SyntaxKind
     // Statements
     BlockStatement,
     NoteDeclarationStatement,
+    EnumEntryDeclarationStatement,
     ColumnDeclarationStatement,
     IndexesDeclarationStatement,
     SingleFieldIndexDeclarationStatement,

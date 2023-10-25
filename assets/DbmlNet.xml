@@ -456,6 +456,135 @@
             </summary>
             <returns>The children of the default column setting.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax">
+            <summary>
+            Represents a enum declaration in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the enum declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumDeclarationMember"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.EnumKeyword">
+            <summary>
+            Gets the enum keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Identifier">
+            <summary>
+            Gets the full enum identifier (e.g: schema.enum).
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.Body">
+            <summary>
+            Gets the body.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax.GetChildren">
+            <summary>
+            Gets the children of the enum declaration.
+            </summary>
+            <returns>The children of the enum declaration.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax">
+            <summary>
+            Represents a column declaration statement.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the column declaration <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumEntryDeclarationStatement"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax.IdentifierToken">
+            <summary>
+            Gets the identifier token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax.SettingList">
+            <summary>
+            Gets the column settings.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax.GetChildren">
+            <summary>
+            Gets the children of the column declaration.
+            </summary>
+            <returns>The children of the column declaration.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingClause">
+            <summary>
+            Represents a enum entry setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax">
+            <summary>
+            Represents a enum entry setting list clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax.Kind">
+            <summary>
+            Gets the syntax kind of the enum entry setting list clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumEntrySettingListClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax.OpenBracketToken">
+            <summary>
+            Gets the open bracket token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax.Settings">
+            <summary>
+            Gets the enum entry settings.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax.CloseBracketToken">
+            <summary>
+            Gets the close bracket token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumEntrySettingListSyntax.GetChildren">
+            <summary>
+            Gets the children of the enum entry setting list.
+            </summary>
+            <returns>The children of the enum entry setting list.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause">
+            <summary>
+            Represents a enum identifier clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.Kind">
+            <summary>
+            Gets the syntax kind of the enum identifier clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.EnumIdentifierClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.SchemaIdentifier">
+            <summary>
+            Gets the schema identifier.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.DotToken">
+            <summary>
+            Gets the dot token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.EnumIdentifier">
+            <summary>
+            Gets the enum identifier.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.EnumIdentifierClause.GetChildren">
+            <summary>
+            Gets the children of the enum identifier.
+            </summary>
+            <returns>The children of the enum identifier.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.ExpressionStatementSyntax">
             <summary>
             Represents an expression statement in the syntax tree.
@@ -770,6 +899,42 @@
             Gets the children of the note declaration.
             </summary>
             <returns>The children of the note declaration.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause">
+            <summary>
+            Represents a note enum entry setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the note enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteEnumEntrySettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.NoteKeyword">
+            <summary>
+            Gets the note keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.GetChildren">
+            <summary>
+            Gets the children of the note enum entry setting.
+            </summary>
+            <returns>The children of the note enum entry setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause">
             <summary>
@@ -2141,6 +2306,42 @@
             Gets the children of the unknown column setting.
             </summary>
             <returns>The children of the unknown column setting.</returns>
+        </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause">
+            <summary>
+            Represents a enum entry setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the unknown enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownEnumEntrySettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.NameToken">
+            <summary>
+            Gets the name token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.GetChildren">
+            <summary>
+            Gets the children of the unknown enum entry setting.
+            </summary>
+            <returns>The children of the unknown enum entry setting.</returns>
         </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause">
             <summary>

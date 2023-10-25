@@ -67,6 +67,12 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
         ReportError(location, message);
     }
 
+    public void ReportUnknownEnumEntrySetting(TextLocation location, string settingName)
+    {
+        string message = $"Unknown enum entry setting '{settingName}'.";
+        ReportWarning(location, message);
+    }
+
     public void ReportUnknownColumnSetting(TextLocation location, string settingName)
     {
         string message = $"Unknown column setting '{settingName}'.";
@@ -88,6 +94,18 @@ internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
     public void ReportDuplicateColumnName(TextLocation location, string columnName)
     {
         string message = $"Column '{columnName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateEnumEntryName(TextLocation location, string enumEntryName)
+    {
+        string message = $"Enum entry '{enumEntryName}' already declared.";
+        ReportWarning(location, message);
+    }
+
+    public void ReportDuplicateEnumEntrySettingName(TextLocation location, string settingName)
+    {
+        string message = $"Enum entry setting '{settingName}' already declared.";
         ReportWarning(location, message);
     }
 

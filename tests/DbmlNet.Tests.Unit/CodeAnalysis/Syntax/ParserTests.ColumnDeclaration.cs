@@ -284,13 +284,13 @@ public partial class ParserTests
 
             int indefOfOpenParenthesis = text.IndexOf('(', StringComparison.Ordinal);
             int indefOfCloseParenthesis = text.IndexOf(')', StringComparison.Ordinal);
-            const SyntaxKind columnTypeIdentifierKind = SyntaxKind.IdentifierToken;
             string columnTypeIdentifierText = text[..indefOfOpenParenthesis];
-            object? columnTypeIdentifierValue = null;
+            SyntaxKind columnTypeIdentifierKind = SyntaxFacts.GetKeywordKind(columnTypeIdentifierText);
+            object? columnTypeIdentifierValue = columnTypeIdentifierKind.GetKnownValue();
 
-            SyntaxKind variableLengthIdentifierKind = SyntaxKind.IdentifierToken;
             string variableLengthIdentifierText = text[(indefOfOpenParenthesis + 1)..indefOfCloseParenthesis];
-            object? variableLengthIdentifierValue = null;
+            SyntaxKind variableLengthIdentifierKind = SyntaxFacts.GetKeywordKind(columnTypeIdentifierText);
+            object? variableLengthIdentifierValue = variableLengthIdentifierKind.GetKnownValue();
             if (decimal.TryParse(variableLengthIdentifierText, NumberFormatInfo.InvariantInfo, out decimal dVal))
             {
                 variableLengthIdentifierKind = SyntaxKind.NumberToken;

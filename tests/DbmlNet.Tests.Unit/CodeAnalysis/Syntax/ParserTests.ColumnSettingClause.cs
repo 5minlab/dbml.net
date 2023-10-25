@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 
 using DbmlNet.CodeAnalysis.Syntax;
@@ -344,7 +345,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_UnknownColumnSettingClause_With_Simple_Setting()
+    public void Parse_UnknownColumnSettingClause_With_Simple_Setting_Identifier()
     {
         const SyntaxKind settingKind = SyntaxKind.IdentifierToken;
         string settingNameText = DataGenerator.CreateRandomString();
@@ -363,6 +364,50 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
         e.AssertToken(settingKind, settingNameText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    public static IEnumerable<object[]?> GetUnknownColumnSettingNameAllowedKeywordsData()
+    {
+        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
+        {
+            bool skip = itemKind switch
+            {
+                SyntaxKind.PkKeyword => true,
+                SyntaxKind.UniqueKeyword => true,
+                SyntaxKind.IncrementKeyword => true,
+                SyntaxKind.NullKeyword => true,
+                _ => false
+            };
+
+            if (!skip)
+            {
+                yield return new object[] { itemKind, itemText, itemValue! };
+            }
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(GetUnknownColumnSettingNameAllowedKeywordsData))]
+    public void Parse_UnknownColumnSettingClause_With_Simple_Setting_Keyword(
+        SyntaxKind settingNameKind,
+        string settingNameText,
+        object? settingNameValue)
+    {
+        string text = $"{DataGenerator.CreateRandomString()} {DataGenerator.CreateRandomString()} [ {settingNameText} ]";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown column setting '{settingNameText}'.",
+        };
+
+        ColumnSettingListSyntax columnSettingListClause =
+            ParseColumnSettingListClause(text, diagnosticMessages);
+
+        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        e.AssertNode(SyntaxKind.ColumnSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 

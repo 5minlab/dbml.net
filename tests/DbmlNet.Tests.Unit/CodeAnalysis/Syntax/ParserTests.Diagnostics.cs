@@ -220,4 +220,67 @@ public partial class ParserTests
         Assert.True(diagnostic.IsWarning, "Should be warning");
         Assert.Equal($"Index setting '{settingName}' already declared.", diagnostic.Message);
     }
+
+    [Fact]
+    public void Parse_Warning_EnumEntry_Already_Declared()
+    {
+        string randomText = DataGenerator.CreateRandomString();
+        string firstEnumEntryName = randomText;
+        string secondEnumEntryName = randomText;
+        string text = $$"""
+        enum {{DataGenerator.CreateRandomString()}}
+        {
+            {{firstEnumEntryName}}
+            {{secondEnumEntryName}}
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Enum entry '{secondEnumEntryName}' already declared.", diagnostic.Message);
+    }
+
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordsTextData))]
+    public void Parse_Warning_EnumEntry_Already_Declared_For_Keyword_EnumEntryName(
+        string enumEntryNameText)
+    {
+        string text = $$"""
+        enum {{DataGenerator.CreateRandomString()}}
+        {
+            {{enumEntryNameText}}
+            {{enumEntryNameText}}
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Enum entry '{enumEntryNameText}' already declared.", diagnostic.Message);
+    }
+
+    [Theory]
+    [InlineData("note", "note: \"Some value\"")]
+    [InlineData("note", "note: \'Some value\'")]
+    [InlineData("note", "Note: \"Some value\"")]
+    [InlineData("note", "Note: \'Some value\'")]
+    public void Parse_Warning_EnumEntrySetting_Already_Declared(
+        string settingName, string settingText)
+    {
+        string text = $$"""
+        enum {{DataGenerator.CreateRandomString()}}
+        {
+            {{DataGenerator.CreateRandomString()}} [ {{settingText}}, {{settingText}} ]
+        }
+        """;
+
+        ImmutableArray<Diagnostic> diagnostics = ParseDiagnostics(text);
+        Diagnostic diagnostic = Assert.Single(diagnostics);
+        Assert.False(diagnostic.IsError, "Should not be error");
+        Assert.True(diagnostic.IsWarning, "Should be warning");
+        Assert.Equal($"Enum entry setting '{settingName}' already declared.", diagnostic.Message);
+    }
 }

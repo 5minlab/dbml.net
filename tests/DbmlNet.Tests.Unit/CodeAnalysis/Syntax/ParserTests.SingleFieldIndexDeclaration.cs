@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using DbmlNet.CodeAnalysis.Syntax;
 
 using Xunit;
@@ -12,6 +14,24 @@ public partial class ParserTests
         const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
         object? indexNameValue = null;
+        string indexText = $"{indexNameText}";
+        string text = "indexes { " + indexText + " }";
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            ParseSingleFieldIndexDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
+        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
+    }
+
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_SingleFieldIndexDeclaration_With_Keyword_Name(
+        SyntaxKind indexNameKind,
+        string indexNameText,
+        object? indexNameValue)
+    {
         string indexText = $"{indexNameText}";
         string text = "indexes { " + indexText + " }";
 
@@ -425,7 +445,7 @@ public partial class ParserTests
     }
 
     [Fact]
-    public void Parse_SingleFieldIndexDeclaration_With_Unknown_Setting_Name()
+    public void Parse_SingleFieldIndexDeclaration_With_Unknown_Setting_Identifier_Name()
     {
         const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
         string indexNameText = DataGenerator.CreateRandomString();
@@ -450,6 +470,54 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownIndexSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingName);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
+    public static IEnumerable<object[]?> GetUnknownSingleFieldIndexSettingNameAllowedKeywordsData()
+    {
+        foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
+        {
+            bool skip = itemKind switch
+            {
+                SyntaxKind.PkKeyword => true,
+                SyntaxKind.UniqueKeyword => true,
+                _ => false
+            };
+
+            if (!skip)
+            {
+                yield return new object[] { itemKind, itemText, itemValue! };
+            }
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(GetUnknownSingleFieldIndexSettingNameAllowedKeywordsData))]
+    public void Parse_SingleFieldIndexDeclaration_With_Unknown_Setting_Keyword_Name(
+        SyntaxKind settingNameKind,
+        string settingNameText,
+        object? settingNameValue)
+    {
+        const SyntaxKind indexNameKind = SyntaxKind.IdentifierToken;
+        string indexNameText = DataGenerator.CreateRandomString();
+        object? indexNameValue = null;
+        string indexText = $"{indexNameText} [ {settingNameText} ]";
+        string text = "indexes { " + indexText + " }";
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown index setting '{settingNameText}'.",
+        };
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
+
+        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
+        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
+        e.AssertNode(SyntaxKind.IndexSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownIndexSettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
