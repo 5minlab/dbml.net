@@ -23,6 +23,24 @@ public partial class ParserTests
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_SingleFieldIndexDeclaration_With_Keyword_Name(
+        SyntaxKind indexNameKind,
+        string indexNameText,
+        object? indexNameValue)
+    {
+        string indexText = $"{indexNameText}";
+        string text = "indexes { " + indexText + " }";
+
+        SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
+            ParseSingleFieldIndexDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
+        e.AssertToken(indexNameKind, indexNameText, indexNameValue);
+    }
+
     [Fact(Skip = "Skip to avoid infinite loop.")]
     public void Parse_SingleFieldIndexDeclaration_With_QuotationMarksString_Name()
     {
