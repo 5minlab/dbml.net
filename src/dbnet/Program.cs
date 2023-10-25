@@ -166,7 +166,7 @@ if (fileSyntaxTreeList.Count > 0)
     writer.WriteLine();
 }
 
-writer.Indent += 1;
+writer.Indent++;
 
 writer.Write($"{files.Length} found");
 writer.Write(" | ");
@@ -188,7 +188,7 @@ writer.WriteLine();
 
 WriteWarningCount(writer, isForceEnabled, warningDiagnostics);
 WriteErrorCount(writer, errorDiagnostics);
-writer.Indent -= 1;
+writer.Indent--;
 writer.WriteLine();
 writer.WriteLine($"Time Elapsed {buildWatch.Elapsed:hh':'mm':'ss'.'ff}");
 

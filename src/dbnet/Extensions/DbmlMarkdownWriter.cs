@@ -113,7 +113,7 @@ public sealed class DbmlMarkdownWriter
 
         writer.WriteLine();
         writer.WriteLine(databaseDesignLink);
-        writer.Indent += 1;
+        writer.Indent++;
 
         if (shouldRenderProjectInfo)
             writer.WriteLine($"- [Project {database.Project}](#project-{projectNameLink})");
@@ -123,7 +123,7 @@ public sealed class DbmlMarkdownWriter
         writer.WriteLine($"- [Tables](#tables)");
         foreach (DbmlTable table in database.Tables)
         {
-            writer.Indent += 1;
+            writer.Indent++;
 
             string tableNameLink =
                 table.Name
@@ -134,25 +134,25 @@ public sealed class DbmlMarkdownWriter
 
             if (table.Indexes.Any())
             {
-                writer.Indent += 1;
+                writer.Indent++;
                 writer.WriteLine($"- [Indexes: {table.Name}](#indexes-{tableNameLink})");
-                writer.Indent -= 1;
+                writer.Indent--;
             }
 
             if (table.Relationships.Any())
             {
-                writer.Indent += 1;
+                writer.Indent++;
                 writer.WriteLine($"- [Relationships: {table.Name}](#relationships-{tableNameLink})");
-                writer.Indent -= 1;
+                writer.Indent--;
             }
 
-            writer.Indent -= 1;
+            writer.Indent--;
         }
 
         if (shouldRenderProjectInfo)
-            writer.Indent -= 1;
+            writer.Indent--;
 
-        writer.Indent -= 1;
+        writer.Indent--;
 #pragma warning restore CA1308 // Normalize strings to uppercase
     }
 
