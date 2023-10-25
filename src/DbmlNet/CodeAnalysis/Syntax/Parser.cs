@@ -484,7 +484,6 @@ internal sealed class Parser
 
     private RelationshipConstraintClause ParseRelationshipConstraint(bool optionalFrom = false)
     {
-        RelationshipConstraintClause constraintClause;
         ColumnIdentifierClause? fromIdentifier =
             optionalFrom
                 ? ParseOptionalColumnIdentifier()
@@ -503,10 +502,9 @@ internal sealed class Parser
         };
 
         ColumnIdentifierClause toIdentifier = ParseColumnIdentifier();
-        constraintClause =
-            new RelationshipConstraintClause(
-                _syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
-        return constraintClause;
+
+        return new RelationshipConstraintClause(
+            _syntaxTree, fromIdentifier, relationshipTypeToken, toIdentifier);
     }
 
     private MemberSyntax ParseGlobalStatement()
