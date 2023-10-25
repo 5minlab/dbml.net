@@ -17,6 +17,7 @@ public static class SyntaxFacts
         return text switch
         {
             // Keywords
+            "as" => SyntaxKind.AsKeyword,
             "database_type" => SyntaxKind.DatabaseTypeKeyword,
             "default" => SyntaxKind.DefaultKeyword,
             "enum" => SyntaxKind.EnumKeyword,
@@ -162,6 +163,7 @@ public static class SyntaxFacts
         return kind switch
         {
             // Keywords
+            SyntaxKind.AsKeyword => "as",
             SyntaxKind.DatabaseTypeKeyword => "database_type",
             SyntaxKind.DefaultKeyword => "default",
             SyntaxKind.EnumKeyword => "enum",

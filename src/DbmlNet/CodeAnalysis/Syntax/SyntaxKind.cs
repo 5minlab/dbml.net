@@ -41,6 +41,7 @@ public enum SyntaxKind
     IdentifierToken,
 
     // Keywords
+    AsKeyword,
     DatabaseTypeKeyword,
     DefaultKeyword,
     EnumKeyword,
@@ -86,6 +87,7 @@ public enum SyntaxKind
 
     // Table nodes
     TableIdentifierClause,
+    TableAliasClause,
     TableSettingListClause,
     UnknownTableSettingClause,
 

@@ -2019,6 +2019,32 @@
             <param name="syntax">The parenthesized expression syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.TableAliasClause">
+            <summary>
+            Represents a table alias clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableAliasClause.Kind">
+            <summary>
+            Gets the syntax kind of the table alias clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TableAliasClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableAliasClause.AsKeyword">
+            <summary>
+            Gets the as keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableAliasClause.Identifier">
+            <summary>
+            Gets the identifier of the table alias.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.TableAliasClause.GetChildren">
+            <summary>
+            Gets the children of the table alias clause.
+            </summary>
+            <returns>The children of the table alias clause.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax">
             <summary>
             Represents a table declaration statement in the syntax tree.
@@ -2037,6 +2063,11 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.DbSchema">
             <summary>
             Gets the full table identifier (e.g: database.schema.table).
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Alias">
+            <summary>
+            Gets the table alias.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax.Settings">
