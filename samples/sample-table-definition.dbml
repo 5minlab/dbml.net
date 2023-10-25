@@ -25,9 +25,9 @@ Table schema_name.table_name {
 // You can alias the table, and use them in the references later on.
 
 // ```dbml
-// TODO: Table very_long_user_table as U {
-// TODO:   // ...
-// TODO: }
+Table very_long_user_table as U {
+  // ...
+}
 
 Ref: U.id < posts.user_id
 // ```
