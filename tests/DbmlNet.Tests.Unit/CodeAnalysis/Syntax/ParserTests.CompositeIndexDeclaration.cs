@@ -17,7 +17,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -36,7 +36,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -55,7 +55,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -83,7 +83,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -109,7 +109,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -133,7 +133,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -157,7 +157,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -190,7 +190,7 @@ public partial class ParserTests
         CompositeIndexDeclarationSyntax compositeFieldIndexDeclarationSyntax =
             ParseCompositeIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(compositeFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(compositeFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.CompositeIndexDeclarationStatement);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);

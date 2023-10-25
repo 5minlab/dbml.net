@@ -17,7 +17,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
@@ -36,7 +36,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
@@ -55,7 +55,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
@@ -74,7 +74,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
@@ -92,7 +92,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(projectNameKind, projectNameText, projectNameValue);
@@ -117,7 +117,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
         e.AssertToken(tableNameKind, tableNameText, tableNameValue);

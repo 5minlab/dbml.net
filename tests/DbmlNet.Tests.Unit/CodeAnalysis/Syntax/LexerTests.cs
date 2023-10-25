@@ -53,8 +53,7 @@ public partial class LexerTests
         IEnumerable<SyntaxKind> testedTokenKinds =
             GetTokens().Select(t => t.Kind);
 
-        SortedSet<SyntaxKind> untestedTokenKinds =
-            new SortedSet<SyntaxKind>(tokenKinds);
+        SortedSet<SyntaxKind> untestedTokenKinds = new(tokenKinds);
 
         untestedTokenKinds.Remove(SyntaxKind.BadToken);
         untestedTokenKinds.Remove(SyntaxKind.EndOfFileToken);

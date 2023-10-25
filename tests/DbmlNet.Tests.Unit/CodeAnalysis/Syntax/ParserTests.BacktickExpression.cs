@@ -17,7 +17,7 @@ public partial class ParserTests
 
         BacktickExpressionSyntax expression = ParseBacktickExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression.Expression);
+        using AssertingEnumerator e = new(expression.Expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         e.AssertToken(literalKind, literalText, literalValue);
     }
@@ -49,7 +49,7 @@ public partial class ParserTests
 
         BacktickExpressionSyntax expression = ParseBacktickExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression.Expression);
+        using AssertingEnumerator e = new(expression.Expression);
         e.AssertNode(SyntaxKind.NameExpression);
         e.AssertToken(identifierKind, identifierText, identifierValue);
     }
@@ -66,7 +66,7 @@ public partial class ParserTests
 
         BacktickExpressionSyntax expression = ParseBacktickExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression.Expression);
+        using AssertingEnumerator e = new(expression.Expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText, functionNameValue);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");

@@ -13,7 +13,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
@@ -27,7 +27,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.BlockStatement);
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertNode(SyntaxKind.ExpressionStatement);

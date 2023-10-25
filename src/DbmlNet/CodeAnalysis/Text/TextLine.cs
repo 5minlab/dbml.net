@@ -48,12 +48,12 @@ public sealed class TextLine
     /// <summary>
     /// Gets the span of the line.
     /// </summary>
-    public TextSpan Span => new TextSpan(Start, Length);
+    public TextSpan Span => new(Start, Length);
 
     /// <summary>
     /// Gets the span of the line including the line break.
     /// </summary>
-    public TextSpan SpanIncludingLineBreak => new TextSpan(Start, LengthIncludingLineBreak);
+    public TextSpan SpanIncludingLineBreak => new(Start, LengthIncludingLineBreak);
 
     /// <summary>
     /// Returns the text of this line.

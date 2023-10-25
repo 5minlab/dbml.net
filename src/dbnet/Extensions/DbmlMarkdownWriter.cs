@@ -31,10 +31,10 @@ public sealed class DbmlMarkdownWriter
         if (!Directory.Exists(Path.GetDirectoryName(filePath)))
             Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
 
-        FileStream outputStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.ReadWrite);
-        using StreamWriter writer = new StreamWriter(outputStream);
+        FileStream outputStream = new(outputFilePath, FileMode.Create, FileAccess.ReadWrite);
+        using StreamWriter writer = new(outputStream);
 
-        DbmlMarkdownWriter dbmlWriter = new DbmlMarkdownWriter(dbmlDatabase);
+        DbmlMarkdownWriter dbmlWriter = new(dbmlDatabase);
         dbmlWriter.WriteTo(writer);
     }
 
@@ -47,7 +47,7 @@ public sealed class DbmlMarkdownWriter
         ArgumentNullException.ThrowIfNull(writer);
 
         using IndentedTextWriter indentedWriter =
-            new IndentedTextWriter(writer, "  ");
+            new(writer, "  ");
 
         Write(indentedWriter, _database);
     }

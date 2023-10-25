@@ -8,7 +8,7 @@ namespace DbmlNet.CodeAnalysis;
 
 internal sealed class DiagnosticBag : IEnumerable<Diagnostic>
 {
-    private readonly List<Diagnostic> _diagnostics = new List<Diagnostic>();
+    private readonly List<Diagnostic> _diagnostics = new();
 
     public IEnumerator<Diagnostic> GetEnumerator() => _diagnostics.GetEnumerator();
 

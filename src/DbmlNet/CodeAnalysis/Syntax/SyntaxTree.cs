@@ -79,7 +79,7 @@ public sealed class SyntaxTree
     {
         static void Parse(SyntaxTree syntaxTree, out CompilationUnitSyntax root, out ImmutableArray<Diagnostic> diagnostics)
         {
-            Parser parser = new Parser(syntaxTree);
+            Parser parser = new(syntaxTree);
             root = parser.ParseCompilationUnit();
             diagnostics = parser.Diagnostics.ToImmutableArray();
         }
@@ -136,11 +136,11 @@ public sealed class SyntaxTree
     public static ImmutableArray<SyntaxToken> ParseTokens(
         SourceText text, out ImmutableArray<Diagnostic> diagnostics, bool includeEndOfFile = false)
     {
-        List<SyntaxToken> tokens = new List<SyntaxToken>();
+        List<SyntaxToken> tokens = new();
 
         void ParseTokens(SyntaxTree st, out CompilationUnitSyntax root, out ImmutableArray<Diagnostic> d)
         {
-            Lexer l = new Lexer(st);
+            Lexer l = new(st);
             while (true)
             {
                 SyntaxToken token = l.Lex();
@@ -158,7 +158,7 @@ public sealed class SyntaxTree
             d = l.Diagnostics.ToImmutableArray();
         }
 
-        SyntaxTree syntaxTree = new SyntaxTree(text, ParseTokens);
+        SyntaxTree syntaxTree = new(text, ParseTokens);
         diagnostics = syntaxTree.Diagnostics;
         return tokens.ToImmutableArray();
     }
@@ -176,7 +176,7 @@ public sealed class SyntaxTree
 
     private Dictionary<SyntaxNode, SyntaxNode?> CreateParentsDictionary(CompilationUnitSyntax root)
     {
-        Dictionary<SyntaxNode, SyntaxNode?> result = new Dictionary<SyntaxNode, SyntaxNode?>
+        Dictionary<SyntaxNode, SyntaxNode?> result = new()
         {
             { root, null }
         };

@@ -36,7 +36,7 @@ internal sealed class AssertingEnumerator : IDisposable
 
     private static IEnumerable<SyntaxNode> Flatten(SyntaxNode node)
     {
-        Stack<SyntaxNode> stack = new Stack<SyntaxNode>();
+        Stack<SyntaxNode> stack = new();
         stack.Push(node);
 
         while (stack.Count > 0)

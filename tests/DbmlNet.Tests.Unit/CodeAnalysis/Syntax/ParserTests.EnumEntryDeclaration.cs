@@ -20,7 +20,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText);
     }
@@ -41,7 +41,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText, enumEntryNameValue);
     }
@@ -62,7 +62,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText, enumEntryNameValue);
     }
@@ -83,7 +83,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText, enumEntryNameValue);
     }
@@ -102,7 +102,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText);
     }
@@ -121,7 +121,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseEnumEntryDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
         e.AssertToken(enumEntryNameKind, enumEntryNameText);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);

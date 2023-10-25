@@ -20,7 +20,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NoteEnumEntrySettingClause);
@@ -44,7 +44,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NoteEnumEntrySettingClause);
@@ -71,7 +71,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
@@ -97,7 +97,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
@@ -126,7 +126,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
@@ -158,7 +158,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
@@ -190,7 +190,7 @@ public partial class ParserTests
         EnumEntrySettingListSyntax enumEntrySettingListClause =
             ParseEnumEntrySettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        using AssertingEnumerator e = new(enumEntrySettingListClause);
         e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);

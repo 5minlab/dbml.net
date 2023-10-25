@@ -20,7 +20,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -45,7 +45,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -72,7 +72,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -99,7 +99,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -125,7 +125,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -153,7 +153,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);
@@ -185,7 +185,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.EnumDeclarationMember);
         e.AssertToken(SyntaxKind.EnumKeyword, "enum");
         e.AssertNode(SyntaxKind.EnumIdentifierClause);

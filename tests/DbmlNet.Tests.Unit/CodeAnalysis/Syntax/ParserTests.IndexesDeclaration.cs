@@ -13,7 +13,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.IndexesDeclarationStatement);
         e.AssertToken(SyntaxKind.IndexesKeyword, "indexes");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
@@ -31,7 +31,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.IndexesDeclarationStatement);
         e.AssertToken(SyntaxKind.IndexesKeyword, "indexes");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
@@ -50,7 +50,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.IndexesDeclarationStatement);
         e.AssertToken(SyntaxKind.IndexesKeyword, "indexes");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");

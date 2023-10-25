@@ -19,7 +19,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
@@ -39,7 +39,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
@@ -59,7 +59,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");
@@ -90,7 +90,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseStatement(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.NoteDeclarationStatement);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
         e.AssertToken(SyntaxKind.ColonToken, ":");

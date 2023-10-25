@@ -14,8 +14,7 @@ public class SyntaxTokenTests
         string expectedText = DataGenerator.CreateRandomString();
         object? expectedValue = DataGenerator.CreateRandomString();
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
 
         Assert.Equal(expectedKind, token.Kind);
         Assert.Equal(expectedStart, token.Start);
@@ -31,8 +30,7 @@ public class SyntaxTokenTests
         string expectedText = DataGenerator.CreateRandomString();
         int expectedEnd = expectedText.Length;
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText);
 
         Assert.Equal(expectedEnd, token.Length);
     }
@@ -45,8 +43,7 @@ public class SyntaxTokenTests
         string expectedText = DataGenerator.CreateRandomString();
         int expectedEnd = expectedStart + expectedText.Length;
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText);
 
         Assert.Equal(expectedEnd, token.End);
     }
@@ -58,8 +55,7 @@ public class SyntaxTokenTests
         int expectedStart = DataGenerator.GetRandomNumber();
         const string? expectedText = null;
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText);
 
         Assert.True(token.IsMissing, "Token should be missing.");
     }
@@ -71,8 +67,7 @@ public class SyntaxTokenTests
         int expectedStart = DataGenerator.GetRandomNumber();
         string expectedText = DataGenerator.CreateRandomString();
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText);
 
         Assert.False(token.IsMissing, "Token should not be missing.");
     }
@@ -84,8 +79,7 @@ public class SyntaxTokenTests
         int expectedStart = DataGenerator.GetRandomNumber();
         string expectedText = DataGenerator.CreateRandomString();
 
-        SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText);
+        SyntaxToken token = new(syntaxTree: null!, expectedKind, expectedStart, expectedText);
 
         Assert.Equal(expectedText, token.ToString());
     }
@@ -99,7 +93,7 @@ public class SyntaxTokenTests
         object? expectedValue = DataGenerator.CreateRandomString();
 
         SyntaxToken token =
-            new SyntaxToken(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
+            new(syntaxTree: null!, expectedKind, expectedStart, expectedText, expectedValue);
 
         Assert.Empty(token.GetChildren());
     }

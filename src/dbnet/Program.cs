@@ -10,11 +10,10 @@ using DbmlNet.Domain;
 using DbmlNet.Extensions;
 using DbmlNet.IO;
 
-Stopwatch buildWatch = new Stopwatch();
+Stopwatch buildWatch = new();
 buildWatch.Start();
 
-using IndentedTextWriter writer =
-    new IndentedTextWriter(Console.Out);
+using IndentedTextWriter writer = new(Console.Out);
 
 string inputPath = args.FirstOrDefault() ?? string.Empty;
 List<string> arguments = new List<string>(Environment.GetCommandLineArgs())

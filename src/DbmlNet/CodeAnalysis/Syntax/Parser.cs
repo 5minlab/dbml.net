@@ -44,7 +44,7 @@ internal sealed class Parser
         TableDeclarationSyntax[] tableDeclarations =
             members.OfType<TableDeclarationSyntax>().ToArray();
 
-        HashSet<string> seenTableNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenTableNames = new(StringComparer.InvariantCulture);
         for (int i = 0; i < tableDeclarations.Length; i++)
         {
             TableDeclarationSyntax tableDeclaration = tableDeclarations[i];
@@ -52,7 +52,7 @@ internal sealed class Parser
             if (!seenTableNames.Add(tableNameText))
             {
                 TextSpan columnNameSpan = tableDeclaration.DbSchema.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, columnNameSpan);
+                TextLocation location = new(_syntaxTree.Text, columnNameSpan);
                 Diagnostics.ReportDuplicateTableName(location, tableNameText);
             }
         }
@@ -66,7 +66,7 @@ internal sealed class Parser
         out ImmutableArray<SyntaxToken> tokens,
         out ImmutableArray<Diagnostic> diagnostics)
     {
-        Lexer lexer = new Lexer(syntaxTree);
+        Lexer lexer = new(syntaxTree);
 
         ImmutableArray<SyntaxToken>.Builder tokenList =
             ImmutableArray.CreateBuilder<SyntaxToken>();
@@ -240,8 +240,8 @@ internal sealed class Parser
         void ReportUnknownProjectSetting(string settingName, int spanStart, int spanEnd)
         {
             SourceText text = _syntaxTree.Text;
-            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
-            TextLocation location = new TextLocation(text, span);
+            TextSpan span = new(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new(text, span);
             Diagnostics.ReportUnknownProjectSetting(location, settingName);
         }
 
@@ -278,7 +278,7 @@ internal sealed class Parser
         EnumEntryDeclarationSyntax[] enumEntryDeclarations =
             body.GetChildren().OfType<EnumEntryDeclarationSyntax>().ToArray();
 
-        HashSet<string> seenEnumEntryNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenEnumEntryNames = new(StringComparer.InvariantCulture);
         for (int i = 0; i < enumEntryDeclarations.Length; i++)
         {
             EnumEntryDeclarationSyntax enumEntryDeclaration = enumEntryDeclarations[i];
@@ -286,7 +286,7 @@ internal sealed class Parser
             if (!seenEnumEntryNames.Add(enumEntryNameText))
             {
                 TextSpan enumEntryNameSpan = enumEntryDeclaration.IdentifierToken.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, enumEntryNameSpan);
+                TextLocation location = new(_syntaxTree.Text, enumEntryNameSpan);
                 Diagnostics.ReportDuplicateEnumEntryName(location, enumEntryNameText);
             }
         }
@@ -331,7 +331,7 @@ internal sealed class Parser
         ColumnDeclarationSyntax[] columnDeclarations =
             body.GetChildren().OfType<ColumnDeclarationSyntax>().ToArray();
 
-        HashSet<string> seenColumNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenColumNames = new(StringComparer.InvariantCulture);
         for (int i = 0; i < columnDeclarations.Length; i++)
         {
             ColumnDeclarationSyntax columDeclaration = columnDeclarations[i];
@@ -339,7 +339,7 @@ internal sealed class Parser
             if (!seenColumNames.Add(columnNameText))
             {
                 TextSpan columnNameSpan = columDeclaration.IdentifierToken.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, columnNameSpan);
+                TextLocation location = new(_syntaxTree.Text, columnNameSpan);
                 Diagnostics.ReportDuplicateColumnName(location, columnNameText);
             }
         }
@@ -569,7 +569,7 @@ internal sealed class Parser
 
     private BlockStatementSyntax ParseBlockStatement()
     {
-        List<StatementSyntax> statements = new List<StatementSyntax>();
+        List<StatementSyntax> statements = new();
 
         SyntaxToken openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
 
@@ -675,14 +675,14 @@ internal sealed class Parser
                 separatorKind: SyntaxKind.CommaToken,
                 parseExpression: ParseIndexSettingClause);
 
-        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenSettingNames = new(StringComparer.InvariantCulture);
         foreach (IndexSettingClause indexSetting in settings)
         {
             string settingNameText = indexSetting.SettingName;
             if (!seenSettingNames.Add(settingNameText))
             {
                 TextSpan settingNameSpan = indexSetting.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                TextLocation location = new(_syntaxTree.Text, settingNameSpan);
                 Diagnostics.ReportDuplicateIndexSettingName(location, settingNameText);
             }
         }
@@ -757,7 +757,7 @@ internal sealed class Parser
         string columnTypeName = $"{valueToken.Value ?? valueToken.Text}";
         if (!IndexSettingTypes.Contains(columnTypeName, StringComparer.InvariantCulture))
         {
-            TextLocation location = new TextLocation(_syntaxTree.Text, valueToken.Span);
+            TextLocation location = new(_syntaxTree.Text, valueToken.Span);
             Diagnostics.ReportUnknownIndexSettingType(location, columnTypeName);
         }
 
@@ -781,8 +781,8 @@ internal sealed class Parser
         void ReportUnknownIndexSetting(string settingName, int spanStart, int spanEnd)
         {
             SourceText text = _syntaxTree.Text;
-            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
-            TextLocation location = new TextLocation(text, span);
+            TextSpan span = new(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new(text, span);
             Diagnostics.ReportUnknownIndexSetting(location, settingName);
         }
 
@@ -821,14 +821,14 @@ internal sealed class Parser
         SeparatedSyntaxList<EnumEntrySettingClause> settings =
             settingList?.Settings ?? SeparatedSyntaxList<EnumEntrySettingClause>.Empty;
 
-        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenSettingNames = new(StringComparer.InvariantCulture);
         foreach (EnumEntrySettingClause columnSetting in settings)
         {
             string settingNameText = columnSetting.SettingName;
             if (!seenSettingNames.Add(settingNameText))
             {
                 TextSpan settingNameSpan = columnSetting.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                TextLocation location = new(_syntaxTree.Text, settingNameSpan);
                 Diagnostics.ReportDuplicateEnumEntrySettingName(location, settingNameText);
             }
         }
@@ -901,8 +901,8 @@ internal sealed class Parser
         void ReportUnknownEnumEntrySetting(string settingName, int spanStart, int spanEnd)
         {
             SourceText text = _syntaxTree.Text;
-            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
-            TextLocation location = new TextLocation(text, span);
+            TextSpan span = new(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new(text, span);
             Diagnostics.ReportUnknownEnumEntrySetting(location, settingName);
         }
     }
@@ -921,14 +921,14 @@ internal sealed class Parser
         SeparatedSyntaxList<ColumnSettingClause> settings =
             settingList?.Settings ?? SeparatedSyntaxList<ColumnSettingClause>.Empty;
 
-        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
+        HashSet<string> seenSettingNames = new(StringComparer.InvariantCulture);
         foreach (ColumnSettingClause columnSetting in settings)
         {
             string settingNameText = columnSetting.SettingName;
             if (!seenSettingNames.Add(settingNameText))
             {
                 TextSpan settingNameSpan = columnSetting.Span;
-                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                TextLocation location = new(_syntaxTree.Text, settingNameSpan);
                 Diagnostics.ReportDuplicateColumnSettingName(location, settingNameText);
             }
         }
@@ -1112,8 +1112,8 @@ internal sealed class Parser
         void ReportUnknownColumnSetting(string settingName, int spanStart, int spanEnd)
         {
             SourceText text = _syntaxTree.Text;
-            TextSpan span = new TextSpan(spanStart, length: spanEnd - spanStart);
-            TextLocation location = new TextLocation(text, span);
+            TextSpan span = new(spanStart, length: spanEnd - spanStart);
+            TextLocation location = new(text, span);
             Diagnostics.ReportUnknownColumnSetting(location, settingName);
         }
     }
@@ -1341,7 +1341,7 @@ internal sealed class Parser
             if (separatorKind is null)
             {
                 SyntaxToken emptySeparator =
-                    new SyntaxToken(_syntaxTree, SyntaxKind.BadToken, Current.Start);
+                    new(_syntaxTree, SyntaxKind.BadToken, Current.Start);
 
                 nodesAndSeparators.Add(emptySeparator);
             }

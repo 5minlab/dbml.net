@@ -136,7 +136,7 @@ public sealed class SourceText
     {
         int lineLength = position - lineStart;
         int lineLengthIncludingLineBreak = lineLength + lineBreakWidth;
-        TextLine line = new TextLine(sourceText, lineStart, lineLength, lineLengthIncludingLineBreak);
+        TextLine line = new(sourceText, lineStart, lineLength, lineLengthIncludingLineBreak);
         result.Add(line);
     }
 

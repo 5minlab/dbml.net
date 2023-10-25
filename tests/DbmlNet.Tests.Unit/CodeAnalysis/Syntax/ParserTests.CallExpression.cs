@@ -19,7 +19,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -39,7 +39,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -69,7 +69,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -95,7 +95,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -116,7 +116,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -137,7 +137,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -159,7 +159,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -181,7 +181,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
@@ -203,7 +203,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.CallExpression);
         e.AssertToken(functionNameKind, functionNameText);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");

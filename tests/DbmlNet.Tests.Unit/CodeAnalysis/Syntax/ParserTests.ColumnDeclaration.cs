@@ -26,7 +26,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -51,7 +51,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText, columnNameValue);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -76,7 +76,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText, columnNameValue);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -101,7 +101,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText, columnNameValue);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -124,7 +124,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -149,7 +149,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -174,7 +174,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -199,7 +199,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -224,7 +224,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -264,7 +264,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeParenthesizedIdentifierClause);
@@ -321,7 +321,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);
@@ -344,7 +344,7 @@ public partial class ParserTests
 
         StatementSyntax statement = ParseColumnDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        using AssertingEnumerator e = new(statement);
         e.AssertNode(SyntaxKind.ColumnDeclarationStatement);
         e.AssertToken(columnNameKind, columnNameText);
         e.AssertNode(SyntaxKind.ColumnTypeIdentifierClause);

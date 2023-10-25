@@ -128,11 +128,10 @@ public sealed class DbmlTableColumn
         TableRelationshipType relationshipType,
         DbmlColumnIdentifier toColumn)
     {
-        DbmlColumnIdentifier fromColumn =
-            new DbmlColumnIdentifier(
-                schemaName: Table?.Schema ?? string.Empty,
-                tableName: Table?.Name ?? string.Empty,
-                columnName: Name);
+        string schemaName = Table?.Schema ?? string.Empty;
+        string tableName = Table?.Name ?? string.Empty;
+        string columnName = Name;
+        DbmlColumnIdentifier fromColumn = new(schemaName, tableName, columnName);
 
         Table?.AddRelationship(fromColumn, relationshipType, toColumn);
     }

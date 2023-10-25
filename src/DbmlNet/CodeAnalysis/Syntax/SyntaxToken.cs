@@ -140,7 +140,7 @@ public sealed class SyntaxToken : SyntaxNode
     /// <summary>
     /// Gets the span for this token.
     /// </summary>
-    public override TextSpan Span => new TextSpan(Start, Text.Length);
+    public override TextSpan Span => new(Start, Text.Length);
 
     /// <summary>
     /// Returns an empty array since a token has no children.

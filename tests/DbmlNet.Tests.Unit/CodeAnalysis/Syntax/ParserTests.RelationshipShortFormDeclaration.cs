@@ -24,7 +24,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipShortFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(SyntaxKind.ColonToken, ":");
@@ -65,7 +65,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipShortFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(identifierKind, identifierText, identifierValue);
@@ -97,7 +97,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
@@ -118,7 +118,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(identifierKind, identifierText, identifierValue);
@@ -138,7 +138,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
@@ -168,7 +168,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.RelationshipLongFormDeclarationMember);
         e.AssertToken(SyntaxKind.RefKeyword, "ref");
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");

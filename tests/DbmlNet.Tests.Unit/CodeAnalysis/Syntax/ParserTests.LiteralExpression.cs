@@ -15,7 +15,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         LiteralExpressionSyntax literalExpression =
             Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
@@ -32,7 +32,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         LiteralExpressionSyntax literalExpression =
             Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
@@ -50,7 +50,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         LiteralExpressionSyntax literalExpression =
             Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
@@ -68,7 +68,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         LiteralExpressionSyntax literalExpression =
             Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);
@@ -86,7 +86,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.LiteralExpression);
         LiteralExpressionSyntax literalExpression =
             Assert.IsAssignableFrom<LiteralExpressionSyntax>(e.Node);

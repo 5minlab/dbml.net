@@ -110,7 +110,7 @@ public sealed class DbmlTable
         ArgumentNullException.ThrowIfNull(toColumn);
 
         DbmlTableRelationship relationship =
-            new DbmlTableRelationship(fromColumn, relationshipType, toColumn);
+            new(fromColumn, relationshipType, toColumn);
 
         _relationships.Add(relationship);
     }

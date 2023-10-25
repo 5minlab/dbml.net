@@ -16,7 +16,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.PrimaryKeyColumnSettingClause);
@@ -32,7 +32,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.PkColumnSettingClause);
@@ -47,7 +47,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NullColumnSettingClause);
@@ -62,7 +62,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NotNullColumnSettingClause);
@@ -78,7 +78,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UniqueColumnSettingClause);
@@ -93,7 +93,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.IncrementColumnSettingClause);
@@ -112,7 +112,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NoteColumnSettingClause);
@@ -133,7 +133,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.NoteColumnSettingClause);
@@ -158,7 +158,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -180,7 +180,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -201,7 +201,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -222,7 +222,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -243,7 +243,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -264,7 +264,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -286,7 +286,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -308,7 +308,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -330,7 +330,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.DefaultColumnSettingClause);
@@ -359,7 +359,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
@@ -403,7 +403,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
@@ -430,7 +430,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
@@ -460,7 +460,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
@@ -490,7 +490,7 @@ public partial class ParserTests
         ColumnSettingListSyntax columnSettingListClause =
             ParseColumnSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.UnknownColumnSettingClause);
@@ -522,7 +522,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.RelationshipColumnSettingClause);
@@ -563,7 +563,7 @@ public partial class ParserTests
 
         ColumnSettingListSyntax columnSettingListClause = ParseColumnSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ColumnSettingListClause);
         e.AssertToken(SyntaxKind.OpenBracketToken, "[");
         e.AssertNode(SyntaxKind.RelationshipColumnSettingClause);

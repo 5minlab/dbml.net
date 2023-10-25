@@ -20,7 +20,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        using AssertingEnumerator e = new(settings);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
         e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
@@ -40,7 +40,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        using AssertingEnumerator e = new(settings);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
         e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
@@ -60,7 +60,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        using AssertingEnumerator e = new(settings);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
         e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
@@ -80,7 +80,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax settings = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(settings);
+        using AssertingEnumerator e = new(settings);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.DatabaseProviderProjectSettingClause);
         e.AssertToken(SyntaxKind.DatabaseTypeKeyword, "database_type");
@@ -102,7 +102,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
@@ -122,7 +122,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
@@ -144,7 +144,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
@@ -166,7 +166,7 @@ public partial class ParserTests
 
         ProjectSettingListSyntax columnSettingListClause = ParseProjectSettingListClause(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.NoteProjectSettingClause);
         e.AssertToken(SyntaxKind.NoteKeyword, "note");
@@ -189,7 +189,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingKind, settingNameText, settingValue);
@@ -233,7 +233,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingNameValue);
@@ -260,7 +260,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingNameValue);
@@ -288,7 +288,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingNameValue);
@@ -316,7 +316,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingNameValue);
@@ -344,7 +344,7 @@ public partial class ParserTests
         ProjectSettingListSyntax columnSettingListClause =
             ParseProjectSettingListClause(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(columnSettingListClause);
+        using AssertingEnumerator e = new(columnSettingListClause);
         e.AssertNode(SyntaxKind.ProjectSettingListClause);
         e.AssertNode(SyntaxKind.UnknownProjectSettingClause);
         e.AssertToken(settingNameKind, settingNameText, settingNameValue);

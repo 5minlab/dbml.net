@@ -108,7 +108,7 @@ internal sealed class Lexer
             if (length > 0)
             {
                 string text = _text.ToString(_start, length);
-                SyntaxTrivia trivia = new SyntaxTrivia(_syntaxTree, _kind, _start, text);
+                SyntaxTrivia trivia = new(_syntaxTree, _kind, _start, text);
                 _triviaBuilder.Add(trivia);
             }
         }
@@ -190,8 +190,8 @@ internal sealed class Lexer
             switch (Current)
             {
                 case '\0':
-                    TextSpan span = new TextSpan(start, 2);
-                    TextLocation location = new TextLocation(_text, span);
+                    TextSpan span = new(start, 2);
+                    TextLocation location = new(_text, span);
                     Diagnostics.ReportUnterminatedMultiLineComment(location);
                     done = true;
                     break;
@@ -329,8 +329,8 @@ internal sealed class Lexer
                 }
                 else
                 {
-                    TextSpan span = new TextSpan(_position, 1);
-                    TextLocation location = new TextLocation(_text, span);
+                    TextSpan span = new(_position, 1);
+                    TextLocation location = new(_text, span);
                     Diagnostics.ReportBadCharacter(location, Current);
                     _position++; // skip bad token
                 }
@@ -349,7 +349,7 @@ internal sealed class Lexer
         // Skip the current quote
         _position++;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         bool done = false;
         while (!done)
         {
@@ -358,8 +358,8 @@ internal sealed class Lexer
                 case '\0':
                 case '\r':
                 case '\n':
-                    TextSpan span = new TextSpan(start, 1);
-                    TextLocation location = new TextLocation(_text, span);
+                    TextSpan span = new(start, 1);
+                    TextLocation location = new(_text, span);
                     Diagnostics.ReportUnterminatedString(location);
                     done = true;
                     break;
@@ -394,7 +394,7 @@ internal sealed class Lexer
         // Skip the current quote
         _position++;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         bool done = false;
         while (!done)
         {
@@ -403,8 +403,8 @@ internal sealed class Lexer
                 case '\0':
                 case '\r':
                 case '\n':
-                    TextSpan span = new TextSpan(start, 1);
-                    TextLocation location = new TextLocation(_text, span);
+                    TextSpan span = new(start, 1);
+                    TextLocation location = new(_text, span);
                     Diagnostics.ReportUnterminatedString(location);
                     done = true;
                     break;
@@ -441,7 +441,7 @@ internal sealed class Lexer
         // Skip the current quotes '''
         _position += 3;
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         bool done = false;
         while (!done)
         {
@@ -449,8 +449,8 @@ internal sealed class Lexer
             {
                 case '\0':
                 {
-                    TextSpan span = new TextSpan(start, 3);
-                    TextLocation location = new TextLocation(_text, span);
+                    TextSpan span = new(start, 3);
+                    TextLocation location = new(_text, span);
                     Diagnostics.ReportUnterminatedMultiLineString(location);
                     done = true;
                     break;
@@ -475,8 +475,8 @@ internal sealed class Lexer
                     }
                     else
                     {
-                        TextSpan span = new TextSpan(_position, 1);
-                        TextLocation location = new TextLocation(_text, span);
+                        TextSpan span = new(_position, 1);
+                        TextLocation location = new(_text, span);
                         Diagnostics.ReportUnrecognizedEscapeSequence(location);
                         _position++;
                     }
@@ -551,8 +551,8 @@ internal sealed class Lexer
         }
         catch (OverflowException)
         {
-            TextSpan span = new TextSpan(_position, length);
-            TextLocation location = new TextLocation(_text, span);
+            TextSpan span = new(_position, length);
+            TextLocation location = new(_text, span);
             Diagnostics.ReportNumberToLarge(location, numberText);
         }
     }

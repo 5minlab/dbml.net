@@ -13,7 +13,7 @@ public partial class ParserTests
 
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(syntaxTree.Root);
+        using AssertingEnumerator e = new(syntaxTree.Root);
         e.AssertNode(SyntaxKind.CompilationUnitMember);
         e.AssertToken(SyntaxKind.EndOfFileToken, string.Empty);
     }
@@ -29,7 +29,7 @@ public partial class ParserTests
 
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(syntaxTree.Root);
+        using AssertingEnumerator e = new(syntaxTree.Root);
         e.AssertNode(SyntaxKind.CompilationUnitMember);
         e.AssertNode(SyntaxKind.ProjectDeclarationMember);
         e.AssertToken(SyntaxKind.ProjectKeyword, "Project");
@@ -49,7 +49,7 @@ public partial class ParserTests
 
         SyntaxTree syntaxTree = SyntaxTree.Parse(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(syntaxTree.Root);
+        using AssertingEnumerator e = new(syntaxTree.Root);
         e.AssertNode(SyntaxKind.CompilationUnitMember);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");

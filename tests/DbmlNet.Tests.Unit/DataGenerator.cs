@@ -54,7 +54,7 @@ internal static class DataGenerator
         int minLineCount = 0,
         int maxLineCount = 10)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new();
         for (int i = minLineCount; i < maxLineCount; i++)
         {
             sb.AppendLine(CreateRandomMultiWordString());

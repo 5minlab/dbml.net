@@ -14,7 +14,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(expectedText);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.NullExpression);
         e.AssertToken(expectedKind, expectedText);
     }

@@ -14,9 +14,9 @@ internal static class TextUnindenter
 
     public static string[] UnindentLines(string text)
     {
-        List<string> lines = new List<string>();
+        List<string> lines = new();
 
-        using (StringReader reader = new StringReader(text))
+        using (StringReader reader = new(text))
         {
             string? line;
             while ((line = reader.ReadLine()) != null)

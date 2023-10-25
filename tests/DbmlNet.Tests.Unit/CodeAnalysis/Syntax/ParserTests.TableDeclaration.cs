@@ -16,7 +16,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -37,7 +37,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -60,7 +60,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -83,7 +83,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -111,7 +111,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -136,7 +136,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -160,7 +160,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -184,7 +184,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);
@@ -212,7 +212,7 @@ public partial class ParserTests
 
         MemberSyntax member = ParseMember(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(member);
+        using AssertingEnumerator e = new(member);
         e.AssertNode(SyntaxKind.TableDeclarationMember);
         e.AssertToken(SyntaxKind.TableKeyword, "Table");
         e.AssertNode(SyntaxKind.TableIdentifierClause);

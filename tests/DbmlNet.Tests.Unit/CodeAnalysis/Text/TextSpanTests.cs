@@ -12,7 +12,7 @@ public sealed class TextSpanTests
         int start = DataGenerator.GetRandomNumber();
         int length = DataGenerator.GetRandomNumber();
 
-        TextSpan span = new TextSpan(start, length);
+        TextSpan span = new(start, length);
 
         Assert.True(start == span.Start, $"Expect span.Start == start, but got {span.Start} == {start}");
         Assert.True(length == span.Length, $"Expect span.Length == length, but got {span.Length} == {length}");

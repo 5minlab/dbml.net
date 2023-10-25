@@ -20,7 +20,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.ParenthesizedExpression);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.NameExpression);
@@ -39,7 +39,7 @@ public partial class ParserTests
 
         ExpressionSyntax expression = ParseExpression(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(expression);
+        using AssertingEnumerator e = new(expression);
         e.AssertNode(SyntaxKind.ParenthesizedExpression);
         e.AssertToken(SyntaxKind.OpenParenthesisToken, "(");
         e.AssertNode(SyntaxKind.LiteralExpression);

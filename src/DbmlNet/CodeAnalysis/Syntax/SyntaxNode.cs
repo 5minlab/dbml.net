@@ -49,7 +49,7 @@ public abstract class SyntaxNode
     /// <summary>
     /// Gets the text location of the syntax node.
     /// </summary>
-    public TextLocation Location => new TextLocation(SyntaxTree.Text, Span);
+    public TextLocation Location => new(SyntaxTree.Text, Span);
 
     /// <summary>
     /// Gets the text current <see cref="SyntaxNode"/> instance.

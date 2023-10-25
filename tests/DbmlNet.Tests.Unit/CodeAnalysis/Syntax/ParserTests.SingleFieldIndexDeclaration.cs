@@ -20,7 +20,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
@@ -38,7 +38,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
@@ -56,7 +56,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
@@ -74,7 +74,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
@@ -91,7 +91,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
     }
@@ -108,7 +108,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -128,7 +128,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -150,7 +150,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -172,7 +172,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -198,7 +198,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -226,7 +226,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -254,7 +254,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -285,7 +285,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -317,7 +317,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -349,7 +349,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -376,7 +376,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -404,7 +404,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -432,7 +432,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -463,7 +463,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -511,7 +511,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -543,7 +543,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -578,7 +578,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);
@@ -613,7 +613,7 @@ public partial class ParserTests
         SingleFieldIndexDeclarationSyntax singleFieldIndexDeclarationSyntax =
             ParseSingleFieldIndexDeclaration(text, diagnosticMessages);
 
-        using AssertingEnumerator e = new AssertingEnumerator(singleFieldIndexDeclarationSyntax);
+        using AssertingEnumerator e = new(singleFieldIndexDeclarationSyntax);
         e.AssertNode(SyntaxKind.SingleFieldIndexDeclarationStatement);
         e.AssertToken(indexNameKind, indexNameText, indexNameValue);
         e.AssertNode(SyntaxKind.IndexSettingListClause);

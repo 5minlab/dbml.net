@@ -22,7 +22,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
 
     public static DbmlDatabase Make(SyntaxTree syntaxTree)
     {
-        DbmlDatabaseMaker maker = new DbmlDatabaseMaker(syntaxTree);
+        DbmlDatabaseMaker maker = new(syntaxTree);
         return maker._database;
     }
 
@@ -177,8 +177,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         string? toTableName = constraintClause.ToIdentifier.TableIdentifier?.Text;
                         string toColumnName = constraintClause.ToIdentifier.ColumnIdentifier.Text;
 
-                        DbmlColumnIdentifier toColumn =
-                            new DbmlColumnIdentifier(toSchemaName, toTableName, toColumnName);
+                        DbmlColumnIdentifier toColumn = new(toSchemaName, toTableName, toColumnName);
 
                         _currentTableColumn.AddRelationship(relationshipType, toColumn);
                         break;
