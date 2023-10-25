@@ -79,6 +79,32 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBracketToken, "]");
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_UnknownEnumEntrySettingClause_With_Simple_Setting_Keyword(
+        SyntaxKind settingNameKind,
+        string settingNameText,
+        object? settingNameValue)
+    {
+        string text = $$"""
+        {{DataGenerator.CreateRandomString()}} [ {{settingNameText}} ]
+        """;
+        string[] diagnosticMessages = new[]
+        {
+            $"Unknown enum entry setting '{settingNameText}'.",
+        };
+
+        EnumEntrySettingListSyntax enumEntrySettingListClause =
+            ParseEnumEntrySettingListClause(text, diagnosticMessages);
+
+        using AssertingEnumerator e = new AssertingEnumerator(enumEntrySettingListClause);
+        e.AssertNode(SyntaxKind.EnumEntrySettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.UnknownEnumEntrySettingClause);
+        e.AssertToken(settingNameKind, settingNameText, settingNameValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+    }
+
     [Fact]
     public void Parse_UnknownEnumEntrySettingClause_With_Composed_Setting_Identifier_Value()
     {
