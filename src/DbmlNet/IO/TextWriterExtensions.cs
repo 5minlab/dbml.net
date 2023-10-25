@@ -217,7 +217,7 @@ namespace DbmlNet.IO
         {
             ArgumentNullException.ThrowIfNull(writer);
 
-            string? text = SyntaxFacts.GetKnownText(kind);
+            string? text = kind.GetKnownText();
             Debug.Assert(text != null, "kind is not a known punctuation");
 
             writer.WritePunctuation(text);
