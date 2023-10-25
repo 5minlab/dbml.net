@@ -4,17 +4,17 @@
 
 // ```dbml
 // enum belonged to default "public" schema
-// TODO: enum job_status {
-// TODO:     created [note: 'Waiting to be processed']
-// TODO:     running
-// TODO:     done
-// TODO:     failure
-// TODO: }
+enum job_status {
+    created [note: 'Waiting to be processed']
+    running
+    done
+    failure
+}
 
 // enum belonged to a schema
-// TODO: enum v2.job_status {
-// TODO:     ...
-// TODO: }
+enum v2.job_status {
+    // ...
+}
 
 Table jobs {
     id integer
@@ -28,10 +28,10 @@ Table jobs {
 // If your enum values contain spaces or other special characters you can use double quotes.
 
 // ```dbml
-// TODO: enum grade {
-// TODO:     "A+"
-// TODO:     "A"
-// TODO:     "A-"
-// TODO:     "Not Yet Set"
-// TODO: }
+enum grade {
+    "A+"
+    "A"
+    "A-"
+    "Not Yet Set"
+}
 // ```
