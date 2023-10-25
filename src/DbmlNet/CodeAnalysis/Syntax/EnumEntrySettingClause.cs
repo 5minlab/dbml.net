@@ -5,13 +5,14 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 /// </summary>
 public abstract class EnumEntrySettingClause : SyntaxNode
 {
-    private protected EnumEntrySettingClause(SyntaxTree syntaxTree)
+    private protected EnumEntrySettingClause(SyntaxTree syntaxTree, string settingName)
         : base(syntaxTree)
     {
+        SettingName = settingName;
     }
 
     /// <summary>
     /// Gets the setting name.
     /// </summary>
-    public abstract string SettingName { get; }
+    public string SettingName { get; }
 }

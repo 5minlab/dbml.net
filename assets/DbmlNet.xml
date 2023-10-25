@@ -890,11 +890,6 @@
             Gets the syntax kind of the note enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteEnumEntrySettingClause"/>.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.SettingName">
-            <summary>
-            Gets the setting name.
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.NoteKeyword">
             <summary>
             Gets the note keyword.
@@ -2235,11 +2230,6 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.Kind">
             <summary>
             Gets the syntax kind of the unknown enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownEnumEntrySettingClause"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.SettingName">
-            <summary>
-            Gets the setting name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownEnumEntrySettingClause.NameToken">
