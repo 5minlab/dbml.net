@@ -152,8 +152,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         string settingName = unknownSetting.NameToken.Text;
                         string? settingValue =
                             unknownSetting.ValueToken?.Value?.ToString()
-                                ?? unknownSetting.ValueToken?.Text
-                                ?? null;
+                                ?? unknownSetting.ValueToken?.Text;
 
                         _currentTableColumn.AddUnknownSetting(settingName, settingValue);
                         break;
@@ -254,8 +253,7 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                         string settingName = unknownSetting.NameToken.Text;
                         string? settingValue =
                             unknownSetting.ValueToken?.Value?.ToString()
-                                ?? unknownSetting.ValueToken?.Text
-                                ?? null;
+                                ?? unknownSetting.ValueToken?.Text;
 
                         _currentTableIndex.AddUnknownSetting(settingName, settingValue);
                         break;
