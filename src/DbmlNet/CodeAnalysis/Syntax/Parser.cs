@@ -550,7 +550,7 @@ internal sealed class Parser
         bool identifierIsOnSingleLine =
             Current.TrailingTrivia.LastOrDefault()?.Kind == SyntaxKind.LineBreakTrivia;
 
-        bool canReadSettings = Current.Kind == SyntaxKind.OpenBracketToken;
+        bool canReadSettings = Lookahead.Kind == SyntaxKind.OpenBracketToken;
 
         return isAllowedEnumIdentifier && (identifierIsOnSingleLine || canReadSettings);
     }
