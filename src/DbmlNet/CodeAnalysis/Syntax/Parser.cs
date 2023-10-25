@@ -553,15 +553,9 @@ internal sealed class Parser
     {
         bool isAllowedEnumIdentifier = Current.Kind switch
         {
-            SyntaxKind.IdentifierToken
-                when Peek(1).Kind == SyntaxKind.DotToken
-                  && Peek(2).Kind == SyntaxKind.IdentifierToken => true,
-            SyntaxKind.IdentifierToken
-                when Peek(1).Kind == SyntaxKind.DotToken => true,
             SyntaxKind.IdentifierToken => true,
-            SyntaxKind.QuotationMarksStringToken => true,
-            SyntaxKind.SingleQuotationMarksStringToken => true,
             _ when Current.Kind.IsKeyword() => true,
+            _ when Current.Kind.IsStringToken() => true,
             _ => false
         };
 
