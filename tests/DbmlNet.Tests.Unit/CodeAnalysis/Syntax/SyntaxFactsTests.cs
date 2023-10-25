@@ -15,7 +15,10 @@ public class SyntaxFactsTests
     public void SyntaxFacts_GetText_Returned_Text_Should_Parse_Same_TokenKind(SyntaxKind kind)
     {
         string? text = kind.GetKnownText();
-        Assert.True(text is not null, $"Invalid test input, expected token text should not be null for the given token kind '{kind}'.");
+        string message = $"""
+        Invalid input, expected token text not be null for kind '{kind}', did you forget to update `SyntaxFacts.GetKnownText(kind)`?
+        """;
+        Assert.True(text is not null, message);
 
         ImmutableArray<SyntaxToken> tokens = SyntaxTree.ParseTokens(text);
         SyntaxToken token = Assert.Single(tokens);
