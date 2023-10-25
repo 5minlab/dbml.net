@@ -12,23 +12,17 @@ public sealed class UnknownIndexSettingClause : IndexSettingClause
         SyntaxToken nameToken,
         SyntaxToken? colonToken = null,
         SyntaxToken? settingValueToken = null)
-        : base(syntaxTree)
+        : base(syntaxTree, nameToken.Text)
     {
         NameToken = nameToken;
         ColonToken = colonToken;
         ValueToken = settingValueToken;
-        SettingName = nameToken.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unknown index setting clause <see cref="SyntaxKind.UnknownIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UnknownIndexSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the name token.

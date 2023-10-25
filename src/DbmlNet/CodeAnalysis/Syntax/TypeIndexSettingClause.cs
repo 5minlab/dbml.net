@@ -12,23 +12,17 @@ public sealed class TypeIndexSettingClause : IndexSettingClause
         SyntaxToken typeKeyword,
         SyntaxToken colonToken,
         SyntaxToken valueToken)
-        : base(syntaxTree)
+        : base(syntaxTree, $"{typeKeyword.Value ?? typeKeyword.Text}")
     {
         TypeKeyword = typeKeyword;
         ColonToken = colonToken;
         ValueToken = valueToken;
-        SettingName = $"{typeKeyword.Value ?? typeKeyword.Text}";
     }
 
     /// <summary>
     /// Gets the syntax kind of the type index setting clause <see cref="SyntaxKind.TypeIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.TypeIndexSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the type keyword.

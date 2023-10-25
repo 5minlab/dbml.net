@@ -5,13 +5,14 @@ namespace DbmlNet.CodeAnalysis.Syntax;
 /// </summary>
 public abstract class IndexSettingClause : SyntaxNode
 {
-    private protected IndexSettingClause(SyntaxTree syntaxTree)
+    private protected IndexSettingClause(SyntaxTree syntaxTree, string settingName)
         : base(syntaxTree)
     {
+        SettingName = settingName;
     }
 
     /// <summary>
     /// Gets the setting name.
     /// </summary>
-    public abstract string SettingName { get; }
+    public string SettingName { get; }
 }

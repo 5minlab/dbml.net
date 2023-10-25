@@ -10,21 +10,15 @@ public sealed class UniqueIndexSettingClause : IndexSettingClause
     internal UniqueIndexSettingClause(
         SyntaxTree syntaxTree,
         SyntaxToken uniqueKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, uniqueKeyword.Text)
     {
         UniqueKeyword = uniqueKeyword;
-        SettingName = uniqueKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the unique index setting clause <see cref="SyntaxKind.UniqueIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.UniqueIndexSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the unique keyword.

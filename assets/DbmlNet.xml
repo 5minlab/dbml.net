@@ -807,11 +807,6 @@
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NameIndexSettingClause"/>.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NameIndexSettingClause.NameKeyword">
             <summary>
             Gets the name keyword.
@@ -944,11 +939,6 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.Kind">
             <summary>
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteIndexSettingClause"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause.NoteKeyword">
@@ -1154,11 +1144,6 @@
             Gets the syntax kind of the index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PkIndexSettingClause"/>.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PkIndexSettingClause.PkKeyword">
             <summary>
             Gets the pk keyword.
@@ -1209,11 +1194,6 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.Kind">
             <summary>
             Gets the syntax kind of the primary key index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.PrimaryKeyIndexSettingClause"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.PrimaryKeyIndexSettingClause.PrimaryKeyword">
@@ -2193,11 +2173,6 @@
             Gets the syntax kind of the type index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.TypeIndexSettingClause"/>.
             </summary>
         </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
-            </summary>
-        </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.TypeIndexSettingClause.TypeKeyword">
             <summary>
             Gets the type keyword.
@@ -2253,11 +2228,6 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.Kind">
             <summary>
             Gets the syntax kind of the unique index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UniqueIndexSettingClause"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UniqueIndexSettingClause.UniqueKeyword">
@@ -2351,11 +2321,6 @@
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.Kind">
             <summary>
             Gets the syntax kind of the unknown index setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.UnknownIndexSettingClause"/>.
-            </summary>
-        </member>
-        <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.SettingName">
-            <summary>
-            Gets the setting name.
             </summary>
         </member>
         <member name="P:DbmlNet.CodeAnalysis.Syntax.UnknownIndexSettingClause.NameToken">

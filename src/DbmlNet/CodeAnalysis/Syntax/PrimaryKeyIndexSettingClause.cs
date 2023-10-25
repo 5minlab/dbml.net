@@ -11,22 +11,16 @@ public sealed class PrimaryKeyIndexSettingClause : IndexSettingClause
         SyntaxTree syntaxTree,
         SyntaxToken primaryKeyword,
         SyntaxToken keyKeyword)
-        : base(syntaxTree)
+        : base(syntaxTree, primaryKeyword.Text + keyKeyword.Text)
     {
         PrimaryKeyword = primaryKeyword;
         KeyKeyword = keyKeyword;
-        SettingName = primaryKeyword.Text + keyKeyword.Text;
     }
 
     /// <summary>
     /// Gets the syntax kind of the primary key index setting clause <see cref="SyntaxKind.PrimaryKeyIndexSettingClause"/>.
     /// </summary>
     public override SyntaxKind Kind => SyntaxKind.PrimaryKeyIndexSettingClause;
-
-    /// <summary>
-    /// Gets the setting name.
-    /// </summary>
-    public override string SettingName { get; }
 
     /// <summary>
     /// Gets the primary keyword.
