@@ -322,6 +322,7 @@ internal sealed class Parser
     {
         SyntaxToken tableKeyword = MatchToken(SyntaxKind.TableKeyword);
         TableIdentifierClause identifier = ParseTableIdentifier();
+        TableAliasClause? alias = ParseOptionalTableAlias();
         TableSettingListSyntax? settingList = ParseOptionalTableSettingList();
         StatementSyntax body = ParseBlockStatement();
 
@@ -341,7 +342,23 @@ internal sealed class Parser
             }
         }
 
-        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, settingList, body);
+        return new TableDeclarationSyntax(_syntaxTree, tableKeyword, identifier, alias, settingList, body);
+    }
+
+    private TableAliasClause? ParseOptionalTableAlias()
+    {
+        return Current.Kind switch
+        {
+            SyntaxKind.AsKeyword => ParseTableAlias(),
+            _ => null
+        };
+    }
+
+    private TableAliasClause ParseTableAlias()
+    {
+        SyntaxToken asKeyword = MatchToken(SyntaxKind.AsKeyword);
+        SyntaxToken identifier = MatchToken(SyntaxKind.IdentifierToken);
+        return new TableAliasClause(_syntaxTree, asKeyword, identifier);
     }
 
     private TableIdentifierClause ParseTableIdentifier()

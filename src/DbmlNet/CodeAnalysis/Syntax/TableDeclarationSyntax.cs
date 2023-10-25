@@ -11,12 +11,14 @@ public sealed class TableDeclarationSyntax : MemberSyntax
         SyntaxTree syntaxTree,
         SyntaxToken tableKeyword,
         TableIdentifierClause identifierToken,
+        TableAliasClause? alias,
         TableSettingListSyntax? settings,
         StatementSyntax body)
         : base(syntaxTree)
     {
         TableKeyword = tableKeyword;
         DbSchema = identifierToken;
+        Alias = alias;
         Settings = settings;
         Body = body;
     }
@@ -37,6 +39,11 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     public TableIdentifierClause DbSchema { get; }
 
     /// <summary>
+    /// Gets the table alias.
+    /// </summary>
+    public TableAliasClause? Alias { get; }
+
+    /// <summary>
     /// Gets the table setting list.
     /// </summary>
     public TableSettingListSyntax? Settings { get; }
@@ -54,6 +61,7 @@ public sealed class TableDeclarationSyntax : MemberSyntax
     {
         yield return TableKeyword;
         yield return DbSchema;
+        if (Alias is not null) yield return Alias;
         if (Settings is not null) yield return Settings;
         yield return Body;
     }
