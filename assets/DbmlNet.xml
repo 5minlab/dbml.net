@@ -900,6 +900,42 @@
             </summary>
             <returns>The children of the note declaration.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause">
+            <summary>
+            Represents a note enum entry setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the note enum entry setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.NoteEnumEntrySettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.SettingName">
+            <summary>
+            Gets the setting name.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.NoteKeyword">
+            <summary>
+            Gets the note keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.NoteEnumEntrySettingClause.GetChildren">
+            <summary>
+            Gets the children of the note enum entry setting.
+            </summary>
+            <returns>The children of the note enum entry setting.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.NoteIndexSettingClause">
             <summary>
             Represents a index setting clause in the syntax tree.

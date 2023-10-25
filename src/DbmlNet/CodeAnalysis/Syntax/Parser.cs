@@ -839,6 +839,16 @@ internal sealed class Parser
     {
         switch (Current.Kind)
         {
+            case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
+            {
+                ReadNoteSettingTokens(
+                    out SyntaxToken noteKeyword,
+                    out SyntaxToken colonToken,
+                    out SyntaxToken noteToken);
+
+                return new NoteEnumEntrySettingClause(_syntaxTree, noteKeyword, colonToken, noteToken);
+            }
+
             default:
             {
                 SyntaxToken identifierToken = Current.Kind.IsKeyword()
