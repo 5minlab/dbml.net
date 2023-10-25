@@ -25,6 +25,27 @@ public partial class ParserTests
         e.AssertToken(enumEntryNameKind, enumEntryNameText);
     }
 
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_EnumEntryDeclaration_With_Name_Keyword(
+        SyntaxKind enumEntryNameKind,
+        string enumEntryNameText,
+        object? enumEntryNameValue)
+    {
+        string text = $$"""
+        enum {{DataGenerator.CreateRandomString()}}
+        {
+            {{enumEntryNameText}}
+        }
+        """;
+
+        StatementSyntax statement = ParseEnumEntryDeclaration(text);
+
+        using AssertingEnumerator e = new AssertingEnumerator(statement);
+        e.AssertNode(SyntaxKind.EnumEntryDeclarationStatement);
+        e.AssertToken(enumEntryNameKind, enumEntryNameText, enumEntryNameValue);
+    }
+
     [Fact]
     public void Parse_EnumEntryDeclaration_With_Name_QuotationMarksString()
     {
