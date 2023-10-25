@@ -810,6 +810,18 @@ internal sealed class Parser
         SeparatedSyntaxList<EnumEntrySettingClause> settings =
             settingList?.Settings ?? SeparatedSyntaxList<EnumEntrySettingClause>.Empty;
 
+        HashSet<string> seenSettingNames = new HashSet<string>(StringComparer.InvariantCulture);
+        foreach (EnumEntrySettingClause columnSetting in settings)
+        {
+            string settingNameText = columnSetting.SettingName;
+            if (!seenSettingNames.Add(settingNameText))
+            {
+                TextSpan settingNameSpan = columnSetting.Span;
+                TextLocation location = new TextLocation(_syntaxTree.Text, settingNameSpan);
+                Diagnostics.ReportDuplicateEnumEntrySettingName(location, settingNameText);
+            }
+        }
+
         return new EnumEntryDeclarationSyntax(_syntaxTree, identifier, settingList);
     }
 
