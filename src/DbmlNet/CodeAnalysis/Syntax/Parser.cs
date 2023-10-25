@@ -544,6 +544,7 @@ internal sealed class Parser
             SyntaxKind.IdentifierToken => true,
             SyntaxKind.QuotationMarksStringToken => true,
             SyntaxKind.SingleQuotationMarksStringToken => true,
+            _ when Current.Kind.IsKeyword() => true,
             _ => false
         };
 
