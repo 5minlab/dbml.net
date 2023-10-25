@@ -81,6 +81,7 @@ public enum SyntaxKind
 
     // Enum entry nodes
     EnumEntrySettingListClause,
+    NoteEnumEntrySettingClause,
     UnknownEnumEntrySettingClause,
 
     // Table nodes
