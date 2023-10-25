@@ -100,16 +100,14 @@ public static class SyntaxFacts
     /// <returns><see langword="true"/> if the given kind is a trivia; otherwise, <see langword="false"/>.</returns>
     public static bool IsTrivia(this SyntaxKind kind)
     {
-        switch (kind)
+        return kind switch
         {
-            case SyntaxKind.LineBreakTrivia:
-            case SyntaxKind.WhitespaceTrivia:
-            case SyntaxKind.SingleLineCommentTrivia:
-            case SyntaxKind.MultiLineCommentTrivia:
-                return true;
-            default:
-                return false;
-        }
+            SyntaxKind.LineBreakTrivia => true,
+            SyntaxKind.WhitespaceTrivia => true,
+            SyntaxKind.SingleLineCommentTrivia => true,
+            SyntaxKind.MultiLineCommentTrivia => true,
+            _ => false,
+        };
     }
 
     /// <summary>

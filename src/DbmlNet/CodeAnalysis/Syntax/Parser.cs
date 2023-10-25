@@ -194,15 +194,12 @@ internal sealed class Parser
 
     private ProjectSettingClause ParseProjectSettingClause()
     {
-        switch (Current.Kind)
+        return Current.Kind switch
         {
-            case SyntaxKind.DatabaseTypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
-                return ParseDatabaseProviderProjectSetting();
-            case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
-                return ParseNoteProjectSetting();
-            default:
-                return ParseUnknownProjectSetting();
-        }
+            SyntaxKind.DatabaseTypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken => ParseDatabaseProviderProjectSetting(),
+            SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken => ParseNoteProjectSetting(),
+            _ => ParseUnknownProjectSetting(),
+        };
     }
 
     private ProjectSettingClause ParseDatabaseProviderProjectSetting()
@@ -391,9 +388,11 @@ internal sealed class Parser
 
     private TableSettingListSyntax? ParseOptionalTableSettingList()
     {
-        return Current.Kind == SyntaxKind.OpenBracketToken
-            ? ParseTableSettingList()
-            : null;
+        return Current.Kind switch
+        {
+            SyntaxKind.OpenBracketToken => ParseTableSettingList(),
+            _ => null
+        };
     }
 
     private TableSettingListSyntax ParseTableSettingList()
@@ -413,11 +412,10 @@ internal sealed class Parser
 
     private TableSettingClause ParseTableSettingClause()
     {
-        switch (Current.Kind)
+        return Current.Kind switch
         {
-            default:
-                return ParseUnknownTableSetting();
-        }
+            _ => ParseUnknownTableSetting(),
+        };
     }
 
     private TableSettingClause ParseUnknownTableSetting()
@@ -658,9 +656,11 @@ internal sealed class Parser
 
     private IndexSettingListSyntax? ParseOptionalIndexSettingList()
     {
-        return Current.Kind == SyntaxKind.OpenBracketToken
-            ? ParseIndexSettingList()
-            : null;
+        return Current.Kind switch
+        {
+            SyntaxKind.OpenBracketToken => ParseIndexSettingList(),
+            _ => null
+        };
     }
 
     private IndexSettingListSyntax ParseIndexSettingList()
@@ -692,23 +692,16 @@ internal sealed class Parser
 
     private IndexSettingClause ParseIndexSettingClause()
     {
-        switch (Current.Kind)
+        return Current.Kind switch
         {
-            case SyntaxKind.UniqueKeyword:
-                return ParseUniqueIndexSetting();
-            case SyntaxKind.PkKeyword:
-                return ParsePkIndexSetting();
-            case SyntaxKind.PrimaryKeyword when Lookahead.Kind == SyntaxKind.KeyKeyword:
-                return ParsePrimaryKeyIndexSetting();
-            case SyntaxKind.NameKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
-                return ParseNameIndexSetting();
-            case SyntaxKind.TypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
-                return ParseTypeIndexSetting();
-            case SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken:
-                return ParseNoteIndexSetting();
-            default:
-                return ParseUnknownIndexSetting();
-        }
+            SyntaxKind.UniqueKeyword => ParseUniqueIndexSetting(),
+            SyntaxKind.PkKeyword => ParsePkIndexSetting(),
+            SyntaxKind.PrimaryKeyword when Lookahead.Kind == SyntaxKind.KeyKeyword => ParsePrimaryKeyIndexSetting(),
+            SyntaxKind.NameKeyword when Lookahead.Kind == SyntaxKind.ColonToken => ParseNameIndexSetting(),
+            SyntaxKind.TypeKeyword when Lookahead.Kind == SyntaxKind.ColonToken => ParseTypeIndexSetting(),
+            SyntaxKind.NoteKeyword when Lookahead.Kind == SyntaxKind.ColonToken => ParseNoteIndexSetting(),
+            _ => ParseUnknownIndexSetting(),
+        };
     }
 
     private IndexSettingClause ParseUniqueIndexSetting()
@@ -836,9 +829,11 @@ internal sealed class Parser
 
     private EnumEntrySettingListSyntax? ParseOptionalEnumEntrySettingList()
     {
-        return Current.Kind == SyntaxKind.OpenBracketToken
-            ? ParseEnumEntrySettingList()
-            : null;
+        return Current.Kind switch
+        {
+            SyntaxKind.OpenBracketToken => ParseEnumEntrySettingList(),
+            _ => null
+        };
     }
 
     private EnumEntrySettingListSyntax ParseEnumEntrySettingList()
@@ -975,9 +970,11 @@ internal sealed class Parser
 
     private ColumnSettingListSyntax? ParseOptionalColumnSettingList()
     {
-        return Current.Kind == SyntaxKind.OpenBracketToken
-            ? ParseColumnSettingList()
-            : null;
+        return Current.Kind switch
+        {
+            SyntaxKind.OpenBracketToken => ParseColumnSettingList(),
+            _ => null
+        };
     }
 
     private ColumnSettingListSyntax ParseColumnSettingList()
@@ -1140,10 +1137,11 @@ internal sealed class Parser
 
     private ColumnIdentifierClause? ParseOptionalColumnIdentifier()
     {
-        if (Current.Kind == SyntaxKind.IdentifierToken)
-            return ParseColumnIdentifier();
-        else
-            return null;
+        return Current.Kind switch
+        {
+            SyntaxKind.IdentifierToken => ParseColumnIdentifier(),
+            _ => null
+        };
     }
 
     private ColumnIdentifierClause ParseColumnIdentifier()
