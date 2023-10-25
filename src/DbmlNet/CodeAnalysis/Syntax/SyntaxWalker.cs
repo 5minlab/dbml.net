@@ -46,6 +46,9 @@ public abstract class SyntaxWalker
             case SyntaxKind.ProjectDeclarationMember:
                 WalkProjectDeclaration((ProjectDeclarationSyntax)syntax);
                 break;
+            case SyntaxKind.EnumDeclarationMember:
+                WalkEnumDeclaration((EnumDeclarationSyntax)syntax);
+                break;
             case SyntaxKind.TableDeclarationMember:
                 WalkTableDeclaration((TableDeclarationSyntax)syntax);
                 break;
@@ -71,6 +74,17 @@ public abstract class SyntaxWalker
     protected virtual void WalkProjectDeclaration(ProjectDeclarationSyntax syntax)
     {
         ArgumentNullException.ThrowIfNull(syntax);
+    }
+
+    /// <summary>
+    /// Walks a enum declaration syntax.
+    /// </summary>
+    /// <param name="syntax">The enum declaration syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    protected virtual void WalkEnumDeclaration(EnumDeclarationSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
+        WalkStatement(syntax.Body);
     }
 
     /// <summary>
@@ -130,6 +144,9 @@ public abstract class SyntaxWalker
             case SyntaxKind.BlockStatement:
                 WalkBlockStatement((BlockStatementSyntax)syntax);
                 break;
+            case SyntaxKind.EnumEntryDeclarationStatement:
+                WalkEnumEntryDeclarationStatement((EnumEntryDeclarationSyntax)syntax);
+                break;
             case SyntaxKind.ColumnDeclarationStatement:
                 WalkColumnDeclarationStatement((ColumnDeclarationSyntax)syntax);
                 break;
@@ -164,6 +181,16 @@ public abstract class SyntaxWalker
 
         foreach (StatementSyntax statement in syntax.Statements)
             WalkStatement(statement);
+    }
+
+    /// <summary>
+    /// Walks a column declaration statement syntax.
+    /// </summary>
+    /// <param name="syntax">The column declaration statement syntax.</param>
+    /// <exception cref="ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+    protected virtual void WalkEnumEntryDeclarationStatement(EnumEntryDeclarationSyntax syntax)
+    {
+        ArgumentNullException.ThrowIfNull(syntax);
     }
 
     /// <summary>

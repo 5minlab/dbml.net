@@ -1877,6 +1877,13 @@
             <param name="syntax">The project declaration syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkEnumDeclaration(DbmlNet.CodeAnalysis.Syntax.EnumDeclarationSyntax)">
+            <summary>
+            Walks a enum declaration syntax.
+            </summary>
+            <param name="syntax">The enum declaration syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+        </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkTableDeclaration(DbmlNet.CodeAnalysis.Syntax.TableDeclarationSyntax)">
             <summary>
             Walks a table declaration syntax.
@@ -1918,6 +1925,13 @@
             Walks a block statement syntax.
             </summary>
             <param name="syntax">The block statement syntax.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkEnumEntryDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.EnumEntryDeclarationSyntax)">
+            <summary>
+            Walks a column declaration statement syntax.
+            </summary>
+            <param name="syntax">The column declaration statement syntax.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="syntax"/> is <see langword="null"/>.</exception>
         </member>
         <member name="M:DbmlNet.CodeAnalysis.Syntax.SyntaxWalker.WalkColumnDeclarationStatement(DbmlNet.CodeAnalysis.Syntax.ColumnDeclarationSyntax)">
