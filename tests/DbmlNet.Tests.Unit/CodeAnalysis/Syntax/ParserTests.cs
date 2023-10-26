@@ -252,23 +252,6 @@ public partial class ParserTests
         "image",
     };
 
-    private static void GetRandomKeyword(
-        out SyntaxKind keywordKind,
-        out string keywordText,
-        out object? keywordValue)
-    {
-        SyntaxKind[] keywordKinds =
-            Enum.GetValues<SyntaxKind>()
-                .Where(kind => kind.IsKeyword())
-                .ToArray();
-
-        int maxIndex = keywordKinds.Length == 0 ? 0 : keywordKinds.Length - 1;
-        int randomIndex = new IntRange(min: 0, max: maxIndex).GetValue();
-        keywordKind = keywordKinds[randomIndex];
-        keywordText = keywordKind.GetKnownText() ?? string.Empty;
-        keywordValue = keywordKind.GetKnownValue();
-    }
-
     public static IEnumerable<object[]?> GetSyntaxKeywordTokensData()
     {
         foreach ((SyntaxKind itemKind, string itemText, object? itemValue) in DataGenerator.GetSyntaxKeywords())
