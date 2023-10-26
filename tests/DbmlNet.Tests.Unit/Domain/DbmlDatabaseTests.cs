@@ -43,7 +43,7 @@ public sealed partial class DbmlDatabaseTests
     private static SyntaxTree ParseNoDiagnostics(string text)
     {
         SyntaxTree syntax = SyntaxTree.Parse(text);
-        Assert.Empty(syntax.Diagnostics);
+        Assert.True(syntax.Diagnostics.Length == 0, $"There should be no diagnostics for text '{text}', but found {string.Join(", ", syntax.Diagnostics.Select(d => d.Message))}.");
         return syntax;
     }
 
