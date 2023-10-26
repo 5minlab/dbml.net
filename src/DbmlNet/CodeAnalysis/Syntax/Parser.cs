@@ -431,8 +431,18 @@ internal sealed class Parser
     {
         return Current.Kind switch
         {
+            SyntaxKind.HeaderColorKeyword when Lookahead.Kind == SyntaxKind.ColonToken => HeaderColorTableSetting(),
             _ => ParseUnknownTableSetting(),
         };
+    }
+
+    private TableSettingClause HeaderColorTableSetting()
+    {
+        SyntaxToken headerColorKeyword = MatchToken(SyntaxKind.HeaderColorKeyword);
+        SyntaxToken colonToken = MatchToken(SyntaxKind.ColonToken);
+        SyntaxToken valueToken = MatchToken(SyntaxKind.HexTripletToken);
+        return new HeaderColorTableSettingClause(
+            _syntaxTree, headerColorKeyword, colonToken, valueToken);
     }
 
     private TableSettingClause ParseUnknownTableSetting()

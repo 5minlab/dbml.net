@@ -627,6 +627,37 @@
             </summary>
             <returns>The children of the global statement.</returns>
         </member>
+        <member name="T:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause">
+            <summary>
+            Represents an headercolor table setting clause in the syntax tree.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause.Kind">
+            <summary>
+            Gets the syntax kind of the headercolor table setting clause <see cref="F:DbmlNet.CodeAnalysis.Syntax.SyntaxKind.HeaderColorTableSettingClause"/>.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause.HeaderColorKeyword">
+            <summary>
+            Gets the headercolor keyword.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause.ColonToken">
+            <summary>
+            Gets the colon token.
+            </summary>
+        </member>
+        <member name="P:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause.ValueToken">
+            <summary>
+            Gets the value token.
+            </summary>
+        </member>
+        <member name="M:DbmlNet.CodeAnalysis.Syntax.HeaderColorTableSettingClause.GetChildren">
+            <summary>
+            Gets the children of the headercolor table setting.
+            </summary>
+            <returns>The children of the headercolor table setting.</returns>
+        </member>
         <member name="T:DbmlNet.CodeAnalysis.Syntax.IncrementColumnSettingClause">
             <summary>
             Represents a column setting clause in the syntax tree.
