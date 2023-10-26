@@ -56,10 +56,10 @@ Table users {
 // Example,
 
 // ```dbml
-// TODO: Table TableWithSettings [headercolor: #3498DB] {
-// TODO:     id integer [primary key]
-// TODO:     username varchar(255) [not null, unique]
-// TODO: }
+Table TableWithSettings [headercolor: #3498DB] {
+    id integer [primary key]
+    username varchar(255) [not null, unique]
+}
 // ```
 
 // ## Table Notes
