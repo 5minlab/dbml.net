@@ -273,6 +273,7 @@ public sealed partial class DbmlDatabaseTests
 
     [Theory]
     [MemberData(nameof(GetAllowedKeywordsInUnknownColumnSettingClauseData))]
+    [Trait("BUG", "https://github.com/Catalin-Andronie/dbml.net/issues/51")]
     public void Create_Returns_ColumnSetting_With_ManyToOne_Relationship_And_Keyword_ToColumnName(
         string toColumnName)
     {
