@@ -35,16 +35,16 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
 
-    [Fact]
-    public void Parse_UnknownTableSettingClause_With_Keyword_Name()
+    [Theory]
+    [MemberData(nameof(GetSyntaxKeywordTokensData))]
+    public void Parse_UnknownTableSettingClause_With_Keyword_Name(
+        SyntaxKind settingNameKind,
+        string settingNameText,
+        object? settingNameValue)
     {
         const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
         string tableNameText = DataGenerator.CreateRandomString();
         object? tableNameValue = null;
-        GetRandomKeyword(
-            out SyntaxKind settingNameKind,
-            out string settingNameText,
-            out object? settingNameValue);
         string settingText = $"{settingNameText}";
         string text = $"Table {tableNameText} [ {settingText} ]" + "{ }";
 
