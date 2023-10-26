@@ -169,4 +169,36 @@ public partial class ParserTests
         e.AssertToken(SyntaxKind.OpenBraceToken, "{");
         e.AssertToken(SyntaxKind.CloseBraceToken, "}");
     }
+
+    [Theory]
+    [InlineData(SyntaxKind.HexTripletToken, "#ff00ff", null)]
+    public void Parse_HeaderColorTableSettingClause_With_Value(
+        SyntaxKind settingValueKind,
+        string settingValueText,
+        object? settingValue)
+    {
+        const SyntaxKind tableNameKind = SyntaxKind.IdentifierToken;
+        string tableNameText = DataGenerator.CreateRandomString();
+        object? tableNameValue = null;
+        string settingText = $"headercolor: {settingValueText}";
+        string text = $"Table {tableNameText} [ {settingText} ]" + "{ }";
+
+        MemberSyntax member = ParseMember(text);
+
+        using AssertingEnumerator e = new(member);
+        e.AssertNode(SyntaxKind.TableDeclarationMember);
+        e.AssertToken(SyntaxKind.TableKeyword, "Table");
+        e.AssertNode(SyntaxKind.TableIdentifierClause);
+        e.AssertToken(tableNameKind, tableNameText, tableNameValue);
+        e.AssertNode(SyntaxKind.TableSettingListClause);
+        e.AssertToken(SyntaxKind.OpenBracketToken, "[");
+        e.AssertNode(SyntaxKind.HeaderColorTableSettingClause);
+        e.AssertToken(SyntaxKind.HeaderColorKeyword, "headercolor");
+        e.AssertToken(SyntaxKind.ColonToken, ":");
+        e.AssertToken(settingValueKind, settingValueText, settingValue);
+        e.AssertToken(SyntaxKind.CloseBracketToken, "]");
+        e.AssertNode(SyntaxKind.BlockStatement);
+        e.AssertToken(SyntaxKind.OpenBraceToken, "{");
+        e.AssertToken(SyntaxKind.CloseBraceToken, "}");
+    }
 }

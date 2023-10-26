@@ -47,6 +47,7 @@ public enum SyntaxKind
     DefaultKeyword,
     EnumKeyword,
     FalseKeyword,
+    HeaderColorKeyword,
     IncrementKeyword,
     IndexesKeyword,
     KeyKeyword,
@@ -90,6 +91,7 @@ public enum SyntaxKind
     TableIdentifierClause,
     TableAliasClause,
     TableSettingListClause,
+    HeaderColorTableSettingClause,
     UnknownTableSettingClause,
 
     // Index nodes
