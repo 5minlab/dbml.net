@@ -171,7 +171,14 @@ public partial class ParserTests
     }
 
     [Theory]
-    [InlineData(SyntaxKind.HexTripletToken, "#ff00ff", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#000000", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#FF0000", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#00FF00", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#0000FF", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#FF00FF", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#FFFFFF", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#3498db", null)]
+    [InlineData(SyntaxKind.HexTripletToken, "#3498DB", null)]
     public void Parse_HeaderColorTableSettingClause_With_Value(
         SyntaxKind settingValueKind,
         string settingValueText,
