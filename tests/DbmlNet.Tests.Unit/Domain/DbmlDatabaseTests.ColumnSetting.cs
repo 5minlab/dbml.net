@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.Domain;
@@ -243,6 +245,40 @@ public sealed partial class DbmlDatabaseTests
         string tableName = DataGenerator.CreateRandomString();
         string fromColumnName = DataGenerator.CreateRandomString();
         string toColumnName = DataGenerator.CreateRandomString();
+        string text = $$"""
+        Table {{tableName}}
+        {
+            {{fromColumnName}} {{DataGenerator.CreateRandomString()}} [ ref: > {{toColumnName}} ]
+        }
+        """;
+        SyntaxTree syntax = ParseNoDiagnostics(text);
+
+        DbmlDatabase database = DbmlDatabase.Create(syntax);
+
+        Assert.NotNull(database);
+        DbmlTable table = Assert.Single(database.Tables);
+        DbmlTableRelationship relationship = Assert.Single(table.Relationships);
+        Assert.Equal(TableRelationshipType.ManyToOne, relationship.RelationshipType);
+        Assert.Equal($"{tableName}.{fromColumnName}", relationship.FromIdentifier.ToString());
+        Assert.Equal(toColumnName, relationship.ToIdentifier.ToString());
+    }
+
+    public static IEnumerable<object[]?> GetAllowedKeywordsInUnknownColumnSettingClauseData()
+    {
+        foreach ((_, string itemText, _) in DataGenerator.GetSyntaxKeywords())
+        {
+            yield return new object[] { itemText };
+        }
+    }
+
+    [Theory]
+    [MemberData(nameof(GetAllowedKeywordsInUnknownColumnSettingClauseData))]
+    [Trait("BUG", "https://github.com/Catalin-Andronie/dbml.net/issues/51")]
+    public void Create_Returns_ColumnSetting_With_ManyToOne_Relationship_And_Keyword_ToColumnName(
+        string toColumnName)
+    {
+        string tableName = DataGenerator.CreateRandomString();
+        string fromColumnName = DataGenerator.CreateRandomString();
         string text = $$"""
         Table {{tableName}}
         {

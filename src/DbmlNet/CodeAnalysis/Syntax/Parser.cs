@@ -1167,6 +1167,7 @@ internal sealed class Parser
         return Current.Kind switch
         {
             SyntaxKind.IdentifierToken => ParseColumnIdentifier(),
+            _ when Current.Kind.IsKeyword() => ParseColumnIdentifier(),
             _ => null
         };
     }
@@ -1174,7 +1175,11 @@ internal sealed class Parser
     private ColumnIdentifierClause ParseColumnIdentifier()
     {
         // Read syntax: column
-        SyntaxToken columnIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+        SyntaxToken columnIdentifier = Current.Kind switch
+        {
+            _ when Current.Kind.IsKeyword() => NextToken(),
+            _ => MatchToken(SyntaxKind.IdentifierToken)
+        };
 
         // Read syntax: table.column
         SyntaxToken? tableIdentifier = null;
@@ -1183,7 +1188,11 @@ internal sealed class Parser
         {
             tableIdentifier = columnIdentifier;
             secondDotToken = MatchToken(SyntaxKind.DotToken);
-            columnIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+            columnIdentifier = Current.Kind switch
+            {
+                _ when Current.Kind.IsKeyword() => NextToken(),
+                _ => MatchToken(SyntaxKind.IdentifierToken)
+            };
         }
 
         // Read syntax: schema.table.column
@@ -1194,7 +1203,11 @@ internal sealed class Parser
             schemaIdentifier = tableIdentifier;
             tableIdentifier = columnIdentifier;
             firstDotToken = MatchToken(SyntaxKind.DotToken);
-            columnIdentifier = MatchToken(SyntaxKind.IdentifierToken);
+            columnIdentifier = Current.Kind switch
+            {
+                _ when Current.Kind.IsKeyword() => NextToken(),
+                _ => MatchToken(SyntaxKind.IdentifierToken)
+            };
         }
 
         return new ColumnIdentifierClause(
