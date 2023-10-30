@@ -44,6 +44,14 @@ readonly string? ENVIRONMENT = Argument<string?>("environment", null);
 // Default value `false`.
 readonly bool REMOVE_COVERAGE_ARTIFACTS = HasArgument("remove-coverage-artifacts");
 
+// The maximum number of iterations to run the tests.
+// Default value `1`.
+readonly int TestUntil_MaxRuns = Argument<int>("maxRuns", 1);
+
+// The root directory where the tests are located.
+// Default value `(string)null`.
+readonly string? TestUntil_Directory = Argument<string?>("directory", null);
+
 #nullable disable // Disable C# nullability
 
 // ========================================
@@ -148,6 +156,100 @@ Task("package")
                 OutputDirectory = packageArtifactsDirectory
             }
         );
+    })
+    .DeferOnError();
+
+Task("test-until")
+    .Description($"Runs tests until the process stop or the maximum runs are achieved.")
+    .IsDependentOn("build")
+    .Does(() =>
+    {
+        DirectoryPath projectsDirectory = TestUntil_Directory ?? "./tests";
+        string projectRegexLookup = $"{projectsDirectory}/**/*.Tests.*.csproj";
+        FilePathCollection projects = GetFiles(projectRegexLookup);
+        const string DelimiterText = "========================================";
+
+        // Print usage information
+        Information(string.Empty);
+        Information(DelimiterText);
+        Information("Usage: dotnet cake --task test-until [options]");
+        Information(string.Empty);
+        Information("test-until enable running tests until the process stop or the maximum runs are achieved.");
+        Information(string.Empty);
+        Information("Options:");
+        Information("  `--maxRuns`    The maximum number of iterations to run the tests.");
+        Information("  `--directory`  The root directory where the tests are located.");
+        Information(string.Empty);
+        Information("Examples:");
+        Information("   dotnet cake --task test-until");
+        Information("   dotnet cake --task test-until --maxRuns 10 --directory ./tests/");
+        Information(DelimiterText);
+
+        // Print configuration information
+        Information(string.Empty);
+        Information(DelimiterText);
+        Information($"  - Max number of runs: {TestUntil_MaxRuns}");
+        Information($"  - Root directory: '{projectsDirectory}'");
+        Information($"  - Test lookup: '{projectRegexLookup}'");
+        Information($"  - Number of projects: {projects.Count}");
+        foreach (FilePath project in projects)
+            Information($"    - {project.ToString()}");
+        Information(DelimiterText);
+
+        // Run tests
+        int currentRunCount = 1;
+
+    TestLoop:
+        if (currentRunCount > TestUntil_MaxRuns)
+            goto TaskEnd;
+
+        for (int projectNr = 1; projectNr <= projects.Count; projectNr++)
+        {
+            FilePath project = projects.ElementAt(projectNr - 1);
+            string projectName = System.IO.Path.GetFileName(project.ToString());
+
+            // Print test run information
+            Information(string.Empty);
+            Information(DelimiterText);
+            Information($"(Run #{currentRunCount}) - #{projectNr}-project: '{projectName}'...");
+            Information(DelimiterText);
+            Information(string.Empty);
+
+            try
+            {
+                DotNetTest(
+                    project: project.ToString(),
+                    settings: new DotNetTestSettings
+                    {
+                        Configuration = CONFIGURATION,
+                        NoLogo = true,
+                        NoRestore = true,
+                        NoBuild = false,
+                        ToolTimeout = TimeSpan.FromMinutes(10),
+                        Blame = true,
+                        Loggers = new string[] { "trx" },
+                        Collectors = new string[] { "XPlat Code Coverage" },
+                        ResultsDirectory = unitTestsArtifactsDirectory
+                    }
+                );
+            }
+            catch
+            {
+                // Do nothing, errors are expected
+            }
+        }
+
+        // Go to next run...
+        currentRunCount++;
+        goto TestLoop;
+
+    TaskEnd:
+        // Print configuration information
+        Information(string.Empty);
+        Information(DelimiterText);
+        Information($"  - Max number of runs: {TestUntil_MaxRuns}");
+        Information($"  - Number of runs: {currentRunCount - 1}");
+        Information(DelimiterText);
     })
     .DeferOnError();
 
