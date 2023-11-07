@@ -27,7 +27,7 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
     <PackageVersion Include="Tynamix.ObjectFiller" Version="1.5.8" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" PrivateAssets="all" />
-    <PackageVersion Include="xunit" Version="2.5.3" />
+    <PackageVersion Include="xunit" Version="2.6.1" />
   </ItemGroup>
 
 </Project>
