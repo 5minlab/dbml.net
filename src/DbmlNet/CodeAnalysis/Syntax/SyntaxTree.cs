@@ -174,7 +174,7 @@ public sealed class SyntaxTree
         return _parents[syntaxNode];
     }
 
-    private Dictionary<SyntaxNode, SyntaxNode?> CreateParentsDictionary(CompilationUnitSyntax root)
+    private static Dictionary<SyntaxNode, SyntaxNode?> CreateParentsDictionary(CompilationUnitSyntax root)
     {
         Dictionary<SyntaxNode, SyntaxNode?> result = new()
         {
@@ -185,7 +185,7 @@ public sealed class SyntaxTree
         return result;
     }
 
-    private void CreateParentsDictionary(Dictionary<SyntaxNode, SyntaxNode?> result, SyntaxNode node)
+    private static void CreateParentsDictionary(Dictionary<SyntaxNode, SyntaxNode?> result, SyntaxNode node)
     {
         foreach (SyntaxNode child in node.GetChildren())
         {
