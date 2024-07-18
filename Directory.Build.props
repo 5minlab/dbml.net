@@ -1,7 +1,9 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <LangVersion>10</LangVersion>
 
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
