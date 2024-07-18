@@ -374,11 +374,20 @@ internal sealed class DbmlDatabaseMaker : SyntaxWalker
                     case "nchar":
                     case "nvarchar":
                     {
+                        /*
                         if (variableLengthText.Equals("MAX", StringComparison.OrdinalIgnoreCase))
                             _currentTableColumn.MaxLength = double.MaxValue;
                         else if (int.TryParse(variableLengthText, NumberFormatInfo.InvariantInfo, out int iMax))
                             _currentTableColumn.MaxLength = iMax;
                         else if (double.TryParse(variableLengthText, NumberFormatInfo.InvariantInfo, out double dMax))
+                            _currentTableColumn.MaxLength = dMax;
+                        */
+
+                        if (variableLengthText.Equals("MAX", StringComparison.OrdinalIgnoreCase))
+                            _currentTableColumn.MaxLength = double.MaxValue;
+                        else if (int.TryParse(variableLengthText, out int iMax))
+                            _currentTableColumn.MaxLength = iMax;
+                        else if (double.TryParse(variableLengthText, out double dMax))
                             _currentTableColumn.MaxLength = dMax;
 
                         return;
