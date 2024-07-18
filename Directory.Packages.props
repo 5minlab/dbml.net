@@ -19,6 +19,7 @@
 
   <!-- Application packages -->
   <ItemGroup>
+    <PackageVersion Include="System.Collections.Immutable" Version="8.0.0" />
   </ItemGroup>
 
   <!-- Testing packages -->
