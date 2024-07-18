@@ -8,6 +8,8 @@ using DbmlNet.IO;
 
 namespace DbmlNet.CodeAnalysis.Syntax;
 
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 /// <summary>
 /// Represents a syntax node.
 /// </summary>

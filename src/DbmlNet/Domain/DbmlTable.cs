@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DbmlNet.Domain;
 
+using ArgumentException = DbmlNet.MyArgumentExceptionExt;
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 /// <summary>
 /// Represents a table.
 /// </summary>

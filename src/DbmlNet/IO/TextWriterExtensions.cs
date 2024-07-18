@@ -9,6 +9,8 @@ using DbmlNet.CodeAnalysis;
 using DbmlNet.CodeAnalysis.Syntax;
 using DbmlNet.CodeAnalysis.Text;
 
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 namespace DbmlNet.IO
 {
 #pragma warning disable SA1202 // disable 'public' members should come before 'private' members

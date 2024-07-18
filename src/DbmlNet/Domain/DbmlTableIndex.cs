@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace DbmlNet.Domain;
 
+using ArgumentException = DbmlNet.MyArgumentExceptionExt;
+
 /// <summary>
 /// Represents a table index setting clause in the syntax tree.
 /// </summary>

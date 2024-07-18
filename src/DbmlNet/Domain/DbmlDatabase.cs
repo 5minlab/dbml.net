@@ -5,6 +5,9 @@ using DbmlNet.CodeAnalysis.Syntax;
 
 namespace DbmlNet.Domain;
 
+using ArgumentException = DbmlNet.MyArgumentExceptionExt;
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 /// <summary>
 /// Represents a dbml database.
 /// </summary>

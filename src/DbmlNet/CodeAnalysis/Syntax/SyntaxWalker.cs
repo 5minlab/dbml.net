@@ -3,6 +3,8 @@ using System.Data;
 
 namespace DbmlNet.CodeAnalysis.Syntax;
 
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 /// <summary>
 /// Represents a syntax walker.
 /// </summary>

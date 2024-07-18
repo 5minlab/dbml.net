@@ -6,6 +6,8 @@ using DbmlNet.CodeAnalysis.Syntax;
 
 namespace DbmlNet.Domain;
 
+using ArgumentNullException = DbmlNet.MyArgumentNullExceptionExt;
+
 internal sealed class DbmlDatabaseMaker : SyntaxWalker
 {
     private readonly DbmlDatabase _database;
